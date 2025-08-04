@@ -1,0 +1,45 @@
+/* Styles for the BPI scraper button */
+.bpi-scraper-btn {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    z-index: 10000 !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white !important;
+    border: none !important;
+    padding: 12px 20px !important;
+    border-radius: 25px !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
+    transition: all 0.3s ease !important;
+    font-family: Arial, sans-serif !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+}
+
+.bpi-scraper-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3) !important;
+}
+
+.bpi-scraper-btn:active {
+    transform: translateY(0) !important;
+}
+
+.bpi-scraper-btn:disabled {
+    opacity: 0.7 !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+}
+
+/* Ensure the button stays visible on all page layouts */
+@media (max-width: 768px) {
+    .bpi-scraper-btn {
+        top: 10px !important;
+        right: 10px !important;
+        padding: 10px 16px !important;
+        font-size: 12px !important;
+    }
+}

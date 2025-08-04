@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "BPI Branch Reviews Scraper",
+  "version": "1.0",
+  "description": "Scrape Google Reviews for BPI branches",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.google.com/*",
+    "https://maps.google.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "BPI Reviews Scraper"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.google.com/*", "https://maps.google.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

@@ -1,0 +1,973 @@
+city,branch_name,address,latitude,longitude
+Mandaluyong,Shaw Boulevard,"537 BCC Bldg. Shaw Blvd, Brgy. Wack Wack, Mandaluyong City 1552",,
+Mandaluyong,Shaw Blvd Acacia Lane,"317 Shaw Blvd. near (Acacia Lane), Brgy. Hagdang Bato, Mandaluyong City 1550",14.5896606,121.0352623
+Mandaluyong,Mandaluyong Libertad,"24 Libertad Corner Calbayog Sts., Brgy. Highway Hills, Mandaluyong City 1550",14.5812278,121.0487857
+Mandaluyong,Greenhills EDSA,"G/F Hyatt Center, Ortigas Avenue, Brgy Wack Wack, Mandaluyong City 1550",14.594196,121.056483
+Mandaluyong,Mandaluyong Greenfield District,"G/F Zitan Condominium 730 Shaw Boulevard corner Sto. Cristo Street, Greenfield District,Brgy. Highway Hills, Mandaluyong City 1550",,
+Mandaluyong,SM Megamall,"G/F Bldg A SM Megamall, Bank Drive, Brgy. Wack-wack, Ortigas Center, Mandaluyong City 1550",14.5860657,121.0572051
+Mandaluyong,Mandaluyong Barangka,"One Sulatan Tower, 1 Sulatan Street Corner Barangka Drive, Mandaluyong City 1550",14.5758539,121.042055
+Mandaluyong,Shangri-La Shaw,Level 1 Main Wing Shangrila Plaza Mall EDSA cor Shaw Blvd Brgy Wack Wack Mandaluyong City 1552 NCR,14.5806531,121.0560305
+Mandaluyong,Shaw - Mandaluyong,"Unit #6 Ground Floor Sunshine Square Bldg. Shaw Boulevard, Barangay Pleasant Hill, Mandaluyong City 1550",,
+Mandaluyong,ADB,"Lower G/F Asian Development Bank, 6 ADB Avenue, Ortigas Center, Brgy. Wack wack, Mandaluyong City 1550",,
+Mandaluyong,Mandaluyong,"G/F Mayflower Annex Building, 88 United St Greenfield District, Brgy. Highway Hills, Mandaluyong City 1550",14.5761732,121.0561194
+Mandaluyong,Boni Avenue,"612 Boni Avenue cor Sikap St., Barangay Plainview Mandaluyong City 1550",14.5756661,121.0359617
+Mandaluyong,Mandaluyong-Pioneer,"1 Lower G/F Pioneer Highland Condominium, Madison corner Pioneer Street, Brgy. Barangka Ilaya, Mandaluyong City 1550",14.5722975,121.0458556
+Mandaluyong,Kalentong,"792-E General Kalentong, Barangay Harapin Ang Bukas Streets, Mandaluyong City 1550",14.5920796,121.0261486
+Manila,Espana UST,"Espana Corner Moret Street , Brgy 397 , Sampaloc, Manila 1008",14.604891,120.9929699
+Manila,Tayuman,"1901 Tayuman Street corner Rizal Avenue, Brgy. 353, Sta. Cruz, Manila 1014",14.6165996,120.9766293
+Manila,Morayta Feu,G/F FEU Technology Bldg. Nicanor Reyes St. Sampaloc Manila 1008,,
+Manila,Legarda,"No. 2227-2233 Legarda Street, Brgy 403, Sampaloc, Manila 1008",14.6009593,120.991323
+Manila,Quiapo Church,"457 Quezon Boulevard, Barangay 307 Zone 30, Quiapo, Manila, 1001
+",,
+Manila,Blumentritt Chinese Gen,"Ground Floor, Chinese Medical Arts Building, 286 Blumentritt, Sta. Cruz , Manila 1014",,
+Manila,Sampaloc,"Laong Laan cor. AH Lacson Sts., Brgy. 470, Sampaloc, Manila 1008",,
+Manila,"Balut Tondo","2484-2488 Juan Luna St., Gagalangin, Tondo, Barangay 165 1013, Manila
+",,
+Manila,Espana Blumentritt,"Espana cor. Blumentritt Street, Brgy. 528, Sampaloc, Manila 1008",14.6018841,120.991449
+Manila,Quiapo,"112 Carlos Palanca St., Barangay 306 Zone 30 Quiapo, Manila 1001",,
+,"Pritil","Grand Innovation Bldg. 1997-2003 Juan Luna st., Barangay 151 Zone 13 Tondo Manila 1013",,
+Manila,"Bustillos","449 J. Figueras St., Barangay 402 Zone 41, Sampaloc, Manila 1008",,
+Manila,"BPI España
+","Espana corner AH Lacson Ave, Barangay 479 Zone 47, Sampaloc, Manila 1008
+
+",14.6138545,120.9951805
+Manila,"San Lazaro Vertex One
+","Un Avenue Pope Pious
+",,
+Manila,"Sta.Ana
+","Pedro Gil Cor Calderon Streets, Bgy 879 Sta Ana Manila 1009
+
+",,
+Manila,"Sta. Ana Pedro Gil
+","G/F Rivergreen Residences Pedro Gil Street, Barangay 880, Sta. Ana, Manila 1009
+
+",,
+Manila,"Remedios
+","Suite C Doña Felisa Syjuco Bldg. Corner Taft Avenue and Remedios St., Barangay 693 zone 75, Malate, Manila 1004
+
+",14.5727558,120.9906311
+Manila,"Pandacan West Zamora","1890 West Zamora Street, Brgy 850 Zone 93 Pandacan, Manila 1011
+
+",14.5854946,121.0010396
+Manila,"Sta.Mesa
+","4131 Ramon Magsaysay Blvd., Sta. Mesa, Brgy 586 Zone 57, Manila 1016
+
+",14.6035714,121.0162317
+Manila,"Leon Guinto
+","Ground Floor, NAESS House, 2215 Leon Guinto Street, Brgy 729 , Zone 79 5th District, Malate, Manila
+
+",14.5689155,120.9929869
+Manila,"Paco
+","1585 General Luna St., Brgy 675 Zone 73, Paco Manila 1007
+",,
+Manila,"Padre Faura Taft
+","G/F Manila Astral Tower, 1330 Taft Avenue cor Padre Faura, Brgy 676 Zone 73 District 5, Ermita, Manila 1000
+
+",14.5798504,120.9865021
+,"Old Sta. Mesa
+","4331 Old Sta Mesa Street, Barangay 587 Zone 58, Sta. Mesa, Manila 1016
+
+",,
+Manila,"Zobel Roxas
+","1015 Krisambet Bldg. Zobel Roxas Street., Barangay No.755, Malate, Manila 1004
+
+",14.5621999,120.9991542
+Manila,"Robinsons Otis
+","Level 1 Robinsons Otis Mall, Paz M. Guazon Street, Paco, Manila 1007
+
+",14.5872482,120.9956531
+Manila,"Plaza Cervantes
+","Dasmarinas St., cor Quintin Paredes St., Binondo Manila 1006, Metro Manila NCR
+
+",,
+Manila,"T.Alonzo
+","602 T. Alonzo Street, Barangay 302 Zone 29 District III, Sta.Cruz, Manila 1003
+
+",,
+Manila,"Escolta
+","Escolta cor Nueva St., Brgy 291 Zone 27 Binondo, Manila 1006
+
+",,
+Manila,"Binondo Plaza Lorenzo Ruiz
+","Plaza Lorenzo Ruiz cor. Reina Regente Street, Brgy. 287 Zone 27 District 3, Binondo, Manila 1006
+
+",,
+Manila,"Amaia Skies Avenida
+","Ground Floor R01-R04, Amaia Skies Avenida Building, Doroteo Jose corner Tomas Mapua Sts., Bgy 313, Zone 31, 3rd District, Sta Cruz , Manila 1003
+
+",,
+Manila,"Divisoria
+","707 Elcano Tower II,  Elcano St., Barangay 271 Binondo, Manila 1006
+
+",,
+Manila,"Nueva
+","492 E.T. Yuchengco Street (former Nueva), Binondo, Manila 1006
+
+",14.5988884,120.975891
+Manila,"Masangkay
+","Orchard Residences, No. 1311-1325 Masangkay St., Tondo Manila 1013
+
+",,
+Manila,"Arranque
+","1451-53 Soler St., Barangay 305 Zone 210 Sta. Cruz, Manila 1003
+
+",,
+Manila,"Binondo Rosario
+","560 Don Yujuico Bldg Quintin Paredes St. 027 Barangay 289 Binondo Manila 1006
+
+",,
+Manila,"Divisoria Carmen Planas
+","866-868 L&J Bldg., Carmen Planas St., Barangay 269 Zone 25 District III, Binondo, Manila 1006
+",,
+Manila,"Juan Luna Recto
+","834 Gopoco Bldg.,Juan Luna Street Corner Recto, Barangay 268, Binondo, Manila 1006
+
+",,
+,"Divisoria Elcano","541-543 Elcano St. San Nicolas 026 Brgy 281 Binondo Manila 1006
+
+",,
+Manila,"Dewey
+","Suite 101 Ermita Center Bldg, 1350 Roxas blvd, Brgy 668 Zone 072 Ermita Manila 1000
+",14.5759994,120.9799939
+Manila,Malate,"1792 A. Mabini St, Brgy 699 Zone 76, Malate, Manila 1004
+
+",,
+Manila,"Taft Quirino Ave
+","2151 Taft Avenue, BRGY 709 ZONE 78, Malate, Manila 1004
+
+",,
+Manila,"Mabini Echelon","Unit A1 G/F Echelon Tower Condominium, 2100 A. Mabini Street, Brgy 701 Zone 77 District V, Malate, Manila 1004
+
+",14.5668258,120.9865825
+Manila,"Taft Avenue
+","G/F Unlad Condo, Taft Avenue cor. Gen. Malvar Street, Brgy 696 Zone 76 District V, Malate, Manila 1004
+
+",,
+Manila,"Vito Cruz Harrison
+","BPI Bldg. Pablo Ocampo cor. Maytubig Streets, Brgy 719 Zone 78 5th District, Malate, Manila 1004
+
+",,
+Manila,"Ermita
+","G/F Midland Plaza Condominium, M Adriatico St Brgy 669 Zone 72 District V, Ermita Manila 1000
+
+",,
+,"Malate Mabini
+","1377 A. Mabini corner Sta. Monica Sts., Brgy 668 Zone 72, Ermita, Manila 1000
+
+",,
+Manila,"Emita Pedro Gil
+","G/F TSPI Bldg. 606 Pedro Gil Street, Brgy 698 Zone 76 Ermita, Manila 1000
+",,
+Manila,"Intramuros
+","G/F BPI Bldg, Muralla Street, Brgy 654 Zone 69 District V, Intramuros, Manila 1002
+
+",,
+Manila,"Mabini Pedro Gil
+","G/F Nestor Bldg., 1578 A. Mabini St. corner Pedro Gil St., Barangay 669, Ermita, Manila 1000
+
+",,
+Manila,"Vito Cruz Taft Ave.
+","078 Vito Cruz corner Taft Avenue, Barangay 719 Malate, Manila 1004
+
+",,
+Manila,"MH Del Pilar
+","M. H. Del Pilar cor. UN Avenue, Brgy 667 Zone 72, Ermita, Manila 1000
+
+",14.5795981,120.9788095
+Manila,"UN Avenue
+","G/F Globe UN Avenue 669 UN Avenue, Brgy 666, Ermita, Manila 1000
+
+",,
+Manila,Broadway,"677 Aurora Blvd., Brgy. Mariana New Manila, Quezon City 1112
+
+",,
+Manila,"E. Rodriguez Broadway
+","66 Dona Juana Rodriguez Avenue New Manila Brgy Mariana 1112
+
+",14.6222786,121.0266923
+Manila,"Aurora - Hemady
+","Santander Bldg. 711 Aurora Blvd corner Hemady Street, New Manila, Barangay Mariana, Quezon City 1112
+
+",,
+Quezon City,QC Sto Domingo,"1 Biak-Na-Bato corner Quezon Avenue, Brgy Sto. Domingo, Quezon City 1114",,
+Quezon City,"Timog Circle
+","Timog Commercial Center, Timog Ave cor. Panay Avenue, Brgy South Triangle, Quezon City 1103
+",,
+Quezon City,"West Ave. - Del Monte
+","39 West Avenue, Brgy. Nayong Kanluran, Quezon City
+
+",,
+Quezon City,"Quezon Ave - Delta
+","385 Quezon Avenue, Brgy. West Triangle, Quezon City 1104
+",,
+Quezon City,"Quezon Avenue Espana
+","14 Quezon Avenue, Brgy. Dona Josefa, Quezon City 1113
+",,
+Quezon City,"QC West Triangle
+","1587 Quezon Avenue, Brgy West Triangle, Quezon City 1104
+",,
+Quezon City,Kamuning,"Tomas Morato Ave cor Scout Delgado St., Brgy. Laging Handa, Kamuning, Quezon City 1103
+",,
+Quezon City,Scout Limbaga-Tobias,"GF Scout Center. Scout Tobias Street corner Scout Limbaga Street, Brgy. Laging Handa, Quezon City",,
+Quezon City,"ABS CBN","G/F Tower Entrance ELJ Communications Ctr. ABS-CBN Broadcasting Corp., Mother Ignacia St. Brgy South Triangle, Quezon City 1103",,
+Quezon City,"QA Fisher Mall
+","Upper Basement Fisher Mall, Quezon Avenue corner Roosevelt Avenue, Brgy Santa Cruz Quezon City 1114
+
+",,
+Quezon City,"QA - Kanlaon
+","Quezon Avenue corner Kanlaon St., Barangay Sta. Teresita, Quezon City 1114
+
+",,
+Quezon City,"EDSA - Kamuning
+","105 Kamuning Road, Barangay Kamuning, Quezon City
+
+",,
+Quezon City,"QA - South Triangle
+","1480 Quezon Avenue, Barangay South Triangle, Quezon City 1103
+
+",,
+Quezon City,Roces,"2 Alejandro Roces Ave. Cor Quezon Ave, Barangay Paligsahan, Quezon City 1103
+
+",,
+Quezon City,"Timog Avenue
+","34 Timog Avenue, Barangay Laging Handa, Quezon City 1103
+
+",,
+Quezon City,"Timog EDSA
+","114 Timog Avenue, Ibon Building, Brgy Sacred Heart, Quezon City 1103
+
+",,
+Quezon City,"Blue Ridge Boni Serrano
+","Citigold Plaza Bldg. 175 Katipunan Avenue, Brgy Bayanihan, Quezon City 1109
+
+",,
+Quezon City,"Kalayaan
+","114 Kalayaan Avenue, Brgy Central Diliman, Quezon City 1100
+
+",,
+Quezon City,"Kamias EDSA","BPI Kamias Edsa branch - 5 Kamias Road, Brgy Pinyahan, Quezon City 1102
+",,
+Quezon City,"Up Town Center","Unit C145A L1 Phase 2 UP Town Center, Katipunan Avenue, Brgy. UP Campus, Quezon City 1101
+
+",,
+Quezon City,"St. Ignatius - Katipunan
+","Linear Bldg., 142 Katipunan Ave., St. Ignatius Village, Brgy. St. Ignatius, Quezon City
+
+",,
+Quezon City,"Loyola Katipunan
+","Katipunan Road cor Escaler St., Brgy Loyola Heights, Quezon City 1108
+
+",,
+Quezon City,"Kamias Anonas
+","137 Kamias Road, Brgy Sikatuna, Quezon City 1102
+
+",,
+Quezon City,"Philippine Heart Center
+","Philippine Heart Center Medical Arts Building Annex, Matalino St., Brgy Central Diliman, Quezon City 1100
+
+",,
+Quezon City,"Eastwood City
+","Ground Floor, Techno Plaza One Building, 18 Orchard Road, Eastwood City, Bagumbayan, Quezon City
+",,
+Quezon City,"Xavierville
+","74 Xavierville Avenue, Brgy. Loyola Heights, Quezon City 1108
+
+",,
+Quezon City,"Capitol Hills
+","Capitol Hills Drive, Brgy Matandang Balara, Quezon City 1119
+
+",,
+Quezon City,"East Avenue
+","22 East Avenue, Barangay Pinyahan, Diliman, Quezon City 1101
+
+",,
+Quezon City,"Katipunan Loyola Hgts
+","Miranda Bldg. #325 Katipunan Avenue corner Dela Rosa Street, Barangay Loyola Heights, Quezon City 1108
+",,
+Quezon City,"E. Rodriguez-Acropolis
+","SRK Bldg., Blk 11 Lot 48, E. Rodriguez Avenue, Brgy. Bagumbayan, Quezon City 1110
+
+",,
+Quezon City,"E.Rodriguez Bagumbayan
+","Unit G3 Ground Floor MDC100 Bldg, E. Rodriguez Jr. Avenue, Brgy. Bagumbayan, Quezon City
+",,
+Quezon City,"Opus Bridgetowne branch
+","Opus Mall, Bridgetowne Estate, E. Rodriguez Jr. Avenue, Brgy. Ugong Norte, Quezon City
+",,
+Quezon City,"Commonwealth","Commonwealth Avenue corner Holy Spirit Drive Don Antonio Heights Brgy Holy Spirit Quezon City 1121
+",,
+Quezon City,"Robinson's Nova Market
+","Robinsons Place Novaliches Level 1 Main Mall, Quirino Highway, Barangay Pasong Putik, Novaliches, Quezon City 1118
+
+",,
+Quezon City,"U.P. Techno Hub
+","U.P. North Retail Science and Technology Center, Commonwealth Avenue, Barangay UP Campus, Diliman, Quezon City 1101
+
+",,
+Quezon City,"Fairview East
+","Blk 4 Lot 4 Commonwealth Avenue, Brgy. Fairview, Quezon City 1118
+
+",,
+Quezon City,"Commonwealth Royale Place
+","Lot 831 Block 1, Royale Place Mall Don Antonio Drive, Brgy Matandang Balara, Diliman, Quezon City 1119
+
+",,
+Quezon City,"Fairview
+","Lot 2 Blk 32 Fairview Park, Brgy. Fairview, Quezon City 1118
+",,
+Quezon City,"Fairview Terraces
+","Ground Floor Fairview Terraces Ayala Mall, Quirino Highway cor. Maligaya Drive, Brgy. Pasong Putik, Novaliches, Quezon City 1118
+
+",,
+Quezon City,Lagro,"Lot 7 Block 1 Sacred Heart Village, Quirino Highway, Brgy. Pasong Putik, Quezon City 1118
+
+",,
+Quezon City,"Novaliches Lagro
+","UNIT 1 D GROUND FLR ,BDC CORPORATE CTR Mindanao Avenue Extension, BGY Greater Lagro, Novaliches, Quezon City 1118
+
+",,
+Quezon City,"Diliman Isidora
+","Holy Spirit Drive cor. De Leon St. Isidora Hills Subd., Barangay Holy Spirit, Diliman, Quezon City 1121
+
+",,
+Quezon City,"EDSA - Cloverleaf
+","1157 EDSA Balintawak, Brgy. Apolonio Samson, Quezon City
+
+",,
+Quezon City,"Roosevelt
+","Ground Floor Bayantel Roosevelt Operation Center - 234 Roosevelt Avenue, SFDM, Brgy Del Monte, Quezon City 1105
+",,
+Quezon City,"SM North EDSA
+","SM City North EDSA Branch, SM Main Bldg., Brgy. Bagong Pagasa, Quezon City 1105
+
+",,
+Quezon City,"Novaliches SM Hypermarket
+","G/F SM Hypermarket Novaliches, 402 Quirino Highway, Brgy Talipapa, Novaliches, Quezon City 1116
+
+",,
+Quezon City,"Novaliches Sarmiento
+","946 Quirino Highway corner Sarmiento Street, Barangay Novaliches Proper, Novaliches, Quezon City 1117
+",,
+Quezon City,"Ayala Malls Cloverleaf
+","Space no. 123 & 124, Ground Floo, Ayala Malls Cloverleaf, Balintawak, Quezon City
+
+",,
+Quezon City,"Roosevelt - Munoz
+","316 Roosevelt Ave, SFDM, Barangay San Antonio, Quezon City 1105
+",,
+Quezon City,"Novaliches Gen. Luis
+","Gen Luis corner Gold Street, Millionaires Village, Barangay Novaliches Proper, Novaliches Quezon City 1123
+
+",,
+Quezon City,"Quezon Ave. EDSA
+","G/F Triumph Square Building 1618 Quezon Ave South Triangle Quezon City 1103
+
+",,
+Quezon City,"Waltermart North EDSA
+","G/F WMEDG 03, Waltermart North EDSA, Muñoz Brgy. Veterans, Quezon City 1105
+
+",,
+Quezon City,"Novaliches San Bartolome
+","680 Quirino Highway, Barangay San Bartolome, Novaliches, Quezon City 1116
+
+",,
+Quezon City,"Cubao Aurora
+","St. Anthony Bldg, Stella Maris Arcade, Aurora Blvd cor Cambridge, Brgy E. Rodriguez Cubao, Quezon City 1102
+
+",,
+Quezon City,"Broadway
+","677 Aurora Blvd., Brgy. Mariana New Manila, Quezon City 1112
+
+",,
+Quezon City,"Ali Mall Cubao
+","Space 2022 Level 2 Ali Mall Banking Center, Brgy. Socorro Cubao, Quezon City 1109
+
+",,
+Quezon City,"E. Rodriguez B.G. Belmonte
+","1466 & 1468 E. Rodriguez Sr. Avenue corner Betty Go-Belmonte Street, Brgy. Immaculate Conception, Quezon City 1111
+
+",,
+Quezon City,"E.Rodriguez Welcome Rotonda","GF M1 Central Bldg, 18 E Rodriguez Sr Avenue cor Matimyas St, Brgy Don Manuel, Quezon City 1113
+
+",,
+Quezon City,"Aurora Boulevard
+","719 Aurora Blvd, Brgy. Mariana, Quezon City 1112
+
+",,
+Quezon City,"Cubao Manhattan Parkview
+","Space No. 20 Ground Floor Manhattan Parkview Retail, Gen. Roxas Avenue corner Gen. Romulo Street, Araneta Center, Brgy. Socorro Quezon City 1109
+
+",,
+Quezon City,"Araneta - E. Rodriguez
+","486 G. Araneta Avenue, Brgy Dona Imelda, Quezon City 1113
+
+",,
+Quezon City,"St. Luke's
+","St. Luke's Medical Center, 279 E. Rodriguez Sr. Ave, Brgy Kalusugan, Quezon City 1112
+
+",,
+Quezon City,"Cubao Gateway Mall
+","G/F Gateway Mall, Gen. Malvar Ave., Araneta Center, Cubao, Brgy. Socorro Quezon City 1109
+
+",,
+Quezon City,"Cubao - F Castillo
+","Cubao - P Tuazon 12th Ave.
+",,
+Quezon City,"Aurora - Hemady
+","Santander Bldg. 711 Aurora Blvd corner Hemady Street, New Manila, Barangay Mariana, Quezon City 1112
+
+",,
+Quezon City,"Retiro Mayon
+","NS Amoranto Cor. Mayon St., Brgy. NS Amoranto, La Loma, Quezon City 1114
+
+",,
+Quezon City,"Congressional Avenue
+","G/F The Arete Square, Congressional Avenue, Brgy Bahay Toro Proj. 8 Quezon City 1106
+
+",,
+Quezon City,"Ayala Malls Vertis North
+","Space R4-L1-041&042, Level 1, Vertis North, Phase 1&2 cor. North Ave., Brgy. Bagong Pag-asa, Quezon City ZIP CODE 1105
+
+",,
+Quezon City,"Tandang Sora
+","397 Tandang Sora Avenue, Barangay Culiat, Quezon City
+",,
+Quezon City,"San Francisco Del Monte
+","Araneta Avenue near corner Del Monte Avenue, Brgy Sienna, Quezon city
+
+",,
+Quezon City,"Retiro Kanlaon
+","NS Amoranto Sr. Avenue cor. Kanlaon Street, Quezon City
+
+",,
+Quezon City,"Visayas Avenue
+","46 Visayas Avenue, Brgy Vasra, Project 6, Quezon City 1100
+
+",,
+Quezon City,"Trinoma
+","Space P1012E Level P1 Trinoma North Triangle, North Ave., corner EDSA, Brgy. Bagong Pag-asa, Quezon City 1105
+
+",,
+Quezon City,"Del Monte
+","401 Del Monte Ave., Brgy Manresa, Quezon City
+
+",,
+Quezon City,"T Sora - Visayas Avenue
+","243 Tandang Sora Avenue, Tandang Sora. Quezon City
+
+",,
+Quezon City,"Project 8 - Short Horn
+","26 Shorthorn Street, Project 8, Barangay Bahay Toro, Quezon City 1106
+",,
+Quezon City,"Trinoma North
+","Unit 1085-1086 Level M1, Trinoma, North Triangle, Brgy. Bagong Pag-asa Quezon City
+
+",,
+Quezon City,"Congressional Avenue Extension
+","Lot 17 Block 5 Congressional Extension Avenue Barangay Culiat Quezon City Metro Manila
+
+",,
+Caloocan,"Caloocan Camarin Susano
+","Unit 1 Ground Floor, Aryanna Village Center, Brgy 175, Susano Road, Camarin, Caloocan City 1400",,
+Caloocan,"Grace Park 2nd Ave.
+","Ever Pacific Bldg 191-193 Rizal Ave.(bet. 1st & 2nd Ave.), Barangay 41 Zone 2 Gracepark, Caloocan City
+
+",,
+Caloocan,"Grace Park 11th Ave
+","690 Rizal Ave. Extension (bet 10th & 11th Ave.), Brgy. 91, Grace Park, Caloocan City
+
+",,
+Caloocan,"C3 A Mabini
+","193 A. MABINI ST., BRGY 30, MAYPAJO, CALOOCAN CITY
+
+",,
+Caloocan,"Monumento Circle
+","357 A Bonifacio Ave., Monumento Circle Caloocan City
+
+",,
+Caloocan,"Caloocan
+","1350-1352 Rizal Ave Extn ( between 6th & 7th Ave.), Brgy. 110 Gracepark, Caloocan City 1400
+
+",,
+Caloocan,"EDSA-Balintawak
+","Ground Floor, PPI Bldg., 355 EDSA cor. Gen. Tirona Street, Caloocan City
+
+",,
+Caloocan,"Monumento
+","Samson Road near cor. Araneta Ave., Brgy. 77, Caloocan City
+
+",,
+Caloocan,"EDSA - Monumento
+","MCU Compound, EDSA Monumento, Barangay 84, Caloocan City 1400
+
+",,
+Makati City,"Glorietta Mall Ground Level
+","G/F Unit 1086 Glorietta Mall, Ayala Center, Brgy. San Lorenzo, Makati
+
+",,
+Makati City,"Ayala Avenue SGV
+","SGV Building II, 6758 Ayala Avenue, Brgy. San Lorenzo, Makati City 1226
+
+",,
+Makati City,"Ayala Insular
+","6781 Insular Life Building Ayala Avenue corner Paseo De Roxas, Brgy. Bel-Air, Makati City
+
+",,
+Makati City,"Ayala East
+","G/F Ayala Life FGU Center, 6811 Ayala Ave. Brgy. Bel-Air, Makati City
+
+",,
+Makati City,"Ayala Nex Tower
+","Ground Floor, NEX Tower, 6786 Ayala Avenue, Makati City
+
+",,
+Makati City,"Ayala Triangle
+","G/F Tower One & Exchange Plaza, Ayala Triangle, Ayala Ave. Brgy. Bel-air, Makati City
+
+",,
+Makati City,"Ayala 6750
+","G/F Ayala Office Tower, 6750 Ayala Avenue, Makati City
+
+",,
+Makati City,"Rufino Towers
+","G/F Rufino Tower Bldg, Ayala Ave cor V.A. Rufino St, Brgy. San Lorenzo, Makati City 1226
+
+",,
+Makati City,"Ayala North Exchange
+","Ground Floor, Ayala North Exchange, Ayala Avenue. corner Amorsolo and Salcedo Streets, San Lorenzo, Makati City
+
+",,
+Makati City,"One Ayala
+","Lower Ground Floor, One Ayala, Ayala center Makati City
+
+",,
+Makati City,"Glorietta Mall Third Floor
+","3rd Level Unit 3006 Glorietta Mall 2 Ayala Center, Brgy San Lorenzo, Makati City
+",,
+Makati City,"Makati Main
+","G/F Makati Stock Exchange Bldg Ayala Ave Brgy Bel-Air Makati City 1226
+
+",,
+Makati City,"Legaspi Salcedo
+","G/F State Condominium 1 Building, 186 Salcedo Street, Legaspi Village, Brgy. San Lorenzo, Makati City 1229
+
+",,
+Makati City,"Legaspi Columns
+","G/F Tower 1 The Columns, Legaspi Village, Amorsolo St. corner Arnaiz Ave., Legaspi Village, Brgy. San Lorenzo, Makati City 1223
+
+",,
+Makati City,"Legaspi-Gamboa
+","223 Salcedo Bldg,   223 Salcedo Street corner Gamboa Street,  Brgy. San Lorenzo, Makati City
+
+",,
+Makati City,"Greenbelt 5
+","Lower G/F, Greenbelt 5, Ayala Center, Legaspi Street, Brgy. San Lorenzo, Makati City 1226
+
+",,
+Makati City,"The Enterprise Center
+","G/F Tower 2, The Enterprise Center, 6766 Ayala Avenue corner Paseo de Roxas, Brgy. San Lorenzo, Makati 1226
+
+",,
+Makati City,"Paseo Legaspi
+","111 Paseo De Roxas Bldg., Paseo De Roxas corner Legaspi Street, Brgy. San Lorenzo, Makati City 1229
+
+",,
+Makati City,"Dela Rosa Solaris One
+","G/F Solaris One Bldg. Dela Rosa Street Legaspi Village, Brgy. San Lorenzo, Makati City
+
+",,
+Makati City,"Medical Plaza - Makati
+","G/F Unit 102 Medical Plaza Bldg. Amorsolo cor Dela Rosa St. Legaspi Village, Brgy. San Lorenzo, Makati City 1229
+
+",,
+Makati City,"Corinthian Plaza
+","G/F Corinthian Plaza Bldg., 121 Paseo De Roxas, Brgy. San Lorenzo, Makati 1223
+
+",,
+Makati City,"Rufino Esteban","G/F Sage House Condominium 110 V.A Rufino St., Legaspi Village, Brgy. San Lorenzo, Makati City 1229
+
+",,
+Makati City,"Dela Rosa Paseo
+","109 Paseo de Roxas corner Dela Rosa St., Barangay San Lorenzo, Makati City 1226
+
+",,
+Makati City,"Ayala Paseo
+","G/F Philamlife Tower, 8767 Paseo de Roxas, Brgy. Bel-Air, Makati City 1200
+
+",,
+Makati City,"Buendia Reposo
+","G/F ITC Bldg., 337 Sen. Gil Puyat, Brgy. Bel Air, Makati City
+
+",,
+Makati City,"Salcedo Tordesillas
+","G/F Solar Century Tower, HV Dela Costa corner Tordesillas Sts, Barangay Bel Air, Salcedo Village, Makati City
+
+",,
+Makati City,"Alfaro
+","G/F LPL Center, 130 L.P. Leviste St., Brgy. Bel-Air, Salcedo Village, Makati City 1227
+
+",,
+Makati City,"Bel Air Paseo","54 Jupiter St, Belair Village, Brgy. Bel-Air, Makati City 1209
+
+",,
+Makati City,"Salcedo Alfaro
+","Unit 102 G/F Grand Tower Cond. 150 LP Leviste St Salcedo Village Makati City 1227
+
+",,
+Makati City,"Paseo De Roxas
+","Ayala Triangle Gardens Tower 2 Building Paseo de Roxas corner Makati Avenue , Makati City 1209
+
+",,
+Makati City,"Bel Air Polaris
+","G/F Ventures II Bldg., 51 Polaris St., Bel Air Village, Brgy. Bel-Air, Makati City 1209
+
+",,
+Makati City,"Makati Atrium","G/F Atrium of Makati, Makati Avenue, Brgy. Urdaneta, Makati City 1225
+
+",,
+Makati City,"Buendia Center
+","G/F Buendia Center Bldg., Sen. Gil Puyat Ave., Brgy. Bel-Air, Makati City
+
+",,
+Makati City,"Pacific Star
+","G/F Pacific Star Bldg Sen. Gil Puyat cor Makati Avenue, Brgy. Bel-Air, Makati City
+
+",,
+Makati City,"Salcedo Village
+","G/F 88 Corporate Center, Valero cor Sedeno St., Brgy. Bel-Air, Salcedo Village, Makati 1227
+
+",,
+Makati City,"Magallanes South
+","Lot 6, Block 5, Paseo de Magallanes, Brgy. Magallanes, Makati City 1232
+
+",,
+Makati City,"Pasong Tamo Ext. Edsa
+","2279 Chino Roces Avenue, Brgy. Magallanes, Makati City 1231
+",,
+Makati City,"Forbes Park
+","15-A San Antonio Plaza Arcade, McKinley Road, Brgy. Forbes Park, Makati City 1200
+
+",,
+Makati City,"Bangkal
+","1797 Evangelista cor. Gen. Mascardo St. Bangkal , Makati City 1233
+
+",,
+Makati City,"The Residences At Greenbelt","GL3 The Residences at Greenbelt Condominium Esperanza St. Ayala Center, Brgy. San Lorenzo, Makati City 1228
+
+",,
+Makati City,"Pasong Tamo
+","2182 Chino Roces Avenue, Brgy. Pio del Pilar, Makati City 1230
+
+",,
+Makati City,"San Lorenzo
+","1004 A. ARNAIZ AVENUE, SAN LORENZO VILLAGE, Brgy. San Lorenzo, MAKATI CITY 1223
+
+",,
+Makati City,"Pasong Tamo La Fuerza
+","Unit/s 1 & 2 La Fuerza Plaza 1, 2241 Don Chino Roces Avenue, Brgy. Bangkal,Makati City 1231
+
+",,
+Makati City,"Chino Roces Ext.
+","G/F, Natividad Building, 2308 Don Chino Roces Avenue Extension, Brgy. Magallanes, Makati City 1231
+
+",,
+Makati City,"Magallanes Edsa
+","G/F MPI Bldg., 1052 EDSA Magallanes Village, Brgy. Magallanes, Makati City 1232
+
+",,
+Makati City,"Pasay Road","G/F Colbella Arcade, 910 A. Arnaiz Ave., Brgy. San Lorenzo, Makati City 1223
+
+",,
+Makati City,"Ayala Columns
+","G/F The Columns Tower 2, Ayala corner Buendia Avenue, Brgy. Bel-Air, Makati City 1209
+
+",,
+Makati City,"San Antonio Kamagong
+","9146 CLC Condominium, cor. Kamagong and Catmon Streets., San Antonio Village, Brgy. San Antonio, Makati City 1203
+
+",,
+Makati City,"JP Rizal San Miguel
+","787 JP Rizal Street, San Miguel Village, Brgy. Poblacion, Makati City 1210
+
+",,
+Makati City,"Ayala Malls Circuit
+","Lower Ground Level, Ayala Malls Circuit Hippodromo St., Brgy. Carmona, Makati City 1207
+
+",,
+Makati City,"Rockwell
+","103 Ground Level R1, Poweplant Mall, Rockwell Center, Brgy. Poblacion Makati City 1210
+
+",,
+Makati City,"Buendia Pasong Tamo
+","G/F Comfoods Bldg., Sen Gil Puyat Ave., cor Chino Roces Ave., Brgy. San Antonio, Makati City 1203
+
+",,
+Makati City,"Dian
+","56 Sen. Gil Puyat Ave., Brgy. San Isidro, Makati City 1234
+
+",,
+Makati City,"JP Rizal","847 J.P. Rizal and Quintos Streets, Barangay Poblacion, Makati City 1210
+
+",,
+Makati City,"Cash And Carry Mall
+","G/F Cash & Carry Mall, between South Super Hi-way and Filmore Street, Brgy Palanan, Makati City 1235
+
+",,
+Makati City,"The Rise
+","G/F Assembly Grounds at the Rise, 7248 Malugay St., Brgy. San Antonio, Makati City 1203
+
+",,
+Makati City,"Buendia Malugay
+","G/F Techzone Bldg., 213 Sen. Gil Puyat Ave., Brgy San Antonio, Makati City 1203
+
+",,
+Makati City,"JP Rizal - Binakod
+","G/F A&M Bldg. 397 JP Rizal cor Binakod St., Brgy. Olympia, Makati City 1207
+
+",,
+Makati City,"Vito Cruz Chino Roces
+","1171 Don Chino Roces Avenue, Brgy. San Antonio, Makati City 1203
+
+",,
+Makati City,"Comembo
+","16 JP Rizal Extension, Brgy. Comembo, Makati City 1217
+
+",,
+,,,,
+Manila,San Lazaro Vertex One,"Vertex One Bldg., MJC Ayala Land Corporate Center, Felix  Huertas corner F. Yuseco Streets, Barangay 350 Sta. Cruz, Manila",14.6180729,120.9847755
+Manila,Sta.Ana,"Pedro Gil Cor Calderon Streets, Bgy 879  Sta Ana Manila 1009",14.5806967,121.0136982
+Manila,Sta. Ana Pedro Gil,"G/F Rivergreen Residences  Pedro Gil Street, Barangay 880, Sta. Ana, Manila 1009",14.5814636,121.0097727
+Manila,Old Sta. Mesa,"4331 Old Sta Mesa Street, Barangay 587 Zone 58, Sta. Mesa, Manila 1016",14.6012821,121.0129059
+Manila,T.Alonzo,"602 T. Alonzo Street, Barangay 302 Zone 29 District III,  Sta.Cruz, Manila 1003",14.6030394,120.9799006
+Manila,Juan Luna Recto,"834 Gopoco Bldg.,Juan Luna Street Corner Recto, Barangay 268, Binondo, Manila  1006",14.6007303,120.9747137
+Manila,Vito Cruz Harrison,"BPI Bldg. Pablo Ocampo cor.  Maytubig Streets, Brgy 719 Zone 78 5th District, Malate, Manila 1004",14.5600424,120.9888871
+Manila,Ermita,"G/F Midland Plaza Condominium, M Adriatico St Brgy 669 Zone 72 District V, Ermita  Manila 1000",14.5689615,120.9868021
+Manila,Emita Pedro Gil,"G/F TSPI Bldg. 606 Pedro Gil Street, Brgy 698 Zone 76  Ermita, Manila 1000",14.574443,120.984769
+Manila,Intramuros,"G/F BPI Bldg, Muralla Street, Brgy 654 Zone 69 District V,  Intramuros, Manila  1002",14.5934325,120.9748268
+Quezon,Broadway,"677 Aurora Blvd., Brgy. Mariana New Manila, Quezon City 1112",14.6130875,121.0329279
+Quezon,Aurora - Hemady,"Santander Bldg.  711 Aurora Blvd corner Hemady Street, New Manila, Barangay Mariana, Quezon City 1112",14.6155777,121.0371383
+Quezon,Congressional Avenue Extension,Lot 17 Block 5 Congressional Extension Avenue Barangay Culiat Quezon City Metro Manila,14.6733775,121.0563901
+Manila,Taytay Highway CALABARZON (Reg 4-A),"G/F Alberto Bldg., Barangay San Juan, Manila East Road, Taytay 1920",14.505774,121.2897623
+Manila,Taytay El Monteverde CALABARZON (Reg 4-A),"Manila East Road, Brgy. San Juan, Taytay, Rizal 1920",14.5573571,121.1364392
+Aseana,Ayala Malls Manila Bay,"Ayala Malls Manila Bay,  Aseana Avenue Corner Macapagal Blvd., Barangay Tambo, Aseana City, Paranaque City 1701",14.5269919,120.9826194
+Paranaque,Dr. A. Santos Ave.  – BF,"8006 ECH Plaza. Dr. A. Santos Avenue, Brgy. BF Sucat, Paranaque City. Metro Manila NCR 1700",14.4590206,121.0304831
+Paranaque,Sucat Road BF Homes,"MAR AN BUILDING. No. 9 President's Avenue, BF Homes Subd, Paranaque City, Metro Manila, NCR 1700",14.457949,121.0313054
+Manila,Robinsons Town Mall MalabonNational Capital Region,"Level 1 - 01127 Robinsons Town Mall Malabon #5 Governor Pascual Avenue, corner Crispin St, Malabon, 1470 Metro Manila",14.669081,120.966746
+Mandaluyong,Mandaluyong Greenfield District,"G/F Zitan Condominium  730 Shaw Boulevard corner Sto. Cristo Street, Greenfield District,Brgy. Highway Hills, Mandaluyong City 1550",14.5802125,121.0541229
+Mandaluyong,Shaw  - Mandaluyong,"Unit #6  Ground Floor Sunshine Square Bldg. Shaw Boulevard, Barangay Pleasant Hill, Mandaluyong City 1550",14.5880201,121.0448944
+Makati,Glorietta Mall Ground Level,"G/F Unit 1086 Glorietta Mall, Ayala Center, Brgy. San Lorenzo, Makati",14.550629,121.0254929
+Makati,Ayala Avenue SGV,"SGV Building II, 6758 Ayala Avenue, Brgy. San Lorenzo, Makati City 1226",14.5555721,121.0228072
+Makati,Ayala Insular,"6781 Insular Life Building Ayala Avenue corner Paseo De Roxas, Brgy. Bel-Air, Makati City",14.5571446,121.0211014
+Makati,Ayala East,"G/F Ayala Life FGU Center, 6811 Ayala Ave. Brgy. Bel-Air, Makati City",14.5597573,121.0172738
+Makati,Ayala Nex Tower,"Ground Floor, NEX Tower, 6786 Ayala Avenue, Makati City",14.5586352,121.0175507
+Makati,Ayala Triangle,"G/F Tower One & Exchange Plaza, Ayala Triangle, Ayala Ave. Brgy. Bel-air, Makati City",14.5565232,121.022311
+Makati,Ayala 6750,"G/F Ayala Office Tower, 6750 Ayala Avenue, Makati City",14.5531111,121.0255596
+Makati,Rufino Towers,"G/F Rufino Tower Bldg, Ayala Ave cor V.A. Rufino St, Brgy. San Lorenzo, Makati City 1226",14.559192,121.0175157
+Makati,Ayala North Exchange,"Ground Floor, Ayala North Exchange, Ayala Avenue. corner Amorsolo and Salcedo Streets, San Lorenzo, Makati City",14.5600741,121.0158359
+Makati,One Ayala,"Lower Ground Floor,  One Ayala,  Ayala center  Makati City",14.5565232,121.022311
+Makati,Glorietta Mall Third Floor,"3rd Level Unit 3006 Glorietta Mall 2 Ayala Center, Brgy San Lorenzo, Makati City",14.550629,121.0254929
+Makati,Makati Main,G/F Makati Stock Exchange Bldg Ayala Ave Brgy Bel-Air Makati City 1226,14.5561311,121.0236101
+Makati,Legaspi Salcedo,"G/F State Condominium 1 Building, 186 Salcedo Street, Legaspi Village, Brgy. San Lorenzo, Makati City 1229",14.555967,121.0156884
+Makati,Legaspi Columns,"G/F Tower 1 The Columns, Legaspi Village, Amorsolo St. corner Arnaiz Ave., Legaspi Village, Brgy. San Lorenzo, Makati City 1223",14.551928,121.015621
+Makati,Legaspi-Gamboa,"223 Salcedo Bldg,   223 Salcedo Street corner Gamboa Street,  Brgy. San Lorenzo, Makati City",14.5547684,121.017701
+Makati,Greenbelt 5,"Lower G/F, Greenbelt 5, Ayala Center, Legaspi Street, Brgy. San Lorenzo, Makati City 1226",14.5539165,121.01942
+Makati,Paseo Legaspi,"111 Paseo De Roxas Bldg., Paseo De Roxas corner Legaspi Street, Brgy. San Lorenzo, Makati City 1229",14.5541064,121.0192199
+Makati,Dela Rosa Solaris One,"G/F Solaris One Bldg. Dela Rosa Street Legaspi Village, Brgy. San Lorenzo, Makati City",14.5580653,121.0172935
+Makati,Medical Plaza - Makati,"G/F Unit 102 Medical Plaza Bldg. Amorsolo cor Dela Rosa St. Legaspi Village, Brgy. San Lorenzo, Makati City 1229",14.5579906,121.0165929
+Makati,Rufino Esteban,"G/F Sage House Condominium 110 V.A Rufino St., Legaspi Village, Brgy. San Lorenzo, Makati City 1229",14.5561105,121.0175768
+Makati,Dela Rosa Paseo,"109 Paseo de Roxas corner Dela Rosa St., Barangay San Lorenzo, Makati City 1226",14.5552968,121.0204742
+Makati,Ayala Paseo,"G/F Philamlife Tower, 8767 Paseo de Roxas, Brgy. Bel-Air, Makati City 1200",14.5575269,121.0217555
+Makati,Buendia Reposo,"G/F ITC Bldg., 337 Sen. Gil Puyat, Brgy. Bel Air, Makati City",14.5625341,121.0232069
+Makati,Salcedo Tordesillas,"G/F Solar Century Tower, HV Dela Costa corner Tordesillas Sts, Barangay Bel Air, Salcedo Village, Makati City",14.5596008,121.0206086
+Makati,Alfaro,"G/F LPL Center, 130 L.P. Leviste St., Brgy. Bel-Air, Salcedo Village, Makati City 1227",14.5591613,121.021861
+Makati,Bel Air Paseo,"54 Jupiter St, Belair Village, Brgy. Bel-Air, Makati City 1209",14.560936,121.0306865
+Makati,Salcedo Alfaro,Unit 102 G/F Grand Tower Cond. 150 LP Leviste St Salcedo Village Makati City 1227,14.5597456,121.0240414
+Makati,Paseo De Roxas,"Ayala Triangle Gardens Tower 2 Building Paseo de Roxas corner Makati Avenue , Makati City 1209",14.5578002,121.0254661
+Makati,Bel Air Polaris,"G/F Ventures II Bldg., 51 Polaris St., Bel Air Village, Brgy. Bel-Air, Makati City 1209",14.5639339,121.0263428
+Makati,Makati Atrium,"G/F Atrium of Makati, Makati Avenue, Brgy. Urdaneta, Makati City 1225",14.5572846,121.0260833
+Makati,Buendia Center,"G/F Buendia Center Bldg., Sen. Gil Puyat Ave., Brgy. Bel-Air, Makati City",14.5614155,121.0264324
+Makati,Pacific Star,"G/F Pacific Star Bldg Sen. Gil Puyat cor Makati Avenue, Brgy. Bel-Air,  Makati City",14.5609204,121.0269964
+Makati,Salcedo Village,"G/F 88 Corporate Center, Valero cor Sedeno St., Brgy. Bel-Air, Salcedo Village, Makati 1227",14.5584008,121.0224319
+Makati,Magallanes South,"Lot 6, Block 5, Paseo de Magallanes, Brgy. Magallanes, Makati City 1232",14.5392462,121.0166066
+Makati,Pasong Tamo Ext. Edsa,"2279 Chino Roces Avenue, Brgy. Magallanes, Makati City 1231",14.5381273,121.0203174
+Makati,Forbes Park,"15-A San Antonio Plaza Arcade, McKinley Road, Brgy. Forbes Park, Makati City 1200",14.5471962,121.0351256
+Makati,Bangkal,"1797 Evangelista cor. Gen. Mascardo St. Bangkal , Makati City 1233",14.546838,121.01112
+Makati,The Residences At Greenbelt,"GL3 The Residences at Greenbelt Condominium Esperanza St. Ayala Center, Brgy. San Lorenzo, Makati City 1228",14.5512855,121.0194439
+Makati,Pasong Tamo,"2182 Chino Roces Avenue, Brgy. Pio del Pilar, Makati City 1230",14.5541735,121.0136231
+Makati,Pasong Tamo La Fuerza,"Unit/s 1 & 2 La Fuerza Plaza 1,  2241 Don Chino Roces Avenue, Brgy. Bangkal,Makati City 1231",14.5451992,121.0164654
+Makati,Chino Roces Ext.,"G/F, Natividad Building, 2308 Don Chino Roces Avenue Extension, Brgy. Magallanes, Makati City 1231",14.5330289,121.0224454
+Makati,Magallanes Edsa,"G/F MPI Bldg., 1052 EDSA Magallanes Village, Brgy. Magallanes, Makati City 1232",14.5393052,121.0150373
+Makati,Pasay Road,"G/F Colbella Arcade, 910 A. Arnaiz Ave., Brgy. San Lorenzo, Makati City 1223",14.5507541,121.0202178
+Makati,Ayala Columns,"G/F The Columns Tower 2, Ayala corner Buendia Avenue, Brgy. Bel-Air, Makati City 1209",14.5618589,121.0163895
+Makati,San Antonio Kamagong,"9146 CLC Condominium, cor. Kamagong and Catmon Streets., San Antonio Village, Brgy. San Antonio, Makati City 1203",14.566132,121.007557
+Makati,JP Rizal San Miguel,"787 JP Rizal Street, San Miguel Village, Brgy. Poblacion, Makati City 1210",14.5690145,121.0260151
+Makati,Ayala Malls Circuit,"Lower Ground Level, Ayala Malls Circuit Hippodromo St., Brgy. Carmona, Makati City 1207",14.5729125,121.0195608
+Makati,Rockwell,"103 Ground Level R1, Poweplant Mall, Rockwell Center, Brgy. Poblacion Makati City 1210",14.5646479,121.0364352
+Makati,Buendia Pasong Tamo,"G/F Comfoods Bldg., Sen Gil Puyat Ave., cor Chino Roces Ave., Brgy. San Antonio, Makati City 1203",14.5605842,121.0118462
+Makati,Dian,"56 Sen. Gil Puyat Ave., Brgy. San Isidro, Makati City 1234",14.5561105,121.0045112
+Makati,JP Rizal,"847 J.P. Rizal and Quintos Streets, Barangay Poblacion, Makati City 1210",14.5683855,121.0283839
+Makati,Cash And Carry Mall,"G/F Cash & Carry Mall, between South Super Hi-way and Filmore Street, Brgy Palanan, Makati City 1235",14.5610831,121.0046186
+Makati,The Rise,"G/F Assembly Grounds at the Rise, 7248 Malugay St., Brgy. San Antonio, Makati City 1203",14.5618334,121.0140411
+Makati,Buendia Malugay,"G/F Techzone Bldg., 213 Sen. Gil Puyat Ave.,  Brgy San Antonio, Makati City 1203",14.5588716,121.0093036
+Makati,JP Rizal - Binakod,"G/F A&M Bldg. 397 JP Rizal cor Binakod St., Brgy. Olympia, Makati City 1207",14.5716054,121.0162903
+Makati,Vito Cruz Chino Roces,"1171 Don Chino Roces Avenue, Brgy. San Antonio, Makati City 1203",14.5716939,121.015459
+Makati,Comembo,"16 JP Rizal Extension, Brgy. Comembo, Makati City 1217",14.5491006,121.063496
+Quezon,QC Sto Domingo,"1 Biak-Na-Bato corner Quezon Avenue, Brgy Sto. Domingo, Quezon City 1114",14.6252558,121.0094797
+Quezon,Timog Circle,"Timog Commercial Center, Timog Ave cor. Panay Avenue, Brgy South Triangle, Quezon City  1103",14.6334939,121.0407359
+Quezon,West Ave. - Del Monte,"39 West Avenue, Brgy. Nayong Kanluran, Quezon City",14.6418911,121.0266251
+Quezon,Quezon  Ave - Delta,"385 Quezon Avenue, Brgy. West Triangle, Quezon City 1104",14.6381164,121.0269525
+Quezon,Quezon Avenue Espana,"14 Quezon Avenue, Brgy. Dona Josefa, Quezon City 1113",14.619271,121.0036212
+Quezon,QC West Triangle,"1587 Quezon Avenue, Brgy West Triangle, Quezon City 1104",14.641924,121.033363
+Quezon,Kamuning,"Tomas Morato Ave cor Scout Delgado St., Brgy. Laging Handa, Kamuning, Quezon City 1103",14.6298813,121.0350382
+Quezon,Scout Limbaga-Tobias,"GF Scout Center. Scout Tobias Street corner Scout Limbaga Street, Brgy. Laging Handa, Quezon City",14.634114,121.0306608
+Quezon,ABS CBN,"G/F Tower Entrance ELJ Communications Ctr. ABS-CBN Broadcasting Corp., Mother Ignacia St. Brgy South Triangle, Quezon City 1103",14.6392199,121.0357384
+Quezon,QA Fisher Mall,"Upper Basement Fisher Mall, Quezon Avenue corner Roosevelt Avenue, Brgy Santa Cruz Quezon City 1114",14.6340317,121.0204686
+Quezon,QA - Kanlaon,"Quezon Avenue corner Kanlaon St., Barangay Sta. Teresita, Quezon City 1114",14.619881,121.0033518
+Quezon,EDSA - Kamuning,"105 Kamuning Road, Barangay Kamuning, Quezon City",14.6301149,121.0427931
+Quezon,QA - South Triangle,"1480 Quezon Avenue, Barangay South Triangle, Quezon City 1103",14.6399556,121.0315806
+Quezon,Roces,"2 Alejandro Roces Ave. Cor Quezon Ave, Barangay Paligsahan, Quezon City 1103",14.63193,121.0211939
+Quezon,Timog Avenue,"34 Timog Avenue, Barangay Laging Handa, Quezon City 1103",14.635281,121.031988
+Quezon,Timog EDSA,"114 Timog Avenue, Ibon Building, Brgy Sacred Heart, Quezon City 1103",14.6332736,121.0414076
+Quezon,Blue Ridge Boni Serrano,"Citigold Plaza Bldg. 175 Katipunan Avenue, Brgy Bayanihan, Quezon City 1109",14.6156453,121.0700789
+Quezon,Kalayaan,"114 Kalayaan Avenue, Brgy Central Diliman, Quezon City 1100",14.6450493,121.0538174
+Quezon,Kamias EDSA,"BPI Kamias Edsa branch - 5 Kamias Road, Brgy Pinyahan, Quezon City 1102",14.6316044,121.0487242
+Quezon,Up Town Center,"Unit C145A L1 Phase 2 UP Town Center, Katipunan Avenue, Brgy. UP Campus, Quezon City 1101",14.6473556,121.0740979
+Quezon,St. Ignatius - Katipunan,"Linear Bldg., 142 Katipunan Ave., St. Ignatius Village, Brgy. St. Ignatius, Quezon City",14.614192,121.07047
+Quezon,Loyola Katipunan,"Katipunan Road cor Escaler St., Brgy Loyola   Heights, Quezon City 1108",14.6458763,121.0735902
+Quezon,Kamias Anonas,"137 Kamias Road, Brgy Sikatuna, Quezon City 1102",14.6346232,121.0583906
+Quezon,Philippine Heart Center,"Philippine Heart Center Medical Arts Building Annex, Matalino St., Brgy Central Diliman, Quezon City 1100",14.64473,121.0504724
+Eastwood,Closed,Eastwood CityNCR,14.6096463,121.0796001
+Quezon,Xavierville,"74 Xavierville Avenue, Brgy. Loyola Heights, Quezon City 1108",14.6347764,121.0702929
+Quezon,Capitol Hills,"Capitol Hills Drive, Brgy Matandang Balara, Quezon City 1119",14.6652629,121.0810007
+Quezon,East Avenue,"22 East Avenue, Barangay Pinyahan, Diliman, Quezon City 1101",14.6394353,121.0468023
+Quezon,Katipunan Loyola Hgts,"Miranda Bldg. #325 Katipunan Avenue corner Dela Rosa Street, Barangay Loyola Heights, Quezon City 1108",14.6402743,121.0742211
+Quezon,E. Rodriguez-Acropolis,"SRK Bldg., Blk 11 Lot 48, E. Rodriguez Avenue, Brgy. Bagumbayan, Quezon City 1110",14.603491,121.079002
+Quezon,E.Rodriguez Bagumbayan,"Unit G3  Ground Floor MDC100 Bldg, E. Rodriguez Jr. Avenue, Brgy. Bagumbayan, Quezon City",14.6085948,121.0816094
+Quezon,Opus Bridgetowne branch,"Opus Mall, Bridgetowne Estate, E. Rodriguez Jr. Avenue, Brgy. Ugong Norte, Quezon City",14.5932419,121.0802438
+Quezon,Commonwealth,Commonwealth Avenue corner Holy Spirit Drive Don Antonio Heights Brgy Holy Spirit Quezon City 1121,14.6832008,121.078766
+Quezon,Robinson's Nova Market,"Robinsons Place Novaliches Level 1 Main Mall, Quirino Highway, Barangay Pasong Putik, Novaliches, Quezon City 1118",14.7989985,121.068829
+Quezon,U.P. Techno Hub,"U.P. North Retail Science and Technology Center, Commonwealth Avenue, Barangay UP Campus, Diliman, Quezon City 1101",14.6572698,121.0557259
+Quezon,Fairview East,"Blk 4 Lot 4 Commonwealth Avenue, Brgy. Fairview, Quezon City 1118",14.7053433,121.0758202
+Quezon,Commonwealth Royale Place,"Lot 831 Block 1, Royale Place Mall Don Antonio Drive, Brgy Matandang Balara, Diliman, Quezon City 1119",14.677076,121.085461
+Quezon,Fairview,"Lot 2 Blk 32 Fairview Park, Brgy. Fairview, Quezon City 1118",14.0628213,122.1178261
+Quezon,Fairview Terraces,"Ground Floor Fairview Terraces Ayala Mall,  Quirino Highway cor. Maligaya Drive, Brgy. Pasong Putik, Novaliches, Quezon City 1118",14.7363856,121.0601532
+Quezon,Lagro,"Lot 7 Block 1 Sacred Heart Village, Quirino Highway, Brgy. Pasong Putik, Quezon City 1118",14.7189677,121.0401642
+Quezon,Novaliches Lagro,"UNIT 1 D GROUND FLR ,BDC CORPORATE CTR Mindanao Avenue Extension, BGY Greater Lagro, Novaliches, Quezon City 1118",14.7251243,121.065041
+Quezon,Diliman Isidora,"Holy Spirit Drive cor. De Leon St. Isidora Hills Subd., Barangay Holy Spirit, Diliman, Quezon City 1121",14.683811,121.074416
+Quezon,EDSA - Cloverleaf,"1157 EDSA Balintawak, Brgy. Apolonio Samson, Quezon City",14.6569023,121.0063711
+Quezon,Roosevelt,"Ground Floor Bayantel Roosevelt Operation Center - 234 Roosevelt Avenue, SFDM, Brgy Del Monte, Quezon City 1105",14.646326,121.017739
+SM,SM North EDSA,"SM City North EDSA Branch, SM Main Bldg., Brgy. Bagong Pagasa, Quezon City 1105",14.6593553,121.0327933
+Quezon,Novaliches SM Hypermarket,"G/F SM Hypermarket Novaliches, 402 Quirino Highway, Brgy Talipapa, Novaliches, Quezon City 1116",14.6813322,121.0213053
+Quezon,Novaliches Sarmiento,"946 Quirino Highway corner Sarmiento Street, Barangay Novaliches Proper, Novaliches, Quezon City 1117",14.7197324,121.0399908
+Quezon,Ayala Malls Cloverleaf,"Space no. 123 & 124, Ground Floo, Ayala Malls Cloverleaf, Balintawak, Quezon City",14.6544846,121.001896
+Quezon,Roosevelt - Munoz,"316 Roosevelt Ave, SFDM, Barangay San Antonio, Quezon City 1105",14.6451092,121.0171381
+Quezon,Novaliches Gen. Luis,"Gen Luis corner Gold Street, Millionaires Village, Barangay Novaliches Proper, Novaliches Quezon City 1123",14.7247301,121.0370935
+Quezon,Quezon Ave. EDSA,G/F Triumph Square Building 1618 Quezon Ave South Triangle Quezon City 1103,14.6422266,121.0350727
+Quezon,Waltermart North EDSA,"G/F WMEDG 03, Waltermart North EDSA, Muñoz Brgy. Veterans, Quezon City 1105",14.6537082,121.0241966
+Quezon,Novaliches San Bartolome,"680 Quirino Highway, Barangay San Bartolome, Novaliches, Quezon City 1116",14.7003243,121.0349882
+Quezon,Cubao Aurora,"St. Anthony Bldg,   Stella Maris Arcade, Aurora Blvd cor Cambridge, Brgy E. Rodriguez Cubao, Quezon City 1102",14.6246803,121.0534246
+Quezon,Ali Mall Cubao,"Space 2022 Level 2 Ali Mall Banking Center, Brgy. Socorro Cubao, Quezon City 1109",14.6195569,121.0567919
+Quezon,E. Rodriguez B.G. Belmonte,"1466 & 1468 E. Rodriguez Sr. Avenue corner  Betty Go-Belmonte Street, Brgy. Immaculate Conception, Quezon City 1111",14.6245114,121.0382192
+Quezon,E.Rodriguez Welcome Rotonda,"GF M1 Central Bldg, 18 E Rodriguez Sr Avenue cor Matimyas St, Brgy Don Manuel, Quezon City 1113",14.6178593,121.0041797
+Quezon,Aurora Boulevard,"719 Aurora Blvd,  Brgy. Mariana, Quezon City 1112",14.6131749,121.0329949
+Quezon,Cubao Manhattan Parkview,"Space No. 20 Ground Floor Manhattan Parkview Retail, Gen. Roxas Avenue corner Gen. Romulo Street, Araneta Center, Brgy. Socorro Quezon City 1109",14.620878,121.0525571
+Quezon,Araneta - E. Rodriguez,"486 G. Araneta Avenue, Brgy Dona Imelda, Quezon City 1113",14.6167111,121.0164798
+Quezon,St. Luke's,"St. Luke's Medical   Center, 279 E. Rodriguez Sr. Ave, Brgy Kalusugan, Quezon City 1112",14.6217245,121.0240227
+Quezon,Cubao Gateway Mall,"G/F Gateway Mall, Gen. Malvar Ave., Araneta Center, Cubao, Brgy. Socorro Quezon City 1109",14.6217945,121.0528441
+Quezon,Cubao - F Castillo,"Caly Bldg. 986 Aurora Blvd corner F. Castillo Project 4, Barangay Marilag, Quezon City 1109",14.6276806,121.066521
+Quezon,Cubao - P Tuazon 12th Ave.,"210 P. Tuazon corner 12th Avenue, Barangay Socorro, Cubao, Quezon City 1109",14.618488,121.0569351
+Quezon,Retiro Mayon,"NS Amoranto Cor. Mayon St.,  Brgy. NS Amoranto, La Loma, Quezon City 1114",14.6326976,120.9944224
+Quezon,Congressional Avenue,"G/F The Arete Square,  Congressional Avenue,  Brgy Bahay Toro Proj. 8  Quezon City 1106",14.666274,121.031584
+Quezon,Ayala Malls Vertis North,"Space R4-L1-041&042, Level 1, Vertis North, Phase 1&2 cor. North Ave., Brgy. Bagong Pag-asa, Quezon City ZIP CODE 1105",14.6538022,121.0382653
+Quezon,Tandang Sora,"397 Tandang Sora Avenue, Barangay Culiat, Quezon City",14.6698484,121.0532017
+Quezon,San Francisco Del Monte,"Araneta Avenue near corner Del Monte Avenue, Brgy Sienna, Quezon city",14.639082,121.0066294
+Quezon,Retiro  Kanlaon,"NS Amoranto Sr. Avenue cor. Kanlaon Street, Quezon City",14.6303181,120.9964589
+Quezon,Visayas Avenue,"46 Visayas Avenue,  Brgy Vasra, Project 6, Quezon City 1100",14.6608956,121.0448591
+Quezon,Trinoma,"Space P1012E Level P1 Trinoma North Triangle, North Ave., corner EDSA, Brgy. Bagong Pag-asa, Quezon City 1105",14.6532747,121.0337511
+Quezon,Del Monte,"401 Del Monte Ave., Brgy Manresa, Quezon City",14.638953,121.0040501
+Quezon,T Sora - Visayas Avenue,"243 Tandang Sora Avenue, Tandang Sora. Quezon City",14.6770882,121.0414921
+Quezon,Project 8 - Short Horn,"26 Shorthorn Street, Project 8, Barangay Bahay Toro, Quezon City 1106",14.6658329,121.0219694
+Quezon,Trinoma North,"Unit 1085-1086 Level M1, Trinoma, North Triangle, Brgy. Bagong Pag-asa Quezon City",14.6551623,121.0309076
+Pasay,Harrison Buendia,"6365 SKK Bldg., Buendia cor. FB Harrison St., Brgy. 10 Zone 4, Pasay City 1300",14.5526332,120.9917599
+Pasay,Baclaran,"3100 Roxas Blvd., Baclaran, Brgy 76 Zone 10, Pasay City 1300",14.543641,120.9908116
+Pasay,Pasay D. Macapagal Ave.,"G/F Pacific Concrete Products Bldg, Sen Gil Puyat ext. cor Diosdado Macapagal Ave, BRGY. 76 ZONE 10, Pasay City 1300",14.5532466,120.9931807
+Pasay,Pasay Buendia,Ground Floor Trium Square Sen Gil Puyat Ave cor Leveriza St Pasay City 1300,14.5539323,120.9951165
+Pasay,Macapagal Meridian Park,"Double Dragon Plaza, DD Meridian Park, EDSA Extension Corner Macapagal Boulevard Bay Area, Pasay City 1300",14.5359377,120.9904686
+Pasay,Edsa Malibay,"26 C. Jose Street, Barangay 159, Malibay, Pasay City 1300",14.5383522,121.0107
+Muntinlupa,New Alabang,"G/F Alabang Town Center Mall Entrance,  Alabang-Zapote Road, Brgy Ayala Alabang, Muntinlupa City 1770",14.4235683,121.0295902
+Muntinlupa,Alabang Civic Place,"Unit 102 - 2301 Civic Place Bldg Civic Dr FilInvest Barangay Alabang,  Muntinlupa City 1770",14.414114,121.043421
+Muntinlupa,Muntinlupa Tunasan E Rodriguez,"Larychean Building 176 National Road, Brgy. Tunasan, Muntinlupa City 1773",14.4063987,121.0465455
+Muntinlupa,Alabang Town Center,"G/F ATC Corporate Center, Alabang-Zapote Road, Ayala Alabang, Muntinlupa City 1770",14.4248296,121.0284597
+Muntinlupa,Alabang Madrigal Park,"G/F Unioil Center Bldg.,   Madrigal Business Park 1, Commerce Ave cor. Acacia, Brgy. Ayala Alabang,  Muntinlupa City 1770",14.4236601,121.0236536
+Muntinlupa,Muntinlupa,"National Road, Brgy Alabang, Muntinlupa City 1772",14.4112544,121.0465714
+Muntinlupa,Alabang Hills,"Unit 12, G/F, Alabang Citi Arcade Bldg, Don Jesus Blvd. West Service Rd, Brgy. Cupang, Muntinlupa City 1771",14.4341027,121.0445572
+Muntinlupa,Alabang South,"Ground Floor South Supermarket, Filinvest, Brgy. Alabang Muntinlupa City 1770",14.4215084,121.0362686
+Muntinlupa,Alabang Ayala Life,"Ayala Life FGU Bldg., Alabang-Zapote Road cor Acacia Ave, Madrigal Business Park Brgy Ayala Alabang, Muntinlupa City 1770",14.4269285,121.0241546
+Muntinlupa,BPI Muntinlupa Alabang,"384 East Service Road, Barangay Alabang, Muntinlupa City 1770",14.4194332,121.0458722
+Muntinlupa,Alabang Casa Madrigal,"G/F Page 1 Building, Acacia Avenue, Madrigal Business Park, Ayala Alabang Village, Barangay Ayala, Muntinlupa City 1780",14.4246042,121.0241029
+Muntinlupa,Muntinlupa Tunasan,"J.P. Rizal Street,  Barangay Poblacion,  Muntinlupa City 1776",14.4241072,121.0442791
+Muntinlupa,Alabang Insular Life,"G/F Insular Life Corporate Centre, Commerce Ave., Filinvest, Brgy. Alabang,  Muntinlupa City 1770",14.4190815,121.0387343
+Pateros,Pateros,"536 M. Almeda St., Brgy. San Roque, Pateros 1620",,
+Navotas,Navotas M. Naval,"1009 M. Naval Street, Brgy. San Jose, Navotas City",14.6622125,120.9454911
+Navotas,Navotas,"Melandrea IV Bldg., Northbay Blvd. corner Virgo Drive, Barangay North Bay Boulevard South (NBBS), Navotas City",14.6369609,120.9606493
+Navotas,Navotas North Bay,"371 Seafront Building, Brgy. Northbay Boulevard South, Navotas city",,
+Marikina,Ayala Malls Marikina,"Ground Floor R101 Ayala Malls, Liwasang Kalayaan Avenue, Brgy. Marikina Heights, Marikina City",14.6487963,121.1156694
+Marikina,Marikina,"Bayan  Bayanan Avenue, Brgy. Concepcion, Marikina City 1807",14.6504369,121.1128953
+Marikina,Marikina Gil Fernando,"25 Gil Fernando Avenue, Brgy. San Roque, Marikina City 1801",14.6228618,121.1020014
+Marikina,Marikina - Gen Ordonez,"4 Gen Ordonez Street, Barangay Marikina Heights, Marikina City",14.6498588,121.1122218
+Marikina,Marikina Sto Nino,"298 Shoe Avenue corner Sumulong Highway, Brgy. Sto. Nino, Marikina City 1800",14.6358936,121.0975113
+Marikina,Marikina W. Paz,"28 W. Paz St. cor. E. Dela Paz St., Brgy. Sta Elena, Marikina City 1800",14.6330365,121.0965642
+Malabon,Malabon Rizal,"682 Rizal Ave Ext cor, Rivera St., Brgy. Tanong,  Malabon City 1470",14.6587869,120.95314
+Malabon,Malabon Gen. Luna,"254 General Luna St, Brgy. Concepcion, Malabon City",14.6679713,120.9477866
+Malabon,Malabon Panghulo,"167 M.H. Del Pilar St., Santulan, Brgy. Panghulo, Malabon City",14.6873214,120.9571208
+Malabon,Malabon-San Bartolome,"29 Rizal Avenue Extension, Brgy. Tanong, Malabon City 1470",14.6582763,120.9520253
+Malabon,Malabon - Gov Pascual,"131 Governor Pascual Avenue, Barangay Acacia, Malabon City 1474",14.6695894,120.9707295
+Pasig,Ayala Malls Feliz,"Ayala Malls Feliz, J.P. Rizal Street corner Marcos Highway, Dela Paz, Pasig City 1600",14.6197927,121.0932609
+Pasig,Pasig Ortigas,"Unit 102 Avantgarde Residences Meralco Avenue Ortigas Ctr. Brgy. San Antonio, Pasig City 1600",14.583523,121.0633313
+Pasig,Julia Vargas,"G/F Antel Global Corporate Center, Julia Vargas, Brgy. San Antonio, Ortigas Center, Pasig City 1605",14.5839852,121.0629362
+Pasig,Meralco,"G/F Technical Services Bldg., Meralco Compound, Ortigas Avenue, Brgy. Ugong, Pasig City 1605",14.5898318,121.0615721
+Pasig,Ortigas San Miguel,"G/F OAC Bldg., 27 San Miguel Ave., Ortigas Center, Brgy. San Antonio, Pasig City 1605",14.5812582,121.0599025
+Pasig,Ortigas Tektite,"5F West Tower, Tektite Towers, Exchange Road, Brgy. San Antonio, Ortigas Center, Pasig 1605",14.5824779,121.0613688
+Pasig,Robinson's Tower Ortigas,"G/F Robinsons Equitable Tower, # 4 ADB cor Poveda Ave., Brgy. San Antonio, Ortigas Center, Pasig City 1605",14.5896874,121.0598052
+Pasig,Ortigas Sapphire,"Unit D, GF, Suntree Tower, No. 27 Sapphire Road, Brgy. San Antonio, Ortigas Center, Pasig City 1605",14.5858778,121.0636126
+Pasig,Ayala Malls The 30Th,"L0064-L0065 Lower G/F Ayala Malls the 30th 30 Meralco Avenue, Barangay Ugong, Pasig City 1604",14.580747,121.0640597
+Pasig,Capitol Commons,"Unit B1 052-054 Estancia Mall, Capitol Commons, Shaw Blvd Cor Meralco Ave., Brgy. Oranbo, Pasig City 1600",14.5763396,121.0631469
+Pasig,F. Ortigas Jr. Road,"Ground Flr, Agustin 1 Bldg, F. Ortigas Jr. Road (formerly Emerald Ave.), Barangay San Antonio, Ortigas Center, Pasig City 1600",14.5852723,121.061324
+Pasig,Rockwell Ortigas,"Unit N-11 Ground Floor Tower 2. The Rockwell Business Center, Brgy. Ugong, Ortigas Avenue, Pasig City 1605",14.5901484,121.0679744
+Pasig,Ortigas Emerald,"Unit 101 G/F Jollibee Plaza Condominium, F. Ortigas Jr. Road, Brgy. San Antonio, Ortigas Center, Pasig City 1605",14.5877774,121.061324
+Pasig,Rockwell the Grove,"GF-RS-110-111, The Grove by Rockwell, E. Rodriguez Jr. Ave, Ugong, Pasig City 1604",14.5856768,121.0813314
+Pasig,Pasig Blvd,"JNCV Bldg. Pasig Blvd.  cor Rosemary Lane, Brgy. Kapitolyo, Pasig City 1603",14.567849,121.065912
+Pasig,Pasig Market Avenue Ext.,"1439 M. Suarez Avenue, Brgy San. Miguel, Pasig City 1600",14.569137,121.0864452
+Pasig,Pioneer Centre,"8006 Pioneer St., cor Brixton and United Sts. Brgy Kapitolyo Pasig City 1603",14.5733656,121.0573349
+Pasig,Pasig Amang Rodriguez,"Beside Caltex Gas Station, cor Amang Rodriguez Avenue and Octagon Street Dela Paz Pasig City",14.6094801,121.0919136
+Pasig,Pasig C. Raymundo,"Lot 1, Blk 3, #9 C.   Raymundo Avenue, Brgy. Maybunga, Pasig City 1607",14.5894679,121.0893993
+Pasig,Pasig Buting,"Anvic Bldg, 99-A San Guillermo Ave., Brgy. Buting, Pasig City 1601",14.5536055,121.0695186
+Pasig,Pasig Rosario,"Solid Lumber Bldg. 51 Ortigas Ave Extension, Brgy. Rosario, Pasig 1609",14.5898318,121.0615721
+Pasig,Pasig-E. Rodriguez Ave.,"22 E. Rodriguez Jr. Ave., Brgy. Bagong Ilog, Pasig City 1600",14.5675615,121.0709297
+Pasig,Pasig Capitolyo,"61 Shaw Boulevard, Brgy Kapitolyo, Pasig City 1603",14.5734888,121.0622599
+Pasig,Pasig,"Pasig Blvd Extension, Brgy. Caniogan, Pasig City 1600",14.5660661,121.075032
+Pasig,Pasig Mabini,"32 A. Mabini St., Barangay Kapasigan, Pasig City 1600",14.5629827,121.0760923
+Pinas,Zapote,"Real St., Zapote Junction, Brgy. Zapote, Las Pinas City 1742",14.4649135,120.9684084
+Pinas,Pilar Village Las Pinas,"27 Rose Avenue, Pilar Village, Barangay Pilar Village, Las Pinas City 1740",14.4265466,121.0115298
+Pinas,Almanza,"G/F D'Marrchs Bldg,  Alabang - Zapote Road, Brgy Almanza Uno, Las Pinas City 1750",14.4399379,121.0011046
+Pinas,Las Pinas Citadella,"Unit 1B Fenina Bldg., 6750 CAA Road corner Cittadella Village, Brgy. Pulang Lupa Dos, Las Pinas City 1742",14.4565046,120.9943088
+Pinas,Las Pinas Pamplona Tres,"Real St., Alabang Zapote Road, Brgy Pamplona Tres, Las Pinas City 1740",14.4279493,121.0221945
+Las Pinas,BF Resort Las Pinas,"BF Resort Drive cor. Gloria Diaz St., BF Resort Village, Barangay Talon Dos, Las Pinas 1747",14.4435579,120.9928584
+Pinas,Las Pinas,"Real St. cor. Gemini St., Brgy Pamplona Dos, Las Pinas City 1740",14.462505,120.9612368
+Pinas,SM Southmall,"Upper Ground Floor, SM Southmall, Alabang Zapote Road, Brgy Almanza Uno, Las Pinas City 1750",14.4332614,121.0105665
+Valenzuela,Marulas,"KM 11, Mac Arthur Highway, Brgy. Marulas, Valenzuela City 1440",14.674833,120.981577
+Valenzuela,Paso De Blas,ESA Bldg. 491 Paso de Blas Road Valenzuela City,14.7052091,120.9887581
+Valenzuela,Valenzuela,"McArthur Highway cor. Daez St., Brgy. Karuhatan, Valenzuela City 1440",14.688959,120.9745191
+Valenzuela,Valenzuela Malinta,"315 Mc Arthur Highway, Brgy. Malinta, Valenzuela City 1440",14.6931784,120.967489
+Valenzuela,Valenzuela Dalandanan,"54 McArthur Highway, Brgy. Dalandanan, Valenzuela City",14.6995625,120.9627587
+Taguig,Fort Serendra,"G/F Serendra Retail  Area,  Bonifacio Global,  Taguig City 1634",14.5495296,121.0541573
+Global,One Global Place,"Unit 102 G/F, One Global Place, 5th Avenue cor 25th Street, Bonifacio Global City, Brgy. Fort Bonifacio, Taguig City 1634",14.5483648,121.0470385
+Global,Market Market,"Ground Floor Market Market, Bonifacio Global City, Brgy. Fort Bonifacio, Taguig City",14.5502545,121.0561214
+Global,W5Th Avenue BGC,"GF W Fifth Avenue Bldg., 5th Avenue, Bonifacio Global City, Brgy. Fort Bonifacio, Taguig 1634",14.5532885,121.0488287
+Global,Infinity,"Unit 102 The Infinity Tower, 26th Street, Bonifacio Global City, Brgy. Fort Bonifacio, Taguig 1634",14.5472085,121.0513889
+Global,Globe BGC,"19/F THE GLOBE TOWER, 32nd St. corner 7th  Avenue, Bonifacio Global City, Brgy. Fort Bonifacio, Taguig City",14.5532937,121.0500636
+Global,PSE The Fort,"Units 511 & 512, 5th Floor Philippine Stock Exchange, One Bonifacio High Street, 28th Street corner 5th Avenue, Bonifacio Global City, Fort Bonifacio, Taguig City",14.5511952,121.0473479
+Taguig,Fort Bonifacio Bayani Road,"Ground Floor Col Efren R Zaide (PAFCPIC) Bldg. No. 11, Bayani Road, Brgy. Western Bicutan, Taguig City",14.5297997,121.0412309
+Taguig,FTI Taguig,"Old FTI Admin Bldg, Lot 55 FTI Avenue , FTI Complex, East Service Road, Brgy. Western Bicutan, Taguig City",14.5062836,121.035665
+Taguig,Fort Mckinley Hill,"Units K and L, G/F One World Square Bldg., McKinley Hills, Upper McKinley Road, McKinley Town Center, Brgy. Fort Bonifacio, Taguig",14.5349911,121.0480425
+Taguig,Diego Silang - Petron C5,"G/F Petron C5 Rd. Diego Silang Complex, Brgy. Ususan Taguig City 1634",14.5220342,121.0359564
