@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const statusDiv = document.getElementById('status');
   let reviewsData = [];
 
+  // Default spreadsheet ID
+  const DEFAULT_SPREADSHEET_ID = '1_OBma2uuzISl-5-5OTw3zsx5uWt_K3JfxxgehRfvquA';
+
   scrapeBtn.addEventListener('click', async () => {
     statusDiv.textContent = 'Scraping reviews...';
     
@@ -58,24 +61,26 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
     
-    // Show spreadsheet ID input
+    // Show spreadsheet ID input with default value
+    spreadsheetIdInput.value = DEFAULT_SPREADSHEET_ID;
     spreadsheetIdContainer.style.display = 'block';
   });
 
   confirmSheetsBtn.addEventListener('click', () => {
-    const spreadsheetId = spreadsheetIdInput.value.trim();
+    const spreadsheetId = spreadsheetIdInput.value.trim() || DEFAULT_SPREADSHEET_ID;
     sendToGoogleSheets(reviewsData, spreadsheetId);
   });
 
   function convertToCSV(data) {
-    // CSV header
-    let csv = 'Review Text,Stars,Date\n';
+    // CSV header with reordered columns
+    let csv = 'Branch Name,Review Text,Stars,Date\n';
     
     // Add each review as a row
     data.forEach(review => {
       // Escape quotes in the review text
       const escapedText = review.text.replace(/"/g, '""');
-      csv += `"${escapedText}",${review.stars},"${review.date}"\n`;
+      const branchName = review.branchName || '';
+      csv += `"${branchName}","${escapedText}",${review.stars},"${review.date}"\n`;
     });
     
     return csv;
@@ -95,24 +100,17 @@ document.addEventListener('DOMContentLoaded', function() {
       
       statusDiv.textContent = 'Preparing data for Google Sheets...';
       
-      // If no spreadsheet ID is provided, create a new spreadsheet
+      // If no spreadsheet ID is provided, use the default
       if (!spreadsheetId) {
-        spreadsheetId = await createSpreadsheet(token);
-        if (!spreadsheetId) {
-          statusDiv.textContent = 'Failed to create spreadsheet. Please try again.';
-          return;
-        }
-        statusDiv.textContent = `Created new spreadsheet with ID: ${spreadsheetId}`;
+        spreadsheetId = DEFAULT_SPREADSHEET_ID;
       }
       
-      // Prepare data for Google Sheets
-      const values = [
-        ['Review Text', 'Stars', 'Date'] // Header row
-      ];
+      // Prepare data for Google Sheets - only include the data rows, not the header
+      const values = [];
       
-      // Add data rows
+      // Add data rows with reordered columns
       data.forEach(review => {
-        values.push([review.text, review.stars, review.date]);
+        values.push([review.branchName || '', review.text, review.stars, review.date]);
       });
       
       // Send data to Google Sheets

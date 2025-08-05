@@ -12,6 +12,21 @@ function scrapeReviews() {
   const reviews = [];
   const seenReviews = new Set(); // To track duplicates
   
+  // Extract branch name from URL
+  let branchName = '';
+  try {
+    const url = window.location.href;
+    // Extract branch name from URL like https://www.google.com/maps/place/BPI+Corinthian+Plaza+Branch/
+    const match = url.match(/\/maps\/place\/([^\/]+)\/@/);
+    if (match && match[1]) {
+      // Decode the URL component and replace + with spaces
+      branchName = decodeURIComponent(match[1].replace(/\+/g, ' '));
+      console.log('Extracted branch name:', branchName);
+    }
+  } catch (error) {
+    console.error('Error extracting branch name:', error);
+  }
+  
   // Find all review containers
   const reviewElements = document.querySelectorAll('[data-review-id]');
   console.log('Found review elements:', reviewElements.length);
@@ -102,14 +117,15 @@ function scrapeReviews() {
       
       seenReviews.add(uniqueKey);
       
-      // Add review to the array
+      // Add review to the array with branch name
       reviews.push({
         text: text,
         stars: stars,
-        date: date
+        date: date,
+        branchName: branchName
       });
       
-      console.log('Added review:', { text, stars, date });
+      console.log('Added review:', { text, stars, date, branchName });
     } catch (error) {
       console.error('Error processing review:', error);
     }
