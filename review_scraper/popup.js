@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
   async function appendToSheet(token, spreadsheetId, values) {
     try {
       const response = await fetch(
-        `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet1!A1:append?valueInputOption=USER_ENTERED`, {
+        `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/review!A1:append?valueInputOption=USER_ENTERED`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,
