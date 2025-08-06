@@ -4,26 +4,32 @@
   <title>Google Reviews Scraper</title>
   <style>
     body {
-      width: 300px;
-      padding: 10px;
+      width: 320px;
+      padding: 15px;
       font-family: Arial, sans-serif;
     }
     button {
       background-color: #4285f4;
       color: white;
       border: none;
-      padding: 8px 16px;
+      padding: 10px 16px;
       border-radius: 4px;
       cursor: pointer;
       width: 100%;
       margin-bottom: 10px;
+      font-size: 14px;
     }
     button:hover {
       background-color: #3367d6;
     }
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
     .status {
       margin-top: 10px;
       color: #666;
+      font-size: 12px;
     }
     #downloadContainer {
       display: none;
@@ -32,8 +38,26 @@
     #downloadBtn {
       background-color: #34a853;
     }
+    #downloadBtn:hover {
+      background-color: #2d8f47;
+    }
     #sheetsBtn {
       background-color: #188038;
+    }
+    #sheetsBtn:hover {
+      background-color: #137333;
+    }
+    #authBtn {
+      background-color: #db4437;
+    }
+    #authBtn:hover {
+      background-color: #c23321;
+    }
+    #authBtn.authenticated {
+      background-color: #0f9d58;
+    }
+    #authBtn.authenticated:hover {
+      background-color: #0b8043;
     }
     #spreadsheetIdContainer {
       display: none;
@@ -44,25 +68,59 @@
       padding: 8px;
       margin-bottom: 10px;
       box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .auth-section {
+      border-bottom: 1px solid #eee;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+    }
+    .scrape-section {
+      margin-bottom: 15px;
+    }
+    .user-info {
+      font-size: 12px;
+      color: #666;
+      margin-top: 5px;
+      text-align: center;
+    }
+    h2 {
+      margin-top: 0;
+      color: #333;
+      font-size: 18px;
+    }
+    p {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 15px;
     }
   </style>
 </head>
 <body>
   <h2>Google Reviews Scraper</h2>
-  <p>Click the button below to scrape all reviews from the current Google page.</p>
   
-  <button id="scrapeBtn">Scrape Reviews</button>
+  <div class="auth-section">
+    <p>First, authenticate with Google to enable Sheets integration:</p>
+    <button id="authBtn">Authenticate with Google</button>
+    <div class="user-info" id="userInfo"></div>
+  </div>
+  
+  <div class="scrape-section">
+    <p>Navigate to a Google Maps business page and click below to scrape reviews:</p>
+    <button id="scrapeBtn">Scrape Reviews</button>
+  </div>
   
   <div id="downloadContainer">
     <button id="downloadBtn">Download Reviews (CSV)</button>
-    <button id="sheetsBtn">Send to Google Sheets</button>
+    <button id="sheetsBtn" disabled>Send to Google Sheets</button>
     <div id="spreadsheetIdContainer">
       <input type="text" id="spreadsheetId" placeholder="Enter Spreadsheet ID (optional)">
       <button id="confirmSheetsBtn">Confirm</button>
     </div>
   </div>
   
-  <div class="status" id="status">Ready to scrape.</div>
+  <div class="status" id="status">Ready to authenticate.</div>
   
   <script src="popup.js"></script>
 </body>

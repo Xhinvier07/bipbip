@@ -1,12 +1,21 @@
 {
   "manifest_version": 3,
   "name": "Google Reviews Scraper",
-  "version": "1.0",
-  "description": "Scrapes Google reviews from a business page",
-  "permissions": ["activeTab", "scripting", "downloads", "identity"],
-  "host_permissions": ["https://sheets.googleapis.com/"],
+  "version": "1.1",
+  "description": "Scrapes Google reviews from a business page and exports to CSV or Google Sheets",
+  "permissions": [
+    "activeTab", 
+    "scripting", 
+    "downloads", 
+    "identity"
+  ],
+  "host_permissions": [
+    "https://sheets.googleapis.com/*",
+    "https://www.googleapis.com/*"
+  ],
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_title": "Google Reviews Scraper"
   },
   "content_scripts": [
     {
@@ -16,6 +25,9 @@
   ],
   "oauth2": {
     "client_id": "290948446210-0fm8b3ivfj670ssu5aci9f4aekbmrkbh.apps.googleusercontent.com",
-    "scopes": ["https://www.googleapis.com/auth/spreadsheets"]
+    "scopes": [
+      "https://www.googleapis.com/auth/spreadsheets",
+      "https://www.googleapis.com/auth/userinfo.email"
+    ]
   }
 }
