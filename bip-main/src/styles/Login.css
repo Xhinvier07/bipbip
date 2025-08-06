@@ -1,0 +1,376 @@
+/* Login Page Styles */
+:root {
+  --primary-color: #fea000; /* Orange from logo */
+  --secondary-color: #cf3d58; /* Red from logo */
+  --tertiary-color: #c95a94; /* Pink from logo */
+  --quaternary-color: #bc7eff; /* Purple from logo */
+  --text-color: #2d3748; /* Dark blue for text */
+  --light-text: #ffffff;
+  --background-color: #f7fafc; /* Light gray */
+  --card-bg: #ffffff;
+  --input-bg: #f5f5f7;
+  --shadow: 0 8px 24px rgba(149, 157, 165, 0.2);
+  --primary-gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  --secondary-gradient: linear-gradient(135deg, var(--tertiary-color), var(--quaternary-color));
+}
+
+.login-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-color);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated dot grid background */
+.dot-grid-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.dot-grid {
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle, var(--tertiary-color) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.15;
+  position: relative;
+  animation: dotAnimation 60s linear infinite;
+}
+
+@keyframes dotAnimation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 500px 500px;
+  }
+}
+
+.login-wrapper {
+  display: flex;
+  width: 1000px;
+  max-width: 90%;
+  min-height: 600px;
+  overflow: hidden;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  position: relative;
+  z-index: 1;
+  background-color: var(--card-bg);
+}
+
+/* Brand Card Styles */
+.brand-card {
+  width: 50%;
+  background: var(--secondary-gradient);
+  color: var(--light-text);
+  padding: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.brand-content {
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.brand-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+  opacity: 0.1;
+}
+
+.brand-logo {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+}
+
+.brand-card h1 {
+  font-size: 3.5rem;
+  margin: 0;
+  letter-spacing: -1px;
+  font-weight: 800;
+  background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0.8));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tagline {
+  font-size: 1.5rem;
+  margin: 10px 0 30px;
+  opacity: 0.9;
+}
+
+.brand-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  max-width: 90%;
+}
+
+/* Form Card Styles */
+.form-card {
+  width: 50%;
+  background: var(--card-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.form-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.form-section {
+  width: 100%;
+  height: 100%;
+  padding: 50px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.form-logo {
+  width: 60px;
+  height: 60px;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+.form-section h2 {
+  text-align: center;
+  color: var(--text-color);
+  margin-bottom: 30px;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+/* Form Elements */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+}
+
+.input-group {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+
+input {
+  width: 100%;
+  padding: 16px 16px 16px 50px;
+  border-radius: 12px;
+  border: none;
+  background-color: var(--input-bg);
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(254, 160, 0, 0.3);
+}
+
+.forgot-password {
+  text-align: right;
+}
+
+.forgot-password a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.forgot-password a:hover {
+  color: var(--secondary-color);
+}
+
+.submit-btn {
+  background: var(--primary-gradient);
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.6s;
+}
+
+.submit-btn:hover::before {
+  left: 100%;
+}
+
+/* Social Login */
+.social-login {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.social-login p {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 15px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.google {
+  background-color: #ffffff;
+  color: #DB4437;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.microsoft {
+  background-color: #ffffff;
+  color: #00A4EF;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Switch Form */
+.switch-form {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.switch-form p {
+  color: #888;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.switch-btn {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 4px;
+  transition: color 0.3s;
+}
+
+.switch-btn:hover {
+  color: var(--secondary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .login-wrapper {
+    flex-direction: column !important;
+    max-width: 95%;
+  }
+
+  .brand-card, .form-card {
+    width: 100%;
+  }
+  
+  .brand-card {
+    padding: 30px 20px;
+  }
+  
+  .brand-content {
+    padding: 30px 20px;
+  }
+  
+  .brand-logo {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .brand-card h1 {
+    font-size: 2rem;
+  }
+  
+  .tagline {
+    font-size: 1.1rem;
+    margin: 5px 0 15px;
+  }
+  
+  .brand-description {
+    font-size: 0.9rem;
+  }
+  
+  .form-section {
+    padding: 30px 20px;
+  }
+} 
