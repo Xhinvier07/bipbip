@@ -4,7 +4,7 @@ import { FaUser, FaLock, FaGoogle, FaEnvelope } from 'react-icons/fa';
 import DotGrid from '../components/DotGrid';
 import logoPath from '../assets/logo.png';
 import bannerPath from '../assets/banner_login.gif';
-
+import bgLogin from '../assets/bg_login.png';
 
 
 const Login = () => {
@@ -88,9 +88,13 @@ const Login = () => {
       width: '100%',
       height: '100%',
       zIndex: 0,
-      backgroundColor: '#000000'
+      backgroundColor: '#000000',
+      backgroundImage: `url(${bgLogin})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
     }}>
-      <DotGrid/>
+     {/* <DotGrid/> */}
     </div>
 
       
