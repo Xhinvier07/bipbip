@@ -5,6 +5,8 @@ import DotGrid from '../components/DotGrid';
 import logoPath from '../assets/logo.png';
 import bannerPath from '../assets/banner_login.gif';
 
+
+
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   const containerRef = useRef(null);
@@ -64,6 +66,8 @@ const Login = () => {
   };
 
   return (
+
+    
     <div style={{
       minHeight: '100vh',
       width: '100%',
@@ -75,17 +79,27 @@ const Login = () => {
       position: 'relative',
       overflow: 'hidden'
     }}>
-      {/* DotGrid Background */}
-      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-        <DotGrid color={colors.primary} />
-      </div>
+
+      {/* DotGrid positioned behind */}
+    <div style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      zIndex: 0,
+      backgroundColor: '#000000'
+    }}>
+      <DotGrid/>
+    </div>
+
       
       <motion.div 
         style={{
           display: 'flex',
           width: '800px',
           maxWidth: '95%',
-          height: '580px', // Reduced height
+          height: '600px', // Reduced height
           overflow: 'hidden',
           borderRadius: '24px',
           boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
