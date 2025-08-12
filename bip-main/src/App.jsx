@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Branches from './pages/Branches/Branches';
 import Reports from './pages/Reports/Reports';
 import Simulation from './pages/Simulation/Simulation';
+import BipChat from './pages/BipChat/BipChat';
 import './App.css';
 
 function App() {
@@ -90,7 +91,7 @@ function App() {
         <Route path="/bip-chat" element={
           <ProtectedRoute>
             <Layout>
-              <div>Bip Chat - Coming Soon</div>
+              <BipChat />
             </Layout>
           </ProtectedRoute>
         } />
