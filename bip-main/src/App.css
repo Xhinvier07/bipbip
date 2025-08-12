@@ -1,15 +1,7 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+/* Import global styles */
+@import './styles/global.css';
 
-body, html {
-  height: 100%;
-  width: 100%;
-}
-
+/* App specific styles */
 .app {
   height: 100vh;
   width: 100%;
@@ -17,11 +9,65 @@ body, html {
   flex-direction: column;
 }
 
-button {
-  cursor: pointer;
+/* Page transition animations */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
 }
 
-/* Remove browser default focus styles */
-*:focus {
-  outline: none;
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* General utility classes */
+.text-center {
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
 }

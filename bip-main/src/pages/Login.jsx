@@ -1,15 +1,16 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { FaUser, FaLock, FaGoogle, FaEnvelope } from 'react-icons/fa';
 import DotGrid from '../components/DotGrid';
 import logoPath from '../assets/logo.png';
-import bannerPath from '../assets/banner_login.gif';
-import bgLogin from '../assets/bg_login.png';
+import bannerPath from '/banner_login.gif';
+import bgLogin from '/bg_login.png';
 
-
-const Login = () => {
+const Login = ({ onLogin }) => {
   const [isLogin, setIsLogin] = useState(true);
   const containerRef = useRef(null);
+  const navigate = useNavigate();
   
   const toggleForm = () => {
     setIsLogin(!isLogin);
@@ -17,6 +18,12 @@ const Login = () => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Call the onLogin function from props
+    if (onLogin) {
+      onLogin();
+      // Navigate to dashboard
+      navigate('/dashboard');
+    }
   };
 
   // Fixed animation variants for smooth sliding
@@ -66,8 +73,6 @@ const Login = () => {
   };
 
   return (
-
-    
     <div style={{
       minHeight: '100vh',
       width: '100%',
@@ -79,24 +84,22 @@ const Login = () => {
       position: 'relative',
       overflow: 'hidden'
     }}>
-
-      {/* DotGrid positioned behind */}
-    <div style={{
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      zIndex: 0,
-      backgroundColor: '#000000',
-      backgroundImage: `url(${bgLogin})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat'
-    }}>
-     {/* <DotGrid/> */}
-    </div>
-
+      {/* Background image */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 0,
+        backgroundColor: '#000000',
+        backgroundImage: `url(${bgLogin})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}>
+        {/* <DotGrid/> */}
+      </div>
       
       <motion.div 
         style={{
