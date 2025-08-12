@@ -4,6 +4,8 @@ import Layout from './components/Layout/Layout';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Branches from './pages/Branches/Branches';
+import Reports from './pages/Reports/Reports';
+import Simulation from './pages/Simulation/Simulation';
 import './App.css';
 
 function App() {
@@ -48,7 +50,7 @@ function App() {
         <Route path="/simulation" element={
           <ProtectedRoute>
             <Layout>
-              <div>Simulation Page - Coming Soon</div>
+              <Simulation />
             </Layout>
           </ProtectedRoute>
         } />
@@ -56,7 +58,7 @@ function App() {
         <Route path="/reports" element={
           <ProtectedRoute>
             <Layout>
-              <div>Reports Page - Coming Soon</div>
+              <Reports />
             </Layout>
           </ProtectedRoute>
         } />

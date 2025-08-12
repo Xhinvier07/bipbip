@@ -7,6 +7,7 @@
   min-height: calc(100vh - var(--header-height));
   display: flex;
   flex-direction: column;
+  background-color: #f9fafc;
 }
 
 .dashboard-background {
@@ -32,22 +33,48 @@
 /* Dashboard Header */
 .dashboard-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
-}
-
-.dashboard-header h1 {
-  margin: 0;
-  font-size: 24px;
-  color: #333;
 }
 
 .dashboard-filters {
   display: flex;
   gap: 16px;
   align-items: center;
+  background-color: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  max-height: 52px;
+}
+
+.dashboard-filters.collapsed {
+  max-height: 0;
+  padding: 0 16px;
+  opacity: 0;
+  margin-top: -10px;
+  pointer-events: none;
+}
+
+.filter-toggle {
+  background: #FEA000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.filter-toggle:hover {
+  background: #e59200;
 }
 
 .time-filter {
@@ -478,6 +505,16 @@
   color: white;
   font-size: 13px;
   font-weight: 600;
+}
+
+.score-circle span {
+  display: flex;
+  align-items: baseline;
+}
+
+.score-percentage {
+  font-size: 10px;
+  margin-left: 2px;
 }
 
 /* AI Insights */

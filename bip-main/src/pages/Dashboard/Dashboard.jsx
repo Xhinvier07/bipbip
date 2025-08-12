@@ -7,10 +7,11 @@ import CategoryDonut from './components/CategoryDonut';
 import BranchPerformance from './components/BranchPerformance';
 import AIInsights from './components/AIInsights';
 import './Dashboard.css';
-import { Filter } from 'lucide-react';
+import { Filter, SlidersHorizontal, ChevronDown, ChevronUp } from 'lucide-react';
 
 const Dashboard = () => {
   const [timeFilter, setTimeFilter] = useState('monthly');
+  const [isFiltersCollapsed, setIsFiltersCollapsed] = useState(true);
 
   const handleTimeFilterChange = (filter) => {
     setTimeFilter(filter);
@@ -24,9 +25,20 @@ const Dashboard = () => {
       </div>
       
       <div className="dashboard-content">
-        <div className="dashboard-header">
-          <h1>Branch Analytics Dashboard</h1>
-          <div className="dashboard-filters">
+            <div className="dashboard-header">
+            <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%' }}>
+              {/* commented not needed for now 
+              <button 
+                className="filter-toggle"
+                onClick={() => setIsFiltersCollapsed(!isFiltersCollapsed)}
+              >
+              
+                <SlidersHorizontal size={16} />
+                {isFiltersCollapsed ? <ChevronDown size={14} style={{ marginLeft: '4px' }} /> : <ChevronUp size={14} style={{ marginLeft: '4px' }} />}
+              </button>
+              */}
+            </div>
+            <div className={`dashboard-filters ${isFiltersCollapsed ? 'collapsed' : ''}`}>
             <div className="time-filter">
               <span>Time Period:</span>
               <div className="filter-buttons">

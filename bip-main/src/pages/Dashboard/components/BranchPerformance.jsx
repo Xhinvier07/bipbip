@@ -41,7 +41,7 @@ const BranchPerformance = () => {
                   className="score-circle" 
                   style={{ backgroundColor: getHealthScoreColor(branch.score) }}
                 >
-                  <span>{branch.score}%</span>
+                  <span>{branch.score}<span className="score-percentage">%</span></span>
                 </div>
               </div>
             </div>
