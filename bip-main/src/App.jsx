@@ -7,6 +7,8 @@ import Branches from './pages/Branches/Branches';
 import Reports from './pages/Reports/Reports';
 import Simulation from './pages/Simulation/Simulation';
 import BipChat from './pages/BipChat/BipChat';
+import Help from './pages/Help/Help';
+import Logs from './pages/Logs/Logs';
 import './App.css';
 
 function App() {
@@ -67,23 +69,17 @@ function App() {
         <Route path="/logs" element={
           <ProtectedRoute>
             <Layout>
-              <div>Logs Page - Coming Soon</div>
+              <Logs />
             </Layout>
           </ProtectedRoute>
         } />
         
-        <Route path="/settings" element={
-          <ProtectedRoute>
-            <Layout>
-              <div>Settings Page - Coming Soon</div>
-            </Layout>
-          </ProtectedRoute>
-        } />
+
         
         <Route path="/help" element={
           <ProtectedRoute>
             <Layout>
-              <div>Help Page - Coming Soon</div>
+              <Help />
             </Layout>
           </ProtectedRoute>
         } />

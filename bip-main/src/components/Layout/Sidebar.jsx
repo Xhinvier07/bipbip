@@ -32,9 +32,8 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
     { path: '/branches', name: 'Branches', icon: <FaMapMarkerAlt /> },
     { path: '/simulation', name: 'Simulation', icon: <FaChartArea /> },
     { path: '/reports', name: 'Reports', icon: <FaFileAlt /> },
-    { path: '/logs', name: 'Logs', icon: <FaHistory /> },
     { path: '/divider', name: '', icon: null },
-    { path: '/settings', name: 'Settings', icon: <FaCog /> },
+    { path: '/logs', name: 'Logs', icon: <FaHistory /> },
     { path: '/help', name: 'Help', icon: <FaQuestionCircle /> },
     { path: '/bip-chat', name: 'Bip Chat', icon: <FaComments /> },
   ];
