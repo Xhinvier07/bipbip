@@ -1,5 +1,5 @@
-[ 
-{
+[
+  {
     "city": "Caloocan",
     "branch_name": "C3 A Mabini",
     "address": "193 A. MABINI ST., BRGY 30, MAYPAJO, CALOOCAN CITY",
@@ -110,5 +110,2091 @@
     "address": "Upper Ground Floor, SM Southmall, Alabang Zapote Road, Brgy Almanza Uno, Las Pinas City 1750",
     "latitude": 14.4332614,
     "longitude": 121.0106
+  },
+  {
+    "city": "Las Pinas",
+    "branch_name": "Zapote",
+    "address": "Real St., Zapote Junction, Brgy. Zapote, Las Pinas City 1742",
+    "latitude": 14.4649135,
+    "longitude": 120.9684
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Alfaro",
+    "address": "G/F LPL Center, 130 L.P. Leviste St., Brgy. Bel-Air, Salcedo Village, Makati City 1227",
+    "latitude": 14.5591613,
+    "longitude": 121.0219
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Ayala 6750",
+    "address": "G/F Ayala Office Tower, 6750 Ayala Avenue, Makati City",
+    "latitude": 14.5531111,
+    "longitude": 121.0256
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Ayala Avenue SGV",
+    "address": "SGV Building II, 6758 Ayala Avenue, Brgy. San Lorenzo, Makati City 1226",
+    "latitude": 14.5555721,
+    "longitude": 121.0228
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Ayala Columns",
+    "address": "G/F The Columns Tower 2, Ayala corner Buendia Avenue, Brgy. Bel-Air, Makati City 1209",
+    "latitude": 14.5618589,
+    "longitude": 121.0164
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Ayala East",
+    "address": "G/F Ayala Life FGU Center, 6811 Ayala Ave. Brgy. Bel-Air, Makati City",
+    "latitude": 14.5597573,
+    "longitude": 121.0173
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Ayala Insular",
+    "address": "6781 Insular Life Building Ayala Avenue corner Paseo De Roxas, Brgy. Bel-Air, Makati City",
+    "latitude": 14.5571446,
+    "longitude": 121.0211
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Ayala Malls Circuit",
+    "address": "Lower Ground Level, Ayala Malls Circuit Hippodromo St., Brgy. Carmona, Makati City 1207",
+    "latitude": 14.5729125,
+    "longitude": 121.0196
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Ayala Nex Tower",
+    "address": "Ground Floor, NEX Tower, 6786 Ayala Avenue, Makati City",
+    "latitude": 14.5586352,
+    "longitude": 121.0176
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Ayala North Exchange",
+    "address": "Ground Floor, Ayala North Exchange, Ayala Avenue. corner Amorsolo and Salcedo Streets, San Lorenzo, Makati City",
+    "latitude": 14.5600741,
+    "longitude": 121.0158
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Ayala Paseo",
+    "address": "G/F Philamlife Tower, 8767 Paseo de Roxas, Brgy. Bel-Air, Makati City 1200",
+    "latitude": 14.5575269,
+    "longitude": 121.0218
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Ayala Triangle",
+    "address": "G/F Tower One & Exchange Plaza, Ayala Triangle, Ayala Ave. Brgy. Bel-air, Makati City",
+    "latitude": 14.5565232,
+    "longitude": 121.0223
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Bangkal",
+    "address": "1797 Evangelista cor. Gen. Mascardo St. Bangkal , Makati City 1233",
+    "latitude": 14.546838,
+    "longitude": 121.0111
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Bel Air Paseo",
+    "address": "54 Jupiter St, Belair Village, Brgy. Bel-Air, Makati City 1209",
+    "latitude": 14.560936,
+    "longitude": 121.0307
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Bel Air Polaris",
+    "address": "G/F Ventures II Bldg., 51 Polaris St., Bel Air Village, Brgy. Bel-Air, Makati City 1209",
+    "latitude": 14.5639339,
+    "longitude": 121.0263
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Buendia Center",
+    "address": "G/F Buendia Center Bldg., Sen. Gil Puyat Ave., Brgy. Bel-Air, Makati City",
+    "latitude": 14.5614155,
+    "longitude": 121.0264
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Buendia Malugay",
+    "address": "G/F Techzone Bldg., 213 Sen. Gil Puyat Ave., Brgy San Antonio, Makati CityÂ 1203",
+    "latitude": 14.5588716,
+    "longitude": 121.0093
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Buendia Pasong Tamo",
+    "address": "G/F Comfoods Bldg., Sen Gil Puyat Ave., cor Chino Roces Ave., Brgy. San Antonio, Makati City 1203",
+    "latitude": 14.5605842,
+    "longitude": 121.0118
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Buendia Reposo",
+    "address": "G/F ITC Bldg., 337 Sen. Gil Puyat, Brgy. Bel Air, Makati City",
+    "latitude": 14.5625341,
+    "longitude": 121.0232
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Cash And Carry Mall",
+    "address": "G/F Cash & Carry Mall, between South Super Hi-way and Filmore Street, Brgy Palanan, Makati City 1235",
+    "latitude": 14.5610831,
+    "longitude": 121.0046
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Chino Roces Ext.",
+    "address": "G/F, Natividad Building, 2308 Don Chino Roces Avenue Extension, Brgy. Magallanes, Makati City 1231",
+    "latitude": 14.5330289,
+    "longitude": 121.0224
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Comembo",
+    "address": "16 JP Rizal Extension, Brgy. Comembo, Makati City 1217",
+    "latitude": 14.5491006,
+    "longitude": 121.0635
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Dela Rosa Paseo",
+    "address": "109 Paseo de Roxas corner Dela Rosa St., Barangay San Lorenzo, Makati City 1226",
+    "latitude": 14.5552968,
+    "longitude": 121.0205
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Dela Rosa Solaris One",
+    "address": "G/F Solaris One Bldg. Dela Rosa Street Legaspi Village, Brgy. San Lorenzo, Makati City",
+    "latitude": 14.5580653,
+    "longitude": 121.0173
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Dian",
+    "address": "56 Sen. Gil Puyat Ave., Brgy. San Isidro, Makati City 1234",
+    "latitude": 14.5561105,
+    "longitude": 121.0045
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Forbes Park",
+    "address": "15-A San Antonio Plaza Arcade, McKinley Road, Brgy. Forbes Park, Makati City 1200",
+    "latitude": 14.5471962,
+    "longitude": 121.0351
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Glorietta Mall Ground Level",
+    "address": "G/F Unit 1086 Glorietta Mall, Ayala Center, Brgy. San Lorenzo, Makati",
+    "latitude": 14.550629,
+    "longitude": 121.0255
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Glorietta Mall Third Floor",
+    "address": "3rd Level Unit 3006 Glorietta Mall 2 Ayala Center, Brgy San Lorenzo, Makati City",
+    "latitude": 14.550629,
+    "longitude": 121.0255
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Greenbelt 5",
+    "address": "Lower G/F, Greenbelt 5, Ayala Center, Legaspi Street, Brgy. San Lorenzo, Makati City 1226",
+    "latitude": 14.5539165,
+    "longitude": 121.0194
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "JP Rizal",
+    "address": "847 J.P. Rizal and Quintos Streets, Barangay Poblacion, Makati City 1210",
+    "latitude": 14.5683855,
+    "longitude": 121.0284
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "JP Rizal - Binakod",
+    "address": "G/F A&M Bldg. 397 JP Rizal cor Binakod St., Brgy. Olympia, Makati City 1207",
+    "latitude": 14.5716054,
+    "longitude": 121.0163
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "JP Rizal San Miguel",
+    "address": "787 JP Rizal Street, San Miguel Village, Brgy. Poblacion, Makati City 1210",
+    "latitude": 14.5690145,
+    "longitude": 121.026
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Legaspi Columns",
+    "address": "G/F Tower 1 The Columns, Legaspi Village, Amorsolo St. corner Arnaiz Ave., Legaspi Village, Brgy. San Lorenzo, Makati City 1223",
+    "latitude": 14.551928,
+    "longitude": 121.0156
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Legaspi Salcedo",
+    "address": "G/F State Condominium 1 Building, 186 Salcedo Street, Legaspi Village, Brgy. San Lorenzo, Makati City 1229",
+    "latitude": 14.555967,
+    "longitude": 121.0157
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Legaspi-Gamboa",
+    "address": "223 Salcedo Bldg,Â Â 223 Salcedo Street corner Gamboa Street,Â Brgy. San Lorenzo, Makati City",
+    "latitude": 14.5547684,
+    "longitude": 121.0177
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Magallanes Edsa",
+    "address": "G/F MPI Bldg., 1052 EDSA Magallanes Village, Brgy. Magallanes, Makati City 1232",
+    "latitude": 14.5393052,
+    "longitude": 121.015
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Magallanes South",
+    "address": "Lot 6, Block 5, Paseo de Magallanes, Brgy. Magallanes, Makati City 1232",
+    "latitude": 14.5392462,
+    "longitude": 121.0166
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Makati Atrium",
+    "address": "G/F Atrium of Makati, Makati Avenue, Brgy. Urdaneta, Makati City 1225",
+    "latitude": 14.5572846,
+    "longitude": 121.0261
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Makati Main",
+    "address": "G/F Makati Stock Exchange Bldg Ayala Ave Brgy Bel-Air Makati City 1226",
+    "latitude": 14.5561311,
+    "longitude": 121.0236
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Medical Plaza - Makati",
+    "address": "G/F Unit 102 Medical Plaza Bldg. Amorsolo cor Dela Rosa St. Legaspi Village, Brgy. San Lorenzo, Makati City 1229",
+    "latitude": 14.5579906,
+    "longitude": 121.0166
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "One Ayala",
+    "address": "Lower Ground Floor, One Ayala, Ayala center Makati City",
+    "latitude": 14.5565232,
+    "longitude": 121.0223
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Pacific Star",
+    "address": "G/F Pacific Star Bldg Sen. Gil Puyat cor Makati Avenue, Brgy. Bel-Air, Makati City",
+    "latitude": 14.5609204,
+    "longitude": 121.027
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Pasay Road",
+    "address": "G/F Colbella Arcade, 910 A. Arnaiz Ave., Brgy. San Lorenzo, Makati City 1223",
+    "latitude": 14.5507541,
+    "longitude": 121.0202
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Paseo De Roxas",
+    "address": "Ayala Triangle Gardens Tower 2 Building Paseo de Roxas corner Makati Avenue , Makati City 1209",
+    "latitude": 14.5578002,
+    "longitude": 121.0255
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Paseo Legaspi",
+    "address": "111 Paseo De Roxas Bldg., Paseo De Roxas corner Legaspi Street, Brgy. San Lorenzo, Makati City 1229",
+    "latitude": 14.5541064,
+    "longitude": 121.0192
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Pasong Tamo",
+    "address": "2182 Chino Roces Avenue, Brgy. Pio del Pilar, Makati City 1230",
+    "latitude": 14.5541735,
+    "longitude": 121.0136
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Pasong Tamo Ext. Edsa",
+    "address": "2279 Chino Roces Avenue, Brgy. Magallanes, Makati City 1231",
+    "latitude": 14.5381273,
+    "longitude": 121.0203
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Pasong Tamo La Fuerza",
+    "address": "Unit/s 1 & 2 La Fuerza Plaza 1, 2241 Don Chino Roces Avenue, Brgy. Bangkal,Makati City 1231",
+    "latitude": 14.5451992,
+    "longitude": 121.0165
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Rockwell",
+    "address": "103 Ground Level R1, Poweplant Mall, Rockwell Center, Brgy. Poblacion Makati City 1210",
+    "latitude": 14.5646479,
+    "longitude": 121.0364
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Rufino Esteban",
+    "address": "G/F Sage House Condominium 110 V.A Rufino St., Legaspi Village, Brgy. San Lorenzo, Makati City 1229",
+    "latitude": 14.5561105,
+    "longitude": 121.0176
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Rufino Towers",
+    "address": "G/F Rufino Tower Bldg, Ayala Ave cor V.A. Rufino St, Brgy. San Lorenzo, Makati City 1226",
+    "latitude": 14.559192,
+    "longitude": 121.0175
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Salcedo Alfaro",
+    "address": "Unit 102 G/F Grand Tower Cond. 150 LP Leviste St Salcedo Village Makati City 1227",
+    "latitude": 14.5597456,
+    "longitude": 121.024
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Salcedo Tordesillas",
+    "address": "G/F Solar Century Tower, HV Dela Costa corner Tordesillas Sts, Barangay Bel Air, Salcedo Village, Makati City",
+    "latitude": 14.5596008,
+    "longitude": 121.0206
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Salcedo Village",
+    "address": "G/F 88 Corporate Center, Valero cor Sedeno St., Brgy. Bel-Air, Salcedo Village, Makati 1227",
+    "latitude": 14.5584008,
+    "longitude": 121.0224
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "San Antonio Kamagong",
+    "address": "9146 CLC Condominium, cor. Kamagong and Catmon Streets., San Antonio Village, Brgy. San Antonio, Makati City 1203",
+    "latitude": 14.566132,
+    "longitude": 121.0076
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "The Residences At Greenbelt",
+    "address": "GL3 The Residences at Greenbelt Condominium Esperanza St. Ayala Center, Brgy. San Lorenzo, Makati City 1228",
+    "latitude": 14.5512855,
+    "longitude": 121.0194
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "The Rise",
+    "address": "G/F Assembly Grounds at the Rise, 7248 Malugay St., Brgy. San Antonio, Makati City 1203",
+    "latitude": 14.5618334,
+    "longitude": 121.014
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Vito Cruz Chino Roces",
+    "address": "1171 Don Chino Roces Avenue, Brgy. San Antonio, Makati City 1203",
+    "latitude": 14.5716939,
+    "longitude": 121.0155
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Buendia Malugay",
+    "address": "G/F Techzone Bldg., 213 Sen. Gil Puyat Ave., Brgy San Antonio, Makati City 1203",
+    "latitude": 14.558881,
+    "longitude": 121.0065525
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "Corinthian Plaza",
+    "address": "G/F Corinthian Plaza Bldg., 121 Paseo De Roxas, Brgy. San Lorenzo, Makati 1223",
+    "latitude": 14.5536495,
+    "longitude": 121.0191234
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "San Lorenzo",
+    "address": "1004 A. ARNAIZ AVENUE, SAN LORENZO VILLAGE, Brgy. San Lorenzo, MAKATI CITY 1223",
+    "latitude": 14.5531992,
+    "longitude": 121.0231651
+  },
+  {
+    "city": "Makati City",
+    "branch_name": "The Enterprise Center",
+    "address": "G/F Tower 2, The Enterprise Center, 6766 Ayala Avenue corner Paseo de Roxas, Brgy. San Lorenzo, Makati 1226",
+    "latitude": 14.5557683,
+    "longitude": 121.0183025
+  },
+  {
+    "city": "Malabon",
+    "branch_name": "Malabon - Gov Pascual",
+    "address": "131 Governor Pascual Avenue, Barangay Acacia, Malabon City 1474",
+    "latitude": 14.6695894,
+    "longitude": 120.9707
+  },
+  {
+    "city": "Malabon",
+    "branch_name": "Malabon Gen. Luna",
+    "address": "254 General Luna St, Brgy. Concepcion, Malabon City",
+    "latitude": 14.6679713,
+    "longitude": 120.9478
+  },
+  {
+    "city": "Malabon",
+    "branch_name": "Malabon Panghulo",
+    "address": "167 M.H. Del Pilar St., Santulan, Brgy. Panghulo, Malabon City",
+    "latitude": 14.6873214,
+    "longitude": 120.9571
+  },
+  {
+    "city": "Malabon",
+    "branch_name": "Malabon Rizal",
+    "address": "682 Rizal Ave Ext cor, Rivera St., Brgy. Tanong, Malabon City 1470",
+    "latitude": 14.6587869,
+    "longitude": 120.9531
+  },
+  {
+    "city": "Malabon",
+    "branch_name": "Malabon-San Bartolome",
+    "address": "29 Rizal Avenue Extension, Brgy. Tanong, Malabon City 1470",
+    "latitude": 14.6582763,
+    "longitude": 120.952
+  },
+  {
+    "city": "Mandaluyong",
+    "branch_name": "ADB",
+    "address": "Lower G/F Asian Development Bank, 6 ADB Avenue, Ortigas Center, Brgy. Wack wack, Mandaluyong City 1550",
+    "latitude": 14.5880892,
+    "longitude": 121.0569131
+  },
+  {
+    "city": "Mandaluyong",
+    "branch_name": "Boni Avenue",
+    "address": "612 Boni Avenue cor Sikap St., Barangay Plainview Mandaluyong City 1550",
+    "latitude": 14.5756661,
+    "longitude": 121.036
+  },
+  {
+    "city": "Mandaluyong",
+    "branch_name": "Greenhills EDSA",
+    "address": "G/F Hyatt Center, Ortigas Avenue, Brgy Wack Wack, Mandaluyong City 1550",
+    "latitude": 14.594196,
+    "longitude": 121.0565
+  },
+  {
+    "city": "Mandaluyong",
+    "branch_name": "Kalentong",
+    "address": "792-E General Kalentong, Barangay Harapin Ang Bukas Streets, Mandaluyong City 1550",
+    "latitude": 14.5920796,
+    "longitude": 121.0261
+  },
+  {
+    "city": "Mandaluyong",
+    "branch_name": "Mandaluyong",
+    "address": "G/F Mayflower Annex Building, 88 United St Greenfield District, Brgy. Highway Hills, Mandaluyong City 1550",
+    "latitude": 14.5761732,
+    "longitude": 121.0561
+  },
+  {
+    "city": "Mandaluyong",
+    "branch_name": "Mandaluyong Barangka",
+    "address": "One Sulatan Tower, 1 Sulatan Street Corner Barangka Drive, Mandaluyong City 1550",
+    "latitude": 14.5758539,
+    "longitude": 121.0421
+  },
+  {
+    "city": "Mandaluyong",
+    "branch_name": "Mandaluyong Greenfield District",
+    "address": "G/F Zitan Condominium 730 Shaw Boulevard corner Sto. Cristo Street, Greenfield District,Brgy. Highway Hills, Mandaluyong City 1550",
+    "latitude": 14.5802125,
+    "longitude": 121.0541
+  },
+  {
+    "city": "Mandaluyong",
+    "branch_name": "Mandaluyong Libertad",
+    "address": "24 Libertad Corner Calbayog Sts., Brgy. Highway Hills, Mandaluyong City 1550",
+    "latitude": 14.5812278,
+    "longitude": 121.0488
+  },
+  {
+    "city": "Mandaluyong",
+    "branch_name": "Mandaluyong-Pioneer",
+    "address": "1 Lower G/F Pioneer Highland Condominium, Madison corner Pioneer Street, Brgy. Barangka Ilaya, Mandaluyong City 1550",
+    "latitude": 14.5722975,
+    "longitude": 121.0459
+  },
+  {
+    "city": "Mandaluyong",
+    "branch_name": "SM Megamall",
+    "address": "G/F Bldg A SM Megamall, Bank Drive, Brgy. Wack-wack, Ortigas Center, Mandaluyong City 1550",
+    "latitude": 14.5860657,
+    "longitude": 121.0572
+  },
+  {
+    "city": "Mandaluyong",
+    "branch_name": "Shangri-La Shaw",
+    "address": "Level 1 Main Wing Shangrila Plaza Mall EDSA cor Shaw Blvd Brgy Wack Wack Mandaluyong City 1552 NCR",
+    "latitude": 14.5806531,
+    "longitude": 121.056
+  },
+  {
+    "city": "Mandaluyong",
+    "branch_name": "Shaw - Mandaluyong",
+    "address": "Unit #6 Ground Floor Sunshine Square Bldg. Shaw Boulevard, Barangay Pleasant Hill, Mandaluyong City 1550",
+    "latitude": 14.5880201,
+    "longitude": 121.0449
+  },
+  {
+    "city": "Mandaluyong",
+    "branch_name": "Shaw Blvd Acacia Lane",
+    "address": "317 Shaw Blvd. near (Acacia Lane), Brgy. Hagdang Bato, Mandaluyong City 1550",
+    "latitude": 14.5896606,
+    "longitude": 121.0353
+  },
+  {
+    "city": "Mandaluyong",
+    "branch_name": "Shaw Boulevard",
+    "address": "537 BCC Bldg. Shaw Blvd, Brgy. Wack Wack, Mandaluyong City 1552",
+    "latitude": 14.5886724,
+    "longitude": 121.0302414
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Amaia Skies Avenida",
+    "address": "Ground Floor R01-R04, Amaia Skies Avenida Building, Doroteo Jose corner Tomas Mapua Sts., Bgy 313, Zone 31, 3rd District, Sta Cruz , Manila 1003",
+    "latitude": 14.6050427,
+    "longitude": 120.9788052
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Arranque",
+    "address": "1451-53 Soler St., Barangay 305 Zone 210 Sta. Cruz, Manila 1003",
+    "latitude": 14.603093,
+    "longitude": 120.9773309
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Aurora - Hemady",
+    "address": "Santander Bldg. 711 Aurora Blvd corner Hemady Street, New Manila, Barangay Mariana, Quezon City 1112",
+    "latitude": 14.6152929,
+    "longitude": 121.0343767
+  },
+  {
+    "city": "Manila",
+    "branch_name": "BPI Espana",
+    "address": "Espana corner AH Lacson Ave, Barangay 479 Zone 47, Sampaloc, Manila 1008",
+    "latitude": 14.6138545,
+    "longitude": 120.9952
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Balut Tondo",
+    "address": "2484-2488 Juan Luna St., Gagalangin, Tondo, Barangay 165 1013, Manila",
+    "latitude": 14.6259797,
+    "longitude": 120.9707768
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Binondo Plaza Lorenzo Ruiz",
+    "address": "Plaza Lorenzo Ruiz cor. Reina Regente Street, Brgy. 287 Zone 27 District 3, Binondo, Manila 1006",
+    "latitude": 14.6050862,
+    "longitude": 120.9726507
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Binondo Rosario",
+    "address": "560 Don Yujuico Bldg Quintin Paredes St. 027 Barangay 289 Binondo Manila 1006",
+    "latitude": 14.5996339,
+    "longitude": 120.9725315
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Blumentritt Chinese Gen",
+    "address": "Ground Floor, Chinese Medical Arts Building, 286 Blumentritt, Sta. Cruz , Manila 1014",
+    "latitude": 14.6256346,
+    "longitude": 120.9860752
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Bustillos",
+    "address": "449 J. Figueras St., Barangay 402 Zone 41, Sampaloc, Manila 1008",
+    "latitude": 14.6029541,
+    "longitude": 120.990273
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Dewey",
+    "address": "Suite 101 Ermita Center Bldg, 1350 Roxas blvd, Brgy 668 Zone 072 Ermita Manila 1000",
+    "latitude": 14.5759994,
+    "longitude": 120.98
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Divisoria",
+    "address": "707 Elcano Tower II, Elcano St., Barangay 271 Binondo, Manila 1006",
+    "latitude": 14.6026526,
+    "longitude": 120.9685565
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Divisoria Carmen Planas",
+    "address": "866-868 L&J Bldg., Carmen Planas St., Barangay 269 Zone 25 District III, Binondo, Manila 1006",
+    "latitude": 14.6055658,
+    "longitude": 120.9669521
+  },
+  {
+    "city": "Manila",
+    "branch_name": "E. Rodriguez Broadway",
+    "address": "66 Dona Juana Rodriguez Avenue New Manila Brgy Mariana 1112",
+    "latitude": 14.6222786,
+    "longitude": 121.0267
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Ermita Pedro Gil",
+    "address": "G/F TSPI Bldg. 606 Pedro Gil Street, Brgy 698 Zone 76 Ermita, Manila 1000",
+    "latitude": 14.574443,
+    "longitude": 120.9848
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Ermita",
+    "address": "G/F Midland Plaza Condominium, M Adriatico St Brgy 669 Zone 72 District V, Ermita Manila 1000",
+    "latitude": 14.5689615,
+    "longitude": 120.9868
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Espana Blumentritt",
+    "address": "Espana cor. Blumentritt Street, Brgy. 528, Sampaloc, Manila 1008",
+    "latitude": 14.6018841,
+    "longitude": 120.9914
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Espana UST",
+    "address": "Espana Corner Moret Street , Brgy 397 , Sampaloc, Manila 1008",
+    "latitude": 14.604891,
+    "longitude": 120.993
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Intramuros",
+    "address": "G/F BPI Bldg, Muralla Street, Brgy 654 Zone 69 District V, Intramuros, Manila 1002",
+    "latitude": 14.5934325,
+    "longitude": 120.9748
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Juan Luna Recto",
+    "address": "834 Gopoco Bldg.,Juan Luna Street Corner Recto, Barangay 268, Binondo, Manila 1006",
+    "latitude": 14.6007303,
+    "longitude": 120.9747
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Legarda",
+    "address": "No. 2227-2233 Legarda Street, Brgy 403, Sampaloc, Manila 1008",
+    "latitude": 14.6009593,
+    "longitude": 120.9913
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Leon Guinto",
+    "address": "Ground Floor, NAESS House, 2215 Leon Guinto Street, Brgy 729 , Zone 79 5th District, Malate, Manila",
+    "latitude": 14.5689155,
+    "longitude": 120.993
+  },
+  {
+    "city": "Manila",
+    "branch_name": "MH Del Pilar",
+    "address": "M. H. Del Pilar cor. UN Avenue, Brgy 667 Zone 72, Ermita, Manila 1000",
+    "latitude": 14.5795981,
+    "longitude": 120.9788
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Mabini Echelon",
+    "address": "Unit A1 G/F Echelon Tower Condominium, 2100 A. Mabini Street, Brgy 701 Zone 77 District V, Malate, Manila 1004",
+    "latitude": 14.5668258,
+    "longitude": 120.9866
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Mabini Pedro Gil",
+    "address": "G/F Nestor Bldg., 1578 A. Mabini St. corner Pedro Gil St., Barangay 669, Ermita, Manila 1000",
+    "latitude": 14.5739713,
+    "longitude": 120.9805656
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Malate",
+    "address": "1792 A. Mabini St, Brgy 699 Zone 76, Malate, Manila 1004",
+    "latitude": 14.5699901,
+    "longitude": 120.9800499
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Masangkay",
+    "address": "Orchard Residences, No. 1311-1325 Masangkay St., Tondo Manila 1013",
+    "latitude": 14.6088082,
+    "longitude": 120.9762509
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Morayta Feu",
+    "address": "G/F FEU Technology Bldg. Nicanor Reyes St. Sampaloc Manila 1008",
+    "latitude": 14.6028534,
+    "longitude": 120.986796
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Nueva",
+    "address": "492 E.T. Yuchengco Street (former Nueva), Binondo, Manila 1006",
+    "latitude": 14.5988884,
+    "longitude": 120.9759
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Old Sta. Mesa",
+    "address": "4331 Old Sta Mesa Street, Barangay 587 Zone 58, Sta. Mesa, Manila 1016",
+    "latitude": 14.6012821,
+    "longitude": 121.0129
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Paco",
+    "address": "1585 General Luna St., Brgy 675 Zone 73, Paco Manila 1007",
+    "latitude": 14.5782869,
+    "longitude": 120.9576457
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Padre Faura Taft",
+    "address": "G/F Manila Astral Tower, 1330 Taft Avenue cor Padre Faura, Brgy 676 Zone 73 District 5, Ermita, Manila 1000",
+    "latitude": 14.5798504,
+    "longitude": 120.9865
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Pandacan West Zamora",
+    "address": "1890 West Zamora Street, Brgy 850 Zone 93 Pandacan, Manila 1011",
+    "latitude": 14.5854946,
+    "longitude": 121.001
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Plaza Cervantes",
+    "address": "Dasmarinas St., cor Quintin Paredes St., Binondo Manila 1006, Metro Manila NCR",
+    "latitude": 14.5965672,
+    "longitude": 120.9733931
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Quiapo",
+    "address": "112 Carlos Palanca St., Barangay 306 Zone 30 Quiapo, Manila 1001",
+    "latitude": 14.5979222,
+    "longitude": 120.9794642
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Remedios",
+    "address": "Suite C Dona Felisa Syjuco Bldg. Corner Taft Avenue and Remedios St., Barangay 693 zone 75, Malate, Manila 1004",
+    "latitude": 14.5727558,
+    "longitude": 120.9906
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Robinsons Otis",
+    "address": "Level 1 Robinsons Otis Mall, Paz M. Guazon Street, Paco, Manila 1007",
+    "latitude": 14.5872482,
+    "longitude": 120.9957
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Sampaloc",
+    "address": "Laong Laan cor. AH Lacson Sts., Brgy. 470, Sampaloc, Manila 1008",
+    "latitude": 14.6141937,
+    "longitude": 120.9794154
+  },
+  {
+    "city": "Manila",
+    "branch_name": "San Lazaro Vertex One",
+    "address": "Vertex One Bldg., MJC Ayala Land Corporate Center, Felix Huertas corner F. Yuseco Streets, Barangay 350 Sta. Cruz, Manila",
+    "latitude": 14.6180729,
+    "longitude": 120.9848
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Sta. Ana Pedro Gil",
+    "address": "G/F Rivergreen Residences Pedro Gil Street, Barangay 880, Sta. Ana, Manila 1009",
+    "latitude": 14.5814636,
+    "longitude": 121.0098
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Sta.Mesa",
+    "address": "4131 Ramon Magsaysay Blvd., Sta. Mesa, Brgy 586 Zone 57, Manila 1016",
+    "latitude": 14.6035714,
+    "longitude": 121.0162
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Taft Avenue",
+    "address": "G/F Unlad Condo, Taft Avenue cor. Gen. Malvar Street, Brgy 696 Zone 76 District V, Malate, Manila 1004",
+    "latitude": 14.5747522,
+    "longitude": 120.9861501
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Taft Quirino Ave",
+    "address": "2151 Taft Avenue, BRGY 709 ZONE 78, Malate, Manila 1004",
+    "latitude": 14.5690732,
+    "longitude": 120.9893917
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Taytay El Monteverde CALABARZON (Reg 4-A)",
+    "address": "Manila East Road, Brgy. San Juan, Taytay, Rizal 1920",
+    "latitude": 14.5573571,
+    "longitude": 121.1364
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Taytay Highway CALABARZON (Reg 4-A)",
+    "address": "G/F Alberto Bldg., Barangay San Juan, Manila East Road, Taytay 1920",
+    "latitude": 14.505774,
+    "longitude": 121.2898
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Tayuman",
+    "address": "1901 Tayuman Street corner Rizal Avenue, Brgy. 353, Sta. Cruz, Manila 1014",
+    "latitude": 14.6165996,
+    "longitude": 120.9766
+  },
+  {
+    "city": "Manila",
+    "branch_name": "UN Avenue",
+    "address": "G/F Globe UN Avenue 669 UN Avenue, Brgy 666, Ermita, Manila 1000",
+    "latitude": 14.5837335,
+    "longitude": 120.9853713
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Vito Cruz Harrison",
+    "address": "BPI Bldg. Pablo Ocampo cor. Maytubig Streets, Brgy 719 Zone 78 5th District, Malate, Manila 1004",
+    "latitude": 14.5600424,
+    "longitude": 120.9889
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Vito Cruz Taft Ave.",
+    "address": "078 Vito Cruz corner Taft Avenue, Barangay 719 Malate, Manila 1004",
+    "latitude": 14.5623353,
+    "longitude": 120.9924063
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Zobel Roxas",
+    "address": "1015 Krisambet Bldg. Zobel Roxas Street., Barangay No.755, Malate, Manila 1004",
+    "latitude": 14.5621999,
+    "longitude": 120.9992
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Divisoria Elcano",
+    "address": "541-543 Elcano St. San Nicolas 026 Brgy 281 Binondo Manila 1006",
+    "latitude": 14.6013167,
+    "longitude": 120.9704989
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Malate Mabini",
+    "address": "1377 A. Mabini corner Sta. Monica Sts., Brgy 668 Zone 72, Ermita, Manila 1000",
+    "latitude": 14.5774882,
+    "longitude": 120.9761256
+  },
+  {
+    "city": "Manila",
+    "branch_name": "Pritil",
+    "address": "Grand Innovation Bldg. 1997-2003 Juan Luna st., Barangay 151 Zone 13 Tondo Manila 1013",
+    "latitude": 14.6195198,
+    "longitude": 120.9685677
+  },
+  {
+    "city": "Marikina",
+    "branch_name": "Marikina",
+    "address": "Bayan Bayanan Avenue, Brgy. Concepcion, Marikina City 1807",
+    "latitude": 14.6527693,
+    "longitude": 121.1076275
+  },
+  {
+    "city": "Marikina",
+    "branch_name": "Marikina - Gen Ordonez",
+    "address": "4 Gen Ordonez Street, Barangay Marikina Heights, Marikina City",
+    "latitude": 14.6498504,
+    "longitude": 121.1096351
+  },
+  {
+    "city": "Marikina",
+    "branch_name": "Marikina Gil Fernando",
+    "address": "25 Gil Fernando Avenue, Brgy. San Roque, Marikina City 1801",
+    "latitude": 14.6228086,
+    "longitude": 121.1007784
+  },
+  {
+    "city": "Marikina",
+    "branch_name": "Marikina Sto Nino",
+    "address": "298 Shoe Avenue corner Sumulong Highway, Brgy. Sto. Nino, Marikina City 1800",
+    "latitude": 14.6358066,
+    "longitude": 121.0949156
+  },
+  {
+    "city": "Marikina",
+    "branch_name": "Marikina W. Paz",
+    "address": "28 W. Paz St. cor. E. Dela Paz St., Brgy. Sta Elena, Marikina City 1800",
+    "latitude": 14.6325602,
+    "longitude": 121.0942541
+  },
+  {
+    "city": "Muntinlupa",
+    "branch_name": "Alabang Ayala Life",
+    "address": "Ayala Life FGU Bldg., Alabang-Zapote Road cor Acacia Ave, Madrigal Business Park Brgy Ayala Alabang, Muntinlupa City 1770",
+    "latitude": 14.4272137,
+    "longitude": 121.0214687
+  },
+  {
+    "city": "Muntinlupa",
+    "branch_name": "Alabang Civic Place",
+    "address": "Unit 102 - 2301 Civic Place Bldg Civic Dr FilInvest Barangay Alabang, Muntinlupa City 1770",
+    "latitude": 14.414114,
+    "longitude": 121.0434
+  },
+  {
+    "city": "Muntinlupa",
+    "branch_name": "Alabang Hills",
+    "address": "Unit 12, G/F, Alabang Citi Arcade Bldg, Don Jesus Blvd. West Service Rd, Brgy. Cupang, Muntinlupa City 1771",
+    "latitude": 14.4341027,
+    "longitude": 121.0446
+  },
+  {
+    "city": "Muntinlupa",
+    "branch_name": "Alabang Insular Life",
+    "address": "G/F Insular Life Corporate Centre, Commerce Ave., Filinvest, Brgy. Alabang, Muntinlupa City 1770",
+    "latitude": 14.4190815,
+    "longitude": 121.0387
+  },
+  {
+    "city": "Muntinlupa",
+    "branch_name": "Alabang Madrigal Park",
+    "address": "G/F Unioil Center Bldg., Madrigal Business Park 1, Commerce Ave cor. Acacia, Brgy. Ayala Alabang, Muntinlupa City 1770",
+    "latitude": 14.4236601,
+    "longitude": 121.0237
+  },
+  {
+    "city": "Muntinlupa",
+    "branch_name": "Alabang South",
+    "address": "Ground Floor South Supermarket, Filinvest, Brgy. Alabang Muntinlupa City 1770",
+    "latitude": 14.4215084,
+    "longitude": 121.0363
+  },
+  {
+    "city": "Muntinlupa",
+    "branch_name": "Alabang Town Center",
+    "address": "G/F ATC Corporate Center, Alabang-Zapote Road, Ayala Alabang, Muntinlupa City 1770",
+    "latitude": 14.4248296,
+    "longitude": 121.0285
+  },
+  {
+    "city": "Muntinlupa",
+    "branch_name": "BPI Muntinlupa Alabang",
+    "address": "384 East Service Road, Barangay Alabang, Muntinlupa City 1770",
+    "latitude": 14.4194332,
+    "longitude": 121.0459
+  },
+  {
+    "city": "Muntinlupa",
+    "branch_name": "Muntinlupa",
+    "address": "National Road, Brgy Alabang, Muntinlupa City 1772",
+    "latitude": 14.4112544,
+    "longitude": 121.0466
+  },
+  {
+    "city": "Muntinlupa",
+    "branch_name": "Muntinlupa Tunasan",
+    "address": "J.P. Rizal Street, Barangay Poblacion, Muntinlupa City 1776",
+    "latitude": 14.4241072,
+    "longitude": 121.0443
+  },
+  {
+    "city": "Muntinlupa",
+    "branch_name": "Muntinlupa Tunasan E Rodriguez",
+    "address": "Larychean Building 176 National Road, Brgy. Tunasan, Muntinlupa City 1773",
+    "latitude": 14.4063987,
+    "longitude": 121.0465
+  },
+  {
+    "city": "Muntinlupa",
+    "branch_name": "New Alabang",
+    "address": "G/F Alabang Town Center Mall Entrance, Alabang-Zapote Road, Brgy Ayala Alabang, Muntinlupa City 1770",
+    "latitude": 14.4235683,
+    "longitude": 121.0296
+  },
+  {
+    "city": "Navotas",
+    "branch_name": "Navotas",
+    "address": "Melandrea IV Bldg., Northbay Blvd. corner Virgo Drive, Barangay North Bay Boulevard South (NBBS), Navotas City",
+    "latitude": 14.6369609,
+    "longitude": 120.9606
+  },
+  {
+    "city": "Navotas",
+    "branch_name": "Navotas M. Naval",
+    "address": "1009 M. Naval Street, Brgy. San Jose, Navotas City",
+    "latitude": 14.6622125,
+    "longitude": 120.9455
+  },
+  {
+    "city": "Navotas",
+    "branch_name": "Navotas North Bay",
+    "address": "371 Seafront Building, Brgy. Northbay Boulevard South, Navotas city",
+    "latitude": "",
+    "longitude": ""
+  },
+  {
+    "city": "Paranaque",
+    "branch_name": "Ayala Malls Manila Bay",
+    "address": "Ayala Malls Manila Bay, Aseana Avenue Corner Macapagal Blvd., Barangay Tambo, Aseana City, Paranaque City 1701",
+    "latitude": 14.5269919,
+    "longitude": 120.9826
+  },
+  {
+    "city": "Paranaque",
+    "branch_name": "Dr. A. Santos Ave. â€“ BF",
+    "address": "8006 ECH Plaza. Dr. A. Santos Avenue, Brgy. BF Sucat, Paranaque City. Metro Manila NCR 1700",
+    "latitude": 14.4590206,
+    "longitude": 121.0305
+  },
+  {
+    "city": "Paranaque",
+    "branch_name": "Sucat Road BF Homes",
+    "address": "MAR AN BUILDING. No. 9 President's Avenue, BF Homes Subd, Paranaque City, Metro Manila, NCR 1700",
+    "latitude": 14.457949,
+    "longitude": 121.0313
+  },
+  {
+    "city": "Pasay",
+    "branch_name": "Baclaran",
+    "address": "3100 Roxas Blvd., Baclaran, Brgy 76 Zone 10, Pasay City 1300",
+    "latitude": 14.543641,
+    "longitude": 120.9908
+  },
+  {
+    "city": "Pasay",
+    "branch_name": "Edsa Malibay",
+    "address": "26 C. Jose Street, Barangay 159, Malibay, Pasay City 1300",
+    "latitude": 14.5383522,
+    "longitude": 121.0107
+  },
+  {
+    "city": "Pasay",
+    "branch_name": "Harrison Buendia",
+    "address": "6365 SKK Bldg., Buendia cor. FB Harrison St., Brgy. 10 Zone 4, Pasay City 1300",
+    "latitude": 14.5526332,
+    "longitude": 120.9918
+  },
+  {
+    "city": "Pasay",
+    "branch_name": "Macapagal Meridian Park",
+    "address": "Double Dragon Plaza, DD Meridian Park, EDSA Extension Corner Macapagal Boulevard Bay Area, Pasay City 1300",
+    "latitude": 14.5359377,
+    "longitude": 120.9905
+  },
+  {
+    "city": "Pasay",
+    "branch_name": "Pasay Buendia",
+    "address": "Ground Floor Trium Square Sen Gil Puyat Ave cor Leveriza St Pasay City 1300",
+    "latitude": 14.5539323,
+    "longitude": 120.9951
+  },
+  {
+    "city": "Pasay",
+    "branch_name": "Pasay D. Macapagal Ave.",
+    "address": "G/F Pacific Concrete Products Bldg, Sen Gil Puyat ext. cor Diosdado Macapagal Ave, BRGY. 76 ZONE 10, Pasay City 1300",
+    "latitude": 14.5532466,
+    "longitude": 120.9932
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Ayala Malls Feliz",
+    "address": "Ayala Malls Feliz, J.P. Rizal Street corner Marcos Highway, Dela Paz, Pasig City 1600",
+    "latitude": 14.6197927,
+    "longitude": 121.0933
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Ayala Malls The 30Th",
+    "address": "L0064-L0065 Lower G/F Ayala Malls the 30th 30 Meralco Avenue, Barangay Ugong, Pasig City 1604",
+    "latitude": 14.580747,
+    "longitude": 121.0641
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Capitol Commons",
+    "address": "Unit B1 052-054 Estancia Mall, Capitol Commons, Shaw Blvd Cor Meralco Ave., Brgy. Oranbo, Pasig City 1600",
+    "latitude": 14.5763396,
+    "longitude": 121.0631
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "F. Ortigas Jr. Road",
+    "address": "Ground Flr, Agustin 1 Bldg, F. Ortigas Jr. Road (formerly Emerald Ave.), Barangay San Antonio, Ortigas Center, Pasig City 1600",
+    "latitude": 14.5852723,
+    "longitude": 121.0613
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Julia Vargas",
+    "address": "G/F Antel Global Corporate Center, Julia Vargas, Brgy. San Antonio, Ortigas Center, Pasig City 1605",
+    "latitude": 14.5839852,
+    "longitude": 121.0629
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Meralco",
+    "address": "G/F Technical Services Bldg., Meralco Compound, Ortigas Avenue, Brgy. Ugong, Pasig City 1605",
+    "latitude": 14.5898318,
+    "longitude": 121.0616
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Ortigas Emerald",
+    "address": "Unit 101 G/F Jollibee Plaza Condominium, F. Ortigas Jr. Road, Brgy. San Antonio, Ortigas Center, Pasig City 1605",
+    "latitude": 14.5877774,
+    "longitude": 121.0613
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Ortigas San Miguel",
+    "address": "G/F OAC Bldg., 27 San Miguel Ave., Ortigas Center, Brgy. San Antonio, Pasig City 1605",
+    "latitude": 14.5812582,
+    "longitude": 121.0599
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Ortigas Sapphire",
+    "address": "Unit D, GF, Suntree Tower, No. 27 Sapphire Road, Brgy. San Antonio, Ortigas Center, Pasig City 1605",
+    "latitude": 14.5858778,
+    "longitude": 121.0636
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Ortigas Tektite",
+    "address": "5F West Tower, Tektite Towers, Exchange Road, Brgy. San Antonio, Ortigas Center, Pasig 1605",
+    "latitude": 14.5824779,
+    "longitude": 121.0614
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Pasig",
+    "address": "Pasig Blvd Extension, Brgy. Caniogan, Pasig City 1600",
+    "latitude": 14.5660661,
+    "longitude": 121.075
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Pasig Amang Rodriguez",
+    "address": "Beside Caltex Gas Station, cor Amang Rodriguez Avenue and Octagon Street Dela Paz Pasig City",
+    "latitude": 14.6094801,
+    "longitude": 121.0919
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Pasig Blvd",
+    "address": "JNCV Bldg. Pasig Blvd. cor Rosemary Lane, Brgy. Kapitolyo, Pasig City 1603",
+    "latitude": 14.567849,
+    "longitude": 121.0659
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Pasig Buting",
+    "address": "Anvic Bldg, 99-A San Guillermo Ave., Brgy. Buting, Pasig City 1601",
+    "latitude": 14.5536055,
+    "longitude": 121.0695
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Pasig C. Raymundo",
+    "address": "Lot 1, Blk 3, #9 C. Raymundo Avenue, Brgy. Maybunga, Pasig City 1607",
+    "latitude": 14.5894679,
+    "longitude": 121.0894
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Pasig Capitolyo",
+    "address": "61 Shaw Boulevard, Brgy Kapitolyo, Pasig City 1603",
+    "latitude": 14.5734888,
+    "longitude": 121.0623
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Pasig Mabini",
+    "address": "32 A. Mabini St., Barangay Kapasigan, Pasig City 1600",
+    "latitude": 14.5629827,
+    "longitude": 121.0761
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Pasig Market Avenue Ext.",
+    "address": "1439 M. Suarez Avenue, Brgy San. Miguel, Pasig City 1600",
+    "latitude": 14.569137,
+    "longitude": 121.0864
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Pasig Ortigas",
+    "address": "Unit 102 Avantgarde Residences Meralco Avenue Ortigas Ctr. Brgy. San Antonio, Pasig City 1600",
+    "latitude": 14.583523,
+    "longitude": 121.0633
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Pasig Rosario",
+    "address": "Solid Lumber Bldg. 51 Ortigas Ave Extension, Brgy. Rosario, Pasig 1609",
+    "latitude": 14.5898318,
+    "longitude": 121.0616
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Pasig-E. Rodriguez Ave.",
+    "address": "22 E. Rodriguez Jr. Ave., Brgy. Bagong Ilog, Pasig City 1600",
+    "latitude": 14.5675615,
+    "longitude": 121.0709
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Pioneer Centre",
+    "address": "8006 Pioneer St., cor Brixton and United Sts. Brgy Kapitolyo Pasig City 1603",
+    "latitude": 14.5733656,
+    "longitude": 121.0573
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Robinson's Tower Ortigas",
+    "address": "G/F Robinsons Equitable Tower, # 4 ADB cor Poveda Ave., Brgy. San Antonio, Ortigas Center, Pasig City 1605",
+    "latitude": 14.5896874,
+    "longitude": 121.0598
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Rockwell Ortigas",
+    "address": "Unit N-11 Ground Floor Tower 2. The Rockwell Business Center, Brgy. Ugong, Ortigas Avenue, Pasig City 1605",
+    "latitude": 14.5901484,
+    "longitude": 121.068
+  },
+  {
+    "city": "Pasig",
+    "branch_name": "Rockwell the Grove",
+    "address": "GF-RS-110-111, The Grove by Rockwell, E. Rodriguez Jr. Ave, Ugong, Pasig City 1604",
+    "latitude": 14.5856768,
+    "longitude": 121.0813
+  },
+  {
+    "city": "Pateros",
+    "branch_name": "Pateros",
+    "address": "536 M. Almeda St., Brgy. San Roque, Pateros 1620",
+    "latitude": "",
+    "longitude": ""
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Closed",
+    "address": "Eastwood CityNCR",
+    "latitude": 14.6096463,
+    "longitude": 121.0796
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "ABS CBN",
+    "address": "G/F Tower Entrance ELJ Communications Ctr. ABS-CBN Broadcasting Corp., Mother Ignacia St. Brgy South Triangle, Quezon City 1103",
+    "latitude": 14.6392199,
+    "longitude": 121.0357
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Ali Mall Cubao",
+    "address": "Space 2022 Level 2 Ali Mall Banking Center, Brgy. Socorro Cubao, Quezon City 1109",
+    "latitude": 14.6195569,
+    "longitude": 121.0568
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Araneta - E. Rodriguez",
+    "address": "486 G. Araneta Avenue, Brgy Dona Imelda, Quezon City 1113",
+    "latitude": 14.6167111,
+    "longitude": 121.0165
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Aurora - Hemady",
+    "address": "Santander Bldg. 711 Aurora Blvd corner Hemady Street, New Manila, Barangay Mariana, Quezon City 1112",
+    "latitude": 14.6155777,
+    "longitude": 121.0371
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Aurora Boulevard",
+    "address": "719 Aurora Blvd, Brgy. Mariana, Quezon City 1112",
+    "latitude": 14.6131749,
+    "longitude": 121.033
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Ayala Malls Cloverleaf",
+    "address": "Space no. 123 & 124, Ground Floo, Ayala Malls Cloverleaf, Balintawak, Quezon City",
+    "latitude": 14.6544846,
+    "longitude": 121.0019
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Ayala Malls Vertis North",
+    "address": "Space R4-L1-041&042, Level 1, Vertis North, Phase 1&2 cor. North Ave., Brgy. Bagong Pag-asa, Quezon City ZIP CODE 1105",
+    "latitude": 14.6538022,
+    "longitude": 121.0383
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Blue Ridge Boni Serrano",
+    "address": "Citigold Plaza Bldg. 175 Katipunan Avenue, Brgy Bayanihan, Quezon City 1109",
+    "latitude": 14.6156453,
+    "longitude": 121.0701
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Broadway",
+    "address": "677 Aurora Blvd., Brgy. Mariana New Manila, Quezon City 1112",
+    "latitude": 14.6130875,
+    "longitude": 121.0329
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Capitol Hills",
+    "address": "Capitol Hills Drive, Brgy Matandang Balara, Quezon City 1119",
+    "latitude": 14.6652629,
+    "longitude": 121.081
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Commonwealth",
+    "address": "Commonwealth Avenue corner Holy Spirit Drive Don Antonio Heights Brgy Holy Spirit Quezon City 1121",
+    "latitude": 14.6832008,
+    "longitude": 121.0788
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Commonwealth Royale Place",
+    "address": "Lot 831 Block 1, Royale Place Mall Don Antonio Drive, Brgy Matandang Balara, Diliman, Quezon City 1119",
+    "latitude": 14.677076,
+    "longitude": 121.0855
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Congressional Avenue",
+    "address": "G/F The Arete Square, Congressional Avenue, Brgy Bahay Toro Proj. 8 Quezon City 1106",
+    "latitude": 14.666274,
+    "longitude": 121.0316
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Congressional Avenue Extension",
+    "address": "Lot 17 Block 5 Congressional Extension Avenue Barangay Culiat Quezon City Metro Manila",
+    "latitude": 14.6733775,
+    "longitude": 121.0564
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Cubao - F Castillo",
+    "address": "Caly Bldg. 986 Aurora Blvd corner F. Castillo Project 4, Barangay Marilag, Quezon City 1109",
+    "latitude": 14.6276806,
+    "longitude": 121.0665
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Cubao - P Tuazon 12th Ave.",
+    "address": "210 P. Tuazon corner 12th Avenue, Barangay Socorro, Cubao, Quezon City 1109",
+    "latitude": 14.618488,
+    "longitude": 121.0569
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Cubao Aurora",
+    "address": "St. Anthony Bldg, Stella Maris Arcade, Aurora Blvd cor Cambridge, Brgy E. Rodriguez Cubao, Quezon City 1102",
+    "latitude": 14.6246803,
+    "longitude": 121.0534
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Cubao Gateway Mall",
+    "address": "G/F Gateway Mall, Gen. Malvar Ave., Araneta Center, Cubao, Brgy. Socorro Quezon City 1109",
+    "latitude": 14.6217945,
+    "longitude": 121.0528
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Cubao Manhattan Parkview",
+    "address": "Space No. 20 Ground Floor Manhattan Parkview Retail, Gen. Roxas Avenue corner Gen. Romulo Street, Araneta Center, Brgy. Socorro Quezon City 1109",
+    "latitude": 14.620878,
+    "longitude": 121.0526
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Del Monte",
+    "address": "401 Del Monte Ave., Brgy Manresa, Quezon City",
+    "latitude": 14.638953,
+    "longitude": 121.0041
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Diliman Isidora",
+    "address": "Holy Spirit Drive cor. De Leon St. Isidora Hills Subd., Barangay Holy Spirit, Diliman, Quezon City 1121",
+    "latitude": 14.683811,
+    "longitude": 121.0744
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "E. Rodriguez B.G. Belmonte",
+    "address": "1466 & 1468 E. Rodriguez Sr. Avenue corner Betty Go-Belmonte Street, Brgy. Immaculate Conception, Quezon City 1111",
+    "latitude": 14.6245114,
+    "longitude": 121.0382
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "E. Rodriguez-Acropolis",
+    "address": "SRK Bldg., Blk 11 Lot 48, E. Rodriguez Avenue, Brgy. Bagumbayan, Quezon City 1110",
+    "latitude": 14.603491,
+    "longitude": 121.079
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "E.Rodriguez Bagumbayan",
+    "address": "Unit G3 Ground Floor MDC100 Bldg, E. Rodriguez Jr. Avenue, Brgy. Bagumbayan, Quezon City",
+    "latitude": 14.6085948,
+    "longitude": 121.0816
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "E.Rodriguez Welcome Rotonda",
+    "address": "GF M1 Central Bldg, 18 E Rodriguez Sr Avenue cor Matimyas St, Brgy Don Manuel, Quezon City 1113",
+    "latitude": 14.6178593,
+    "longitude": 121.0042
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "EDSA - Cloverleaf",
+    "address": "1157 EDSA Balintawak, Brgy. Apolonio Samson, Quezon City",
+    "latitude": 14.6569023,
+    "longitude": 121.0064
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "EDSA - Kamuning",
+    "address": "105 Kamuning Road, Barangay Kamuning, Quezon City",
+    "latitude": 14.6301149,
+    "longitude": 121.0428
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "East Avenue",
+    "address": "22 East Avenue, Barangay Pinyahan, Diliman, Quezon City 1101",
+    "latitude": 14.6394353,
+    "longitude": 121.0468
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Fairview",
+    "address": "Lot 2 Blk 32 Fairview Park, Brgy. Fairview, Quezon City 1118",
+    "latitude": 14.0628213,
+    "longitude": 122.1178
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Fairview East",
+    "address": "Blk 4 Lot 4 Commonwealth Avenue, Brgy. Fairview, Quezon City 1118",
+    "latitude": 14.7053433,
+    "longitude": 121.0758
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Fairview Terraces",
+    "address": "Ground Floor Fairview Terraces Ayala Mall, Quirino Highway cor. Maligaya Drive, Brgy. Pasong Putik, Novaliches, Quezon City 1118",
+    "latitude": 14.7363856,
+    "longitude": 121.0602
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Kalayaan",
+    "address": "114 Kalayaan Avenue, Brgy Central Diliman, Quezon City 1100",
+    "latitude": 14.6450493,
+    "longitude": 121.0538
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Kamias Anonas",
+    "address": "137 Kamias Road, Brgy Sikatuna, Quezon City 1102",
+    "latitude": 14.6346232,
+    "longitude": 121.0584
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Kamias EDSA",
+    "address": "BPI Kamias Edsa branch - 5 Kamias Road, Brgy Pinyahan, Quezon City 1102",
+    "latitude": 14.6316044,
+    "longitude": 121.0487
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Kamuning",
+    "address": "Tomas Morato Ave cor Scout Delgado St., Brgy. Laging Handa, Kamuning, Quezon City 1103",
+    "latitude": 14.6298813,
+    "longitude": 121.035
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Katipunan Loyola Hgts",
+    "address": "Miranda Bldg. #325 Katipunan Avenue corner Dela Rosa Street, Barangay Loyola Heights, Quezon City 1108",
+    "latitude": 14.6402743,
+    "longitude": 121.0742
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Lagro",
+    "address": "Lot 7 Block 1 Sacred Heart Village, Quirino Highway, Brgy. Pasong Putik, Quezon City 1118",
+    "latitude": 14.7189677,
+    "longitude": 121.0402
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Loyola Katipunan",
+    "address": "Katipunan Road cor Escaler St., Brgy Loyola Heights, Quezon City 1108",
+    "latitude": 14.6458763,
+    "longitude": 121.0736
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Novaliches Gen. Luis",
+    "address": "Gen Luis corner Gold Street, Millionaires Village, Barangay Novaliches Proper, Novaliches Quezon City 1123",
+    "latitude": 14.7247301,
+    "longitude": 121.0371
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Novaliches Lagro",
+    "address": "UNIT 1 D GROUND FLR ,BDC CORPORATE CTR Mindanao Avenue Extension, BGY Greater Lagro, Novaliches, Quezon City 1118",
+    "latitude": 14.7251243,
+    "longitude": 121.065
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Novaliches SM Hypermarket",
+    "address": "G/F SM Hypermarket Novaliches, 402 Quirino Highway, Brgy Talipapa, Novaliches, Quezon City 1116",
+    "latitude": 14.6813322,
+    "longitude": 121.0213
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Novaliches San Bartolome",
+    "address": "680 Quirino Highway, Barangay San Bartolome, Novaliches, Quezon City 1116",
+    "latitude": 14.7003243,
+    "longitude": 121.035
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Novaliches Sarmiento",
+    "address": "946 Quirino Highway corner Sarmiento Street, Barangay Novaliches Proper, Novaliches, Quezon City 1117",
+    "latitude": 14.7197324,
+    "longitude": 121.04
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Opus Bridgetowne branch",
+    "address": "Opus Mall, Bridgetowne Estate, E. Rodriguez Jr. Avenue, Brgy. Ugong Norte, Quezon City",
+    "latitude": 14.5932419,
+    "longitude": 121.0802
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Philippine Heart Center",
+    "address": "Philippine Heart Center Medical Arts Building Annex, Matalino St., Brgy Central Diliman, Quezon City 1100",
+    "latitude": 14.64473,
+    "longitude": 121.0505
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Project 8 - Short Horn",
+    "address": "26 Shorthorn Street, Project 8, Barangay Bahay Toro, Quezon City 1106",
+    "latitude": 14.6658329,
+    "longitude": 121.022
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "QA - Kanlaon",
+    "address": "Quezon Avenue corner Kanlaon St., Barangay Sta. Teresita, Quezon City 1114",
+    "latitude": 14.619881,
+    "longitude": 121.0034
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "QA - South Triangle",
+    "address": "1480 Quezon Avenue, Barangay South Triangle, Quezon City 1103",
+    "latitude": 14.6399556,
+    "longitude": 121.0316
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "QA Fisher Mall",
+    "address": "Upper Basement Fisher Mall, Quezon Avenue corner Roosevelt Avenue, Brgy Santa Cruz Quezon City 1114",
+    "latitude": 14.6340317,
+    "longitude": 121.0205
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "QC Sto Domingo",
+    "address": "1 Biak-Na-Bato corner Quezon Avenue, Brgy Sto. Domingo, Quezon City 1114",
+    "latitude": 14.6252558,
+    "longitude": 121.0095
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "QC West Triangle",
+    "address": "1587 Quezon Avenue, Brgy West Triangle, Quezon City 1104",
+    "latitude": 14.641924,
+    "longitude": 121.0334
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Quezon Ave - Delta",
+    "address": "385 Quezon Avenue, Brgy. West Triangle, Quezon City 1104",
+    "latitude": 14.6381164,
+    "longitude": 121.027
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Quezon Ave. EDSA",
+    "address": "G/F Triumph Square Building 1618 Quezon Ave South Triangle Quezon City 1103",
+    "latitude": 14.6422266,
+    "longitude": 121.0351
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Quezon Avenue Espana",
+    "address": "14 Quezon Avenue, Brgy. Dona Josefa, Quezon City 1113",
+    "latitude": 14.619271,
+    "longitude": 121.0036
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Retiro Kanlaon",
+    "address": "NS Amoranto Sr. Avenue cor. Kanlaon Street, Quezon City",
+    "latitude": 14.6303181,
+    "longitude": 120.9965
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Retiro Mayon",
+    "address": "NS Amoranto Cor. Mayon St., Brgy. NS Amoranto, La Loma, Quezon City 1114",
+    "latitude": 14.6326976,
+    "longitude": 120.9944
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Robinson's Nova Market",
+    "address": "Robinsons Place Novaliches Level 1 Main Mall, Quirino Highway, Barangay Pasong Putik, Novaliches, Quezon City 1118",
+    "latitude": 14.7989985,
+    "longitude": 121.0688
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Roces",
+    "address": "2 Alejandro Roces Ave. Cor Quezon Ave, Barangay Paligsahan, Quezon City 1103",
+    "latitude": 14.63193,
+    "longitude": 121.0212
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Roosevelt",
+    "address": "Ground Floor Bayantel Roosevelt Operation Center - 234 Roosevelt Avenue, SFDM, Brgy Del Monte, Quezon City 1105",
+    "latitude": 14.646326,
+    "longitude": 121.0177
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Roosevelt - Munoz",
+    "address": "316 Roosevelt Ave, SFDM, Barangay San Antonio, Quezon City 1105",
+    "latitude": 14.6451092,
+    "longitude": 121.0171
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "San Francisco Del Monte",
+    "address": "Araneta Avenue near corner Del Monte Avenue, Brgy Sienna, Quezon city",
+    "latitude": 14.639082,
+    "longitude": 121.0066
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Scout Limbaga-Tobias",
+    "address": "GF Scout Center. Scout Tobias Street corner Scout Limbaga Street, Brgy. Laging Handa, Quezon City",
+    "latitude": 14.634114,
+    "longitude": 121.0307
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "St. Ignatius - Katipunan",
+    "address": "Linear Bldg., 142 Katipunan Ave., St. Ignatius Village, Brgy. St. Ignatius, Quezon City",
+    "latitude": 14.614192,
+    "longitude": 121.0705
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "St. Luke's",
+    "address": "St. Luke's Medical Center, 279 E. Rodriguez Sr. Ave, Brgy Kalusugan, Quezon City 1112",
+    "latitude": 14.6217245,
+    "longitude": 121.024
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "T Sora - Visayas Avenue",
+    "address": "243 Tandang Sora Avenue, Tandang Sora. Quezon City",
+    "latitude": 14.6770882,
+    "longitude": 121.0415
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Tandang Sora",
+    "address": "397 Tandang Sora Avenue, Barangay Culiat, Quezon City",
+    "latitude": 14.6698484,
+    "longitude": 121.0532
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Timog Avenue",
+    "address": "34 Timog Avenue, Barangay Laging Handa, Quezon City 1103",
+    "latitude": 14.635281,
+    "longitude": 121.032
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Timog Circle",
+    "address": "Timog Commercial Center, Timog Ave cor. Panay Avenue, Brgy South Triangle, Quezon City 1103",
+    "latitude": 14.6334939,
+    "longitude": 121.0407
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Timog EDSA",
+    "address": "114 Timog Avenue, Ibon Building, Brgy Sacred Heart, Quezon City 1103",
+    "latitude": 14.6332736,
+    "longitude": 121.0414
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Trinoma",
+    "address": "Space P1012E Level P1 Trinoma North Triangle, North Ave., corner EDSA, Brgy. Bagong Pag-asa, Quezon City 1105",
+    "latitude": 14.6532747,
+    "longitude": 121.0338
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Trinoma North",
+    "address": "Unit 1085-1086 Level M1, Trinoma, North Triangle, Brgy. Bagong Pag-asa Quezon City",
+    "latitude": 14.6551623,
+    "longitude": 121.0309
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "U.P. Techno Hub",
+    "address": "U.P. North Retail Science and Technology Center, Commonwealth Avenue, Barangay UP Campus, Diliman, Quezon City 1101",
+    "latitude": 14.6572698,
+    "longitude": 121.0557
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Up Town Center",
+    "address": "Unit C145A L1 Phase 2 UP Town Center, Katipunan Avenue, Brgy. UP Campus, Quezon City 1101",
+    "latitude": 14.6473556,
+    "longitude": 121.0741
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Visayas Avenue",
+    "address": "46 Visayas Avenue, Brgy Vasra, Project 6, Quezon City 1100",
+    "latitude": 14.6608956,
+    "longitude": 121.0449
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Waltermart North EDSA",
+    "address": "G/F WMEDG 03, Waltermart North EDSA, MuÃ±oz Brgy. Veterans, Quezon City 1105",
+    "latitude": 14.6537082,
+    "longitude": 121.0242
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "West Ave. - Del Monte",
+    "address": "39 West Avenue, Brgy. Nayong Kanluran, Quezon City",
+    "latitude": 14.6418911,
+    "longitude": 121.0266
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Xavierville",
+    "address": "74 Xavierville Avenue, Brgy. Loyola Heights, Quezon City 1108",
+    "latitude": 14.6347764,
+    "longitude": 121.0703
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Aurora Boulevard",
+    "address": "719 Aurora Blvd, Brgy. Mariana, Quezon City 1112",
+    "latitude": "",
+    "longitude": ""
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Congressional Avenue",
+    "address": "G/F The Arete Square, Congressional Avenue, Brgy Bahay Toro Proj. 8 Quezon City 1106",
+    "latitude": "",
+    "longitude": ""
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Cubao - F Castillo",
+    "address": "Cubao - P Tuazon 12th Ave.",
+    "latitude": "",
+    "longitude": ""
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Cubao Aurora",
+    "address": "St. Anthony Bldg, Stella Maris Arcade, Aurora Blvd cor Cambridge, Brgy E. Rodriguez Cubao, Quezon City 1102",
+    "latitude": "",
+    "longitude": ""
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "E. Rodriguez B.G. Belmonte",
+    "address": "1466 & 1468 E. Rodriguez Sr. Avenue corner Betty Go-Belmonte Street, Brgy. Immaculate Conception, Quezon City 1111",
+    "latitude": "",
+    "longitude": ""
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "E.Rodriguez Bagumbayan",
+    "address": "Unit G3 Ground Floor MDC100 Bldg, E. Rodriguez Jr. Avenue, Brgy. Bagumbayan, Quezon City",
+    "latitude": "",
+    "longitude": ""
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Eastwood City",
+    "address": "Ground Floor, Techno Plaza One Building, 18 Orchard Road, Eastwood City, Bagumbayan, Quezon City",
+    "latitude": "",
+    "longitude": ""
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Fairview Terraces",
+    "address": "Ground Floor Fairview Terraces Ayala Mall, Quirino Highway cor. Maligaya Drive, Brgy. Pasong Putik, Novaliches, Quezon City 1118",
+    "latitude": "",
+    "longitude": ""
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Loyola Katipunan",
+    "address": "Katipunan Road cor Escaler St., Brgy Loyola Heights, Quezon City 1108",
+    "latitude": "",
+    "longitude": ""
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Quezon Ave - Delta",
+    "address": "385 Quezon Avenue, Brgy. West Triangle, Quezon City 1104",
+    "latitude": "",
+    "longitude": ""
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Retiro Kanlaon",
+    "address": "NS Amoranto Sr. Avenue cor. Kanlaon Street, Quezon City",
+    "latitude": "",
+    "longitude": ""
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Retiro Mayon",
+    "address": "NS Amoranto Cor. Mayon St., Brgy. NS Amoranto, La Loma, Quezon City 1114",
+    "latitude": "",
+    "longitude": ""
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "St. Luke's",
+    "address": "St. Luke's Medical Center, 279 E. Rodriguez Sr. Ave, Brgy Kalusugan, Quezon City 1112",
+    "latitude": "",
+    "longitude": ""
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Timog Circle",
+    "address": "Timog Commercial Center, Timog Ave cor. Panay Avenue, Brgy South Triangle, Quezon City 1103",
+    "latitude": "",
+    "longitude": ""
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "Visayas Avenue",
+    "address": "46 Visayas Avenue, Brgy Vasra, Project 6, Quezon City 1100",
+    "latitude": "",
+    "longitude": ""
+  },
+  {
+    "city": "Quezon City",
+    "branch_name": "SM North EDSA",
+    "address": "SM City North EDSA Branch, SM Main Bldg., Brgy. Bagong Pagasa, Quezon City 1105",
+    "latitude": 14.6593553,
+    "longitude": 121.0328
+  },
+  {
+    "city": "Taguig",
+    "branch_name": "Globe BGC",
+    "address": "19/F THE GLOBE TOWER, 32nd St. corner 7th Avenue, Bonifacio Global City, Brgy. Fort Bonifacio, Taguig City",
+    "latitude": 14.5532937,
+    "longitude": 121.0501
+  },
+  {
+    "city": "Taguig",
+    "branch_name": "Infinity",
+    "address": "Unit 102 The Infinity Tower, 26th Street, Bonifacio Global City, Brgy. Fort Bonifacio, Taguig 1634",
+    "latitude": 14.5472085,
+    "longitude": 121.0514
+  },
+  {
+    "city": "Taguig",
+    "branch_name": "Market Market",
+    "address": "Ground Floor Market Market, Bonifacio Global City, Brgy. Fort Bonifacio, Taguig City",
+    "latitude": 14.5502545,
+    "longitude": 121.0561
+  },
+  {
+    "city": "Taguig",
+    "branch_name": "One Global Place",
+    "address": "Unit 102 G/F, One Global Place, 5th Avenue cor 25th Street, Bonifacio Global City, Brgy. Fort Bonifacio, Taguig City 1634",
+    "latitude": 14.5483648,
+    "longitude": 121.047
+  },
+  {
+    "city": "Taguig",
+    "branch_name": "PSE The Fort",
+    "address": "Units 511 & 512, 5th Floor Philippine Stock Exchange, One Bonifacio High Street, 28th Street corner 5th Avenue, Bonifacio Global City, Fort Bonifacio, Taguig City",
+    "latitude": 14.5511952,
+    "longitude": 121.0473
+  },
+  {
+    "city": "Taguig",
+    "branch_name": "W5Th Avenue BGC",
+    "address": "GF W Fifth Avenue Bldg., 5th Avenue, Bonifacio Global City, Brgy. Fort Bonifacio, Taguig 1634",
+    "latitude": 14.5532885,
+    "longitude": 121.0488
+  },
+  {
+    "city": "Taguig",
+    "branch_name": "Diego Silang - Petron C5",
+    "address": "G/F Petron C5 Rd. Diego Silang Complex, Brgy. Ususan Taguig City 1634",
+    "latitude": 14.5220342,
+    "longitude": 121.036
+  },
+  {
+    "city": "Taguig",
+    "branch_name": "FTI Taguig",
+    "address": "Old FTI Admin Bldg, Lot 55 FTI Avenue , FTI Complex, East Service Road, Brgy. Western Bicutan, Taguig City",
+    "latitude": 14.5062836,
+    "longitude": 121.0357
+  },
+  {
+    "city": "Taguig",
+    "branch_name": "Fort Bonifacio Bayani Road",
+    "address": "Ground Floor Col Efren R Zaide (PAFCPIC) Bldg. No. 11, Bayani Road, Brgy. Western Bicutan, Taguig City",
+    "latitude": 14.5297997,
+    "longitude": 121.0412
+  },
+  {
+    "city": "Taguig",
+    "branch_name": "Fort Mckinley Hill",
+    "address": "Units K and L, G/F One World Square Bldg., McKinley Hills, Upper McKinley Road, McKinley Town Center, Brgy. Fort Bonifacio, Taguig",
+    "latitude": 14.5349911,
+    "longitude": 121.048
+  },
+  {
+    "city": "Taguig",
+    "branch_name": "Fort Serendra",
+    "address": "G/F Serendra Retail Area, Bonifacio Global, Taguig City 1634",
+    "latitude": 14.5495296,
+    "longitude": 121.0542
+  },
+  {
+    "city": "Valenzuela",
+    "branch_name": "Marulas",
+    "address": "KM 11, Mac Arthur Highway, Brgy. Marulas, Valenzuela City 1440",
+    "latitude": 14.674833,
+    "longitude": 120.9816
+  },
+  {
+    "city": "Valenzuela",
+    "branch_name": "Paso De Blas",
+    "address": "ESA Bldg. 491 Paso de Blas Road Valenzuela City",
+    "latitude": 14.7052091,
+    "longitude": 120.9888
+  },
+  {
+    "city": "Valenzuela",
+    "branch_name": "Valenzuela",
+    "address": "McArthur Highway cor. Daez St., Brgy. Karuhatan, Valenzuela City 1440",
+    "latitude": 14.688959,
+    "longitude": 120.9745
+  },
+  {
+    "city": "Valenzuela",
+    "branch_name": "Valenzuela Dalandanan",
+    "address": "54 McArthur Highway, Brgy. Dalandanan, Valenzuela City",
+    "latitude": 14.6995625,
+    "longitude": 120.9628
+  },
+  {
+    "city": "Valenzuela",
+    "branch_name": "Valenzuela Malinta",
+    "address": "315 Mc Arthur Highway, Brgy. Malinta, Valenzuela City 1440",
+    "latitude": 14.6931784,
+    "longitude": 120.9675
   }
 ]
