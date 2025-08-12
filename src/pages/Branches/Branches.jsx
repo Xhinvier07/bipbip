@@ -1,6 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, ChevronDown, ChevronLeft, ChevronRight, PanelLeftOpen, PanelLeftClose, Menu, Filter, MapPin } from 'lucide-react';
+import { 
+  Search, 
+  XCircle, 
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  MapPin
+} from 'lucide-react';
 import DotGrid from '../../components/DotGrid';
 import BranchMap from './BranchMap';
 import BranchDetails from './BranchDetails';
@@ -57,7 +64,6 @@ const Branches = () => {
   const [selectedBranch, setSelectedBranch] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('city');
-  const [cityFilter, setCityFilter] = useState('all');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isListCollapsed, setIsListCollapsed] = useState(false);
   const [isDetailsCollapsed, setIsDetailsCollapsed] = useState(true);
@@ -90,27 +96,18 @@ const Branches = () => {
   }, []);
 
   useEffect(() => {
-    // Filter branches based on search query and city filter
-    let filtered = [...branches];
-    
-    // Apply search filter if any
-    if (searchQuery.trim() !== '') {
-      filtered = filtered.filter(branch => 
+    // Filter branches based on search query
+    if (searchQuery.trim() === '') {
+      setFilteredBranches(branches);
+    } else {
+      const filtered = branches.filter(branch => 
         branch.branch_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         branch.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
         branch.address.toLowerCase().includes(searchQuery.toLowerCase())
       );
+      setFilteredBranches(filtered);
     }
-    
-    // Apply city filter if not 'all'
-    if (cityFilter !== 'all') {
-      filtered = filtered.filter(branch => 
-        branch.city.toLowerCase() === cityFilter.toLowerCase()
-      );
-    }
-    
-    setFilteredBranches(filtered);
-  }, [searchQuery, branches, cityFilter]);
+  }, [searchQuery, branches]);
 
   useEffect(() => {
     // Sort branches
@@ -154,11 +151,6 @@ const Branches = () => {
     setSortBy(value);
     setIsDropdownOpen(false);
   };
-  
-  const handleCityFilter = (city) => {
-    setCityFilter(city);
-    setIsDropdownOpen(false);
-  };
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -184,12 +176,14 @@ const Branches = () => {
       </div>
       
       <div className="branches-content">
-        <div className="branches-container branches-redesign">
-          {/* Map section with search and branch list */}
-          <div className={`map-section ${isListCollapsed ? 'list-collapsed' : ''}`}>
-            <div className="map-controls">
+        {/* Main container with map and sidepanels */}
+        <div className="branches-container">
+          {/* Left panel - Branch list */}
+          <div className={`branch-list-panel ${isListCollapsed ? 'collapsed' : ''}`}>
+            <div className="panel-header">
+              <h2>Branch Locations</h2>
               <div className="search-container">
-                <Search size={18} className="search-icon" />
+                <Search className="search-icon" size={16} />
                 <input 
                   type="text" 
                   ref={searchInputRef}
@@ -200,18 +194,17 @@ const Branches = () => {
                 />
                 {searchQuery && (
                   <button className="clear-search" onClick={clearSearch}>
-                    <X size={18} />
+                    <XCircle size={14} />
                   </button>
                 )}
               </div>
               
-              <div className="sort-container">
-                <span>Sort by</span>
+              <div className="sort-dropdown">
+                <div className="sort-label">Sort by</div>
                 <div className="dropdown">
                   <button className="dropdown-toggle" onClick={toggleDropdown}>
-                    <Filter size={16} className="sort-icon" />
                     {sortBy === 'city' ? 'City' : 'Branch Name'} 
-                    <ChevronDown size={16} />
+                    <ChevronDown size={14} />
                   </button>
                   
                   {isDropdownOpen && (
@@ -234,78 +227,47 @@ const Branches = () => {
               </div>
             </div>
             
-            <div className="map-content">
-              {/* Branch list panel */}
-              <AnimatePresence>
-                {!isListCollapsed && (
-                                      <motion.div 
-                    className="branch-list-panel"
-                    initial={{ width: 0, opacity: 0 }}
-                    animate={{ width: 320, opacity: 1 }}
-                    exit={{ width: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                  >
-                    <BranchList 
-                      branches={displayedBranches} 
-                      totalCount={filteredBranches.length}
-                      selectedBranch={selectedBranch}
-                      onSelectBranch={handleBranchSelect}
-                      onLoadMore={loadMoreBranches}
-                      hasMore={displayedBranches.length < filteredBranches.length}
-                    />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-              
-              {/* Map */}
-              <div className="map-container">
-                <BranchMap 
-                  branches={filteredBranches} 
-                  selectedBranch={selectedBranch} 
-                  onSelectBranch={handleBranchSelect}
-                  apiKey="AIzaSyD9Kl7Ws53pJIcg1vZTfcVWWBITACUjc9c"
-                />
+            {/* Branch listing */}
+            <BranchList 
+              branches={displayedBranches} 
+              totalCount={filteredBranches.length}
+              selectedBranch={selectedBranch}
+              onSelectBranch={handleBranchSelect}
+              onLoadMore={loadMoreBranches}
+              hasMore={displayedBranches.length < filteredBranches.length}
+            />
+            
+            {/* Toggle tab for list panel */}
+            <div className="panel-toggle list-toggle" onClick={toggleListCollapse}>
+              <div className="toggle-icon">
+                {isListCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
               </div>
-              
-              {/* Always visible toggle button for branch list using panel icons */}
-              <button 
-                className={`collapse-toggle-btn list-toggle ${isListCollapsed ? 'collapsed' : ''}`}
-                onClick={toggleListCollapse}
-                aria-label={isListCollapsed ? "Show branch list" : "Hide branch list"}
-              >
-                {isListCollapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}
-              </button>
             </div>
           </div>
           
-          {/* Branch details section (visible when branch is selected) */}
-          <AnimatePresence>
-            {selectedBranch && (
-              <motion.div 
-                className={`branch-details-section ${isDetailsCollapsed ? 'details-collapsed' : ''}`}
-                initial={{ opacity: 0, width: 0 }}
-                animate={{ 
-                  opacity: 1, 
-                  width: isDetailsCollapsed ? 0 : 320
-                }}
-                exit={{ opacity: 0, width: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                {/* Always visible toggle button for branch details using panel icons */}
-                <button 
-                  className={`collapse-toggle-btn details-toggle ${isDetailsCollapsed ? 'collapsed' : ''}`}
-                  onClick={toggleDetailsCollapse}
-                  aria-label={isDetailsCollapsed ? "Show branch details" : "Hide branch details"}
-                >
-                  {isDetailsCollapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}
-                </button>
-                
-                {!isDetailsCollapsed && (
-                  <BranchDetails branch={selectedBranch} />
-                )}
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {/* Center - Map container */}
+          <div className="map-container">
+            <BranchMap 
+              branches={filteredBranches} 
+              selectedBranch={selectedBranch} 
+              onSelectBranch={handleBranchSelect}
+              apiKey="AIzaSyD9Kl7Ws53pJIcg1vZTfcVWWBITACUjc9c"
+            />
+          </div>
+          
+          {/* Right panel - Branch details */}
+          {selectedBranch && (
+            <div className={`branch-details-panel ${isDetailsCollapsed ? 'collapsed' : ''}`}>
+              <BranchDetails branch={selectedBranch} />
+              
+              {/* Toggle tab for details panel */}
+              <div className="panel-toggle details-toggle" onClick={toggleDetailsCollapse}>
+                <div className="toggle-icon">
+                  {isDetailsCollapsed ? <ChevronLeft size={18} /> : <ChevronRight size={18} />}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

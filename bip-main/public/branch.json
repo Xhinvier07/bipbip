@@ -1,0 +1,114 @@
+[ 
+{
+    "city": "Caloocan",
+    "branch_name": "C3 A Mabini",
+    "address": "193 A. MABINI ST., BRGY 30, MAYPAJO, CALOOCAN CITY",
+    "latitude": 14.6402736,
+    "longitude": 120.973027
+  },
+  {
+    "city": "Caloocan",
+    "branch_name": "Caloocan",
+    "address": "1350-1352 Rizal Ave Extn ( between 6th & 7th Ave.), Brgy. 110 Gracepark, Caloocan City 1400",
+    "latitude": 14.6460235,
+    "longitude": 120.9835707
+  },
+  {
+    "city": "Caloocan",
+    "branch_name": "Caloocan Camarin Susano",
+    "address": "Unit 1 Ground Floor, Aryanna Village Center, Brgy 175, Susano Road, Camarin, Caloocan City 1400",
+    "latitude": 14.7559063,
+    "longitude": 121.0368598
+  },
+  {
+    "city": "Caloocan",
+    "branch_name": "EDSA - Monumento",
+    "address": "MCU Compound, EDSA Monumento, Barangay 84, Caloocan City 1400",
+    "latitude": 14.6574292,
+    "longitude": 120.9831961
+  },
+  {
+    "city": "Caloocan",
+    "branch_name": "EDSA-Balintawak",
+    "address": "Ground Floor, PPI Bldg., 355 EDSA cor. Gen. Tirona Street, Caloocan City",
+    "latitude": 14.657502,
+    "longitude": 120.996657
+  },
+  {
+    "city": "Caloocan",
+    "branch_name": "Grace Park 11th Ave",
+    "address": "690 Rizal Ave. Extension (bet 10th & 11th Ave.), Brgy. 91, Grace Park, Caloocan City",
+    "latitude": 14.6521072,
+    "longitude": 120.9814293
+  },
+  {
+    "city": "Caloocan",
+    "branch_name": "Grace Park 2nd Ave.",
+    "address": "Ever Pacific Bldg 191-193 Rizal Ave.(bet. 1st & 2nd Ave.), Barangay 41 Zone 2 Gracepark, Caloocan City",
+    "latitude": 14.6383532,
+    "longitude": 120.9804261
+  },
+  {
+    "city": "Caloocan",
+    "branch_name": "Monumento",
+    "address": "Samson Road near cor. Araneta Ave., Brgy. 77, Caloocan City",
+    "latitude": 14.6573112,
+    "longitude": 120.9764518
+  },
+  {
+    "city": "Caloocan",
+    "branch_name": "Monumento Circle",
+    "address": "357 A Bonifacio Ave., Monumento Circle Caloocan City",
+    "latitude": 14.657857,
+    "longitude": 120.9794736
+  },
+  {
+    "city": "Las Pinas",
+    "branch_name": "BF Resort Las Pinas",
+    "address": "BF Resort Drive cor. Gloria Diaz St., BF Resort Village, Barangay Talon Dos, Las Pinas 1747",
+    "latitude": 14.4435579,
+    "longitude": 120.9929
+  },
+  {
+    "city": "Las Pinas",
+    "branch_name": "Almanza",
+    "address": "G/F D'Marrchs Bldg, Alabang - Zapote Road, Brgy Almanza Uno, Las Pinas City 1750",
+    "latitude": 14.4399379,
+    "longitude": 121.0011
+  },
+  {
+    "city": "Las Pinas",
+    "branch_name": "Las Pinas",
+    "address": "Real St. cor. Gemini St., Brgy Pamplona Dos, Las Pinas City 1740",
+    "latitude": 14.462505,
+    "longitude": 120.9612
+  },
+  {
+    "city": "Las Pinas",
+    "branch_name": "Las Pinas Citadella",
+    "address": "Unit 1B Fenina Bldg., 6750 CAA Road corner Cittadella Village, Brgy. Pulang Lupa Dos, Las Pinas City 1742",
+    "latitude": 14.4565046,
+    "longitude": 120.9943
+  },
+  {
+    "city": "Las Pinas",
+    "branch_name": "Las Pinas Pamplona Tres",
+    "address": "Real St., Alabang Zapote Road, Brgy Pamplona Tres, Las Pinas City 1740",
+    "latitude": 14.4279493,
+    "longitude": 121.0222
+  },
+  {
+    "city": "Las Pinas",
+    "branch_name": "Pilar Village Las Pinas",
+    "address": "27 Rose Avenue, Pilar Village, Barangay Pilar Village, Las Pinas City 1740",
+    "latitude": 14.4265466,
+    "longitude": 121.0115
+  },
+  {
+    "city": "Las Pinas",
+    "branch_name": "SM Southmall",
+    "address": "Upper Ground Floor, SM Southmall, Alabang Zapote Road, Brgy Almanza Uno, Las Pinas City 1750",
+    "latitude": 14.4332614,
+    "longitude": 121.0106
+  }
+]

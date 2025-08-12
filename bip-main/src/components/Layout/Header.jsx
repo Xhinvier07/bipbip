@@ -1,7 +1,23 @@
 import { motion } from 'framer-motion';
-import { FaBell, FaSearch, FaUserCircle } from 'react-icons/fa';
+import { useLocation } from 'react-router-dom';
 
 const Header = () => {
+  const location = useLocation();
+  
+  // Get current page name from path
+  const getPageTitle = () => {
+    const path = location.pathname;
+    if (path === '/dashboard') return 'DASHBOARD';
+    if (path === '/branches') return 'BRANCHES';
+    if (path === '/simulation') return 'SIMULATION';
+    if (path === '/reports') return 'REPORTS';
+    if (path === '/logs') return 'LOGS';
+    if (path === '/settings') return 'SETTINGS';
+    if (path === '/help') return 'HELP';
+    if (path === '/bip-chat') return 'BIP CHAT';
+    return '';
+  };
+
   return (
     <header className="app-header">
       <div className="header-banner">
@@ -16,35 +32,12 @@ const Header = () => {
       </div>
       
       <motion.div 
-        className="header-actions"
+        className="header-page-title"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.3 }}
       >
-        <div className="search-container">
-          <FaSearch className="search-icon" />
-          <input type="text" placeholder="Search..." className="search-input" />
-        </div>
-        
-        <div className="header-buttons">
-          <motion.button 
-            className="icon-button notification-btn"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <FaBell />
-            <span className="notification-badge">3</span>
-          </motion.button>
-          
-          <motion.div
-            className="user-dropdown"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <FaUserCircle className="user-icon" />
-            <span className="user-name">Jansen</span>
-          </motion.div>
-        </div>
+        <h1>{getPageTitle()}</h1>
       </motion.div>
     </header>
   );

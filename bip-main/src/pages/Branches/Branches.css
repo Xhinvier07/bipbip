@@ -1,0 +1,834 @@
+/* Branches page styles - Redesigned */
+
+.branches-page {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  flex-direction: column;
+}
+
+.branches-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.1;
+}
+
+.branches-content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.branches-container {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  height: calc(100vh - 120px); /* Fixed height for the container */
+}
+
+/* Redesigned styles */
+.branches-redesign .map-controls {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f0f0f0;
+  background-color: #f9f9f9;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  z-index: 5;
+}
+
+.branches-redesign .search-container {
+  position: relative;
+  width: 300px;
+}
+
+.branches-redesign .search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+
+.branches-redesign .search-input {
+  width: 100%;
+  padding: 12px 12px 12px 38px;
+  border-radius: 24px;
+  border: 1px solid #e2e8f0;
+  background-color: white;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.branches-redesign .search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(207, 61, 88, 0.1);
+}
+
+.branches-redesign .clear-search {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.branches-redesign .clear-search:hover {
+  color: var(--primary-color);
+}
+
+.branches-redesign .sort-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.branches-redesign .sort-container span {
+  font-size: 14px;
+  color: #666;
+}
+
+.branches-redesign .dropdown {
+  position: relative;
+}
+
+.branches-redesign .dropdown-toggle {
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  padding: 8px 16px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: var(--text-dark);
+}
+
+.branches-redesign .sort-icon {
+  color: #888;
+}
+
+.branches-redesign .dropdown-toggle:hover {
+  background-color: #f9f9f9;
+}
+
+.branches-redesign .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 150px;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.branches-redesign .dropdown-item {
+  padding: 10px 16px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+.branches-redesign .dropdown-item:hover {
+  background-color: #f5f5f5;
+}
+
+.branches-redesign .dropdown-item.active {
+  background-color: #f0f0f0;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+/* Map section */
+.branches-redesign .map-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+}
+
+.branches-redesign .map-content {
+  flex: 1;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  height: calc(100% - 70px); /* Subtract the height of map-controls */
+}
+
+/* Branch list panel */
+.branches-redesign .branch-list-panel {
+  width: 320px;
+  height: 100%;
+  border-right: 1px solid #f0f0f0;
+  background-color: white;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0; /* Prevents the panel from shrinking */
+}
+
+.branches-redesign .branch-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.branches-redesign .branch-list-title {
+  padding: 16px;
+  margin: 0;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 5;
+}
+
+.branches-redesign .branch-list-title h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #444;
+  margin: 0;
+}
+
+.branches-redesign .branch-filter {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FEA000;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.branches-redesign .branch-filter:hover {
+  background-color: #FEA000;
+  color: white;
+}
+
+.branches-redesign .city-filter-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 16px;
+  width: 200px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 50;
+  overflow: hidden;
+}
+
+.branches-redesign .city-filter-title {
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #eee;
+}
+
+.branches-redesign .city-filter-options {
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.branches-redesign .city-option {
+  padding: 10px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.branches-redesign .city-option:hover {
+  background-color: #f8f9fa;
+  color: #FEA000;
+}
+
+.branches-redesign .city-option.active {
+  background-color: rgba(254, 160, 0, 0.1);
+  color: #FEA000;
+  font-weight: 500;
+}
+
+.branches-redesign .branch-count {
+  font-size: 14px;
+  color: #888;
+  font-weight: normal;
+}
+
+.branches-redesign .branch-list-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: calc(100% - 54px); /* Subtract the height of branch-list-title */
+}
+
+.branches-redesign .branch-list-scrollable {
+  flex: 1;
+  height: 100%;
+  max-height: calc(100vh - 250px);
+  overflow-y: auto;
+  padding: 12px 16px;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e0 #f7fafc;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Custom scrollbar for Webkit browsers */
+.branches-redesign .branch-list-scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+
+.branches-redesign .branch-list-scrollable::-webkit-scrollbar-track {
+  background: #f7fafc;
+}
+
+.branches-redesign .branch-list-scrollable::-webkit-scrollbar-thumb {
+  background-color: #cbd5e0;
+  border-radius: 3px;
+}
+
+.branches-redesign .branch-item {
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  transition: all 0.2s ease-out;
+  background-color: white;
+  border: 1px solid #eef2f6;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  position: relative;
+}
+
+.branches-redesign .branch-item:hover {
+  background-color: #f9f9f9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.branches-redesign .branch-item.active {
+  background-color: rgba(254, 160, 0, 0.05);
+  border-color: rgba(254, 160, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(254, 160, 0, 0.08);
+}
+
+.branches-redesign .branch-marker {
+  margin-right: 16px;
+  padding-top: 4px;
+  color: #FEA000;
+}
+
+.branches-redesign .marker-active {
+  color: var(--primary-color);
+}
+
+.branches-redesign .branch-info {
+  flex: 1;
+}
+
+.branches-redesign .branch-info h4 {
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+.branches-redesign .branch-city {
+  margin: 0 0 4px;
+  font-size: 13px;
+  color: #CF3D58;
+  font-weight: 500;
+}
+
+.branches-redesign .branch-address {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.branches-redesign .branch-quick-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.branches-redesign .quick-info-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #888;
+  background-color: #f5f5f5;
+  padding: 2px 8px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.branches-redesign .branch-item-arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #d1d5db;
+  transition: transform 0.2s ease;
+}
+
+.branches-redesign .branch-item:hover .branch-item-arrow {
+  transform: translateY(-50%) translateX(2px);
+  color: #a0a0a0;
+}
+
+.branches-redesign .no-branches {
+  padding: 20px;
+  text-align: center;
+  color: #888;
+}
+
+.branches-redesign .load-more-container-inner {
+  padding: 16px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.branches-redesign .load-more-btn {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 24px;
+  padding: 8px 24px;
+  font-size: 14px;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.branches-redesign .load-more-btn:hover {
+  background-color: #f1f3f5;
+  color: #333;
+}
+
+/* Map container */
+.branches-redesign .map-container {
+  flex: 1;
+  position: relative;
+  height: 100%;
+}
+
+.branches-redesign .branch-map {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.branches-redesign .map {
+  height: 100%;
+  width: 100%;
+  background-color: #f7f7f7;
+}
+
+/* Collapse toggle buttons with improved visibility */
+.branches-redesign .collapse-toggle-btn {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: #FEA000;
+  border: 2px solid #FEA000;
+  box-shadow: 0 2px 8px rgba(254, 160, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s;
+  color: white;
+}
+
+.branches-redesign .collapse-toggle-btn:hover {
+  background-color: white;
+  color: #FEA000;
+}
+
+.branches-redesign .list-toggle {
+  left: 319px; /* Position it right at the edge of the panel */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.branches-redesign .list-toggle.collapsed {
+  left: 0;
+}
+
+.branches-redesign .details-toggle {
+  right: 319px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.branches-redesign .details-toggle.collapsed {
+  right: 0;
+}
+
+/* Branch details section */
+.branches-redesign .branch-details-section {
+  width: 320px;
+  height: 100%;
+  border-left: 1px solid #f0f0f0;
+  background-color: white;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.branches-redesign .branch-details {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.branches-redesign .branch-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: none;
+}
+
+.branches-redesign .branch-name {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #CF3D58;
+}
+
+.branches-redesign .branch-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1;
+  color: #FEA000;
+}
+
+.branches-redesign .score-label {
+  font-size: 12px;
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+.branches-redesign .branch-info-section {
+  margin-bottom: 24px;
+}
+
+.branches-redesign .branch-address-container {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.branches-redesign .branch-address-container p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #666;
+  flex: 1;
+}
+
+.branches-redesign .branch-address-container .branch-info-icon {
+  margin-right: 12px;
+  color: #CF3D58;
+  flex-shrink: 0;
+}
+
+.branches-redesign .branch-contact-item:nth-child(1) .branch-info-icon {
+  color: #FEA000;
+  margin-right: 4px;
+}
+
+.branches-redesign .branch-contact-item:nth-child(2) .branch-info-icon {
+  color: #bc7eff;
+  margin-right: 4px;
+}
+
+.branches-redesign .branch-contact-item:nth-child(3) .branch-info-icon {
+  color: #c95a94;
+  margin-right: 4px;
+}
+
+.branches-redesign .branch-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.branches-redesign .branch-contact-item {
+  display: flex;
+  align-items: center;
+}
+
+.branches-redesign .branch-contact-item span {
+  font-size: 14px;
+  color: #666;
+}
+
+.branches-redesign .branch-view-toggle {
+  margin-bottom: 24px;
+}
+
+.branches-redesign .toggle-container {
+  display: flex;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  height: 40px;
+  padding: 2px;
+}
+
+.branches-redesign .view-toggle-btn {
+  flex: 1;
+  border: none;
+  background: none;
+  padding: 8px 0;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.branches-redesign .view-toggle-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.branches-redesign .view-toggle-btn.active {
+  background-color: #FEA000;
+  color: white;
+  box-shadow: none;
+}
+
+.branches-redesign .branch-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+  margin-top: 16px;
+}
+
+.branches-redesign .metric-card {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.branches-redesign .metric-indicator {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 4px;
+}
+
+.branches-redesign .metric-card:nth-child(1) .metric-icon {
+  background-color: rgba(254, 160, 0, 0.1);
+  color: #FEA000;
+}
+
+.branches-redesign .metric-card:nth-child(2) .metric-icon {
+  background-color: rgba(201, 90, 148, 0.1);
+  color: #c95a94;
+}
+
+.branches-redesign .metric-card:nth-child(3) .metric-icon {
+  background-color: rgba(188, 126, 255, 0.1);
+  color: #bc7eff;
+}
+
+.branches-redesign .metric-card:nth-child(4) .metric-icon {
+  background-color: rgba(207, 61, 88, 0.1);
+  color: #CF3D58;
+}
+
+.branches-redesign .metric-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.branches-redesign .metric-content {
+  flex: 1;
+}
+
+.branches-redesign .metric-card h4 {
+  margin: 0 0 2px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.branches-redesign .metric-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.branches-redesign .metric-card:nth-child(1) .metric-value {
+  color: #FEA000;
+}
+
+.branches-redesign .metric-card:nth-child(2) .metric-value {
+  color: #c95a94;
+}
+
+.branches-redesign .metric-card:nth-child(3) .metric-value {
+  color: #bc7eff;
+}
+
+.branches-redesign .metric-card:nth-child(4) .metric-value {
+  color: #CF3D58;
+}
+
+.branches-redesign .branch-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.branches-redesign .action-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.branches-redesign .simulate-btn {
+  background-color: #FEA000;
+  color: white;
+}
+
+.branches-redesign .simulate-btn:hover {
+  background-color: #e89400;
+}
+
+.branches-redesign .floor-btn {
+  background-color: #CF3D58;
+  color: white;
+}
+
+.branches-redesign .floor-btn:hover {
+  background-color: #b83349;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .branches-redesign .branch-list-panel,
+  .branches-redesign .branch-details-section {
+    width: 320px;
+  }
+  
+  .branches-redesign .list-toggle {
+    left: 319px;
+  }
+  
+  .branches-redesign .details-toggle {
+    right: 319px;
+  }
+}
+
+@media (max-width: 992px) {
+  .branches-redesign .branch-metrics {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .branches-redesign .search-container {
+    width: 100%;
+  }
+  
+  .branches-redesign .map-controls {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .branches-redesign .sort-container {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

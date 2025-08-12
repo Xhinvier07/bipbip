@@ -1,11 +1,13 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { NavLink, useLocation } from 'react-router-dom';
-import { FaChartBar, FaMapMarkerAlt, FaChartArea, FaFileAlt, FaHistory, FaCog, FaQuestionCircle, FaComments, FaBars, FaSignOutAlt } from 'react-icons/fa';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { FaChartBar, FaMapMarkerAlt, FaChartArea, FaFileAlt, FaHistory, FaCog, FaQuestionCircle, FaComments, FaBars, FaSignOutAlt, FaUserCircle } from 'react-icons/fa';
 
 const Sidebar = ({ isCollapsed, toggleSidebar }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const sidebarRef = useRef(null);
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   // Close sidebar when clicking outside on mobile
   useEffect(() => {
@@ -13,11 +15,17 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
       if (window.innerWidth < 768 && sidebarRef.current && !sidebarRef.current.contains(event.target)) {
         if (!isCollapsed) toggleSidebar();
       }
+      
+      // Close profile menu when clicking outside
+      const avatarEl = document.querySelector('.avatar-container');
+      if (showProfileMenu && avatarEl && !avatarEl.contains(event.target)) {
+        setShowProfileMenu(false);
+      }
     };
     
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isCollapsed, toggleSidebar]);
+  }, [isCollapsed, toggleSidebar, showProfileMenu]);
 
   const navItems = [
     { path: '/dashboard', name: 'Dashboard', icon: <FaChartBar /> },
@@ -66,6 +74,15 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
       }
     }
   };
+  
+  const handleProfileClick = () => {
+    setShowProfileMenu(!showProfileMenu);
+  };
+  
+  const handleLogout = () => {
+    // In a real app, this would handle logout logic
+    navigate('/');
+  };
 
   return (
     <motion.div
@@ -77,9 +94,14 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
     >
       <div className="sidebar-header">
         <div className="user-profile">
-          <div className="avatar-container">
+          <motion.div 
+            className="avatar-container"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={handleProfileClick}
+          >
             <img src="/profile.png" alt="User avatar" className="avatar" />
-          </div>
+          </motion.div>
           <motion.div
             className="user-info"
             variants={navItemVariants}
@@ -87,6 +109,28 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
             <h3>Hello,</h3>
             <h2>Jansen!</h2>
           </motion.div>
+          
+          {/* Profile dropdown menu */}
+          <AnimatePresence>
+            {showProfileMenu && (
+              <motion.div 
+                className="profile-dropdown"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="profile-menu-item" onClick={() => navigate('/settings')}>
+                  <FaUserCircle />
+                  <span>Profile</span>
+                </div>
+                <div className="profile-menu-item" onClick={handleLogout}>
+                  <FaSignOutAlt />
+                  <span>Logout</span>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
         <button className="toggle-btn" onClick={toggleSidebar}>
           <FaBars />
