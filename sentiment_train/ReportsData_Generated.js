@@ -74085,22 +74085,12 @@ export const csatSummary = {
   "negativeFeedback": 2421,
   "topPerformer": {
     "branchName": "BPI Amaia Skies Avenida Branch",
-    "city": "Manila",
+    "city": "BPI",
     "score": 85
-  },
-  "ConsistentPerformer":{
-    "branchName": "BPI Corinthian Plaza Branch",
-    "city": "Makati",
-    "score": 72
-  },
-  "RisingBranch":{
-    "branchName": "BPI Robinson's Nova Market Branch",
-    "city": "Quezon City",
-    "score": 68
   },
   "needsImprovement": {
     "branchName": "BPI Mabini Echelon Tower Branch",
-    "city": "Manila",
+    "city": "BPI",
     "score": 45
   },
   "commonTags": {

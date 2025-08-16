@@ -9,6 +9,8 @@ const CSATSummary = () => {
     neutralFeedback,
     negativeFeedback,
     topPerformer,
+    ConsistentPerformer,
+    RisingBranch,
     needsImprovement,
     commonTags
   } = csatSummary;
@@ -78,6 +80,34 @@ const CSATSummary = () => {
           </div>
 
           <div className="performance-card">
+            <h4>Consistent Performer</h4>
+            <div className="branch-rating">
+              <div>
+                <div className="branch-name">{ConsistentPerformer.branchName}</div>
+                <div className="branch-city">{ConsistentPerformer.city}</div>
+              </div>
+              <div className="branch-score" style={{ color: getSentimentColor(ConsistentPerformer.score) }}>
+                {ConsistentPerformer.score}%
+              </div>
+            </div>
+          </div>
+        </div>
+
+          <div className="branch-performance">
+          <div className="performance-card">
+            <h4>Top Performer</h4>
+            <div className="branch-rating">
+              <div>
+                <div className="branch-name">{RisingBranch.branchName}</div>
+                <div className="branch-city">{RisingBranch.city}</div>
+              </div>
+              <div className="branch-score" style={{ color: getSentimentColor(RisingBranch.score) }}>
+                {RisingBranch.score}%
+              </div>
+            </div>
+          </div>
+
+          <div className="performance-card">
             <h4>Needs Improvement</h4>
             <div className="branch-rating">
               <div>
@@ -90,6 +120,8 @@ const CSATSummary = () => {
             </div>
           </div>
         </div>
+
+
       </div>
 
       {/* Common Tags */}
