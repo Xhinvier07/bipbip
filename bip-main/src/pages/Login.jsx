@@ -21,14 +21,19 @@ const Login = ({ onLogin }) => {
   
   const containerRef = useRef(null);
   const navigate = useNavigate();
-  const { signIn, signUp, signInWithGoogle, user } = useAuth();
+  const { signIn, signUp, signInWithGoogle, user, loading: authLoading } = useAuth();
   
   // Redirect if user is already logged in
   useEffect(() => {
-    if (user) {
+    if (user && !authLoading) {
       navigate('/dashboard');
     }
-  }, [user, navigate]);
+  }, [user, authLoading, navigate]);
+  
+  // Don't render anything while auth is loading to prevent flash
+  if (authLoading) {
+    return null;
+  }
   
   const toggleForm = () => {
     setIsLogin(!isLogin);
