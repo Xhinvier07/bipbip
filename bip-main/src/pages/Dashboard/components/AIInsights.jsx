@@ -7,15 +7,21 @@ const AIInsights = () => {
   const [aiResponse, setAiResponse] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleAiPrompt = (prompt) => {
+  const handleAiPrompt = async (prompt) => {
     setAiQuery(prompt);
     setLoading(true);
     
-    // Simulate AI response delay
-    setTimeout(() => {
-      setAiResponse(generateAIResponse(prompt));
+    try {
+      // Get AI response with simulated delay
+      setTimeout(async () => {
+        const response = await generateAIResponse(prompt);
+        setAiResponse(response);
+        setLoading(false);
+      }, 1500);
+    } catch (error) {
+      console.error('Error generating AI response:', error);
       setLoading(false);
-    }, 1500);
+    }
   };
 
   return (

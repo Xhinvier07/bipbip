@@ -1,0 +1,251 @@
+/* Enhanced Staff Utilization */
+.utilization-dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 20px;
+}
+
+.utilization-main-metrics {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.utilization-gauge-container {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.utilization-gauge-enhanced {
+  position: relative;
+}
+
+.utilization-gauge-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.utilization-rate {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.2;
+}
+
+.utilization-label {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 2px;
+}
+
+.utilization-trend {
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.utilization-trend .positive {
+  color: #10B981;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.utilization-trend .negative {
+  color: #EF4444;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.utilization-metrics-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.utilization-metric-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.active-card {
+  background-color: rgba(16, 185, 129, 0.1);
+}
+
+.idle-card {
+  background-color: rgba(254, 160, 0, 0.1);
+}
+
+.overtime-card {
+  background-color: rgba(207, 61, 88, 0.1);
+}
+
+.metric-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.active-card .metric-card-icon {
+  color: #10B981;
+}
+
+.idle-card .metric-card-icon {
+  color: #FEA000;
+}
+
+.overtime-card .metric-card-icon {
+  color: #CF3D58;
+}
+
+.metric-card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-card-value {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.active-card .metric-card-value {
+  color: #10B981;
+}
+
+.idle-card .metric-card-value {
+  color: #FEA000;
+}
+
+.overtime-card .metric-card-value {
+  color: #CF3D58;
+}
+
+.metric-card-label {
+  font-size: 12px;
+  color: #666;
+}
+
+/* Enhanced Branch Utilization */
+.branch-utilization-enhanced {
+  margin-top: 10px;
+}
+
+.branch-util-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.branch-util-header h3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #444;
+  margin: 0;
+}
+
+.branch-util-legend {
+  display: flex;
+  gap: 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #666;
+}
+
+.legend-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.branch-util-list-enhanced {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.branch-util-item-enhanced {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.branch-util-rank {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+}
+
+.branch-util-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.branch-util-name-enhanced {
+  font-size: 13px;
+  font-weight: 500;
+  color: #444;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.branch-util-bar-container-enhanced {
+  position: relative;
+  height: 16px;
+  background-color: #f3f3f3;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.branch-util-bar-enhanced {
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.5s ease;
+}
+
+.branch-util-value-enhanced {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  font-weight: 600;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}

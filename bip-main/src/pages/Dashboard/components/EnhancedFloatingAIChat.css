@@ -1,0 +1,422 @@
+/* Enhanced Floating AI Chat Styles */
+
+.floating-ai-chat.enhanced {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  font-family: var(--font-family);
+}
+
+/* Toggle Button */
+.bipchat-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #FEA000;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(254, 160, 0, 0.3);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  overflow: hidden;
+  padding: 0;
+}
+
+.bipchat-toggle:hover {
+  background-color: #e59000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(254, 160, 0, 0.4);
+}
+
+.bipchat-toggle-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+/* Chat Window */
+.bipchat-window {
+  position: absolute;
+  bottom: 75px;
+  right: 0;
+  width: 380px;
+  height: 550px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header */
+.bipchat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: white;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bipchat-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background-color: #FEA000;
+  color: white;
+}
+
+.bipchat-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.bipchat-title h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.bipchat-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #777;
+}
+
+.close-chat-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background-color: transparent;
+  color: #777;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.close-chat-btn:hover {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* Tools */
+.bipchat-tools {
+  display: flex;
+  padding: 8px 16px;
+  gap: 8px;
+  border-bottom: 1px solid #f0f0f0;
+  background-color: #f9fafc;
+}
+
+.tool-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 16px;
+  background-color: #f0f0f0;
+  color: #555;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tool-button:hover {
+  background-color: #e5e5e5;
+}
+
+/* Messages */
+.bipchat-messages {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #f9fafc;
+}
+
+.date-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px 0;
+}
+
+.date-divider span {
+  padding: 4px 12px;
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  font-size: 12px;
+  color: #777;
+}
+
+.bipchat-message {
+  max-width: 85%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  position: relative;
+}
+
+.bot-message {
+  align-self: flex-start;
+  background-color: white;
+  border: 1px solid #f0f0f0;
+  border-bottom-left-radius: 4px;
+}
+
+.user-message {
+  align-self: flex-end;
+  background-color: #FEA000;
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.message-content {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.message-content p {
+  margin: 0 0 8px 0;
+}
+
+.message-content p:last-child {
+  margin-bottom: 0;
+}
+
+.message-timestamp {
+  position: absolute;
+  bottom: -18px;
+  font-size: 10px;
+  color: #999;
+}
+
+.bot-message .message-timestamp {
+  left: 12px;
+}
+
+.user-message .message-timestamp {
+  right: 12px;
+}
+
+/* Typing Indicator */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 16px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background-color: #ccc;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+}
+
+/* Suggested Queries */
+.suggested-queries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid #f0f0f0;
+  background-color: white;
+}
+
+.suggested-query {
+  padding: 6px 12px;
+  border-radius: 16px;
+  background-color: #f5f5f5;
+  color: #555;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.suggested-query:hover {
+  background-color: #e5e5e5;
+}
+
+/* Input */
+.bipchat-input-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid #f0f0f0;
+  background-color: white;
+}
+
+.bipchat-input {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 20px;
+  border: 1px solid #e0e0e0;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.bipchat-input:focus {
+  border-color: #FEA000;
+  box-shadow: 0 0 0 2px rgba(254, 160, 0, 0.2);
+}
+
+.bipchat-send-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #FEA000;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bipchat-send-btn:hover {
+  background-color: #e59000;
+}
+
+.bipchat-send-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Data visualization in chat */
+.ai-chat-data {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ai-chat-data-item {
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #f9fafc;
+  border: 1px solid #f0f0f0;
+}
+
+.ai-chat-data-item h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.ai-chat-metric {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.metric-label {
+  font-size: 12px;
+  color: #777;
+}
+
+.metric-value {
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+}
+
+.ai-chat-insight {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #555;
+  font-style: italic;
+}
+
+.ai-chat-feedback {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  justify-content: flex-end;
+}
+
+.feedback-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #f5f5f5;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #777;
+  transition: all 0.2s ease;
+}
+
+.feedback-btn:hover {
+  background-color: #e5e5e5;
+  color: #333;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .bipchat-window {
+    width: 320px;
+    right: -10px;
+  }
+  
+  .bipchat-message {
+    max-width: 90%;
+  }
+}
