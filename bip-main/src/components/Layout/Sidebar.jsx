@@ -3,12 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { FaChartBar, FaMapMarkerAlt, FaChartArea, FaFileAlt, FaHistory, FaCog, FaQuestionCircle, FaComments, FaBars, FaSignOutAlt, FaUserCircle } from 'react-icons/fa';
 import { useAuth } from '../../context/AuthContext';
+import ProfileModal from '../ProfileModal/ProfileModal';
 
 const Sidebar = ({ isCollapsed, toggleSidebar }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const sidebarRef = useRef(null);
-  const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [showProfileModal, setShowProfileModal] = useState(false);
   const { user, signOut } = useAuth();
 
   // Close sidebar when clicking outside on mobile
@@ -17,17 +18,11 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
       if (window.innerWidth < 768 && sidebarRef.current && !sidebarRef.current.contains(event.target)) {
         if (!isCollapsed) toggleSidebar();
       }
-      
-      // Close profile menu when clicking outside
-      const avatarEl = document.querySelector('.avatar-container');
-      if (showProfileMenu && avatarEl && !avatarEl.contains(event.target)) {
-        setShowProfileMenu(false);
-      }
     };
     
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isCollapsed, toggleSidebar, showProfileMenu]);
+  }, [isCollapsed, toggleSidebar]);
 
   const navItems = [
     { path: '/dashboard', name: 'Dashboard', icon: <FaChartBar /> },
@@ -76,19 +71,10 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
   }
 };
 
-// Update profile dropdown position based on sidebar state
-const getDropdownStyle = (isCollapsed) => {
-  return {
-    position: 'absolute',
-    top: '65px',
-    left: isCollapsed ? '50%' : '0',
-    transform: isCollapsed ? 'translateX(-50%)' : 'none',
-    zIndex: 1000
-  };
-};
+
   
   const handleProfileClick = () => {
-    setShowProfileMenu(!showProfileMenu);
+    setShowProfileModal(true);
   };
   
   const handleLogout = async () => {
@@ -108,17 +94,17 @@ const getDropdownStyle = (isCollapsed) => {
       animate={isCollapsed ? 'collapsed' : 'expanded'}
       variants={sidebarVariants}
     >
-      <div className="sidebar-header">
-        <div className="user-profile">
-          <motion.div 
-            className="avatar-container"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={handleProfileClick}
-          >
-            <img src="/profile.png" alt="User avatar" className="avatar" />
-          </motion.div>
-          {!isCollapsed && (
+      <div className={`sidebar-header ${isCollapsed ? 'collapsed' : ''}`}>
+        {!isCollapsed && (
+          <div className="user-profile">
+            <motion.div 
+              className="avatar-container"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleProfileClick}
+            >
+              <img src="/profile.png" alt="User avatar" className="avatar" />
+            </motion.div>
             <motion.div
               className="user-info"
               initial={{ opacity: 0 }}
@@ -129,34 +115,18 @@ const getDropdownStyle = (isCollapsed) => {
               <h3>Hello,</h3>
               <h2>{user?.user_metadata?.name || user?.email?.split('@')[0] || 'User'}</h2>
             </motion.div>
-          )}
-          
-          {/* Profile dropdown menu */}
-          <AnimatePresence>
-            {showProfileMenu && (
-              <motion.div 
-                className="profile-dropdown"
-                style={getDropdownStyle(isCollapsed)}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="profile-menu-item" onClick={() => navigate('/settings')}>
-                  <FaUserCircle />
-                  <span>Profile</span>
-                </div>
-                <div className="profile-menu-item" onClick={handleLogout}>
-                  <FaSignOutAlt />
-                  <span>Logout</span>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+          </div>
+        )}
+        
         <button className="toggle-btn" onClick={toggleSidebar}>
           <FaBars />
         </button>
+        
+        {/* Profile Modal */}
+        <ProfileModal 
+          isOpen={showProfileModal} 
+          onClose={() => setShowProfileModal(false)} 
+        />
       </div>
 
       <div className="nav-links">

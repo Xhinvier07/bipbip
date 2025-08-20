@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { fetchMainSheetData } from '../Dashboard/GoogleSheetsService';
 import {
   SlidersHorizontal,
   Users,
@@ -38,23 +39,50 @@ import {
 
 import './Simulation.css';
 import BranchFloorPlan from './components/BranchFloorPlan';
+import Branch3DVisualization from './components/Branch3DVisualization';
 import SimulationControls from './components/SimulationControls';
 import SimulationResults from './components/SimulationResults';
 
 const Simulation = () => {
   const [selectedBranch, setSelectedBranch] = useState('C3 A Mabini');
+  const [branchNames, setBranchNames] = useState([]);
   const [simulationParams, setSimulationParams] = useState(defaultSimulationParams);
   const [isSimulating, setIsSimulating] = useState(false);
   const [simulationResults, setSimulationResults] = useState(null);
   const [isControlPanelOpen, setIsControlPanelOpen] = useState(true);
   const [isResultsPanelOpen, setIsResultsPanelOpen] = useState(true);
-  const [isFullscreen, setIsFullscreen] = useState(false);
   const [view, setView] = useState('2D'); // '2D' or '3D'
   const [showHeatmap, setShowHeatmap] = useState(false);
   const [customerPaths, setCustomerPaths] = useState([]);
   
   // Refs for canvas/simulation
   const simulationRef = useRef(null);
+  
+  // Fetch branch names from Main Sheet
+  useEffect(() => {
+    const fetchBranchNames = async () => {
+      try {
+        const data = await fetchMainSheetData();
+        if (data && data.length > 0) {
+          // Extract unique branch names
+          const uniqueBranches = [...new Set(data.map(item => item.branch_name))].filter(Boolean);
+          setBranchNames(uniqueBranches);
+          
+          // Set the first branch as default if available
+          if (uniqueBranches.length > 0 && !uniqueBranches.includes(selectedBranch)) {
+            setSelectedBranch(uniqueBranches[0]);
+            setSimulationParams(prev => ({ ...prev, branchName: uniqueBranches[0] }));
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching branch names:', error);
+        // Fallback to default branches if fetch fails
+        setBranchNames(['C3 A Mabini', 'BPI Morayta-FEU Branch', 'BPI Corinthian Plaza Branch']);
+      }
+    };
+    
+    fetchBranchNames();
+  }, []);
   
   // Generate customer paths for visualization
   useEffect(() => {
@@ -69,14 +97,37 @@ const Simulation = () => {
       const generatedPaths = generateCustomerPaths(customerCount);
       setCustomerPaths(generatedPaths);
       
-      // After a delay, show simulation results
-      const timer = setTimeout(() => {
-        setSimulationResults(sampleSimulationResults);
+      // After a delay, show simulation results with randomized data based on selected branch
+      const timer = setTimeout(async () => {
+        try {
+          const data = await fetchMainSheetData();
+          const branchData = data.find(item => item.branch_name === selectedBranch);
+          
+          if (branchData) {
+            // Create randomized simulation results based on actual branch data
+            const randomizedResults = {
+              ...sampleSimulationResults,
+              totalCustomers: Math.floor(branchData.transaction_count * (0.8 + Math.random() * 0.4)), // ±20% variation
+              averageWaitTime: Math.max(1, branchData.avg_waiting_time * (0.7 + Math.random() * 0.6)), // ±30% variation
+              averageServiceTime: Math.max(1, branchData.avg_processing_time * (0.8 + Math.random() * 0.4)), // ±20% variation
+              customerSatisfaction: Math.max(0, Math.min(100, branchData.sentiment_score * (0.9 + Math.random() * 0.2))), // ±10% variation
+              projectedBHS: Math.max(0, Math.min(100, branchData.bhs * (0.85 + Math.random() * 0.3))), // ±15% variation
+              staffUtilization: Math.max(0, Math.min(100, 70 + Math.random() * 30)) // Random between 70-100%
+            };
+            
+            setSimulationResults(randomizedResults);
+          } else {
+            setSimulationResults(sampleSimulationResults);
+          }
+        } catch (error) {
+          console.error('Error fetching branch data for simulation:', error);
+          setSimulationResults(sampleSimulationResults);
+        }
       }, 3000); // Simulate a 3-second calculation time
       
       return () => clearTimeout(timer);
     }
-  }, [isSimulating, simulationParams]);
+  }, [isSimulating, simulationParams, selectedBranch]);
   
   // Handle simulation start/stop
   const toggleSimulation = () => {
@@ -96,6 +147,12 @@ const Simulation = () => {
     setSimulationResults(null);
     setSimulationParams(defaultSimulationParams);
     setCustomerPaths([]);
+  };
+  
+  // Handle branch selection
+  const handleBranchChange = (branchName) => {
+    setSelectedBranch(branchName);
+    setSimulationParams(prev => ({ ...prev, branchName }));
   };
   
   // Update simulation parameters
@@ -136,8 +193,17 @@ const Simulation = () => {
         <div className="branch-selector">
           <h1>Branch Simulation</h1>
           <div className="branch-select-dropdown">
-            <span>{selectedBranch}</span>
-            <ChevronDown size={16} />
+            <select 
+              value={selectedBranch}
+              onChange={(e) => handleBranchChange(e.target.value)}
+              disabled={isSimulating}
+            >
+              {branchNames.map((branchName) => (
+                <option key={branchName} value={branchName}>
+                  {branchName}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
         
@@ -235,24 +301,29 @@ const Simulation = () => {
                 {showHeatmap ? <EyeOff size={14} /> : <Eye size={14} />}
                 {showHeatmap ? 'Hide' : 'Show'} Heatmap
               </button>
-              
-              <button className="viz-control-btn" onClick={() => setIsFullscreen(!isFullscreen)}>
-                <Layers size={14} />
-                {isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
-              </button>
             </div>
           </div>
           
           <div className="visualization-area">
-            <BranchFloorPlan
-              floorPlan={branchFloorPlan}
-              servicePoints={servicePoints}
-              customerPaths={isSimulating ? customerPaths : []}
-              showHeatmap={showHeatmap}
-              view={view}
-              simulationSpeed={simulationParams.simulationSpeed}
-              ref={simulationRef}
-            />
+            {view === '2D' ? (
+              <BranchFloorPlan
+                floorPlan={branchFloorPlan}
+                servicePoints={servicePoints}
+                customerPaths={isSimulating ? customerPaths : []}
+                showHeatmap={showHeatmap}
+                view={view}
+                simulationSpeed={simulationParams.simulationSpeed}
+                ref={simulationRef}
+              />
+            ) : (
+              <Branch3DVisualization
+                floorPlan={branchFloorPlan}
+                servicePoints={servicePoints}
+                customerPaths={isSimulating ? customerPaths : []}
+                showHeatmap={showHeatmap}
+                simulationSpeed={simulationParams.simulationSpeed}
+              />
+            )}
             
             {isSimulating && (
               <div className="simulation-status">

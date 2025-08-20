@@ -92,7 +92,7 @@ export const defaultSimulationParams = {
   // Branch setup
   branchName: 'C3 A Mabini',
   numberOfTellers: 4,
-  numberOfCustomerServiceReps: 1,
+  numberOfCustomerServiceReps: 4, // Default 4, max 6
   
   // Time settings
   dayType: dayTypes[0].id,

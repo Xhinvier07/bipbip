@@ -274,7 +274,7 @@ const SimulationControls = ({
                 <input 
                   type="range" 
                   min="0" 
-                  max="3" 
+                  max="6" 
                   step="1"
                   value={params.numberOfCustomerServiceReps}
                   onChange={(e) => handleSliderChange('numberOfCustomerServiceReps', e.target.value)}
