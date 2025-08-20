@@ -2,12 +2,14 @@ import { useRef, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { FaChartBar, FaMapMarkerAlt, FaChartArea, FaFileAlt, FaHistory, FaCog, FaQuestionCircle, FaComments, FaBars, FaSignOutAlt, FaUserCircle } from 'react-icons/fa';
+import { useAuth } from '../../context/AuthContext';
 
 const Sidebar = ({ isCollapsed, toggleSidebar }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const sidebarRef = useRef(null);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const { user, signOut } = useAuth();
 
   // Close sidebar when clicking outside on mobile
   useEffect(() => {
@@ -58,29 +60,44 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
   };
 
   const navItemVariants = {
-    expanded: {
-      opacity: 1,
-      display: 'block',
-      transition: {
-        delay: 0.2
-      }
-    },
-    collapsed: {
-      opacity: 0,
-      display: 'none',
-      transition: {
-        duration: 0.1
-      }
+  expanded: {
+    opacity: 1,
+    display: 'block',
+    transition: {
+      delay: 0.2
     }
+  },
+  collapsed: {
+    opacity: 0,
+    display: 'none',
+    transition: {
+      duration: 0.1
+    }
+  }
+};
+
+// Update profile dropdown position based on sidebar state
+const getDropdownStyle = (isCollapsed) => {
+  return {
+    position: 'absolute',
+    top: '65px',
+    left: isCollapsed ? '50%' : '0',
+    transform: isCollapsed ? 'translateX(-50%)' : 'none',
+    zIndex: 1000
   };
+};
   
   const handleProfileClick = () => {
     setShowProfileMenu(!showProfileMenu);
   };
   
-  const handleLogout = () => {
-    // In a real app, this would handle logout logic
-    navigate('/');
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      navigate('/');
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
   };
 
   return (
@@ -101,19 +118,25 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
           >
             <img src="/profile.png" alt="User avatar" className="avatar" />
           </motion.div>
-          <motion.div
-            className="user-info"
-            variants={navItemVariants}
-          >
-            <h3>Hello,</h3>
-            <h2>Jansen!</h2>
-          </motion.div>
+          {!isCollapsed && (
+            <motion.div
+              className="user-info"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <h3>Hello,</h3>
+              <h2>{user?.user_metadata?.name || user?.email?.split('@')[0] || 'User'}</h2>
+            </motion.div>
+          )}
           
           {/* Profile dropdown menu */}
           <AnimatePresence>
             {showProfileMenu && (
               <motion.div 
                 className="profile-dropdown"
+                style={getDropdownStyle(isCollapsed)}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
@@ -174,7 +197,7 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
       </div>
 
       <div className="sidebar-footer">
-        <NavLink to="/logout" className="logout-btn">
+        <div className="logout-btn" onClick={handleLogout}>
           <div className="icon">
             <FaSignOutAlt />
           </div>
@@ -184,7 +207,7 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
           >
             Logout
           </motion.span>
-        </NavLink>
+        </div>
       </div>
     </motion.div>
   );

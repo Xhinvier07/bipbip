@@ -9,6 +9,7 @@ import re
 import json
 from datetime import datetime, timedelta
 import warnings
+import random
 
 warnings.filterwarnings('ignore')
 
@@ -25,8 +26,65 @@ class BPISentimentAnalyzer:
         self.sentiment_pipeline = None
         self.overall_sentiment = None
         self.branch_sentiments = {}
-        self.aspects = ['service', 'staff', 'wait time', 'facility', 'atm', 'fees', 'process', 'system', 'queue',
-                        'parking']
+        self.aspects = [
+            # Original aspects
+            'service', 'staff', 'wait time', 'facility', 'atm', 'fees', 'process', 'system', 'queue',
+            'parking',
+
+            # Customer service & interaction
+            'customer service', 'staff behavior', 'staff knowledge', 'staff professionalism',
+            'helpfulness', 'courtesy', 'communication', 'language support', 'accessibility',
+            'complaint handling', 'problem resolution',
+
+            # Physical environment
+            'cleanliness', 'comfort', 'temperature', 'lighting', 'noise level', 'seating',
+            'restroom', 'air conditioning', 'ventilation', 'decoration', 'ambiance',
+            'security', 'safety', 'privacy',
+
+            # Technology & systems
+            'online services', 'mobile app', 'website', 'digital system', 'internet',
+            'wifi', 'kiosk', 'self service', 'payment system', 'card reader',
+            'transaction speed', 'system reliability', 'technical support',
+
+            # Operational aspects
+            'operating hours', 'availability', 'scheduling', 'appointment system',
+            'efficiency', 'organization', 'workflow', 'documentation', 'paperwork',
+            'forms', 'requirements', 'procedures', 'policy', 'rules',
+
+            # Financial aspects
+            'pricing', 'cost', 'charges', 'hidden fees', 'transparency', 'payment options',
+            'billing', 'refund', 'exchange rate', 'interest rate', 'loan terms',
+
+            # Accessibility & convenience
+            'location', 'transportation', 'public transport', 'wheelchair access',
+            'elevator', 'ramp', 'signage', 'directions', 'information desk',
+            'child friendly', 'elderly friendly',
+
+            # Quality & reliability
+            'accuracy', 'error handling', 'consistency', 'reliability', 'quality',
+            'completeness', 'follow up', 'tracking', 'updates', 'notifications',
+
+            # Specific services
+            'account opening', 'loan application', 'money transfer', 'currency exchange',
+            'insurance', 'investment', 'consultation', 'advice', 'guidance',
+            'training', 'workshop', 'education',
+
+            # Communication channels
+            'phone support', 'email support', 'chat support', 'social media',
+            'feedback system', 'survey', 'review process', 'contact methods',
+
+            # Additional operational
+            'branch network', 'coverage', 'partnerships', 'affiliations',
+            'rewards program', 'loyalty program', 'promotions', 'offers',
+            'terms and conditions', 'contract', 'agreement'
+        ]
+
+        # Updated cities list
+        self.cities = [
+            "Manila", "Makati", "Pasig", "Taguig", "Quezon City", "Mandaluyong",
+            "Pasay", "San Juan", "Caloocan", "Marikina", "Muntinlupa", "Las Piñas",
+            "Parañaque", "Valenzuela", "Malabon", "Navotas"
+        ]
 
     def load_data(self):
         """Load and preprocess the CSV data"""
@@ -93,12 +151,76 @@ class BPISentimentAnalyzer:
 
     def rating_to_sentiment(self, rating):
         """Convert star rating to sentiment"""
+        if pd.isna(rating):
+            return 'Neutral'
         if rating >= 4:
             return 'Positive'
         elif rating == 3:
             return 'Neutral'
         else:
             return 'Negative'
+
+    def sentiment_to_score_range(self, sentiment):
+        """Convert sentiment to randomized score within range"""
+        if sentiment == 'Positive':
+            return random.randint(70, 95)
+        elif sentiment == 'Neutral':
+            return random.randint(45, 69)
+        else:  # Negative
+            return random.randint(20, 44)
+
+    def calculate_branch_sentiments(self):
+        """Calculate branch sentiments based on weighted average"""
+        print("Calculating branch sentiments...")
+        self.branch_sentiments = {}
+
+        for branch in self.df['branch_name'].unique():
+            branch_data = self.df[self.df['branch_name'] == branch]
+
+            if len(branch_data) == 0:
+                self.branch_sentiments[branch] = 'Neutral'
+                continue
+
+            # Count sentiments
+            sentiment_counts = branch_data['bert_sentiment'].value_counts()
+            pos_count = sentiment_counts.get('Positive', 0)
+            neu_count = sentiment_counts.get('Neutral', 0)
+            neg_count = sentiment_counts.get('Negative', 0)
+
+            # Calculate weighted score
+            total_reviews = len(branch_data)
+            weighted_score = (pos_count * 85 + neu_count * 65 + neg_count * 45) / total_reviews
+
+            # Determine sentiment based on weighted score
+            if weighted_score >= 75:
+                self.branch_sentiments[branch] = 'Positive'
+            elif weighted_score >= 55:
+                self.branch_sentiments[branch] = 'Neutral'
+            else:
+                self.branch_sentiments[branch] = 'Negative'
+
+    def calculate_overall_sentiment(self):
+        """Calculate overall sentiment based on weighted average"""
+        sentiment_counts = self.df['bert_sentiment'].value_counts()
+        pos_count = sentiment_counts.get('Positive', 0)
+        neu_count = sentiment_counts.get('Neutral', 0)
+        neg_count = sentiment_counts.get('Negative', 0)
+
+        total_reviews = len(self.df)
+        if total_reviews == 0:
+            self.overall_sentiment = 'Neutral'
+            return
+
+        # Calculate weighted score
+        weighted_score = (pos_count * 85 + neu_count * 65 + neg_count * 45) / total_reviews
+
+        # Determine overall sentiment based on weighted score
+        if weighted_score >= 75:
+            self.overall_sentiment = 'Positive'
+        elif weighted_score >= 55:
+            self.overall_sentiment = 'Neutral'
+        else:
+            self.overall_sentiment = 'Negative'
 
     def analyze_sentiments(self):
         """Perform comprehensive sentiment analysis"""
@@ -114,10 +236,7 @@ class BPISentimentAnalyzer:
         for idx, row in self.df.iterrows():
             if row['review_text'] == 'No review text provided':
                 # Use star rating for sentiment when no review text
-                if pd.notna(row['star_rating']):
-                    sentiment = self.rating_to_sentiment(row['star_rating'])
-                else:
-                    sentiment = 'Neutral'
+                sentiment = self.rating_to_sentiment(row['star_rating'])
             else:
                 # Use BERT for sentiment analysis when review text exists
                 sentiment = self.predict_sentiment(row['cleaned_text'])
@@ -127,22 +246,11 @@ class BPISentimentAnalyzer:
         self.df['bert_sentiment'] = sentiments
 
         # Also create rating-based sentiment for comparison
-        self.df['rating_sentiment'] = self.df['star_rating'].apply(
-            lambda x: self.rating_to_sentiment(x) if pd.notna(x) else 'Neutral'
-        )
+        self.df['rating_based_sentiment'] = self.df['star_rating'].apply(self.rating_to_sentiment)
 
-        # Calculate overall sentiment (most common)
-        overall_sentiment_counts = self.df['bert_sentiment'].value_counts()
-        self.overall_sentiment = overall_sentiment_counts.index[0]
-
-        # Calculate branch sentiments
-        for branch in self.df['branch_name'].unique():
-            branch_data = self.df[self.df['branch_name'] == branch]
-            branch_sentiment_counts = branch_data['bert_sentiment'].value_counts()
-            if len(branch_sentiment_counts) > 0:
-                self.branch_sentiments[branch] = branch_sentiment_counts.index[0]
-            else:
-                self.branch_sentiments[branch] = 'Neutral'
+        # Calculate overall and branch sentiments using weighted averages
+        self.calculate_overall_sentiment()
+        self.calculate_branch_sentiments()
 
         print(f"Overall Sentiment: {self.overall_sentiment}")
         print(f"Branch Sentiments calculated for {len(self.branch_sentiments)} branches")
@@ -154,31 +262,263 @@ class BPISentimentAnalyzer:
         print(f"  - Text-based analysis: {text_based} reviews")
         print(f"  - Rating-based analysis: {rating_based} reviews")
 
+    def extract_city_from_branch(self, branch_name):
+        """Extract city from branch name using the predefined cities list"""
+        branch_lower = branch_name.lower()
+
+        # Check if any city name is in the branch name
+        for city in self.cities:
+            if city.lower() in branch_lower:
+                return city
+
+        # Default to first word of branch name if no city match found
+        first_word = branch_name.split()[0] if branch_name.split() else "Metro Manila"
+        return first_word.title()
+
+    def generate_js_compatible_data(self):
+        """Generate data structure compatible with the JavaScript file"""
+        print("Generating JavaScript-compatible data...")
+
+        # Get unique branch names
+        branch_names = sorted(self.df['branch_name'].unique())
+
+        # Calculate CSAT scores with proper weighted averages
+        sentiment_counts = self.df['bert_sentiment'].value_counts()
+        total_reviews = int(len(self.df))
+
+        # Calculate overall weighted score
+        overall_score = int((
+                                    sentiment_counts.get('Positive', 0) * 85 +
+                                    sentiment_counts.get('Neutral', 0) * 65 +
+                                    sentiment_counts.get('Negative', 0) * 45
+                            ) // total_reviews if total_reviews > 0 else 65)
+
+        # Calculate branch scores with weighted averages
+        branch_scores = {}
+        for branch in branch_names:
+            branch_data = self.df[self.df['branch_name'] == branch]
+            if len(branch_data) > 0:
+                branch_sentiment_counts = branch_data['bert_sentiment'].value_counts()
+                branch_score = int((
+                                           branch_sentiment_counts.get('Positive', 0) * 85 +
+                                           branch_sentiment_counts.get('Neutral', 0) * 65 +
+                                           branch_sentiment_counts.get('Negative', 0) * 45
+                                   ) // len(branch_data))
+                branch_scores[branch] = branch_score
+
+        # Find top and bottom performers
+        top_performer = max(branch_scores.items(), key=lambda x: x[1]) if branch_scores else ("Unknown", 65)
+        bottom_performer = min(branch_scores.items(), key=lambda x: x[1]) if branch_scores else ("Unknown", 65)
+
+        # Extract common tags
+        positive_tags = [tag for tag, count in self.extract_common_tags(self.df, 'Positive')]
+        neutral_tags = [tag for tag, count in self.extract_common_tags(self.df, 'Neutral')]
+        negative_tags = [tag for tag, count in self.extract_common_tags(self.df, 'Negative')]
+
+        # Create customer reviews data with randomized scores within ranges
+        customer_reviews = []
+        for idx, row in self.df.iterrows():
+            # Get randomized score within sentiment range
+            score = self.sentiment_to_score_range(row['bert_sentiment'])
+
+            # Extract city using improved method
+            city = self.extract_city_from_branch(row['branch_name'])
+
+            # Extract tags based on sentiment and keywords
+            tags = []
+            if row['bert_sentiment'] == 'Positive':
+                tags = ['Fast Service', 'Professional Staff'] if 'fast' in row['cleaned_text'] or 'professional' in row[
+                    'cleaned_text'] else ['Good Experience']
+            elif row['bert_sentiment'] == 'Negative':
+                tags = ['Long Wait Time', 'Poor Service'] if 'long' in row['cleaned_text'] or 'poor' in row[
+                    'cleaned_text'] else ['Issues']
+            else:
+                tags = ['Average Experience']
+
+            customer_reviews.append({
+                "id": int(idx + 1),
+                "branchName": str(row['branch_name']),
+                "city": str(city),
+                "customerId": f"#N{str(idx + 1).zfill(3)}",
+                "date": (datetime.now() - timedelta(days=int(np.random.randint(1, 30)))).strftime("%Y-%m-%d"),
+                "rating": int(score),
+                "comment": str(
+                    row['review_text'][:200] + "..." if len(row['review_text']) > 200 else row['review_text']),
+                "tags": tags
+            })
+
+        # CSAT Summary
+        csat_summary = {
+            "overallScore": int(overall_score),
+            "totalReviews": int(total_reviews),
+            "positiveFeedback": int(sentiment_counts.get('Positive', 0)),
+            "neutralFeedback": int(sentiment_counts.get('Neutral', 0)),
+            "negativeFeedback": int(sentiment_counts.get('Negative', 0)),
+            "topPerformer": {
+                "branchName": str(top_performer[0]),
+                "city": str(self.extract_city_from_branch(top_performer[0])),
+                "score": int(top_performer[1])
+            },
+            "needsImprovement": {
+                "branchName": str(bottom_performer[0]),
+                "city": str(self.extract_city_from_branch(bottom_performer[0])),
+                "score": int(bottom_performer[1])
+            },
+            "commonTags": {
+                "positive": positive_tags,
+                "neutral": neutral_tags,
+                "negative": negative_tags
+            }
+        }
+
+        # City performance (aggregate branch scores by city)
+        city_performance = []
+        city_scores = {}
+        for branch, score in branch_scores.items():
+            city = self.extract_city_from_branch(branch)
+            if city not in city_scores:
+                city_scores[city] = []
+            city_scores[city].append(score)
+
+        for city, scores in city_scores.items():
+            avg_score = int(sum(scores) // len(scores))
+            city_performance.append({"city": str(city), "score": int(avg_score)})
+
+        # Monthly trends (simulate based on data with more realistic variation)
+        monthly_trends = []
+        base_score = overall_score
+        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        for i, month in enumerate(months):
+            # More realistic variation based on base score
+            variation = int(np.random.randint(-8, 9))
+            score = int(max(25, min(95, base_score + variation)))
+            monthly_trends.append({"month": str(month), "score": int(score)})
+
+        return {
+            "cities": self.cities,
+            "branchNames": [str(branch) for branch in branch_names],
+            "customerReviews": customer_reviews,
+            "csatSummary": csat_summary,
+            "monthlyTrends": monthly_trends,
+            "cityPerformance": city_performance,
+            "overallSentiment": str(self.overall_sentiment),
+            "branchSentiments": {str(k): str(v) for k, v in self.branch_sentiments.items()}
+        }
+
     def extract_common_tags(self, reviews, sentiment_type):
         """Extract common tags/themes from reviews based on sentiment"""
         sentiment_reviews = reviews[reviews['bert_sentiment'] == sentiment_type]['cleaned_text']
 
         # Define keyword categories
+        # Define keyword categories for bank reviews
         positive_keywords = {
-            'Fast Service': ['fast', 'quick', 'speedy', 'efficient', 'rapid'],
-            'Professional Staff': ['professional', 'courteous', 'polite', 'respectful'],
-            'Clean': ['clean', 'neat', 'organized', 'tidy'],
-            'Helpful Staff': ['helpful', 'accommodating', 'friendly', 'kind'],
-            'Modern Facilities': ['modern', 'updated', 'new', 'facilities']
+            'Fast Service': ['fast', 'quick', 'speedy', 'efficient', 'rapid', 'swift', 'prompt', 'immediate', 'instant',
+                             'timely'],
+
+            'Professional Staff': ['professional', 'courteous', 'polite', 'respectful', 'well-trained', 'knowledgeable',
+                                   'competent', 'skilled', 'experienced', 'qualified', 'expert'],
+
+            'Clean': ['clean', 'neat', 'organized', 'tidy', 'spotless', 'well-maintained', 'pristine', 'hygienic',
+                      'sanitized'],
+
+            'Helpful Staff': ['helpful', 'accommodating', 'friendly', 'kind', 'supportive', 'caring', 'attentive',
+                              'patient', 'understanding', 'cooperative', 'generous', 'welcoming', 'warm'],
+
+            'Modern Facilities': ['modern', 'updated', 'new', 'facilities', 'contemporary', 'state-of-the-art',
+                                  'advanced',
+                                  'upgraded', 'renovated', 'high-tech', 'digital'],
+
+            'Excellent Customer Service': ['excellent', 'outstanding', 'exceptional', 'superb', 'amazing', 'fantastic',
+                                           'wonderful', 'great', 'perfect', 'top-notch', 'first-class'],
+
+            'Convenient Location': ['convenient', 'accessible', 'central', 'easy to find', 'good location', 'nearby',
+                                    'strategic', 'well-located', 'close', 'reachable'],
+
+            'Security & Safety': ['secure', 'safe', 'protected', 'trustworthy', 'reliable', 'confidential', 'private',
+                                  'guarded', 'monitored'],
+
+            'Low Fees': ['low fees', 'affordable', 'reasonable rates', 'competitive', 'cost-effective', 'economical',
+                         'budget-friendly', 'no hidden charges', 'transparent pricing'],
+
+            'Technology': ['mobile app', 'online banking', 'ATM', 'digital', 'user-friendly', 'seamless', 'smooth',
+                           'intuitive', 'automated', 'self-service'],
+
+            'Problem Resolution': ['resolved', 'solved', 'fixed', 'handled well', 'sorted out', 'addressed',
+                                   'corrected',
+                                   'remedied', 'settled'],
+
+            'Account Services': ['easy account opening', 'smooth process', 'straightforward', 'hassle-free', 'simple',
+                                 'streamlined', 'uncomplicated']
         }
 
         neutral_keywords = {
-            'Average Wait Time': ['average', 'okay', 'normal', 'reasonable'],
-            'Crowded': ['crowded', 'busy', 'full', 'packed'],
-            'Peak Hour Issues': ['lunch', 'peak', 'rush hour', 'busy time']
+            'Average Wait Time': ['average', 'okay', 'normal', 'reasonable', 'typical', 'standard', 'usual', 'moderate',
+                                  'acceptable', 'fair'],
+
+            'Crowded': ['crowded', 'busy', 'full', 'packed', 'many people', 'occupied', 'populated', 'congested'],
+
+            'Peak Hour Issues': ['lunch', 'peak', 'rush hour', 'busy time', 'morning rush', 'end of month', 'payday',
+                                 'weekend', 'holiday period'],
+
+            'Standard Service': ['standard', 'regular', 'routine', 'basic', 'conventional', 'ordinary', 'common',
+                                 'typical banking'],
+
+            'Limited Hours': ['limited hours', 'short hours', 'early closing', 'weekend hours', 'holiday schedule'],
+
+            'Parking Situation': ['parking', 'space', 'lot', 'street parking', 'valet', 'garage']
         }
 
         negative_keywords = {
-            'Long Wait Time': ['long', 'slow', 'wait', 'delay', 'hours'],
-            'System Issues': ['system', 'down', 'maintenance', 'technical'],
-            'Poor Communication': ['communication', 'information', 'notice', 'announcement'],
-            'Understaffed': ['staff', 'teller', 'understaffed', 'more people'],
-            'Poor Service': ['poor', 'bad', 'terrible', 'awful', 'disappointing']
+            'Long Wait Time': ['long', 'slow', 'wait', 'delay', 'hours', 'forever', 'endless', 'extended', 'prolonged',
+                               'lengthy', 'time-consuming', 'takes too long', 'wasted time'],
+
+            'System Issues': ['system', 'down', 'maintenance', 'technical', 'network', 'server', 'offline', 'crashed',
+                              'frozen', 'error', 'glitch', 'malfunction', 'broken', 'not working'],
+
+            'Poor Communication': ['communication', 'information', 'notice', 'announcement', 'unclear', 'confusing',
+                                   'no updates', 'lack of info', 'poor explanation', 'miscommunication',
+                                   'language barrier'],
+
+            'Understaffed': ['staff', 'teller', 'understaffed', 'more people', 'shortage', 'insufficient staff',
+                             'overworked', 'too few', 'need more employees', 'stretched thin'],
+
+            'Poor Service': ['poor', 'bad', 'terrible', 'awful', 'disappointing', 'horrible', 'worst', 'pathetic',
+                             'unacceptable', 'subpar', 'inadequate', 'unsatisfactory'],
+
+            'Rude Staff': ['rude', 'unprofessional', 'disrespectful', 'impolite', 'arrogant', 'dismissive',
+                           'condescending',
+                           'unhelpful', 'attitude', 'unfriendly', 'cold', 'hostile'],
+
+            'High Fees': ['expensive', 'costly', 'high fees', 'overpriced', 'excessive charges', 'hidden fees',
+                          'rip-off',
+                          'unreasonable', 'outrageous', 'money grab'],
+
+            'Security Issues': ['unsafe', 'insecure', 'risky', 'vulnerable', 'breach', 'fraud', 'scam',
+                                'identity theft',
+                                'compromised', 'suspicious'],
+
+            'Account Problems': ['account frozen', 'locked out', 'blocked', 'suspended', 'unauthorized charges',
+                                 'billing errors', 'statement issues', 'balance problems'],
+
+            'ATM Issues': ['ATM broken', 'out of cash', 'card stuck', 'machine error', 'ATM down',
+                           'cash dispensing error',
+                           'receipt issues', 'ATM malfunction'],
+
+            'Loan/Credit Issues': ['loan denied', 'credit rejected', 'high interest', 'unfair terms',
+                                   'predatory lending',
+                                   'misleading', 'bait and switch', 'loan problems'],
+
+            'Facility Problems': ['dirty', 'outdated', 'cramped', 'uncomfortable', 'noisy', 'poor lighting',
+                                  'broken furniture',
+                                  'no air conditioning', 'smelly', 'run down'],
+
+            'Process Issues': ['complicated', 'bureaucratic', 'too many forms', 'lengthy process', 'red tape',
+                               'paperwork',
+                               'requirements', 'documentation', 'hassle', 'nightmare'],
+
+            'Accessibility Issues': ['not accessible', 'no wheelchair access', 'no parking', 'hard to reach',
+                                     'inconvenient',
+                                     'remote location', 'transportation issues']
         }
 
         keyword_dict = positive_keywords if sentiment_type == 'Positive' else (
@@ -196,132 +536,6 @@ class BPISentimentAnalyzer:
 
         # Return top 4 most common tags
         return sorted(tag_counts.items(), key=lambda x: x[1], reverse=True)[:4]
-
-    def generate_js_compatible_data(self):
-        """Generate data structure compatible with the JavaScript file"""
-        print("Generating JavaScript-compatible data...")
-
-        # Get unique cities and branches
-        cities = sorted(self.df['branch_name'].str.extract(r'([A-Za-z\s]+)')[0].dropna().unique())
-        branch_names = sorted(self.df['branch_name'].unique())
-
-        # Calculate CSAT scores (convert sentiment to scores)
-        def sentiment_to_score(sentiment):
-            return {'Positive': 85, 'Neutral': 65, 'Negative': 45}[sentiment]
-
-        # Overall CSAT summary
-        sentiment_counts = self.df['bert_sentiment'].value_counts()
-        total_reviews = int(len(self.df))  # Convert to int
-
-        overall_score = int((
-                                    sentiment_counts.get('Positive', 0) * 85 +
-                                    sentiment_counts.get('Neutral', 0) * 65 +
-                                    sentiment_counts.get('Negative', 0) * 45
-                            ) // total_reviews if total_reviews > 0 else 65)
-
-        # Find top and bottom performers
-        branch_scores = {}
-        for branch in branch_names:
-            branch_data = self.df[self.df['branch_name'] == branch]
-            if len(branch_data) > 0:
-                branch_sentiment_counts = branch_data['bert_sentiment'].value_counts()
-                branch_score = int((
-                                           branch_sentiment_counts.get('Positive', 0) * 85 +
-                                           branch_sentiment_counts.get('Neutral', 0) * 65 +
-                                           branch_sentiment_counts.get('Negative', 0) * 45
-                                   ) // len(branch_data))
-                branch_scores[branch] = branch_score
-
-        top_performer = max(branch_scores.items(), key=lambda x: x[1]) if branch_scores else ("Unknown", 65)
-        bottom_performer = min(branch_scores.items(), key=lambda x: x[1]) if branch_scores else ("Unknown", 65)
-
-        # Extract common tags
-        positive_tags = [tag for tag, count in self.extract_common_tags(self.df, 'Positive')]
-        neutral_tags = [tag for tag, count in self.extract_common_tags(self.df, 'Neutral')]
-        negative_tags = [tag for tag, count in self.extract_common_tags(self.df, 'Negative')]
-
-        # Create customer reviews data
-        customer_reviews = []
-        for idx, row in self.df.iterrows():
-            # Extract tags based on sentiment and keywords
-            tags = []
-            if row['bert_sentiment'] == 'Positive':
-                tags = ['Fast Service', 'Professional Staff'] if 'fast' in row['cleaned_text'] or 'professional' in row[
-                    'cleaned_text'] else ['Good Experience']
-            elif row['bert_sentiment'] == 'Negative':
-                tags = ['Long Wait Time', 'Poor Service'] if 'long' in row['cleaned_text'] or 'poor' in row[
-                    'cleaned_text'] else ['Issues']
-            else:
-                tags = ['Average Experience']
-
-            customer_reviews.append({
-                "id": int(idx + 1),
-                "branchName": str(row['branch_name']),
-                "city": str(row['branch_name'].split()[0] if ' ' in row['branch_name'] else "Metro Manila"),
-                "customerId": f"#N{str(idx + 1).zfill(3)}",
-                "date": (datetime.now() - timedelta(days=int(np.random.randint(1, 30)))).strftime("%Y-%m-%d"),
-                "rating": int(sentiment_to_score(row['bert_sentiment'])),
-                "comment": str(
-                    row['review_text'][:200] + "..." if len(row['review_text']) > 200 else row['review_text']),
-                "tags": tags
-            })
-
-        # CSAT Summary
-        csat_summary = {
-            "overallScore": int(overall_score),
-            "totalReviews": int(total_reviews),
-            "positiveFeedback": int(sentiment_counts.get('Positive', 0)),
-            "neutralFeedback": int(sentiment_counts.get('Neutral', 0)),
-            "negativeFeedback": int(sentiment_counts.get('Negative', 0)),
-            "topPerformer": {
-                "branchName": str(top_performer[0]),
-                "city": str(top_performer[0].split()[0] if ' ' in top_performer[0] else "Metro Manila"),
-                "score": int(top_performer[1])
-            },
-            "needsImprovement": {
-                "branchName": str(bottom_performer[0]),
-                "city": str(bottom_performer[0].split()[0] if ' ' in bottom_performer[0] else "Metro Manila"),
-                "score": int(bottom_performer[1])
-            },
-            "commonTags": {
-                "positive": positive_tags,
-                "neutral": neutral_tags,
-                "negative": negative_tags
-            }
-        }
-
-        # City performance (aggregate branch scores by city)
-        city_performance = []
-        city_scores = {}
-        for branch, score in branch_scores.items():
-            city = branch.split()[0] if ' ' in branch else "Metro Manila"
-            if city not in city_scores:
-                city_scores[city] = []
-            city_scores[city].append(score)
-
-        for city, scores in city_scores.items():
-            avg_score = int(sum(scores) // len(scores))
-            city_performance.append({"city": str(city), "score": int(avg_score)})
-
-        # Monthly trends (simulate based on data)
-        monthly_trends = []
-        base_score = overall_score
-        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        for i, month in enumerate(months):
-            variation = int(np.random.randint(-5, 6))
-            score = int(max(30, min(95, base_score + variation)))
-            monthly_trends.append({"month": str(month), "score": int(score)})
-
-        return {
-            "cities": [str(city) for city in cities[:7]] if len(cities) > 7 else [str(city) for city in cities],
-            "branchNames": [str(branch) for branch in branch_names],
-            "customerReviews": customer_reviews,
-            "csatSummary": csat_summary,
-            "monthlyTrends": monthly_trends,
-            "cityPerformance": city_performance,
-            "overallSentiment": str(self.overall_sentiment),
-            "branchSentiments": {str(k): str(v) for k, v in self.branch_sentiments.items()}
-        }
 
     def generate_visualizations(self):
         """Generate comprehensive visualizations"""
@@ -473,7 +687,7 @@ class BPISentimentAnalyzer:
                     'total_mentions': int(len(aspect_reviews)),
                     'sentiment_distribution': aspect_reviews['bert_sentiment'].value_counts().to_dict(),
                     'sentiment_percentages': (
-                                aspect_reviews['bert_sentiment'].value_counts(normalize=True) * 100).round(2).to_dict(),
+                            aspect_reviews['bert_sentiment'].value_counts(normalize=True) * 100).round(2).to_dict(),
                     'average_rating': float(
                         aspect_reviews['star_rating'].mean()) if 'star_rating' in aspect_reviews.columns else 0,
                     'dominant_sentiment': str(
@@ -508,15 +722,15 @@ export const sentimentLabels = ["Positive", "Neutral", "Negative"];
 
 // Helper function to get sentiment color
 export const getSentimentColor = (score) => {{
-  if (score >= 80) return "#00BFA6"; // Green for positive
-  if (score >= 60) return "#FEA000"; // Orange for neutral
-  return "#CF3D58"; // Red for negative
+  if (score >= 70) return "#00BFA6"; // Green for positive (70-95)
+  if (score >= 45) return "#FEA000"; // Orange for neutral (45-69)
+  return "#CF3D58"; // Red for negative (20-44)
 }};
 
 // Helper function to get sentiment category
 export const getSentimentCategory = (score) => {{
-  if (score >= 80) return "Positive";
-  if (score >= 60) return "Neutral";
+  if (score >= 70) return "Positive";
+  if (score >= 45) return "Neutral";
   return "Negative";
 }};
 
@@ -562,8 +776,8 @@ export const cityPerformance = {json.dumps(data['cityPerformance'], indent=2)};
                 'rating': review['rating'],
                 'comment': review['comment'],
                 'tags': ', '.join(review['tags']),
-                'sentiment': 'Positive' if review['rating'] >= 80 else 'Neutral' if review[
-                                                                                        'rating'] >= 60 else 'Negative',
+                'sentiment': 'Positive' if review['rating'] >= 70 else 'Neutral' if review[
+                                                                                        'rating'] >= 45 else 'Negative',
                 'overall_sentiment': data['overallSentiment'],
                 'branch_sentiment': data['branchSentiments'].get(review['branchName'], 'Neutral')
             })
@@ -615,16 +829,31 @@ export const cityPerformance = {json.dumps(data['cityPerformance'], indent=2)};
         csv_df.to_csv(filename, index=False)
         print(f"CSV dashboard data saved as: {filename}")
 
-        # Also save the original analysis results
-        analysis_df = self.df.copy()
-        analysis_df['bert_sentiment_analysis'] = analysis_df['bert_sentiment']
-        analysis_df['rating_based_sentiment'] = analysis_df['rating_sentiment']
-        analysis_df['branch_overall_sentiment'] = analysis_df['branch_name'].map(data['branchSentiments'])
-        analysis_df['dataset_overall_sentiment'] = data['overallSentiment']
+        # Save the cleaned original analysis results (FIXED VERSION)
+        analysis_df = self.df[
+            ['branch_name', 'review_text', 'star_rating', 'bert_sentiment', 'rating_based_sentiment']].copy()
+
+        # Add computed fields
+        analysis_df['branch_sentiment'] = analysis_df['branch_name'].map(data['branchSentiments'])
+        analysis_df['overall_sentiment'] = data['overallSentiment']
+        analysis_df['city'] = analysis_df['branch_name'].apply(self.extract_city_from_branch)
+
+        # Add sentiment scores with ranges
+        analysis_df['sentiment_score'] = analysis_df['bert_sentiment'].apply(self.sentiment_to_score_range)
+
+        # Rename columns for clarity
+        analysis_df = analysis_df.rename(columns={
+            'bert_sentiment': 'text_based_sentiment',
+            'rating_based_sentiment': 'rating_based_sentiment'
+        })
 
         original_filename = 'bpi_original_analysis_results.csv'
         analysis_df.to_csv(original_filename, index=False)
         print(f"Original analysis results saved as: {original_filename}")
+
+        print(f"\nCleaned CSV columns: {list(analysis_df.columns)}")
+        print(f"Sample data preview:")
+        print(analysis_df.head())
 
         return csv_df
 
@@ -634,9 +863,9 @@ export const cityPerformance = {json.dumps(data['cityPerformance'], indent=2)};
         print("BPI BANK SENTIMENT ANALYSIS SUMMARY")
         print("=" * 60)
 
-        print(f"\n🏢 OVERALL SENTIMENT (All Branches): {self.overall_sentiment}")
+        print(f"\n🏢 OVERALL SENTIMENT (Weighted Average): {self.overall_sentiment}")
 
-        print(f"\n🏪 BRANCH SENTIMENTS:")
+        print(f"\n🏪 BRANCH SENTIMENTS (Weighted Average):")
         for branch, sentiment in self.branch_sentiments.items():
             print(f"   {branch}: {sentiment}")
 
@@ -651,11 +880,17 @@ export const cityPerformance = {json.dumps(data['cityPerformance'], indent=2)};
         print(f"\n📈 TOTAL REVIEWS ANALYZED: {total}")
         print(f"📍 UNIQUE BRANCHES: {len(self.branch_sentiments)}")
 
+        # Show scoring ranges
+        print(f"\n📊 SCORING RANGES:")
+        print(f"   Positive: 70-95")
+        print(f"   Neutral: 45-69")
+        print(f"   Negative: 20-44")
+
 
 def main():
     """Main execution function"""
-    print("BPI Bank Sentiment Analysis with BERT")
-    print("=" * 40)
+    print("BPI Bank Sentiment Analysis with BERT - FIXED VERSION")
+    print("=" * 50)
 
     # Get CSV file path
     csv_file = input("Enter the path to your CSV file (or press Enter for 'bpi_reviews.csv'): ").strip()
@@ -693,27 +928,38 @@ def main():
         print("   - bpi_sentiment_analysis_dashboard.png (Visualization Dashboard)")
         print("   - ReportsData_Generated.js (JavaScript data file)")
         print("   - bpi_sentiment_dashboard_data.csv (Dashboard CSV data)")
-        print("   - bpi_original_analysis_results.csv (Original analysis results)")
+        print("   - bpi_original_analysis_results.csv (Clean original analysis results)")
+        print("\n🔧 FIXES APPLIED:")
+        print("   ✓ Fixed cities list to match your requirements")
+        print("   ✓ Removed redundant sentiment columns")
+        print("   ✓ Fixed branch sentiment calculation using weighted averages")
+        print("   ✓ Fixed overall sentiment calculation using weighted averages")
+        print("   ✓ Added randomized sentiment scores within proper ranges:")
+        print("     - Positive: 70-95")
+        print("     - Neutral: 45-69")
+        print("     - Negative: 20-44")
+        print("   ✓ Improved city extraction from branch names")
+        print("   ✓ Cleaned up CSV output structure")
+
         print("\n💡 You can now use these files in your React application!")
-        print("📊 CSV Structure:")
-        print("   - review: Individual review data with sentiments")
-        print("   - overall_summary: Overall statistics and performance")
-        print("   - branch_performance: Branch-specific sentiment analysis")
-        print("   - city_performance: City-wise performance data")
-        print("   - monthly_trend: Monthly performance trends")
-        print("\n🎨 Dashboard includes 6 comprehensive charts:")
-        print("   1. Overall Sentiment Pie Chart")
-        print("   2. Star Rating Distribution")
-        print("   3. Top 10 Branches by Review Count")
-        print("   4. Sentiment vs Rating Heatmap")
-        print("   5. Branch Sentiment Comparison (Stacked Bar)")
-        print("   6. Aspect-based Analysis or Method Distribution")
+        print("📊 Original Analysis CSV Structure:")
+        print("   - branch_name: Branch name")
+        print("   - review_text: Original review text")
+        print("   - star_rating: Star rating (if available)")
+        print("   - text_based_sentiment: BERT-based sentiment analysis")
+        print("   - rating_based_sentiment: Rating-based sentiment analysis")
+        print("   - branch_sentiment: Branch-level sentiment (weighted)")
+        print("   - overall_sentiment: Dataset-level sentiment (weighted)")
+        print("   - city: Extracted city name")
+        print("   - sentiment_score: Randomized score within sentiment range")
 
     except FileNotFoundError:
         print(f"❌ Error: Could not find the file '{csv_file}'")
         print("Please ensure the file exists and has columns: branch_name, review_text, star_rating")
     except Exception as e:
         print(f"❌ An error occurred: {str(e)}")
+        import traceback
+        traceback.print_exc()
 
 
 if __name__ == "__main__":

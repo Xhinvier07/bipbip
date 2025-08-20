@@ -28,16 +28,11 @@ import {
 import './Help.css';
 
 const Help = () => {
-  const [activeSection, setActiveSection] = useState('overview');
+  const [activeTab, setActiveTab] = useState('overview');
   const [expandedQuestions, setExpandedQuestions] = useState({});
-  const sectionRefs = {
-    overview: useRef(null),
-    features: useRef(null),
-    terminology: useRef(null),
-    ai: useRef(null),
-    ethics: useRef(null),
-    troubleshooting: useRef(null)
-  };
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
   
   // Toggle FAQ question expansion
   const toggleQuestion = (id) => {
@@ -46,33 +41,147 @@ const Help = () => {
       [id]: !prev[id]
     }));
   };
-
-  // Scroll to section when navigation clicked
-  const scrollToSection = (section) => {
-    setActiveSection(section);
-    sectionRefs[section].current?.scrollIntoView({ behavior: 'smooth' });
+  
+  // Change active tab
+  const changeTab = (tab) => {
+    setActiveTab(tab);
+    setIsSearching(false);
+    setSearchQuery('');
   };
-
-  // Update active section based on scroll position
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100;
-      
-      // Find the section that is currently in view
-      let currentSection = 'overview';
-      Object.keys(sectionRefs).forEach(section => {
-        const element = sectionRefs[section].current;
-        if (element && element.offsetTop <= scrollPosition) {
-          currentSection = section;
-        }
-      });
-      
-      setActiveSection(currentSection);
-    };
+  
+  // Handle search input change
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+  
+  // Perform search
+  const performSearch = (e) => {
+    e.preventDefault();
     
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    if (!searchQuery.trim()) {
+      setIsSearching(false);
+      return;
+    }
+    
+    setIsSearching(true);
+    
+    // Content to search through
+    const searchableContent = [
+      { 
+        id: 'overview-1',
+        tab: 'overview',
+        title: 'What is BIP?', 
+        content: 'The Branch Intelligence Platform (BIP) is a comprehensive analytics and simulation platform designed to revolutionize how financial institutions manage their branch operations.',
+        section: 'Overview'
+      },
+      { 
+        id: 'overview-2',
+        tab: 'overview',
+        title: 'How BIP Supports Digitalization', 
+        content: 'In an era where digital transformation is crucial for financial institutions, BIP serves as a bridge between traditional branch operations and modern data-driven decision making.',
+        section: 'Overview'
+      },
+      { 
+        id: 'features-1',
+        tab: 'features',
+        title: 'Branch Analytics Dashboard', 
+        content: 'Comprehensive view of branch performance metrics including transaction volumes, wait times, staff utilization, and customer satisfaction scores.',
+        section: 'Key Features'
+      },
+      { 
+        id: 'features-2',
+        tab: 'features',
+        title: 'Interactive Branch Map', 
+        content: 'Geospatial visualization of branch network with health scores and performance metrics, enabling regional comparisons and network optimization.',
+        section: 'Key Features'
+      },
+      { 
+        id: 'features-3',
+        tab: 'features',
+        title: 'Branch Simulation', 
+        content: 'Advanced simulation tools to model customer flow, staffing scenarios, and operational changes before implementation, minimizing risk and optimizing outcomes.',
+        section: 'Key Features'
+      },
+      { 
+        id: 'features-4',
+        tab: 'features',
+        title: 'BIP Chat', 
+        content: 'AI-powered assistant that provides instant insights, answers questions about branch performance, and generates visualizations on demand.',
+        section: 'Key Features'
+      },
+      { 
+        id: 'terminology-1',
+        tab: 'terminology',
+        title: 'Branch Health Score (BHS)', 
+        content: 'A comprehensive metric (0-100%) that evaluates overall branch performance by combining customer satisfaction, operational efficiency, transaction volumes, and staff utilization.',
+        section: 'Key Terminology'
+      },
+      { 
+        id: 'terminology-2',
+        tab: 'terminology',
+        title: 'Customer Satisfaction Score (CSAT)', 
+        content: 'A measure of customer satisfaction based on surveys, feedback, and sentiment analysis of customer reviews.',
+        section: 'Key Terminology'
+      },
+      { 
+        id: 'terminology-3',
+        tab: 'terminology',
+        title: 'Average Wait Time (AWT)', 
+        content: 'The average time customers spend waiting before being served. A critical metric for measuring branch efficiency and customer experience.',
+        section: 'Key Terminology'
+      },
+      { 
+        id: 'ai-1',
+        tab: 'ai',
+        title: 'Time Series Forecasting', 
+        content: 'BIP uses advanced time series models to predict future customer traffic, transaction volumes, and peak periods.',
+        section: 'AI & Analytics'
+      },
+      { 
+        id: 'ai-2',
+        tab: 'ai',
+        title: 'Natural Language Processing', 
+        content: 'NLP algorithms analyze customer reviews and feedback to extract sentiment, common themes, and specific issues.',
+        section: 'AI & Analytics'
+      },
+      { 
+        id: 'ethics-1',
+        tab: 'ethics',
+        title: 'Data Privacy & Security', 
+        content: 'All customer transaction data is anonymized before analysis. Strict access controls limit who can view sensitive information.',
+        section: 'Ethics & Compliance'
+      },
+      { 
+        id: 'faq-1',
+        tab: 'troubleshooting',
+        title: 'How does BIP connect with our existing systems?', 
+        content: 'BIP integrates with BPI Express Assist (BEA) and other bank systems through secure API connections.',
+        section: 'FAQ'
+      },
+      { 
+        id: 'faq-2',
+        tab: 'troubleshooting',
+        title: 'How accurate are the predictive models?', 
+        content: 'BIP\'s predictive models typically achieve 85-90% accuracy for next-day customer flow predictions and 80-85% accuracy for longer-term forecasts.',
+        section: 'FAQ'
+      }
+    ];
+    
+    const query = searchQuery.toLowerCase().trim();
+    
+    const results = searchableContent.filter(item => 
+      item.title.toLowerCase().includes(query) || 
+      item.content.toLowerCase().includes(query)
+    );
+    
+    setSearchResults(results);
+  };
+  
+  // Clear search
+  const clearSearch = () => {
+    setSearchQuery('');
+    setIsSearching(false);
+  };
 
   return (
     <div className="help-page">
@@ -80,93 +189,135 @@ const Help = () => {
         <div className="hero-content">
           <h1>Branch Intelligence Platform</h1>
           <p>Transforming branch operations with data-driven insights</p>
-          <div className="hero-search">
+          <form className="hero-search" onSubmit={performSearch}>
             <Search size={18} />
-            <input type="text" placeholder="Search help topics..." />
-          </div>
+            <input 
+              type="text" 
+              placeholder="Search help topics..." 
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+            {searchQuery && (
+              <button type="button" className="clear-search" onClick={clearSearch}>
+                <ChevronUp size={16} />
+              </button>
+            )}
+            <button type="submit" className="search-button">
+              Search
+            </button>
+          </form>
         </div>
       </div>
       
       <div className="help-container">
-        <aside className="help-sidebar">
-          <nav className="help-navigation">
-            <ul>
-              <li>
-                <button 
-                  className={activeSection === 'overview' ? 'active' : ''} 
-                  onClick={() => scrollToSection('overview')}
-                >
-                  <Book size={18} />
-                  <span>Overview</span>
-                </button>
-              </li>
-              <li>
-                <button 
-                  className={activeSection === 'features' ? 'active' : ''} 
-                  onClick={() => scrollToSection('features')}
-                >
-                  <Layers size={18} />
-                  <span>Key Features</span>
-                </button>
-              </li>
-              <li>
-                <button 
-                  className={activeSection === 'terminology' ? 'active' : ''} 
-                  onClick={() => scrollToSection('terminology')}
-                >
-                  <FileText size={18} />
-                  <span>Terminology</span>
-                </button>
-              </li>
-              <li>
-                <button 
-                  className={activeSection === 'ai' ? 'active' : ''} 
-                  onClick={() => scrollToSection('ai')}
-                >
-                  <BrainCircuit size={18} />
-                  <span>AI & Analytics</span>
-                </button>
-              </li>
-              <li>
-                <button 
-                  className={activeSection === 'ethics' ? 'active' : ''} 
-                  onClick={() => scrollToSection('ethics')}
-                >
-                  <Lock size={18} />
-                  <span>Ethics & Compliance</span>
-                </button>
-              </li>
-              <li>
-                <button 
-                  className={activeSection === 'troubleshooting' ? 'active' : ''} 
-                  onClick={() => scrollToSection('troubleshooting')}
-                >
-                  <HelpCircle size={18} />
-                  <span>FAQ</span>
-                </button>
-              </li>
-            </ul>
-          </nav>
-          
-          <div className="help-contact">
-            <h3>Need more help?</h3>
-            <p>Contact our support team for assistance</p>
-            <button className="contact-btn">
-              <MessageSquare size={16} />
-              Contact Support
-            </button>
-          </div>
-        </aside>
+        <div className="help-tabs">
+          <button 
+            className={`tab-button ${activeTab === 'overview' ? 'active' : ''}`}
+            onClick={() => changeTab('overview')}
+          >
+            <Book size={18} />
+            <span>Overview</span>
+          </button>
+          <button 
+            className={`tab-button ${activeTab === 'features' ? 'active' : ''}`}
+            onClick={() => changeTab('features')}
+          >
+            <Layers size={18} />
+            <span>Key Features</span>
+          </button>
+          <button 
+            className={`tab-button ${activeTab === 'terminology' ? 'active' : ''}`}
+            onClick={() => changeTab('terminology')}
+          >
+            <FileText size={18} />
+            <span>Terminology</span>
+          </button>
+          <button 
+            className={`tab-button ${activeTab === 'ai' ? 'active' : ''}`}
+            onClick={() => changeTab('ai')}
+          >
+            <BrainCircuit size={18} />
+            <span>AI & Analytics</span>
+          </button>
+          <button 
+            className={`tab-button ${activeTab === 'ethics' ? 'active' : ''}`}
+            onClick={() => changeTab('ethics')}
+          >
+            <Lock size={18} />
+            <span>Ethics & Compliance</span>
+          </button>
+          <button 
+            className={`tab-button ${activeTab === 'troubleshooting' ? 'active' : ''}`}
+            onClick={() => changeTab('troubleshooting')}
+          >
+            <HelpCircle size={18} />
+            <span>FAQ</span>
+          </button>
+        </div>
+        
+        <div className="help-contact-mobile">
+          <button className="contact-btn">
+            <MessageSquare size={16} />
+            Contact Support
+          </button>
+        </div>
         
         <main className="help-content">
-          <section ref={sectionRefs.overview} id="overview" className="help-section">
+          {isSearching ? (
+            <div className="search-results-container">
+              <div className="search-results-header">
+                <h2>Search Results for "{searchQuery}"</h2>
+                <button className="back-to-help" onClick={clearSearch}>
+                  <ChevronUp size={16} />
+                  Back to Help
+                </button>
+              </div>
+              
+              {searchResults.length === 0 ? (
+                <div className="no-results">
+                  <HelpCircle size={32} />
+                  <h3>No results found</h3>
+                  <p>Try different keywords or browse the help sections</p>
+                </div>
+              ) : (
+                <div className="search-results-list">
+                  {searchResults.map(result => (
+                    <div key={result.id} className="search-result-item">
+                      <div className="result-section">{result.section}</div>
+                      <h3 className="result-title">{result.title}</h3>
+                      <p className="result-content">{result.content}</p>
+                      <button 
+                        className="view-section-btn"
+                        onClick={() => {
+                          changeTab(result.tab);
+                          // Give time for the tab to render before scrolling
+                          setTimeout(() => {
+                            const element = document.getElementById(result.id);
+                            if (element) {
+                              element.scrollIntoView({ behavior: 'smooth' });
+                              element.classList.add('highlight');
+                              setTimeout(() => element.classList.remove('highlight'), 2000);
+                            }
+                          }, 100);
+                        }}
+                      >
+                        View in {result.section}
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
+          <section className={`help-section ${activeTab === 'overview' ? 'active' : ''}`} id="overview">
             <div className="section-header">
               <Book size={24} />
               <h2>Overview</h2>
             </div>
             
             <div className="section-content">
-              <h3>What is BIP?</h3>
+              <h3 id="overview-1">What is BIP?</h3>
               <p>
                 The <strong>Branch Intelligence Platform (BIP)</strong> is a comprehensive analytics and simulation 
                 platform designed to revolutionize how financial institutions manage their branch operations. 
@@ -174,7 +325,7 @@ const Help = () => {
                 to provide actionable insights for branch managers and executives.
               </p>
               
-              <h3>How BIP Supports Digitalization</h3>
+              <h3 id="overview-2">How BIP Supports Digitalization</h3>
               <p>
                 In an era where digital transformation is crucial for financial institutions, BIP serves as a 
                 bridge between traditional branch operations and modern data-driven decision making. By digitizing 
@@ -215,7 +366,7 @@ const Help = () => {
             </div>
           </section>
           
-          <section ref={sectionRefs.features} id="features" className="help-section">
+          <section className={`help-section ${activeTab === 'features' ? 'active' : ''}`} id="features">
             <div className="section-header">
               <Layers size={24} />
               <h2>Key Features</h2>
@@ -330,7 +481,7 @@ const Help = () => {
             </div>
           </section>
           
-          <section ref={sectionRefs.terminology} id="terminology" className="help-section">
+          <section className={`help-section ${activeTab === 'terminology' ? 'active' : ''}`} id="terminology">
             <div className="section-header">
               <FileText size={24} />
               <h2>Key Terminology</h2>
@@ -413,7 +564,7 @@ const Help = () => {
             </div>
           </section>
           
-          <section ref={sectionRefs.ai} id="ai" className="help-section">
+          <section className={`help-section ${activeTab === 'ai' ? 'active' : ''}`} id="ai">
             <div className="section-header">
               <BrainCircuit size={24} />
               <h2>AI & Analytics</h2>
@@ -514,7 +665,7 @@ const Help = () => {
             </div>
           </section>
           
-          <section ref={sectionRefs.ethics} id="ethics" className="help-section">
+          <section className={`help-section ${activeTab === 'ethics' ? 'active' : ''}`} id="ethics">
             <div className="section-header">
               <Lock size={24} />
               <h2>Ethics & Compliance</h2>
@@ -581,7 +732,7 @@ const Help = () => {
             </div>
           </section>
           
-          <section ref={sectionRefs.troubleshooting} id="troubleshooting" className="help-section">
+          <section className={`help-section ${activeTab === 'troubleshooting' ? 'active' : ''}`} id="troubleshooting">
             <div className="section-header">
               <HelpCircle size={24} />
               <h2>Frequently Asked Questions</h2>
@@ -822,7 +973,18 @@ const Help = () => {
               </div>
             </div>
           </div>
+            </>
+          )}
         </main>
+        
+        <div className="help-contact-desktop">
+          <h3>Need more help?</h3>
+          <p>Contact our support team for assistance</p>
+          <button className="contact-btn">
+            <MessageSquare size={16} />
+            Contact Support
+          </button>
+        </div>
       </div>
     </div>
   );

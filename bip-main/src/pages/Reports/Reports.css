@@ -353,17 +353,28 @@
 .branch-performance {
   display: flex;
   margin-top: 16px;
-  gap: 30px;
+  gap: 10px;
+  flex-wrap: wrap; /* Allow items to wrap to next line */
 }
 
-.performance-card {
+.reports-page .performance-card {
   flex: 1;
+  min-width: 160px; /* Ensure minimum width */
+  max-width: 300px; /* Limit maximum width */
   background-color: #f8f9fa;
   border-radius: 8px;
   padding: 16px;
+  margin-bottom: 10px; /* Add bottom margin */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.performance-card h4 {
+.reports-page .performance-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.reports-page .performance-card h4 {
   margin: 0 0 12px;
   font-size: 14px;
   color: #666;
@@ -372,30 +383,40 @@
   gap: 6px;
 }
 
-.performance-card h4 svg {
+.reports-page .performance-card h4 svg {
   color: #BC7EFF;
 }
 
 .branch-rating {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .branch-name {
   font-size: 15px;
   font-weight: 600;
   color: #333;
+  line-height: 1.3;
+  word-wrap: break-word;
+  hyphens: auto;
+  margin-bottom: 4px;
 }
 
 .branch-city {
   font-size: 13px;
   color: #666;
+  margin-bottom: 6px;
 }
 
 .branch-score {
   font-weight: 700;
-  font-size: 20px;
+  font-size: 24px;
+  align-self: flex-end;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Tags Cloud */
@@ -573,6 +594,7 @@
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 4;
+  line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   background-color: #f9fafc;
@@ -583,6 +605,7 @@
 
 .review-comment.expanded {
   -webkit-line-clamp: unset;
+  line-clamp: unset;
 }
 
 .review-tags {

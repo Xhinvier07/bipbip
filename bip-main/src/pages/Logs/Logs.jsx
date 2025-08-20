@@ -19,13 +19,18 @@ import {
   XCircle,
   CheckCircle,
   Database,
-  ExternalLink
+  ExternalLink,
+  Building2,
+  Layers
 } from 'lucide-react';
+import { fetchMainSheetData } from '../Dashboard/GoogleSheetsService';
 
 import './Logs.css';
 import { generateMockLogs } from './LogsData';
+import BEALogs from './BEALogs';
 
 const Logs = () => {
+  const [activeTab, setActiveTab] = useState('system'); // 'system' or 'bea'
   const [logs, setLogs] = useState([]);
   const [filteredLogs, setFilteredLogs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -294,46 +299,72 @@ const Logs = () => {
     document.body.removeChild(link);
   };
 
+  // Function to change tabs
+  const changeTab = (tab) => {
+    setActiveTab(tab);
+  };
+
   return (
     <div className="logs-page">
-      <div className="logs-header">
-        <div className="logs-title">
-          <Terminal size={24} />
-          <h1>System Logs</h1>
-        </div>
-        
-        <div className="logs-actions">
-          <div className={`auto-refresh-toggle ${autoRefresh ? 'active' : ''}`}>
-            <input
-              type="checkbox"
-              id="auto-refresh"
-              checked={autoRefresh}
-              onChange={toggleAutoRefresh}
-            />
-            <label htmlFor="auto-refresh">
-              Auto-refresh
-            </label>
-          </div>
-          
-          <button 
-            className="action-button refresh"
-            onClick={handleManualRefresh}
-            disabled={isLoading}
-          >
-            <RefreshCw size={16} className={isLoading ? 'rotating' : ''} />
-            <span>Refresh</span>
-          </button>
-          
-          <button 
-            className="action-button export"
-            onClick={exportLogs}
-            disabled={filteredLogs.length === 0}
-          >
-            <ArrowDownToLine size={16} />
-            <span>Export</span>
-          </button>
-        </div>
+      {/* Tab navigation */}
+      <div className="logs-tabs">
+        <button 
+          className={`log-tab ${activeTab === 'system' ? 'active' : ''}`}
+          onClick={() => changeTab('system')}
+        >
+          <Terminal size={18} />
+          <span>System Logs</span>
+        </button>
+        <button 
+          className={`log-tab ${activeTab === 'bea' ? 'active' : ''}`}
+          onClick={() => changeTab('bea')}
+        >
+          <Building2 size={18} />
+          <span>BEA Logs</span>
+        </button>
       </div>
+
+      {/* System Logs Content */}
+      {activeTab === 'system' && (
+        <>
+          <div className="logs-header">
+            <div className="logs-title">
+              <Terminal size={24} />
+              <h1>System Logs</h1>
+            </div>
+            
+            <div className="logs-actions">
+              <div className={`auto-refresh-toggle ${autoRefresh ? 'active' : ''}`}>
+                <input
+                  type="checkbox"
+                  id="auto-refresh"
+                  checked={autoRefresh}
+                  onChange={toggleAutoRefresh}
+                />
+                <label htmlFor="auto-refresh">
+                  Auto-refresh
+                </label>
+              </div>
+              
+              <button 
+                className="action-button refresh"
+                onClick={handleManualRefresh}
+                disabled={isLoading}
+              >
+                <RefreshCw size={16} className={isLoading ? 'rotating' : ''} />
+                <span>Refresh</span>
+              </button>
+              
+              <button 
+                className="action-button export"
+                onClick={exportLogs}
+                disabled={filteredLogs.length === 0}
+              >
+                <ArrowDownToLine size={16} />
+                <span>Export</span>
+              </button>
+            </div>
+          </div>
       
       <div className="logs-toolbar">
         <div className="search-container">
@@ -632,6 +663,11 @@ const Logs = () => {
         )}
         <div ref={logEndRef} />
       </div>
+        </>
+      )}
+
+      {/* BEA Logs Content */}
+      {activeTab === 'bea' && <BEALogs />}
     </div>
   );
 };

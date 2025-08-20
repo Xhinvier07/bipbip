@@ -77,6 +77,8 @@
   align-items: center;
   gap: 12px;
   position: relative;
+  width: 100%;
+  justify-content: center;
 }
 
 .avatar-container {
@@ -142,13 +144,9 @@
 
 /* Profile dropdown */
 .profile-dropdown {
-  position: absolute;
-  top: 65px;
-  left: 0;
   background-color: white;
   border-radius: 8px;
   box-shadow: var(--shadow-lg);
-  z-index: 1000;
   min-width: 150px;
   overflow: hidden;
 }

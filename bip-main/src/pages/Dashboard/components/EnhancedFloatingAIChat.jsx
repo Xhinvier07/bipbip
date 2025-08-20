@@ -303,7 +303,7 @@ const EnhancedFloatingAIChat = () => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        <img src="/chatbot.png" alt="BIP Chat" className="bipchat-toggle-icon" />
+        <img src="/chatbot.png" alt="BIP Chat" className={`bipchat-toggle-icon ${isOpen ? 'active' : ''}`} />
       </motion.button>
     </div>
   );

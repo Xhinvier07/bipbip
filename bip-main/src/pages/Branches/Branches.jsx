@@ -5,14 +5,19 @@ import DotGrid from '../../components/DotGrid';
 import BranchMap from './BranchMap';
 import BranchDetails from './BranchDetails';
 import BranchList from './BranchList';
+import { fetchBranchMetrics, getBranchCities } from './BranchDataService';
 import './Branches.css';
 
-// Function to fetch and parse the JSON data
+// Function to fetch branch data from Google Sheets
 async function fetchBranchData() {
   try {
-    const response = await fetch('/branch.json');
-    const data = await response.json();
-    return data;
+    const branchMetrics = await fetchBranchMetrics();
+    
+    if (!branchMetrics || branchMetrics.length === 0) {
+      throw new Error("No branch data available");
+    }
+    
+    return branchMetrics;
   } catch (error) {
     console.error("Failed to load branch data:", error);
     
@@ -23,28 +28,44 @@ async function fetchBranchData() {
         branch_name: "C3 A Mabini",
         address: "193 A. MABINI ST., BRGY 30, MAYPAJO, CALOOCAN CITY",
         latitude: 14.6402736,
-        longitude: 120.973027
+        longitude: 120.973027,
+        daily_transactions: 245,
+        avg_waiting_time: 12,
+        bhs: 78,
+        staff_utilization: 85
       },
       {
         city: "Caloocan",
         branch_name: "Caloocan",
         address: "1350-1352 Rizal Ave Extn ( between 6th & 7th Ave.), Brgy. 110 Gracepark, Caloocan City 1400",
         latitude: 14.6460235,
-        longitude: 120.9835707
+        longitude: 120.9835707,
+        daily_transactions: 178,
+        avg_waiting_time: 8,
+        bhs: 92,
+        staff_utilization: 76
       },
       {
         city: "Caloocan",
         branch_name: "Caloocan Camarin Susano",
         address: "Unit 1 Ground Floor, Aryanna Village Center, Brgy 175, Susano Road, Camarin, Caloocan City 1400",
         latitude: 14.7559063,
-        longitude: 120.0368598
+        longitude: 120.0368598,
+        daily_transactions: 132,
+        avg_waiting_time: 15,
+        bhs: 65,
+        staff_utilization: 92
       },
       {
         city: "Caloocan",
         branch_name: "EDSA - Monumento",
         address: "MCU Compound, EDSA Monumento, Barangay 84, Caloocan City 1400",
         latitude: 14.6574292,
-        longitude: 120.9831961
+        longitude: 120.9831961,
+        daily_transactions: 287,
+        avg_waiting_time: 18,
+        bhs: 72,
+        staff_utilization: 95
       }
     ];
   }
@@ -158,7 +179,17 @@ const Branches = () => {
   const handleCityFilter = (city) => {
     setCityFilter(city);
     setIsDropdownOpen(false);
+    // Reset visible count when filtering
+    setVisibleBranchCount(5);
   };
+  
+  // Expose the handleCityFilter to be used by the BranchList component
+  useEffect(() => {
+    window.handleCityFilter = handleCityFilter;
+    return () => {
+      delete window.handleCityFilter;
+    };
+  }, []);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -196,7 +227,7 @@ const Branches = () => {
                   placeholder="Search branches..."
                   value={searchQuery}
                   onChange={handleSearch}
-                  className="search-input"
+                  className="search-input-branch"
                 />
                 {searchQuery && (
                   <button className="clear-search" onClick={clearSearch}>

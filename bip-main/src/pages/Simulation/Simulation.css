@@ -374,6 +374,27 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 3px 8px;
+  border-radius: 4px;
+  transition: background-color 0.5s ease;
+}
+
+.simulation-timer:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background-color: #FEA000;
+  animation: timer-progress 3s linear infinite;
+}
+
+@keyframes timer-progress {
+  0% { width: 0; }
+  100% { width: 100%; }
 }
 
 /* Branch Floor Plan */

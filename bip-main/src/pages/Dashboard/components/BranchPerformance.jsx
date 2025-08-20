@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { TrendingUp, RefreshCcw, ArrowUpRight, Building2, Clock, Activity } from 'lucide-react';
 import { getBranchPerformanceData, getHealthScoreColor } from '../DashboardData';
+import { useNavigate } from 'react-router-dom';
+
 
 const BranchPerformance = () => {
+  const navigate = useNavigate();
   const [branchData, setBranchData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -31,7 +34,7 @@ const BranchPerformance = () => {
   };
 
   return (
-    <div className="dashboard-card performance-card">
+    <div className="dashboard-card performance-card dashboard-performance-card">
       <div className="card-header">
         <div className="card-title">
           <TrendingUp size={18} />
@@ -61,11 +64,11 @@ const BranchPerformance = () => {
               </div>
               <div className="metric-header">
                 <Activity size={16} />
-                <span>TXN Count</span>
+                <span>TXN </span>
               </div>
               <div className="metric-header">
                 <Clock size={16} />
-                <span>Avg. WT</span>
+                <span>AWT</span>
               </div>
               <div className="metric-header">
                 <TrendingUp size={16} />
@@ -74,7 +77,7 @@ const BranchPerformance = () => {
             </div>
             
             <div className="branch-items-container">
-              {branchData.map((branch) => (
+              {branchData.slice(0, 10).map((branch) => (
                 <div key={branch.name} className="enhanced-branch-item">
                   <div className="branch-item-name" title={branch.name}>
                     {branch.name.length > 20 ? `${branch.name.substring(0, 18)}...` : branch.name}
@@ -99,7 +102,7 @@ const BranchPerformance = () => {
             </div>
             
             <div className="view-all-branches">
-              <button className="view-all-btn">
+              <button className="view-all-btn" onClick={() => navigate('/branches')}>
                 <span>View All Branches</span>
                 <ArrowUpRight size={14} />
               </button>

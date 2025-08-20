@@ -1,31 +1,39 @@
-/* Enhanced Staff Utilization */
-.utilization-dashboard {
+/* Staff Utilization Component Styles */
+
+/* Main container layout */
+.staff-utilization-container {
   display: flex;
   flex-direction: column;
+  gap: 24px;
   height: 100%;
+  overflow: hidden;
+}
+
+.staff-util-row {
+  display: flex;
   gap: 20px;
 }
 
-.utilization-main-metrics {
-  display: flex;
-  gap: 24px;
-  align-items: center;
+/* First row layout - Overall rate and metrics */
+.staff-util-row:first-child {
+  height: 140px;
 }
 
-.utilization-gauge-container {
-  position: relative;
-  width: 140px;
-  height: 140px;
+/* Overall rate gauge */
+.overall-rate-container {
+  width: 35%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.utilization-gauge-enhanced {
+.gauge-wrapper {
   position: relative;
+  width: 120px;
+  height: 120px;
 }
 
-.utilization-gauge-content {
+.gauge-content {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -36,118 +44,124 @@
   text-align: center;
 }
 
-.utilization-rate {
+.rate-value {
   font-size: 28px;
   font-weight: 600;
   color: #333;
   line-height: 1.2;
 }
 
-.utilization-label {
+.rate-label {
   font-size: 12px;
   color: #777;
   margin-bottom: 2px;
 }
 
-.utilization-trend {
+.rate-trend {
   font-size: 12px;
   margin-top: 2px;
 }
 
-.utilization-trend .positive {
+.rate-trend .positive {
   color: #10B981;
   display: flex;
   align-items: center;
   gap: 2px;
 }
 
-.utilization-trend .negative {
+.rate-trend .negative {
   color: #EF4444;
   display: flex;
   align-items: center;
   gap: 2px;
 }
 
-.utilization-metrics-grid {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.utilization-metric-card {
+/* Utilization metrics */
+.utilization-metrics {
+  width: 65%;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px;
+  gap: 16px;
+}
+
+.metric-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
   border-radius: 10px;
-  background-color: #f9f9f9;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  min-width: 110px; /* Ensure minimum width to prevent overflow */
 }
 
-.active-card {
-  background-color: rgba(16, 185, 129, 0.1);
+.metric-item.active {
+  border-left: 4px solid #10B981;
 }
 
-.idle-card {
-  background-color: rgba(254, 160, 0, 0.1);
+.metric-item.idle {
+  border-left: 4px solid #FEA000;
 }
 
-.overtime-card {
-  background-color: rgba(207, 61, 88, 0.1);
+.metric-item.overtime {
+  border-left: 4px solid #CF3D58;
 }
 
-.metric-card-icon {
+.metric-icon {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  background-color: white;
+  background-color: #f8f9fa;
 }
 
-.active-card .metric-card-icon {
+.metric-item.active .metric-icon {
   color: #10B981;
 }
 
-.idle-card .metric-card-icon {
+.metric-item.idle .metric-icon {
   color: #FEA000;
 }
 
-.overtime-card .metric-card-icon {
+.metric-item.overtime .metric-icon {
   color: #CF3D58;
 }
 
-.metric-card-content {
+.metric-details {
   display: flex;
   flex-direction: column;
 }
 
-.metric-card-value {
+.metric-value {
   font-size: 18px;
   font-weight: 600;
 }
 
-.active-card .metric-card-value {
+.metric-item.active .metric-value {
   color: #10B981;
 }
 
-.idle-card .metric-card-value {
+.metric-item.idle .metric-value {
   color: #FEA000;
 }
 
-.overtime-card .metric-card-value {
+.metric-item.overtime .metric-value {
   color: #CF3D58;
 }
 
-.metric-card-label {
+.metric-label {
   font-size: 12px;
   color: #666;
 }
 
-/* Enhanced Branch Utilization */
-.branch-utilization-enhanced {
-  margin-top: 10px;
+/* Branch utilization section */
+.branch-util-section {
+  flex-direction: column;
+  height: calc(100% - 140px - 24px);
+  overflow: hidden;
 }
 
 .branch-util-header {
@@ -155,6 +169,8 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .branch-util-header h3 {
@@ -183,22 +199,23 @@
   border-radius: 2px;
 }
 
-.branch-util-list-enhanced {
+.branch-util-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  max-height: 200px;
-  overflow-y: auto;
-  padding-right: 4px;
-}
-
-.branch-util-item-enhanced {
-  display: flex;
-  align-items: center;
   gap: 12px;
+  overflow-y: auto;
+  height: 100%;
+  padding-right: 5px;
+  max-height: 290px; /* Show approximately 5 branches */
 }
 
-.branch-util-rank {
+.branch-util-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.branch-rank {
   width: 24px;
   height: 24px;
   display: flex;
@@ -211,14 +228,14 @@
   color: #555;
 }
 
-.branch-util-details {
+.branch-details {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
-.branch-util-name-enhanced {
+.branch-name {
   font-size: 13px;
   font-weight: 500;
   color: #444;
@@ -227,7 +244,7 @@
   text-overflow: ellipsis;
 }
 
-.branch-util-bar-container-enhanced {
+.branch-bar-wrapper {
   position: relative;
   height: 16px;
   background-color: #f3f3f3;
@@ -235,17 +252,77 @@
   overflow: hidden;
 }
 
-.branch-util-bar-enhanced {
+.branch-bar {
   height: 100%;
   border-radius: 8px;
   transition: width 0.5s ease;
 }
 
-.branch-util-value-enhanced {
+.branch-value {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 11px;
-  font-weight: 600;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  right: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Loading and refresh animations */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: 200px;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.rotating {
+  animation: rotate 1.5s linear infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .staff-util-row:first-child {
+    flex-direction: column;
+    height: auto;
+    gap: 16px;
+  }
+  
+  .overall-rate-container,
+  .utilization-metrics {
+    width: 100%;
+  }
+  
+  .utilization-metrics {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .metric-item {
+    min-width: calc(33.33% - 11px);
+  }
+}
+
+@media (max-width: 768px) {
+  .branch-util-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .utilization-metrics {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .metric-item {
+    width: 100%;
+  }
 }

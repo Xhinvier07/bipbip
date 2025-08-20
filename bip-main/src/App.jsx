@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import Layout from './components/Layout/Layout';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -11,26 +12,27 @@ import Help from './pages/Help/Help';
 import Logs from './pages/Logs/Logs';
 import './App.css';
 
+// Protected route wrapper that uses Supabase auth
+const ProtectedRoute = ({ children }) => {
+  const { user, loading } = useAuth();
+  
+  if (loading) {
+    return <div className="loading-screen">Loading...</div>;
+  }
+  
+  if (!user) {
+    return <Navigate to="/" replace />;
+  }
+  
+  return children;
+};
+
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  // Simulate login
-  const handleLogin = () => {
-    setIsAuthenticated(true);
-  };
-
-  // Protected route wrapper
-  const ProtectedRoute = ({ children }) => {
-    if (!isAuthenticated) {
-      return <Navigate to="/" replace />;
-    }
-    return children;
-  };
-
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Login onLogin={handleLogin} />} />
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Login />} />
         
         {/* Protected Routes */}
         <Route path="/dashboard" element={
@@ -94,6 +96,7 @@ function App() {
         
         <Route path="/logout" element={<Navigate to="/" replace />} />
       </Routes>
+      </AuthProvider>
     </Router>
   );
 }

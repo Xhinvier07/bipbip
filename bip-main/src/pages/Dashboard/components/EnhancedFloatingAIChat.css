@@ -13,29 +13,42 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: #FEA000;
+  width: auto;
+  height: auto;
+  background-color: transparent;
   color: white;
   border: none;
-  box-shadow: 0 4px 12px rgba(254, 160, 0, 0.3);
   cursor: pointer;
   transition: all 0.2s ease;
-  overflow: hidden;
   padding: 0;
+  position: relative;
 }
 
 .bipchat-toggle:hover {
-  background-color: #e59000;
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(254, 160, 0, 0.4);
 }
 
 .bipchat-toggle-icon {
-  width: 36px;
-  height: 36px;
+  width: 64px;
+  height: 64px;
   object-fit: contain;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.bipchat-toggle-icon.active {
+  animation: none;
 }
 
 /* Chat Window */

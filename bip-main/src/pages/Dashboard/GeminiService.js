@@ -1,6 +1,6 @@
 // Gemini API Service for BipChat
 const API_KEY = 'AIzaSyD7qQhUGKa54viEjTIVyTt6z2zcBPwbc40';
-const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
 
 /**
  * System prompt that explains what BIP is and what data is available

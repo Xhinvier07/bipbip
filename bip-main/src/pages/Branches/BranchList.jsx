@@ -1,15 +1,28 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, ChevronRight, Filter } from 'lucide-react';
+import { cities } from '../Reports/ReportsData';
 
 const BranchList = ({ branches, totalCount, selectedBranch, onSelectBranch, onLoadMore, hasMore }) => {
   const [showCityFilter, setShowCityFilter] = useState(false);
+  // Use predefined cities list from ReportsData.js
+  const availableCities = ['All Cities', ...cities];
   
   const toggleCityFilter = () => {
     setShowCityFilter(!showCityFilter);
   };
+  
   const handleBranchClick = (branch) => {
     onSelectBranch(branch);
+  };
+  
+  const handleCityFilter = (city) => {
+    // Find parent component's city filter handler
+    const parentFilterHandler = window.handleCityFilter;
+    if (parentFilterHandler && typeof parentFilterHandler === 'function') {
+      parentFilterHandler(city === 'All Cities' ? 'all' : city);
+    }
+    setShowCityFilter(false);
   };
 
   return (
@@ -24,11 +37,15 @@ const BranchList = ({ branches, totalCount, selectedBranch, onSelectBranch, onLo
           <div className="city-filter-dropdown">
             <div className="city-filter-title">Filter by City</div>
             <div className="city-filter-options">
-              <div className="city-option">All Cities</div>
-              <div className="city-option">Mandaluyong</div>
-              <div className="city-option">Caloocan</div>
-              <div className="city-option">Quezon City</div>
-              <div className="city-option">Makati</div>
+              {availableCities.map(city => (
+                <div 
+                  key={city} 
+                  className="city-option" 
+                  onClick={() => handleCityFilter(city)}
+                >
+                  {city}
+                </div>
+              ))}
             </div>
           </div>
         )}

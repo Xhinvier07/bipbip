@@ -49,12 +49,15 @@
   background-color: #f9f9f9;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
-  z-index: 5;
+  z-index: 20; /* Increased z-index to avoid conflicts */
+  position: relative; /* Ensure z-index works properly */
 }
 
 .branches-redesign .search-container {
   position: relative;
   width: 300px;
+  z-index: 30; /* Higher z-index than surrounding elements */
+  isolation: isolate; /* Creates a new stacking context */
 }
 
 .branches-redesign .search-icon {
@@ -63,22 +66,38 @@
   top: 50%;
   transform: translateY(-50%);
   color: #888;
+  z-index: 31;
+  pointer-events: none; /* Ensures the icon doesn't interfere with input interactions */
 }
 
-.branches-redesign .search-input {
-  width: 100%;
-  padding: 12px 12px 12px 38px;
+.branches-redesign .search-input-branch {
+  width: 50%;
+  height: 40px; /* Fixed height for consistency */
+  padding: 0 38px 0 38px; /* Adjusted padding for icon space */
   border-radius: 24px;
   border: 1px solid #e2e8f0;
   background-color: white;
   font-size: 14px;
   transition: all 0.2s ease;
+  /* Reset all potential inherited styles */
+  color: #333;
+  font-family: inherit;
+  box-sizing: border-box;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
-.branches-redesign .search-input:focus {
+.branches-redesign .search-input-branch:focus {
   outline: none;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(207, 61, 88, 0.1);
+  box-shadow: 0 0 0 3px rgba(207, 61, 88, 0.15);
+}
+
+.branches-redesign .search-input-branch::placeholder {
+  color: #a0aec0;
+  opacity: 1;
 }
 
 .branches-redesign .clear-search {
@@ -93,6 +112,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 31;
+  height: 20px;
+  width: 20px;
+  padding: 0;
+  border-radius: 50%;
 }
 
 .branches-redesign .clear-search:hover {
@@ -752,6 +776,111 @@
 
 .branches-redesign .metric-card:nth-child(4) .metric-value {
   color: #CF3D58;
+}
+
+.branches-redesign .simulation-params {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #eef2f6;
+}
+
+.branches-redesign .params-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+  margin: 0 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.branches-redesign .params-title svg {
+  margin-right: 6px;
+}
+
+.branches-redesign .simulation-time {
+  font-size: 13px;
+  color: #FEA000;
+  font-weight: 700;
+  background-color: rgba(254, 160, 0, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+.branches-redesign .param-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.branches-redesign .param-row label {
+  font-size: 13px;
+  color: #555;
+  flex: 1;
+}
+
+.branches-redesign .param-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 100px;
+  justify-content: flex-end;
+}
+
+.branches-redesign .param-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: white;
+  color: #444;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.branches-redesign .param-btn:hover:not(:disabled) {
+  background-color: #f0f0f0;
+}
+
+.branches-redesign .param-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.branches-redesign .traffic-pattern-select {
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 13px;
+  min-width: 150px;
+  background-color: white;
+}
+
+.branches-redesign .traffic-pattern-select:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.branches-redesign .action-btn.stop {
+  background-color: #e74c3c;
+}
+
+.branches-redesign .action-btn.stop:hover {
+  background-color: #c0392b;
 }
 
 .branches-redesign .branch-actions {

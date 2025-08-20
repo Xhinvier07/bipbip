@@ -9,7 +9,7 @@ const CSATSummary = () => {
     neutralFeedback,
     negativeFeedback,
     topPerformer,
-    ConsistentPerformer,
+    ConsistentBranch,
     RisingBranch,
     needsImprovement,
     commonTags
@@ -69,10 +69,8 @@ const CSATSummary = () => {
           <div className="performance-card">
             <h4>Top Performer</h4>
             <div className="branch-rating">
-              <div>
-                <div className="branch-name">{topPerformer.branchName}</div>
-                <div className="branch-city">{topPerformer.city}</div>
-              </div>
+              <div className="branch-name" title={topPerformer.branchName}>{topPerformer.branchName}</div>
+              <div className="branch-city">{topPerformer.city}</div>
               <div className="branch-score" style={{ color: getSentimentColor(topPerformer.score) }}>
                 {topPerformer.score}%
               </div>
@@ -80,27 +78,21 @@ const CSATSummary = () => {
           </div>
 
           <div className="performance-card">
-            <h4>Consistent Performer</h4>
+            <h4>Consistent Branch</h4>
             <div className="branch-rating">
-              <div>
-                <div className="branch-name">{ConsistentPerformer.branchName}</div>
-                <div className="branch-city">{ConsistentPerformer.city}</div>
-              </div>
-              <div className="branch-score" style={{ color: getSentimentColor(ConsistentPerformer.score) }}>
-                {ConsistentPerformer.score}%
+              <div className="branch-name" title={ConsistentBranch.branchName}>{ConsistentBranch.branchName}</div>
+              <div className="branch-city">{ConsistentBranch.city}</div>
+              <div className="branch-score" style={{ color: getSentimentColor(ConsistentBranch.score) }}>
+                {ConsistentBranch.score}%
               </div>
             </div>
           </div>
-        </div>
-
-          <div className="branch-performance">
+        
           <div className="performance-card">
-            <h4>Top Performer</h4>
+            <h4>Rising Star</h4>
             <div className="branch-rating">
-              <div>
-                <div className="branch-name">{RisingBranch.branchName}</div>
-                <div className="branch-city">{RisingBranch.city}</div>
-              </div>
+              <div className="branch-name" title={RisingBranch.branchName}>{RisingBranch.branchName}</div>
+              <div className="branch-city">{RisingBranch.city}</div>
               <div className="branch-score" style={{ color: getSentimentColor(RisingBranch.score) }}>
                 {RisingBranch.score}%
               </div>
@@ -110,10 +102,8 @@ const CSATSummary = () => {
           <div className="performance-card">
             <h4>Needs Improvement</h4>
             <div className="branch-rating">
-              <div>
-                <div className="branch-name">{needsImprovement.branchName}</div>
-                <div className="branch-city">{needsImprovement.city}</div>
-              </div>
+              <div className="branch-name" title={needsImprovement.branchName}>{needsImprovement.branchName}</div>
+              <div className="branch-city">{needsImprovement.city}</div>
               <div className="branch-score" style={{ color: getSentimentColor(needsImprovement.score) }}>
                 {needsImprovement.score}%
               </div>

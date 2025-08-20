@@ -49,7 +49,7 @@ const CustomerSatisfaction = () => {
       <div className="card-header">
         <div className="card-title">
           <ThumbsUp size={18} />
-          <h2>Customer Satisfaction</h2>
+          <h2>Customer Satisfaction Score (CSAT)</h2>
         </div>
         <div className="card-actions">
           <button 
@@ -141,7 +141,7 @@ const CustomerSatisfaction = () => {
             </div>
             
             <div className="top-branches-satisfaction-enhanced">
-              <h3>Top Performing Branches</h3>
+              <h3>Top Performing Branches (CSAT)</h3>
               <div className="branch-satisfaction-list-enhanced">
                 {satisfactionData.topBranches.map((branch, idx) => (
                   <div key={idx} className="branch-satisfaction-item-enhanced">

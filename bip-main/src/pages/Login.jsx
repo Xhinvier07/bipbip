@@ -1,7 +1,8 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { FaUser, FaLock, FaGoogle, FaEnvelope } from 'react-icons/fa';
+import { FaUser, FaLock, FaGoogle, FaEnvelope, FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useAuth } from '../context/AuthContext';
 import DotGrid from '../components/DotGrid';
 import logoPath from '../assets/logo.png';
 import bannerPath from '/banner_login.gif';
@@ -9,20 +10,75 @@ import bgLogin from '/bg_login.png';
 
 const Login = ({ onLogin }) => {
   const [isLogin, setIsLogin] = useState(true);
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  
   const containerRef = useRef(null);
   const navigate = useNavigate();
+  const { signIn, signUp, signInWithGoogle, user } = useAuth();
+  
+  // Redirect if user is already logged in
+  useEffect(() => {
+    if (user) {
+      navigate('/dashboard');
+    }
+  }, [user, navigate]);
   
   const toggleForm = () => {
     setIsLogin(!isLogin);
+    setError('');
   };
   
-  const handleSubmit = (e) => {
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+  
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Call the onLogin function from props
-    if (onLogin) {
-      onLogin();
-      // Navigate to dashboard
-      navigate('/dashboard');
+    setError('');
+    setLoading(true);
+    
+    try {
+      if (isLogin) {
+        // Login
+        await signIn(email, password);
+        if (onLogin) onLogin();
+        navigate('/dashboard');
+      } else {
+        // Registration
+        if (password !== confirmPassword) {
+          throw new Error('Passwords do not match');
+        }
+        await signUp(email, password);
+        // Show success message or redirect
+        setIsLogin(true);
+        setError('Registration successful! Please check your email for verification.');
+      }
+    } catch (err) {
+      setError(err.message || 'An error occurred');
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  const handleGoogleSignIn = async () => {
+    try {
+      setLoading(true);
+      await signInWithGoogle();
+      // The redirect will happen automatically
+    } catch (err) {
+      setError(err.message || 'Error signing in with Google');
+      setLoading(false);
     }
   };
 
@@ -215,14 +271,47 @@ const Login = ({ onLogin }) => {
                   gap: '14px',
                   flex: 1
                 }}>
+                  <motion.div 
+                    style={{ position: 'relative' }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    <FaEnvelope style={{
+                      position: 'absolute',
+                      left: '12px',
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      color: '#888',
+                      fontSize: '14px'
+                    }} />
+                    <input 
+                      type="email" 
+                      placeholder="Email" 
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required 
+                      style={{
+                        width: '100%',
+                        padding: '10px 10px 10px 36px',
+                        borderRadius: '8px',
+                        border: '1px solid #e2e8f0',
+                        backgroundColor: '#ffffff',
+                        fontSize: '14px',
+                        fontFamily: 'Inter, sans-serif',
+                        boxSizing: 'border-box'
+                      }}
+                    />
+                  </motion.div>
+                  
                   {!isLogin && (
                     <motion.div 
                       style={{ position: 'relative' }}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.2 }}
+                      transition={{ delay: 0.3 }}
                     >
-                      <FaEnvelope style={{
+                      <FaUser style={{
                         position: 'absolute',
                         left: '12px',
                         top: '50%',
@@ -231,8 +320,10 @@ const Login = ({ onLogin }) => {
                         fontSize: '14px'
                       }} />
                       <input 
-                        type="email" 
-                        placeholder="Email" 
+                        type="text" 
+                        placeholder="Username" 
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                         required 
                         style={{
                           width: '100%',
@@ -252,37 +343,6 @@ const Login = ({ onLogin }) => {
                     style={{ position: 'relative' }}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: isLogin ? 0.2 : 0.3 }}
-                  >
-                    <FaUser style={{
-                      position: 'absolute',
-                      left: '12px',
-                      top: '50%',
-                      transform: 'translateY(-50%)',
-                      color: '#888',
-                      fontSize: '14px'
-                    }} />
-                    <input 
-                      type="text" 
-                      placeholder="Username" 
-                      required 
-                      style={{
-                        width: '100%',
-                        padding: '10px 10px 10px 36px',
-                        borderRadius: '8px',
-                        border: '1px solid #e2e8f0',
-                        backgroundColor: '#ffffff',
-                        fontSize: '14px',
-                        fontFamily: 'Inter, sans-serif',
-                        boxSizing: 'border-box'
-                      }}
-                    />
-                  </motion.div>
-                  
-                  <motion.div 
-                    style={{ position: 'relative' }}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: isLogin ? 0.3 : 0.4 }}
                   >
                     <FaLock style={{
@@ -294,8 +354,10 @@ const Login = ({ onLogin }) => {
                       fontSize: '14px'
                     }} />
                     <input 
-                      type="password" 
+                      type={showPassword ? "text" : "password"}
                       placeholder="Password" 
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       required 
                       style={{
                         width: '100%',
@@ -308,6 +370,19 @@ const Login = ({ onLogin }) => {
                         boxSizing: 'border-box'
                       }}
                     />
+                    <div 
+                      onClick={togglePasswordVisibility}
+                      style={{
+                        position: 'absolute',
+                        right: '12px',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        color: '#888',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      {showPassword ? <FaEyeSlash size={16} /> : <FaEye size={16} />}
+                    </div>
                   </motion.div>
                   
                   {!isLogin && (
@@ -326,8 +401,10 @@ const Login = ({ onLogin }) => {
                         fontSize: '14px'
                       }} />
                       <input 
-                        type="password" 
+                        type={showConfirmPassword ? "text" : "password"}
                         placeholder="Confirm Password" 
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                         required 
                         style={{
                           width: '100%',
@@ -340,6 +417,19 @@ const Login = ({ onLogin }) => {
                           boxSizing: 'border-box'
                         }}
                       />
+                      <div 
+                        onClick={toggleConfirmPasswordVisibility}
+                        style={{
+                          position: 'absolute',
+                          right: '12px',
+                          top: '50%',
+                          transform: 'translateY(-50%)',
+                          color: '#888',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        {showConfirmPassword ? <FaEyeSlash size={16} /> : <FaEye size={16} />}
+                      </div>
                     </motion.div>
                   )}
                   
@@ -365,8 +455,27 @@ const Login = ({ onLogin }) => {
                     </motion.div>
                   )}
                   
+                  {/* Error message */}
+                  {error && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      style={{
+                        padding: '8px 12px',
+                        borderRadius: '6px',
+                        backgroundColor: error.includes('successful') ? '#d4edda' : '#f8d7da',
+                        color: error.includes('successful') ? '#155724' : '#721c24',
+                        fontSize: '13px',
+                        marginBottom: '10px'
+                      }}
+                    >
+                      {error}
+                    </motion.div>
+                  )}
+                
                   <motion.button 
                     type="submit"
+                    disabled={loading}
                     whileTap={{ scale: 0.95 }}
                     whileHover={{ scale: 1.02 }}
                     initial={{ opacity: 0, y: 20 }}
@@ -380,12 +489,13 @@ const Login = ({ onLogin }) => {
                       borderRadius: '8px',
                       fontWeight: 600,
                       fontSize: '14px',
-                      cursor: 'pointer',
+                      cursor: loading ? 'not-allowed' : 'pointer',
                       fontFamily: 'Inter, sans-serif',
-                      marginTop: '5px'
+                      marginTop: '5px',
+                      opacity: loading ? 0.7 : 1
                     }}
                   >
-                    {isLogin ? 'Login' : 'Sign Up'}
+                    {loading ? 'Processing...' : (isLogin ? 'Login' : 'Sign Up')}
                   </motion.button>
                   
                   <motion.div 
@@ -425,6 +535,8 @@ const Login = ({ onLogin }) => {
                   
                     <motion.button 
                       type="button"
+                      onClick={handleGoogleSignIn}
+                      disabled={loading}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       style={{
@@ -436,12 +548,13 @@ const Login = ({ onLogin }) => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        cursor: 'pointer',
+                        cursor: loading ? 'not-allowed' : 'pointer',
                         fontFamily: 'Inter, sans-serif',
                         fontSize: '13px',
                         fontWeight: 500,
                         color: '#3c4043',
-                        marginTop: '10px'
+                        marginTop: '10px',
+                        opacity: loading ? 0.7 : 1
                       }}
                     >
                       <FaGoogle style={{ color: '#DB4437', marginRight: '10px' }} />
