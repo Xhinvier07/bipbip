@@ -547,8 +547,9 @@
 }
 
 .user-message .message-content {
-  background-color: #f0f5ff;
-  border-color: #e6effe;
+  background-color: #ffffff;
+  color: white;
+  border-color: #FEA000;
 }
 
 .message-content p {
@@ -790,15 +791,19 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s;
+  box-shadow: 0 2px 6px rgba(254, 160, 0, 0.2);
 }
 
 .send-button:disabled {
-  opacity: 0.6;
+  background-color: #ccc;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 .send-button:not(:disabled):hover {
-  background-color: #e59200;
+  background-color: #e59000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(254, 160, 0, 0.3);
 }
 
 /* Responsive styles */

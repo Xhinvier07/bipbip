@@ -21,16 +21,18 @@ import {
   Database,
   ExternalLink,
   Building2,
-  Layers
+  Layers,
+  FileSpreadsheet
 } from 'lucide-react';
 import { fetchMainSheetData } from '../Dashboard/GoogleSheetsService';
 
 import './Logs.css';
 import { generateMockLogs } from './LogsData';
 import BEALogs from './BEALogs';
+import TransactionLogs from './TransactionLogs';
 
 const Logs = () => {
-  const [activeTab, setActiveTab] = useState('system'); // 'system' or 'bea'
+  const [activeTab, setActiveTab] = useState('system'); // 'system', 'bea', or 'transactions'
   const [logs, setLogs] = useState([]);
   const [filteredLogs, setFilteredLogs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -320,7 +322,14 @@ const Logs = () => {
           onClick={() => changeTab('bea')}
         >
           <Building2 size={18} />
-          <span>BEA Logs</span>
+          <span>BEA Summary</span>
+        </button>
+        <button 
+          className={`log-tab ${activeTab === 'transactions' ? 'active' : ''}`}
+          onClick={() => changeTab('transactions')}
+        >
+          <FileSpreadsheet size={18} />
+          <span>Transaction Logs</span>
         </button>
       </div>
 
@@ -668,6 +677,9 @@ const Logs = () => {
 
       {/* BEA Logs Content */}
       {activeTab === 'bea' && <BEALogs />}
+
+      {/* Transaction Logs Content */}
+      {activeTab === 'transactions' && <TransactionLogs />}
     </div>
   );
 };

@@ -14,13 +14,15 @@ import {
   MapPin,
   BrainCircuit,
   Lightbulb,
-  LayoutDashboard
+  LayoutDashboard,
+  Loader
 } from 'lucide-react';
 
 import ChatMessage from './components/ChatMessage';
 import ChatInput from './components/ChatInput';
 import BipVisualization from './components/BipVisualization';
-import { generateResponse, getSuggestedQueries, exampleVisualizationData } from './BipChatData';
+import { exampleVisualizationData } from './BipChatData'; // Keep for fallbacks
+import { generateBipResponse, getDataDrivenQueries } from '../../services/BipAIService';
 import './BipChat.css';
 
 const BipChat = () => {
@@ -35,10 +37,11 @@ const BipChat = () => {
   
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [suggestedQueries, setSuggestedQueries] = useState(getSuggestedQueries());
+  const [suggestedQueries, setSuggestedQueries] = useState([]);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [activeTool, setActiveTool] = useState(null);
   const [showWelcomeScreen, setShowWelcomeScreen] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
@@ -49,14 +52,28 @@ const BipChat = () => {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages]);
+  
+  // Load data-driven suggested queries on mount
+  useEffect(() => {
+    const loadSuggestedQueries = async () => {
+      try {
+        const queries = await getDataDrivenQueries();
+        setSuggestedQueries(queries);
+      } catch (error) {
+        console.error("Error loading suggested queries:", error);
+      }
+    };
+    
+    loadSuggestedQueries();
+  }, []);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
 
-  const handleSendMessage = (e) => {
+  const handleSendMessage = async (e) => {
     e.preventDefault();
-    if (inputValue.trim() === '') return;
+    if (inputValue.trim() === '' || isLoading) return;
     
     // Add user message
     const userMessage = {
@@ -69,29 +86,51 @@ const BipChat = () => {
     setMessages(prev => [...prev, userMessage]);
     setInputValue('');
     setIsTyping(true);
+    setIsLoading(true);
     setShowWelcomeScreen(false);
     
-    // Simulate typing delay
-    setTimeout(() => {
-      // Generate response and visualization if needed
-      const { response, visualization } = generateResponse(inputValue);
+    try {
+      // Get conversation history for context
+      const conversationHistory = messages.map(msg => ({
+        type: msg.role === 'user' ? 'user' : 'model',
+        text: msg.content
+      })).slice(-6); // Last 6 messages for context
+      
+      // Generate AI response with real data
+      const aiResponse = await generateBipResponse(inputValue, conversationHistory);
       
       const assistantMessage = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: response,
+        content: aiResponse.text,
         timestamp: new Date(),
-        visualization: visualization,
+        visualization: aiResponse.visualization,
+        data: aiResponse.data
       };
       
       setMessages(prev => [...prev, assistantMessage]);
-      setIsTyping(false);
       
-      // Generate new suggested queries after the conversation has progressed
+      // Generate new suggested queries based on the conversation context
       if (messages.length > 3) {
-        setSuggestedQueries(getSuggestedQueries());
+        const newQueries = await getDataDrivenQueries();
+        setSuggestedQueries(newQueries);
       }
-    }, 1500);
+    } catch (error) {
+      console.error("Error generating response:", error);
+      
+      // Add error message
+      const errorMessage = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: "I'm sorry, I encountered an error analyzing the data. Please try again later.",
+        timestamp: new Date()
+      };
+      
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsTyping(false);
+      setIsLoading(false);
+    }
   };
 
   const handleSuggestedQuery = (query) => {

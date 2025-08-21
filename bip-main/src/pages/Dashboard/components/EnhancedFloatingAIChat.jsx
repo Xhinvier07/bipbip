@@ -12,7 +12,8 @@ import {
   BarChart2,
   BrainCircuit
 } from 'lucide-react';
-import { generateGeminiResponse, getSuggestedQueries } from '../GeminiService';
+import { getSuggestedQueries } from '../GeminiService';
+import { generateBipResponse, getDataDrivenQueries } from '../../../services/BipAIService';
 import './EnhancedFloatingAIChat.css';
 
 const EnhancedFloatingAIChat = () => {
@@ -27,7 +28,7 @@ const EnhancedFloatingAIChat = () => {
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [suggestedQueries, setSuggestedQueries] = useState(getSuggestedQueries());
+  const [suggestedQueries, setSuggestedQueries] = useState([]);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -44,6 +45,22 @@ const EnhancedFloatingAIChat = () => {
       inputRef.current.focus();
     }
   }, [isOpen]);
+  
+  // Load data-driven suggested queries on mount
+  useEffect(() => {
+    const loadSuggestedQueries = async () => {
+      try {
+        const queries = await getDataDrivenQueries();
+        setSuggestedQueries(queries);
+      } catch (error) {
+        console.error("Error loading suggested queries:", error);
+        // Fall back to static queries if there's an error
+        setSuggestedQueries(getSuggestedQueries());
+      }
+    };
+    
+    loadSuggestedQueries();
+  }, []);
 
   const toggleChat = () => {
     setIsOpen(!isOpen);
@@ -84,23 +101,29 @@ const EnhancedFloatingAIChat = () => {
 
     try {
       // Get conversation history for context
-      const conversationHistory = messages.slice(-6); // Last 6 messages for context
+      const conversationHistory = messages.map(msg => ({
+        type: msg.type === 'user' ? 'user' : 'model',
+        text: msg.text
+      })).slice(-6); // Last 6 messages for context
       
-      const response = await generateGeminiResponse(userMessage.text, conversationHistory);
+      // Generate AI response with real data access
+      const aiResponse = await generateBipResponse(userMessage.text, conversationHistory);
       
       const botMessage = {
         id: Date.now() + 1,
         type: 'bot',
-        text: response.text,
-        data: response.data,
+        text: aiResponse.text,
+        data: aiResponse.data,
+        visualization: aiResponse.visualization,
         timestamp: new Date()
       };
 
       setMessages(messages => [...messages, botMessage]);
       
-      // Generate new suggested queries after the conversation progresses
+      // Generate new suggested queries based on the updated context
       if (messages.length > 4) {
-        setSuggestedQueries(getSuggestedQueries());
+        const newQueries = await getDataDrivenQueries();
+        setSuggestedQueries(newQueries);
       }
     } catch (error) {
       console.error('Error generating AI response:', error);
@@ -108,7 +131,7 @@ const EnhancedFloatingAIChat = () => {
       const errorMessage = {
         id: Date.now() + 1,
         type: 'bot',
-        text: "I'm sorry, I encountered an error processing your request. Please try again later.",
+        text: "I'm sorry, I encountered an error analyzing the data. Please try again later.",
         timestamp: new Date()
       };
 
@@ -126,16 +149,70 @@ const EnhancedFloatingAIChat = () => {
   };
 
   const renderMessageContent = (message) => {
-    if (message.data) {
-      return (
-        <>
-          <p>{message.text}</p>
+    return (
+      <>
+        <p dangerouslySetInnerHTML={{ __html: message.text }}></p>
+        
+        {/* Render visualization if available */}
+        {message.visualization && (
+          <div className="ai-chat-visualization">
+            <canvas 
+              id={`visualization-${message.id}`} 
+              width={300} 
+              height={200}
+              ref={canvas => {
+                if (canvas && message.visualization) {
+                  // Simple renderer for visualizations in the chat
+                  // This is a placeholder - in a real app, you'd use a proper charting library
+                  const ctx = canvas.getContext('2d');
+                  ctx.clearRect(0, 0, canvas.width, canvas.height);
+                  ctx.fillStyle = '#f5f5f5';
+                  ctx.fillRect(0, 0, canvas.width, canvas.height);
+                  ctx.fillStyle = '#333';
+                  ctx.font = '12px Arial';
+                  ctx.textAlign = 'center';
+                  ctx.fillText(message.visualization.title || 'Data Visualization', canvas.width / 2, 20);
+                  
+                  // Draw a placeholder visualization
+                  if (message.visualization.type === 'barChart') {
+                    const data = message.visualization.data;
+                    if (data && data.labels && data.datasets) {
+                      const barWidth = canvas.width / (data.labels.length * 2);
+                      const maxValue = Math.max(...data.datasets[0].data);
+                      
+                      data.labels.forEach((label, i) => {
+                        const value = data.datasets[0].data[i];
+                        const x = 40 + i * (canvas.width - 80) / (data.labels.length);
+                        const barHeight = (value / maxValue) * 140;
+                        
+                        ctx.fillStyle = data.datasets[0].backgroundColor || '#FEA000';
+                        ctx.fillRect(x, 180 - barHeight, barWidth, barHeight);
+                        
+                        ctx.fillStyle = '#666';
+                        ctx.font = '10px Arial';
+                        ctx.textAlign = 'center';
+                        ctx.fillText(label.substring(0, 10), x + barWidth/2, 195);
+                      });
+                    }
+                  }
+                }
+              }}
+            />
+            {message.visualization.caption && (
+              <div className="visualization-caption">{message.visualization.caption}</div>
+            )}
+          </div>
+        )}
+        
+        {/* Render structured data if available */}
+        {message.data && Array.isArray(message.data) && (
           <div className="ai-chat-data">
             {message.data.map((item, idx) => (
               <div key={idx} className="ai-chat-data-item">
                 {/* Branch or City Name */}
                 {item.name && <h4>{item.name}</h4>}
                 {item.city && <h4>{item.city}</h4>}
+                {item.branch_name && <h4>{item.branch_name}</h4>}
                 
                 {/* Score */}
                 {item.score !== undefined && (
@@ -145,11 +222,25 @@ const EnhancedFloatingAIChat = () => {
                   </div>
                 )}
                 
+                {item.bhs !== undefined && (
+                  <div className="ai-chat-metric">
+                    <span className="metric-label">BHS:</span>
+                    <span className="metric-value">{item.bhs}%</span>
+                  </div>
+                )}
+                
                 {/* Wait Time */}
                 {item.waitTime !== undefined && (
                   <div className="ai-chat-metric">
                     <span className="metric-label">Wait Time:</span>
                     <span className="metric-value">{item.waitTime} min</span>
+                  </div>
+                )}
+                
+                {item.avg_waiting_time !== undefined && (
+                  <div className="ai-chat-metric">
+                    <span className="metric-label">Wait Time:</span>
+                    <span className="metric-value">{item.avg_waiting_time} min</span>
                   </div>
                 )}
                 
@@ -169,6 +260,22 @@ const EnhancedFloatingAIChat = () => {
                   </div>
                 )}
                 
+                {/* Staff Utilization */}
+                {item.staff_utilization !== undefined && (
+                  <div className="ai-chat-metric">
+                    <span className="metric-label">Staff Util:</span>
+                    <span className="metric-value">{item.staff_utilization}%</span>
+                  </div>
+                )}
+                
+                {/* Transaction Count */}
+                {item.transaction_count !== undefined && (
+                  <div className="ai-chat-metric">
+                    <span className="metric-label">Transactions:</span>
+                    <span className="metric-value">{item.transaction_count}</span>
+                  </div>
+                )}
+                
                 {/* Insight */}
                 {item.insight && (
                   <div className="ai-chat-insight">{item.insight}</div>
@@ -176,19 +283,18 @@ const EnhancedFloatingAIChat = () => {
               </div>
             ))}
           </div>
-          <div className="ai-chat-feedback">
-            <button className="feedback-btn" title="Helpful">
-              <ThumbsUp size={14} />
-            </button>
-            <button className="feedback-btn" title="Not Helpful">
-              <ThumbsDown size={14} />
-            </button>
-          </div>
-        </>
-      );
-    } else {
-      return <p>{message.text}</p>;
-    }
+        )}
+        
+        <div className="ai-chat-feedback">
+          <button className="feedback-btn" title="Helpful">
+            <ThumbsUp size={14} />
+          </button>
+          <button className="feedback-btn" title="Not Helpful">
+            <ThumbsDown size={14} />
+          </button>
+        </div>
+      </>
+    );
   };
 
   return (
