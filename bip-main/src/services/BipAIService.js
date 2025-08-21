@@ -1,6 +1,7 @@
 // BipAI Service - Integrates Gemini API with system data to provide intelligent analysis
 import { fetchMainSheetData, fetchTransactionData } from '../pages/Dashboard/GoogleSheetsService';
 import { generateGeminiResponse } from '../pages/Dashboard/GeminiService';
+import { formatResponseText, shouldShowVisualization } from './AIFormattingGuide';
 
 // Cache for analytics results - using a shorter expiration to ensure fresh data
 let analyticsCache = {
@@ -29,11 +30,15 @@ export const generateBipResponse = async (userQuery, history = []) => {
     // Pass the enhanced prompt to Gemini
     const geminiResponse = await generateGeminiResponse(enhancedPrompt, history);
     
-    // Process the response text to add HTML formatting for important data
+    // Format the response text to highlight important information using HTML
     const formattedText = formatResponseText(geminiResponse.text);
     
-    // Parse visualization data from the response, passing the user query to control when visualizations appear
-    const visualization = extractVisualizationData(formattedText, geminiResponse.data, dataAnalysis, userQuery);
+    // Check if visualization should be shown based on user query
+    const showVisualization = shouldShowVisualization(userQuery);
+    
+    // Parse visualization data from the response only if visualization is requested
+    const visualization = showVisualization ? 
+      extractVisualizationData(geminiResponse.text, geminiResponse.data, dataAnalysis) : null;
     
     return {
       text: formattedText,
@@ -49,35 +54,6 @@ export const generateBipResponse = async (userQuery, history = []) => {
       visualization: null
     };
   }
-};
-
-/**
- * Format response text to highlight important information
- * @param {string} text - The response text from the AI
- * @returns {string} - HTML-formatted text with important data highlighted
- */
-const formatResponseText = (text) => {
-  if (!text) return text;
-  
-  // Format branch names (assumes branch names are followed by "branch" or are proper nouns)
-  let formattedText = text.replace(/([A-Z][a-z]+ (?:[A-Z][a-z]+ )?(?:Branch|Avenue|Plaza|Center|Mall))/g, 
-    '<span style="font-weight: bold; color: #FEA000;">$1</span>');
-  
-  // Format numeric values with units (e.g., percentages, minutes, transactions)
-  formattedText = formattedText.replace(/(\d+(?:\.\d+)?%)/g, 
-    '<span style="font-weight: bold; color: #CF3D58;">$1</span>');
-  
-  formattedText = formattedText.replace(/(\d+(?:\.\d+)? minutes?)/g, 
-    '<span style="font-weight: bold; color: #BC7EFF;">$1</span>');
-  
-  formattedText = formattedText.replace(/(\d+(?:\.\d+)? transactions?)/g, 
-    '<span style="font-weight: bold; color: #00BFA6;">$1</span>');
-  
-  // Format BHS scores
-  formattedText = formattedText.replace(/(BHS(?:\s+of)?\s+)(\d+(?:\.\d+)?)/g, 
-    '$1<span style="font-weight: bold; color: #CF3D58;">$2</span>');
-  
-  return formattedText;
 };
 
 /**
@@ -130,13 +106,34 @@ const createEnhancedPrompt = (userQuery, dataAnalysis) => {
       prompt += `\nStaff utilization metrics:\n${JSON.stringify(dataAnalysis.staffMetrics, null, 2)}\n`;
     }
     
-    // Add visualization guidance
-    prompt += `\nPlease analyze this real-time data from our system and provide specific, data-driven insights. Your response should be concise, factual, and directly answer the user's query based on the actual data provided.`;
+    // Add visualization and formatting guidance
+    prompt += `\nPlease analyze this real-time data from our system and provide specific, data-driven insights. Your response should be:
+    
+1. Concise and factual, directly answering the user's query based on the actual data provided
+2. Well-structured with clear sections and bullet points for readability
+3. Free of markdown formatting (do NOT use asterisks for bold/italic)
+4. Focused on the most important insights without overwhelming detail
+5. Organized with the most important information first
+
+DO NOT use markdown formatting like ** or * for emphasis. The response will be displayed in a web interface that does not support markdown.`;
     
     // For transaction count questions, be very specific
     if (userQuery.toLowerCase().includes("highest transaction") || 
         userQuery.toLowerCase().includes("most transactions")) {
       prompt += `\n\nThe user specifically wants to know which branch has the highest transaction count. Provide a direct answer using the actual data, not hypothetical information.`;
+    }
+    
+    // For wait time analysis, provide specific formatting guidance
+    if (userQuery.toLowerCase().includes("wait time") || 
+        userQuery.toLowerCase().includes("waiting time")) {
+      prompt += `\n\nThe user is asking about wait times. Structure your response with:
+      - An overview sentence stating the overall average wait time
+      - A clear list of branches with the longest wait times (top 3-5)
+      - A clear list of branches with the shortest wait times (top 3-5)
+      - Any correlation between wait times and other metrics
+      - 1-2 actionable recommendations
+      
+      Keep your response concise and focused on the most important insights.`;
     }
   }
   
@@ -190,14 +187,7 @@ const queryContains = (query, keywords) => {
 /**
  * Extract visualization data from the AI response
  */
-const extractVisualizationData = (responseText, structuredData, dataAnalysis, userQuery) => {
-  // Check if user specifically asked for a visualization or chart
-  const visualizationRequested = userQuery.toLowerCase().includes('chart') || 
-                               userQuery.toLowerCase().includes('graph') || 
-                               userQuery.toLowerCase().includes('visual') || 
-                               userQuery.toLowerCase().includes('show me') ||
-                               userQuery.toLowerCase().includes('compare');
-  
+const extractVisualizationData = (responseText, structuredData, dataAnalysis) => {
   // If we have structured data in the response, try to use it for visualization
   if (structuredData) {
     if (structuredData.visualization) {
@@ -209,33 +199,26 @@ const extractVisualizationData = (responseText, structuredData, dataAnalysis, us
     }
   }
   
-  // Only create automatic visualizations if specifically requested
-  if (visualizationRequested && dataAnalysis) {
-    // Check for specific visualization requests
-    if (userQuery.toLowerCase().includes('branch') && 
-        (userQuery.toLowerCase().includes('performance') || userQuery.toLowerCase().includes('health') || 
-         userQuery.toLowerCase().includes('score') || userQuery.toLowerCase().includes('bhs'))) {
-      if (dataAnalysis.relevantBranches) {
-        return createBranchPerformanceVisualization(dataAnalysis.relevantBranches);
-      }
+  // If no structured data, try to determine visualization based on the query context and data analysis
+  if (dataAnalysis) {
+    // Branch performance visualization
+    if (dataAnalysis.relevantBranches) {
+      return createBranchPerformanceVisualization(dataAnalysis.relevantBranches);
     }
     
-    if (userQuery.toLowerCase().includes('transaction') || userQuery.toLowerCase().includes('volume')) {
-      if (dataAnalysis.transactionInsights) {
-        return createTransactionTrendsVisualization(dataAnalysis.transactionInsights);
-      }
+    // Transaction trends visualization
+    if (dataAnalysis.transactionInsights) {
+      return createTransactionTrendsVisualization(dataAnalysis.transactionInsights);
     }
     
-    if (userQuery.toLowerCase().includes('wait') || userQuery.toLowerCase().includes('time')) {
-      if (dataAnalysis.waitTimeStats) {
-        return createWaitTimeVisualization(dataAnalysis.waitTimeStats);
-      }
+    // Wait time visualization
+    if (dataAnalysis.waitTimeStats) {
+      return createWaitTimeVisualization(dataAnalysis.waitTimeStats);
     }
     
-    if (userQuery.toLowerCase().includes('staff') || userQuery.toLowerCase().includes('utilization')) {
-      if (dataAnalysis.staffMetrics) {
-        return createStaffUtilizationVisualization(dataAnalysis.staffMetrics);
-      }
+    // Staff utilization visualization
+    if (dataAnalysis.staffMetrics) {
+      return createStaffUtilizationVisualization(dataAnalysis.staffMetrics);
     }
   }
   

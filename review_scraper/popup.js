@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let isAuthenticated = false;
 
   // Default spreadsheet ID
-  const DEFAULT_SPREADSHEET_ID = '1_OBma2uuzISl-5-5OTw3zsx5uWt_K3JfxxgehRfvquA';
+  const DEFAULT_SPREADSHEET_ID = '1rHjXMxilei_FCJN49NDKmdFz8kSiX4ryCnaHPNcqeDc';
 
   // Check authentication status on startup
   checkAuthStatus();

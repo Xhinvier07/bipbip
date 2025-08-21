@@ -151,7 +151,7 @@ const EnhancedFloatingAIChat = () => {
   const renderMessageContent = (message) => {
     return (
       <>
-        <p dangerouslySetInnerHTML={{ __html: message.text }}></p>
+        <p>{message.text}</p>
         
         {/* Render visualization if available */}
         {message.visualization && (

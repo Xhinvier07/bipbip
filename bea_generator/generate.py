@@ -806,7 +806,7 @@ def get_user_input():
 
 def main():
     # Your Google Sheet ID
-    SHEET_ID = "1_OBma2uuzISl-5-5OTw3zsx5uWt_K3JfxxgehRfvquA"
+    SHEET_ID = "1rHjXMxilei_FCJN49NDKmdFz8kSiX4ryCnaHPNcqeDc"
 
     # Get user preferences
     config = get_user_input()
