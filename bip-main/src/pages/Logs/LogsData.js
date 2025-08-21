@@ -43,8 +43,8 @@ const systemSources = [
 // Sample users
 const users = [
   'admin@bpi.com',
-  'jansen.tanedo@bpi.com',
-  'maria.santos@bpi.com',
+  'jansen.moral@bpi.com',
+  'cristen.tolentino@bpi.com',
   'juan.cruz@bpi.com',
   'ana.reyes@bpi.com',
   'carlos.gomez@bpi.com',
