@@ -10,22 +10,6 @@ const generateTimestamp = (startDate, endDate) => {
   return new Date(start + Math.random() * (end - start));
 };
 
-// Branch names for use in system logs
-const branchNames = [
-  "Makati Central Branch",
-  "North EDSA Branch", 
-  "Mandaluyong SM Branch",
-  "Caloocan Monumento",
-  "Makati Rockwell Branch",
-  "Caloocan Camarin",
-  "Quezon City Cubao",
-  "Mandaluyong Pioneer",
-  "Taguig BGC Branch",
-  "Pasig Ortigas Branch",
-  "Manila UN Avenue Branch",
-  "Marikina Branch"
-];
-
 // Sample system sources
 const systemSources = [
   'API Gateway',
@@ -45,9 +29,9 @@ const users = [
   'admin@bpi.com',
   'jansen.moral@bpi.com',
   'cristen.tolentino@bpi.com',
-  'juan.cruz@bpi.com',
-  'ana.reyes@bpi.com',
-  'carlos.gomez@bpi.com',
+  'xhinvier.admin@bpi.com',
+  'xtenlei.mod@bpi.com',
+  'beth.gomez@bpi.com',
   'system'
 ];
 
@@ -186,22 +170,6 @@ const logTemplates = {
       { 
         message: "System performance metrics collected", 
         details: "Metrics batch ID: METRICS-{0}, Period: 1 hour, Datapoints: {1}."
-      },
-      { 
-        message: "Branch data synchronized", 
-        details: "Branch: {0}, Records updated: {1}, New records: {2}, Sync duration: {3}ms."
-      },
-      { 
-        message: "Daily transaction summary generated", 
-        details: "Date: {0}, Total branches: {1}, Total transactions: {2}, Processing time: {3}s."
-      },
-      { 
-        message: "Google Sheets data imported", 
-        details: "Sheet: {0}, Rows processed: {1}, New data points: {2}, Import time: {3}ms."
-      },
-      { 
-        message: "User activity report generated", 
-        details: "Period: Daily, Users included: {0}, Actions tracked: {1}, Insights generated: {2}."
       }
     ],
     warning: [
@@ -216,22 +184,6 @@ const logTemplates = {
       { 
         message: "Memory usage warning", 
         details: "Server: {0}, Memory usage: {1}%, Available: {2}GB."
-      },
-      { 
-        message: "Low BHS detected", 
-        details: "Branch: {0}, Current BHS: {1}, Threshold: 45, Trend: Declining for {2} days."
-      },
-      { 
-        message: "High average wait time detected", 
-        details: "Branch: {0}, Current avg wait time: {1}min, Threshold: 15min, Impact: Customer satisfaction at risk."
-      },
-      { 
-        message: "Google Sheets API rate limit warning", 
-        details: "Current usage: {0}%, Reset in: {1} minutes, API calls delayed: {2}."
-      },
-      { 
-        message: "Staff utilization imbalance detected", 
-        details: "Branch: {0}, Some staff at {1}% utilization while others at {2}%, Rebalancing recommended."
       }
     ],
     error: [
@@ -246,22 +198,6 @@ const logTemplates = {
       { 
         message: "Disk space critical", 
         details: "Server: {0}, Available space: {1}MB, Required for operation: {2}MB."
-      },
-      { 
-        message: "Google Sheets API error", 
-        details: "Operation: {0}, Error code: {1}, Message: 'Authentication failed', Retry attempt: {2}."
-      },
-      { 
-        message: "Data processing pipeline failed", 
-        details: "Pipeline: Daily BHS calculation, Step: {0}, Error: Invalid data format, Records affected: {1}."
-      },
-      { 
-        message: "Critical BHS threshold reached", 
-        details: "Branch: {0}, BHS: {1}, Critical threshold: 30, Immediate action required."
-      },
-      { 
-        message: "Simulation engine error", 
-        details: "Simulation ID: SIM-{0}, Error: Out of memory during customer flow calculation, Branch: {1}."
       }
     ],
     success: [
@@ -272,18 +208,6 @@ const logTemplates = {
       { 
         message: "Database optimization completed", 
         details: "Database: {0}, Optimization tasks: Indexing, Vacuum, Performance gain: {1}%."
-      },
-      { 
-        message: "BHS recovery plan implemented", 
-        details: "Branch: {0}, Previous BHS: {1}, Current BHS: {2}, Improvement: {3}%, Success metrics: All targets met."
-      },
-      { 
-        message: "System-wide performance upgrade completed", 
-        details: "Components upgraded: {0}, Average response time improvement: {1}%, User experience impact: Significant."
-      },
-      { 
-        message: "Data integration completed", 
-        details: "Source systems: Google Sheets, BEA data, Transaction logs. Records processed: {0}, Enriched metrics created: {1}."
       }
     ]
   },
@@ -458,11 +382,7 @@ const fillTemplate = (template, category) => {
         filled = filled.replace('{0}', Math.floor(Math.random() * 100000).toString());
         break;
       case 'system':
-        if (template.message.includes("Branch") || template.message.includes("BHS")) {
-          filled = filled.replace('{0}', branchNames[Math.floor(Math.random() * branchNames.length)]);
-        } else {
-          filled = filled.replace('{0}', `v${Math.floor(Math.random() * 10)}.${Math.floor(Math.random() * 10)}.${Math.floor(Math.random() * 10)}`);
-        }
+        filled = filled.replace('{0}', `v${Math.floor(Math.random() * 10)}.${Math.floor(Math.random() * 10)}.${Math.floor(Math.random() * 10)}`);
         break;
       case 'security':
         filled = filled.replace('{0}', `cert-${Math.random().toString(36).substring(2, 8)}`);
@@ -481,15 +401,7 @@ const fillTemplate = (template, category) => {
         filled = filled.replace('{1}', (Math.floor(Math.random() * 1000000) / 100).toFixed(2));
         break;
       case 'system':
-        if (template.message.includes("BHS")) {
-          // Generate BHS between 30 and 98
-          filled = filled.replace('{1}', Math.floor(Math.random() * 68 + 30).toString());
-        } else if (template.message.includes("wait time")) {
-          // Generate wait time between 5 and 25 minutes
-          filled = filled.replace('{1}', Math.floor(Math.random() * 20 + 5).toString());
-        } else {
-          filled = filled.replace('{1}', Math.floor(Math.random() * 60).toString());
-        }
+        filled = filled.replace('{1}', Math.floor(Math.random() * 60).toString());
         break;
       case 'security':
         filled = filled.replace('{1}', users[Math.floor(Math.random() * users.length)]);
@@ -519,7 +431,7 @@ const fillTemplate = (template, category) => {
   }
   
   if (filled.includes('{3}')) {
-    filled = filled.replace('{3}', ['transactions-new', 'users-v2', 'branches-extended', 'reports-full'][Math.floor(Math.random() * 4)]);
+    filled = filled.replace('{3}', ['transactions-new', 'users-v2', 'branches-extended', 'reports-full'][Math.floor(Math.random() * 5)]);
   }
   
   return filled;
@@ -539,19 +451,8 @@ export const generateMockLogs = (filters, startDate, endDate) => {
     if (filters.category !== 'all') {
       category = filters.category;
     } else {
-      // Increase likelihood of system and transaction logs (40% system, 25% transaction, rest divided equally)
-      const rand = Math.random();
-      if (rand < 0.4) {
-        category = 'system';
-      } else if (rand < 0.65) {
-        category = 'transaction';
-      } else if (rand < 0.8) {
-        category = 'user';
-      } else if (rand < 0.9) {
-        category = 'security';
-      } else {
-        category = 'api';
-      }
+      const categories = Object.keys(logTemplates);
+      category = categories[Math.floor(Math.random() * categories.length)];
     }
     
     // Determine log level
