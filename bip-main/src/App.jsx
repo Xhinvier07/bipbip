@@ -10,6 +10,7 @@ import Simulation from './pages/Simulation/Simulation';
 import BipChat from './pages/BipChat/BipChat';
 import Help from './pages/Help/Help';
 import Logs from './pages/Logs/Logs';
+import MobileBlocker from './components/MobileBlocker';
 import './App.css';
 
 // Protected route wrapper that uses Supabase auth
@@ -29,9 +30,10 @@ const ProtectedRoute = ({ children }) => {
 
 function App() {
   return (
-    <Router>
-      <AuthProvider>
-        <Routes>
+    <MobileBlocker>
+      <Router>
+        <AuthProvider>
+          <Routes>
           <Route path="/" element={<Login />} />
         
         {/* Protected Routes */}
@@ -95,9 +97,10 @@ function App() {
         } />
         
         <Route path="/logout" element={<Navigate to="/" replace />} />
-      </Routes>
-      </AuthProvider>
-    </Router>
+        </Routes>
+        </AuthProvider>
+      </Router>
+    </MobileBlocker>
   );
 }
 
