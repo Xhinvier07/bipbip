@@ -13,7 +13,7 @@ const BranchPerformance = () => {
     loadBranchData();
 
     // Refresh data periodically
-    const intervalId = setInterval(loadBranchData, 75000);
+    const intervalId = setInterval(loadBranchData,30000);
     return () => clearInterval(intervalId);
   }, []);
 

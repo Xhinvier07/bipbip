@@ -51,21 +51,21 @@ const SimulationResults = ({ results }) => {
           onClick={() => setActiveTab('summary')}
         >
           <BarChart2 size={14} />
-          Summary
+        
         </button>
         <button 
           className={`tab-btn ${activeTab === 'transactions' ? 'active' : ''}`}
           onClick={() => setActiveTab('transactions')}
         >
           <Activity size={14} />
-          Transactions
+        
         </button>
         <button 
           className={`tab-btn ${activeTab === 'hourly' ? 'active' : ''}`}
           onClick={() => setActiveTab('hourly')}
         >
           <Clock size={14} />
-          Hourly
+        
         </button>
       </div>
       
@@ -82,7 +82,7 @@ const SimulationResults = ({ results }) => {
                   className="bhs-score-value" 
                   style={{ color: getBHSColor(results.projectedBHS) }}
                 >
-                  {results.projectedBHS}%
+                  {Math.round(results.projectedBHS)}%
                 </div>
                 <div className="bhs-score-label">Branch Health Score</div>
               </div>
@@ -128,7 +128,7 @@ const SimulationResults = ({ results }) => {
                   <div className="metric-row">
                     <span>Customer Satisfaction</span>
                     <strong style={{ color: getBHSColor(results.customerSatisfaction) }}>
-                      {results.customerSatisfaction}%
+                      {results.customerSatisfaction.toFixed(1)}%
                     </strong>
                   </div>
                 </div>
@@ -168,7 +168,7 @@ const SimulationResults = ({ results }) => {
                   <div className="metric-row">
                     <span>Staff Utilization</span>
                     <strong style={{ color: getUtilizationColor(results.staffUtilization) }}>
-                      {results.staffUtilization}%
+                      {results.staffUtilization.toFixed(1)}%
                     </strong>
                   </div>
                   <div className="metric-row">

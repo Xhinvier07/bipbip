@@ -14,7 +14,7 @@ const CustomerChurn = () => {
     loadChurnData();
 
     // Refresh data periodically to simulate real-time updates
-    const intervalId = setInterval(loadChurnData, 80000);
+    const intervalId = setInterval(loadChurnData, 30000);
     return () => clearInterval(intervalId);
   }, []);
 

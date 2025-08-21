@@ -10,7 +10,7 @@ const CategoryDonut = () => {
     loadCategoryData();
 
     // Refresh data periodically to simulate real-time updates
-    const intervalId = setInterval(loadCategoryData, 90000);
+    const intervalId = setInterval(loadCategoryData, 30000);
     return () => clearInterval(intervalId);
   }, []);
 

@@ -115,7 +115,7 @@ const KPICards = () => {
           <BarChart size={20} />
         </div>
         <div className="kpi-content">
-          <h3>Today's Transactions</h3>
+          <h3>Total Transactions</h3>
           <div className="kpi-value">
             {loading ? '...' : kpiData.transactions.today.toLocaleString()}
           </div>

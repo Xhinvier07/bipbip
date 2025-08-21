@@ -12,7 +12,7 @@ const TransactionChart = () => {
     loadChartData();
 
     // Refresh data every 2 minutes to simulate real-time updates
-    const intervalId = setInterval(loadChartData, 120000);
+    const intervalId = setInterval(loadChartData, 30000); // 5 second
     return () => clearInterval(intervalId);
   }, []);
 

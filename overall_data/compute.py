@@ -7,6 +7,12 @@ import numpy as np
 from typing import Dict, List, Tuple
 import re
 
+# Import manual branch mapping for difficult cases
+try:
+    from manual_branch_mapping import MANUAL_BRANCH_MAPPING
+except ImportError:
+    MANUAL_BRANCH_MAPPING = {}
+
 
 class BPIBranchHealthCalculator:
     def __init__(self, sheet_id: str, credentials_path: str):
@@ -60,49 +66,186 @@ class BPIBranchHealthCalculator:
             raise
 
     def create_branch_mapping(self, sheet1_branches: List[str], main_branches: List[str]) -> Dict[str, str]:
-        """Create mapping between Sheet1 branch names and Main sheet branch names"""
+        """Create mapping between Sheet1 branch names and Main sheet branch names with improved matching"""
         mapping = {}
+        matched_sheet1 = set()
+        matched_main = set()
+        unmatched_main = []
+        unmatched_sheet1 = []
 
+        print(f"🔍 Branch Mapping Analysis:")
+        print(f"   Sheet1 branches: {len(sheet1_branches)}")
+        print(f"   Main branches: {len(main_branches)}")
+        print("-" * 60)
+
+        # First pass: Apply manual mappings
+        for sheet1_branch in sheet1_branches:
+            if sheet1_branch in MANUAL_BRANCH_MAPPING:
+                main_branch = MANUAL_BRANCH_MAPPING[sheet1_branch]
+                if main_branch in main_branches:
+                    mapping[sheet1_branch] = main_branch
+                    matched_sheet1.add(sheet1_branch)
+                    matched_main.add(main_branch)
+                    print(f"🔧 Manual Mapped: '{sheet1_branch}' → '{main_branch}'")
+
+        # First pass: Try exact matches and high similarity matches
         for main_branch in main_branches:
-            # Clean main branch name for matching
             main_clean = self.clean_branch_name(main_branch)
-
-            # Find best match in Sheet1 branches
             best_match = None
             highest_score = 0
 
             for sheet1_branch in sheet1_branches:
+                if sheet1_branch in matched_sheet1:
+                    continue  # Skip already matched branches
+                
                 sheet1_clean = self.clean_branch_name(sheet1_branch)
+                
+                # Try exact match first
+                if main_clean == sheet1_clean:
+                    best_match = sheet1_branch
+                    highest_score = 1.0
+                    break
+                
+                # Try similarity matching with lower threshold
                 score = self.calculate_branch_name_similarity(main_clean, sheet1_clean)
-
-                if score > highest_score and score > 0.3:  # 30% similarity threshold
+                if score > highest_score and score > 0.15:  # Lowered threshold to 15%
                     highest_score = score
                     best_match = sheet1_branch
 
             if best_match:
                 mapping[best_match] = main_branch
-                print(f"📍 Mapped: '{best_match}' → '{main_branch}' (similarity: {highest_score:.2f})")
+                matched_sheet1.add(best_match)
+                matched_main.add(main_branch)
+                print(f"✅ Mapped: '{best_match}' → '{main_branch}' (score: {highest_score:.2f})")
             else:
-                print(f"⚠️  No match found for Main branch: '{main_branch}'")
+                unmatched_main.append(main_branch)
+
+        # Second pass: Try reverse matching for unmatched Sheet1 branches
+        for sheet1_branch in sheet1_branches:
+            if sheet1_branch in matched_sheet1:
+                continue
+            
+            sheet1_clean = self.clean_branch_name(sheet1_branch)
+            best_match = None
+            highest_score = 0
+
+            for main_branch in main_branches:
+                if main_branch in matched_main:
+                    continue
+                
+                main_clean = self.clean_branch_name(main_branch)
+                score = self.calculate_branch_name_similarity(sheet1_clean, main_clean)
+                
+                if score > highest_score and score > 0.15:
+                    highest_score = score
+                    best_match = main_branch
+
+            if best_match:
+                mapping[sheet1_branch] = best_match
+                matched_sheet1.add(sheet1_branch)
+                matched_main.add(best_match)
+                print(f"🔄 Reverse Mapped: '{sheet1_branch}' → '{best_match}' (score: {highest_score:.2f})")
+            else:
+                unmatched_sheet1.append(sheet1_branch)
+
+        # Report unmatched branches
+        print(f"\n📊 Mapping Results:")
+        print(f"   Successfully mapped: {len(mapping)} branches")
+        print(f"   Unmatched Main branches: {len(unmatched_main)}")
+        print(f"   Unmatched Sheet1 branches: {len(unmatched_sheet1)}")
+        
+        if unmatched_main:
+            print(f"\n⚠️  Unmatched Main branches ({len(unmatched_main)}):")
+            for i, branch in enumerate(unmatched_main[:10]):  # Show first 10
+                print(f"   {i+1}. {branch}")
+            if len(unmatched_main) > 10:
+                print(f"   ... and {len(unmatched_main) - 10} more")
+        
+        if unmatched_sheet1:
+            print(f"\n⚠️  Unmatched Sheet1 branches ({len(unmatched_sheet1)}):")
+            for i, branch in enumerate(unmatched_sheet1[:10]):  # Show first 10
+                print(f"   {i+1}. {branch}")
+            if len(unmatched_sheet1) > 10:
+                print(f"   ... and {len(unmatched_sheet1) - 10} more")
 
         return mapping
 
+    def debug_branch_matching(self, sheet1_branches: List[str], main_branches: List[str]):
+        """Debug method to analyze branch name differences and suggest improvements"""
+        print(f"\n🔧 Branch Matching Debug Analysis:")
+        print("=" * 60)
+        
+        # Show sample of cleaned names
+        print(f"\n📝 Sample Cleaned Names (first 5 from each):")
+        print("Sheet1 branches (cleaned):")
+        for i, branch in enumerate(sheet1_branches[:5]):
+            cleaned = self.clean_branch_name(branch)
+            print(f"   '{branch}' → '{cleaned}'")
+        
+        print("\nMain branches (cleaned):")
+        for i, branch in enumerate(main_branches[:5]):
+            cleaned = self.clean_branch_name(branch)
+            print(f"   '{branch}' → '{cleaned}'")
+        
+        # Find potential matches with low scores
+        print(f"\n🔍 Potential Low-Score Matches:")
+        potential_matches = []
+        
+        for main_branch in main_branches:
+            main_clean = self.clean_branch_name(main_branch)
+            for sheet1_branch in sheet1_branches:
+                sheet1_clean = self.clean_branch_name(sheet1_branch)
+                score = self.calculate_branch_name_similarity(main_clean, sheet1_clean)
+                
+                if 0.1 <= score <= 0.3:  # Low but not zero scores
+                    potential_matches.append((main_branch, sheet1_branch, score))
+        
+        # Sort by score and show top potential matches
+        potential_matches.sort(key=lambda x: x[2], reverse=True)
+        print(f"Found {len(potential_matches)} potential matches with scores 0.1-0.3:")
+        for i, (main, sheet1, score) in enumerate(potential_matches[:10]):
+            print(f"   {i+1}. '{main}' ↔ '{sheet1}' (score: {score:.2f})")
+        
+        # Suggest common patterns
+        print(f"\n💡 Suggestions for improving matching:")
+        print("   1. Check for typos or spelling variations")
+        print("   2. Look for different naming conventions (e.g., 'City' vs 'City Branch')")
+        print("   3. Consider adding more cleaning rules for common patterns")
+        print("   4. Review the unmatched branches list above")
+
     def clean_branch_name(self, branch_name: str) -> str:
-        """Clean and normalize branch name for matching"""
+        """Clean and normalize branch name for matching with improved logic"""
+        if not branch_name:
+            return ""
+            
+        # Convert to lowercase and remove extra spaces
+        cleaned = branch_name.lower().strip()
+        
         # Remove common prefixes/suffixes
-        cleaned = branch_name.lower()
         cleaned = re.sub(r'\bbpi\b', '', cleaned)
         cleaned = re.sub(r'\bbranch\b', '', cleaned)
-        cleaned = re.sub(r'^the\b', '', cleaned)
-
-        # Remove special characters and extra spaces
+        cleaned = re.sub(r'\boffice\b', '', cleaned)
+        cleaned = re.sub(r'\bcenter\b', '', cleaned)
+        cleaned = re.sub(r'\bthe\b', '', cleaned)
+        cleaned = re.sub(r'\band\b', '', cleaned)
+        cleaned = re.sub(r'\bof\b', '', cleaned)
+        cleaned = re.sub(r'\bin\b', '', cleaned)
+        cleaned = re.sub(r'\bat\b', '', cleaned)
+        
+        # Remove special characters but keep spaces
         cleaned = re.sub(r'[^\w\s]', ' ', cleaned)
+        
+        # Remove extra spaces and normalize
         cleaned = re.sub(r'\s+', ' ', cleaned).strip()
-
+        
         return cleaned
 
     def calculate_branch_name_similarity(self, name1: str, name2: str) -> float:
-        """Calculate similarity score between two branch names"""
+        """Calculate similarity score between two branch names with improved logic"""
+        if not name1 or not name2:
+            return 0.0
+            
+        # Split into words
         words1 = set(name1.split())
         words2 = set(name2.split())
 
@@ -113,7 +256,16 @@ class BPIBranchHealthCalculator:
         intersection = len(words1.intersection(words2))
         union = len(words1.union(words2))
 
-        return intersection / union if union > 0 else 0.0
+        base_similarity = intersection / union if union > 0 else 0.0
+        
+        # Bonus for partial word matches (e.g., "makati" vs "makati city")
+        partial_matches = 0
+        for word1 in words1:
+            for word2 in words2:
+                if word1 in word2 or word2 in word1:
+                    partial_matches += 0.1
+        
+        return min(1.0, base_similarity + partial_matches)
 
     def fetch_transaction_data(self) -> pd.DataFrame:
         """Fetch transaction data from Sheet1"""
@@ -524,6 +676,11 @@ class BPIBranchHealthCalculator:
         if not self.branch_mapping and not main_df.empty:
             sheet1_branches = transaction_df['branch_name'].unique().tolist()
             main_branches = main_df['branch_name'].tolist()
+            
+            # Run debug analysis first
+            self.debug_branch_matching(sheet1_branches, main_branches)
+            
+            # Create the mapping
             self.branch_mapping = self.create_branch_mapping(sheet1_branches, main_branches)
 
         # Process each branch

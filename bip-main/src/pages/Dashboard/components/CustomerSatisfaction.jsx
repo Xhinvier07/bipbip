@@ -16,7 +16,7 @@ const CustomerSatisfaction = () => {
     loadSatisfactionData();
 
     // Refresh data periodically to simulate real-time updates
-    const intervalId = setInterval(loadSatisfactionData, 65000);
+    const intervalId = setInterval(loadSatisfactionData, 30000);
     return () => clearInterval(intervalId);
   }, []);
 

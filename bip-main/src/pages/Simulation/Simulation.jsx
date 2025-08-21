@@ -39,7 +39,6 @@ import {
 
 import './Simulation.css';
 import BranchFloorPlan from './components/BranchFloorPlan';
-import Branch3DVisualization from './components/Branch3DVisualization';
 import SimulationControls from './components/SimulationControls';
 import SimulationResults from './components/SimulationResults';
 
@@ -204,6 +203,7 @@ const Simulation = () => {
                 </option>
               ))}
             </select>
+            <ChevronDown size={16} />
           </div>
         </div>
         
@@ -305,25 +305,15 @@ const Simulation = () => {
           </div>
           
           <div className="visualization-area">
-            {view === '2D' ? (
-              <BranchFloorPlan
-                floorPlan={branchFloorPlan}
-                servicePoints={servicePoints}
-                customerPaths={isSimulating ? customerPaths : []}
-                showHeatmap={showHeatmap}
-                view={view}
-                simulationSpeed={simulationParams.simulationSpeed}
-                ref={simulationRef}
-              />
-            ) : (
-              <Branch3DVisualization
-                floorPlan={branchFloorPlan}
-                servicePoints={servicePoints}
-                customerPaths={isSimulating ? customerPaths : []}
-                showHeatmap={showHeatmap}
-                simulationSpeed={simulationParams.simulationSpeed}
-              />
-            )}
+            <BranchFloorPlan
+              floorPlan={branchFloorPlan}
+              servicePoints={servicePoints}
+              customerPaths={isSimulating ? customerPaths : []}
+              showHeatmap={showHeatmap}
+              view={view}
+              simulationSpeed={simulationParams.simulationSpeed}
+              ref={simulationRef}
+            />
             
             {isSimulating && (
               <div className="simulation-status">
@@ -354,6 +344,10 @@ const Simulation = () => {
           
           <div className="branch-legend">
             <div className="legend-item">
+              <div className="legend-color manager"></div>
+              <span>Branch Manager</span>
+            </div>
+            <div className="legend-item">
               <div className="legend-color teller"></div>
               <span>Tellers</span>
             </div>
@@ -362,20 +356,16 @@ const Simulation = () => {
               <span>Customer Service</span>
             </div>
             <div className="legend-item">
-              <div className="legend-color manager"></div>
-              <span>Branch Manager</span>
-            </div>
-            <div className="legend-item">
-              <div className="legend-color atm"></div>
-              <span>ATM</span>
-            </div>
-            <div className="legend-item">
-              <div className="legend-color waiting"></div>
+              <div className="legend-color waiting-area"></div>
               <span>Waiting Area</span>
             </div>
             <div className="legend-item">
-              <div className="legend-color entrance"></div>
-              <span>Entrance/Exit</span>
+              <div className="legend-color bea-kiosk"></div>
+              <span>BEA Kiosks</span>
+            </div>
+            <div className="legend-item">
+              <div className="legend-color atm"></div>
+              <span>ATMs</span>
             </div>
           </div>
         </div>

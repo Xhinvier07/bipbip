@@ -12,32 +12,12 @@ import Help from './pages/Help/Help';
 import Logs from './pages/Logs/Logs';
 import './App.css';
 
-// Loading screen component with website branding
-const LoadingScreen = () => {
-  return (
-    <div className="loading-screen">
-      <div className="loading-background">
-        <div className="dot-grid-loading"></div>
-      </div>
-      <div className="loading-content">
-        <div className="loading-logo">
-          <img src="/logo.png" alt="BIP Logo" />
-        </div>
-        <div className="loading-spinner">
-          <div className="spinner-ring"></div>
-        </div>
-        <p className="loading-text">Loading BIP System...</p>
-      </div>
-    </div>
-  );
-};
-
 // Protected route wrapper that uses Supabase auth
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
   
   if (loading) {
-    return <LoadingScreen />;
+    return <div className="loading-screen">Loading...</div>;
   }
   
   if (!user) {

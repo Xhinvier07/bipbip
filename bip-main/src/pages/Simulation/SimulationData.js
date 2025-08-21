@@ -1,6 +1,6 @@
 // Simulation page data and helper functions
 
-// Branch floor plan coordinates for 2D visualization (example coordinates)
+// Branch floor plan coordinates for 2D visualization based on the provided image
 export const branchFloorPlan = {
   // Branch boundaries and walls
   boundaries: [
@@ -9,46 +9,79 @@ export const branchFloorPlan = {
     { x1: 800, y1: 600, x2: 0, y2: 600 },
     { x1: 0, y1: 600, x2: 0, y2: 0 },
   ],
-  // Interior walls
-  walls: [
-    { x1: 200, y1: 0, x2: 200, y2: 450 },
-    { x1: 500, y1: 450, x2: 500, y2: 600 },
-    { x1: 200, y1: 450, x2: 500, y2: 450 },
-  ],
-  // Furniture and fixtures
+  // Furniture and fixtures based on the image layout
   furniture: [
-    // Teller counters
-    { type: 'counter', x: 220, y: 100, width: 360, height: 60 },
-    { type: 'counter', x: 220, y: 200, width: 360, height: 60 },
-    { type: 'counter', x: 220, y: 300, width: 360, height: 60 },
+    // Purple - Branch Manager (top-left corner)
+    { type: 'manager', x: 50, y: 50, width: 80, height: 80, color: '#9b59b6' },
     
-    // Manager's office
-    { type: 'office', x: 50, y: 50, width: 130, height: 150 },
+    // Orange - Teller counters (top row, 7 rectangles)
+    { type: 'teller', x: 150, y: 50, width: 70, height: 40, color: '#FEA000' },
+    { type: 'teller', x: 230, y: 50, width: 70, height: 40, color: '#FEA000' },
+    { type: 'teller', x: 310, y: 50, width: 70, height: 40, color: '#FEA000' },
+    { type: 'teller', x: 390, y: 50, width: 70, height: 40, color: '#FEA000' },
+    { type: 'teller', x: 470, y: 50, width: 70, height: 40, color: '#FEA000' },
+    { type: 'teller', x: 550, y: 50, width: 70, height: 40, color: '#FEA000' },
+    { type: 'teller', x: 630, y: 50, width: 70, height: 40, color: '#FEA000' },
     
-    // Waiting area
-    { type: 'waitingArea', x: 600, y: 100, width: 150, height: 300 },
+    // Red - Customer Service (left side, 4 squares)
+    { type: 'customerService', x: 50, y: 150, width: 60, height: 60, color: '#CF3D58' },
+    { type: 'customerService', x: 50, y: 230, width: 60, height: 60, color: '#CF3D58' },
+    { type: 'customerService', x: 50, y: 310, width: 60, height: 60, color: '#CF3D58' },
+    { type: 'customerService', x: 50, y: 390, width: 60, height: 60, color: '#CF3D58' },
     
-    // ATMs
-    { type: 'atm', x: 650, y: 500, width: 30, height: 30 },
-    { type: 'atm', x: 700, y: 500, width: 30, height: 30 },
+    // Green - Waiting Area (center, 2 rows of 2 pairs)
+    { type: 'waitingArea', x: 150, y: 150, width: 120, height: 60, color: '#00BFA6' },
+    { type: 'waitingArea', x: 290, y: 150, width: 120, height: 60, color: '#00BFA6' },
+    { type: 'waitingArea', x: 150, y: 230, width: 120, height: 60, color: '#00BFA6' },
+    { type: 'waitingArea', x: 290, y: 230, width: 120, height: 60, color: '#00BFA6' },
+    
+    { type: 'waitingArea', x: 150, y: 350, width: 120, height: 60, color: '#00BFA6' },
+    { type: 'waitingArea', x: 290, y: 350, width: 120, height: 60, color: '#00BFA6' },
+    { type: 'waitingArea', x: 150, y: 430, width: 120, height: 60, color: '#00BFA6' },
+    { type: 'waitingArea', x: 290, y: 430, width: 120, height: 60, color: '#00BFA6' },
+    
+    // Yellow - BEA Kiosks (right side, 3 rectangles)
+    { type: 'beaKiosk', x: 680, y: 150, width: 80, height: 50, color: '#FEA000' },
+    { type: 'beaKiosk', x: 680, y: 220, width: 80, height: 50, color: '#FEA000' },
+    { type: 'beaKiosk', x: 680, y: 290, width: 80, height: 50, color: '#FEA000' },
+    
+    // Brown - ATMs (bottom-right, 2 squares)
+    { type: 'atm', x: 680, y: 480, width: 60, height: 60, color: '#8B4513' },
+    { type: 'atm', x: 750, y: 480, width: 60, height: 60, color: '#8B4513' },
     
     // Entrance
-    { type: 'entrance', x: 600, y: 600, width: 100, height: 10 },
+    { type: 'entrance', x: 400, y: 580, width: 100, height: 20, color: '#333' },
   ]
 };
 
-// Service points (teller positions)
+// Service points based on the new layout
 export const servicePoints = [
-  { id: 1, name: 'Teller 1', x: 250, y: 80, type: 'teller', isActive: true },
-  { id: 2, name: 'Teller 2', x: 350, y: 80, type: 'teller', isActive: true },
-  { id: 3, name: 'Teller 3', x: 450, y: 80, type: 'teller', isActive: false },
-  { id: 4, name: 'Teller 4', x: 250, y: 180, type: 'teller', isActive: true },
-  { id: 5, name: 'Teller 5', x: 350, y: 180, type: 'teller', isActive: false },
-  { id: 6, name: 'Teller 6', x: 450, y: 180, type: 'teller', isActive: false },
-  { id: 7, name: 'Customer Service', x: 350, y: 280, type: 'service', isActive: true },
-  { id: 8, name: 'Branch Manager', x: 110, y: 125, type: 'manager', isActive: true },
-  { id: 9, name: 'ATM 1', x: 650, y: 500, type: 'atm', isActive: true },
-  { id: 10, name: 'ATM 2', x: 700, y: 500, type: 'atm', isActive: true },
+  // Orange - Teller positions (top row)
+  { id: 1, name: 'Teller 1', x: 185, y: 70, type: 'teller', isActive: true },
+  { id: 2, name: 'Teller 2', x: 265, y: 70, type: 'teller', isActive: true },
+  { id: 3, name: 'Teller 3', x: 345, y: 70, type: 'teller', isActive: true },
+  { id: 4, name: 'Teller 4', x: 425, y: 70, type: 'teller', isActive: true },
+  { id: 5, name: 'Teller 5', x: 505, y: 70, type: 'teller', isActive: true },
+  { id: 6, name: 'Teller 6', x: 585, y: 70, type: 'teller', isActive: true },
+  { id: 7, name: 'Teller 7', x: 665, y: 70, type: 'teller', isActive: true },
+  
+  // Red - Customer Service positions (left side)
+  { id: 8, name: 'CS Rep 1', x: 80, y: 180, type: 'customerService', isActive: true },
+  { id: 9, name: 'CS Rep 2', x: 80, y: 260, type: 'customerService', isActive: true },
+  { id: 10, name: 'CS Rep 3', x: 80, y: 340, type: 'customerService', isActive: true },
+  { id: 11, name: 'CS Rep 4', x: 80, y: 420, type: 'customerService', isActive: true },
+  
+  // Purple - Branch Manager position
+  { id: 12, name: 'Branch Manager', x: 90, y: 90, type: 'manager', isActive: true },
+  
+  // Yellow - BEA Kiosk positions (right side)
+  { id: 13, name: 'BEA Kiosk 1', x: 720, y: 175, type: 'beaKiosk', isActive: true },
+  { id: 14, name: 'BEA Kiosk 2', x: 720, y: 245, type: 'beaKiosk', isActive: true },
+  { id: 15, name: 'BEA Kiosk 3', x: 720, y: 315, type: 'beaKiosk', isActive: true },
+  
+  // Brown - ATM positions (bottom-right)
+  { id: 16, name: 'ATM 1', x: 710, y: 510, type: 'atm', isActive: true },
+  { id: 17, name: 'ATM 2', x: 780, y: 510, type: 'atm', isActive: true },
 ];
 
 // Different types of transactions
@@ -192,49 +225,85 @@ export const calculateStaffingEffect = (params) => {
   };
 };
 
-// Customer paths for visualization
+// Customer colors for visualization
+export const customerColors = [
+  '#4299e1', // Blue
+  '#48bb78', // Green
+  '#ed8936', // Orange
+  '#9f7aea', // Purple
+  '#f56565', // Red
+  '#38b2ac', // Teal
+  '#ed64a6', // Pink
+  '#667eea', // Indigo
+  '#f6ad55', // Yellow
+  '#68d391', // Light Green
+];
+
+// Customer paths for visualization based on new layout
 export const generateCustomerPaths = (count) => {
   // Entry point (door)
-  const entryPoint = { x: 650, y: 590 };
+  const entryPoint = { x: 450, y: 590 };
   
-  // Queue position
-  const queueStart = { x: 600, y: 400 };
-  
-  // Helper to generate a random path to a service point
-  const generatePath = (servicePoint) => {
-    // Basic path: Entry -> Queue -> Service Point
-    return [
-      entryPoint,
-      queueStart,
-      { x: queueStart.x - 20, y: queueStart.y - 50 },  // Queue position
-      { x: servicePoint.x + 30, y: servicePoint.y + 30 }, // In front of service point
-      { x: servicePoint.x, y: servicePoint.y }, // At service point
-      { x: servicePoint.x + 30, y: servicePoint.y + 30 }, // Moving away
-      entryPoint // Exit
-    ];
+  // Queue positions for different service types
+  const queuePositions = {
+    teller: { x: 450, y: 120 },
+    customerService: { x: 120, y: 120 },
+    manager: { x: 120, y: 90 },
+    beaKiosk: { x: 720, y: 120 },
+    atm: { x: 720, y: 450 }
   };
   
-  // Generate paths for the requested number of customers
+  // Service points based on new layout
+  const servicePoints = [
+    // Teller positions (top row)
+    { x: 185, y: 70, type: 'teller' },
+    { x: 265, y: 70, type: 'teller' },
+    { x: 345, y: 70, type: 'teller' },
+    { x: 425, y: 70, type: 'teller' },
+    { x: 505, y: 70, type: 'teller' },
+    { x: 585, y: 70, type: 'teller' },
+    { x: 665, y: 70, type: 'teller' },
+    
+    // Customer Service positions (left side)
+    { x: 80, y: 180, type: 'customerService' },
+    { x: 80, y: 260, type: 'customerService' },
+    { x: 80, y: 340, type: 'customerService' },
+    { x: 80, y: 420, type: 'customerService' },
+    
+    // Branch Manager position
+    { x: 90, y: 90, type: 'manager' },
+    
+    // BEA Kiosk positions (right side)
+    { x: 720, y: 175, type: 'beaKiosk' },
+    { x: 720, y: 245, type: 'beaKiosk' },
+    { x: 720, y: 315, type: 'beaKiosk' },
+    
+    // ATM positions (bottom-right)
+    { x: 710, y: 510, type: 'atm' },
+    { x: 780, y: 510, type: 'atm' },
+  ];
+  
   const paths = [];
-  const activeServicePoints = servicePoints.filter(point => point.isActive);
   
   for (let i = 0; i < count; i++) {
-    // Pick a random service point for this customer
-    const randomServicePoint = activeServicePoints[Math.floor(Math.random() * activeServicePoints.length)];
+    const startTime = i * 2; // Stagger start times
+    const duration = 5 + Math.random() * 10; // 5-15 seconds service time
+    const servicePoint = servicePoints[Math.floor(Math.random() * servicePoints.length)];
+    const queuePosition = queuePositions[servicePoint.type];
     
-    // Generate a path to that service point
-    const path = generatePath(randomServicePoint);
-    
-    // Assign a random transaction type
-    const randomTransactionType = transactionTypes[Math.floor(Math.random() * transactionTypes.length)];
+    const path = [
+      entryPoint,
+      queuePosition,
+      servicePoint
+    ];
     
     paths.push({
-      id: `customer-${i + 1}`,
+      id: i,
       path,
-      servicePoint: randomServicePoint,
-      transaction: randomTransactionType,
-      startTime: Math.floor(Math.random() * 50), // Random start time for visualization
-      duration: randomTransactionType.avgTime * 60, // Convert minutes to seconds for animation
+      startTime,
+      duration,
+      transaction: transactionTypes[Math.floor(Math.random() * transactionTypes.length)],
+      color: customerColors[i % customerColors.length] // Assign customer color
     });
   }
   
