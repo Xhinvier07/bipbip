@@ -1,29 +1,21 @@
+
+
 import { useState, useEffect, forwardRef, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { generateHeatmapData } from '../SimulationData';
 
 const BranchFloorPlan = forwardRef(({ 
   floorPlan, 
   servicePoints,
   customerPaths,
-  showHeatmap,
   view,
   simulationSpeed = 1
 }, ref) => {
   const [activePaths, setActivePaths] = useState([]);
-  const [heatmapData, setHeatmapData] = useState([]);
   const canvasRef = useRef(null);
   const animationFrameRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
   
-  // Generate heatmap data when showHeatmap changes
-  useEffect(() => {
-    if (showHeatmap) {
-      setHeatmapData(generateHeatmapData());
-    } else {
-      setHeatmapData([]);
-    }
-  }, [showHeatmap]);
+
   
   // Handle customer path animations
   useEffect(() => {
@@ -209,22 +201,7 @@ const BranchFloorPlan = forwardRef(({
           </motion.div>
         ))}
         
-        {/* Draw heatmap */}
-        {showHeatmap && heatmapData.map((point, index) => (
-          <div
-            key={`heat-${index}`}
-            className="heat-point"
-            style={{
-              left: point.x,
-              top: point.y,
-              opacity: point.value * 0.6,
-              background: `radial-gradient(circle, rgba(255,0,0,0.7) 0%, rgba(255,165,0,0.5) 40%, rgba(255,255,0,0.3) 70%, transparent 100%)`,
-              width: 40,
-              height: 40,
-              transform: 'translate(-50%, -50%)'
-            }}
-          ></div>
-        ))}
+
       </div>
     );
   };

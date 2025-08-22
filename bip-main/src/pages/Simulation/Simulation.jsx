@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { fetchMainSheetData } from '../Dashboard/GoogleSheetsService';
@@ -33,8 +34,7 @@ import {
   defaultSimulationParams,
   sampleSimulationResults,
   calculateStaffingEffect,
-  generateCustomerPaths,
-  generateHeatmapData
+  generateCustomerPaths
 } from './SimulationData';
 
 import './Simulation.css';
@@ -51,7 +51,6 @@ const Simulation = () => {
   const [isControlPanelOpen, setIsControlPanelOpen] = useState(true);
   const [isResultsPanelOpen, setIsResultsPanelOpen] = useState(true);
   const [view, setView] = useState('2D'); // '2D' or '3D'
-  const [showHeatmap, setShowHeatmap] = useState(false);
   const [customerPaths, setCustomerPaths] = useState([]);
   
   // Refs for canvas/simulation
@@ -174,10 +173,7 @@ const Simulation = () => {
     setView(prev => (prev === '2D' ? '3D' : '2D'));
   };
   
-  // Toggle heatmap visualization
-  const toggleHeatmap = () => {
-    setShowHeatmap(!showHeatmap);
-  };
+
   
   // Calculate realtime metrics based on current parameters
   const calculateRealtimeMetrics = () => {
@@ -296,12 +292,7 @@ const Simulation = () => {
               </div>
             </div>
             
-            <div className="visualization-controls">
-              <button className="viz-control-btn" onClick={toggleHeatmap}>
-                {showHeatmap ? <EyeOff size={14} /> : <Eye size={14} />}
-                {showHeatmap ? 'Hide' : 'Show'} Heatmap
-              </button>
-            </div>
+
           </div>
           
           <div className="visualization-area">
@@ -309,7 +300,6 @@ const Simulation = () => {
               floorPlan={branchFloorPlan}
               servicePoints={servicePoints}
               customerPaths={isSimulating ? customerPaths : []}
-              showHeatmap={showHeatmap}
               view={view}
               simulationSpeed={simulationParams.simulationSpeed}
               ref={simulationRef}

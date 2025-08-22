@@ -84,15 +84,91 @@ export const servicePoints = [
   { id: 17, name: 'ATM 2', x: 780, y: 510, type: 'atm', isActive: true },
 ];
 
-// Different types of transactions
+
+// Different types of transactions - updated to reflect DashboardData.js, avgTimes matched with database
 export const transactionTypes = [
-  { id: 1, name: 'Deposit', color: '#FEA000', avgTime: 3, percentage: 40 },
-  { id: 2, name: 'Withdrawal', color: '#CF3D58', avgTime: 2, percentage: 30 },
-  { id: 3, name: 'Balance Inquiry', color: '#C95A94', avgTime: 1, percentage: 10 },
-  { id: 4, name: 'Account Opening', color: '#BC7EFF', avgTime: 15, percentage: 5 },
-  { id: 5, name: 'Loan Application', color: '#00BFA6', avgTime: 20, percentage: 5 },
-  { id: 6, name: 'Bill Payment', color: '#4299e1', avgTime: 3, percentage: 10 }
+  { 
+    id: 1, 
+    name: 'Withdrawal', 
+    color: '#FEA000', 
+    normalWait: 2.5, 
+    peakWait: 6.0, 
+    normalProcess: 2.5, 
+    peakProcess: 3.5,
+    percentage: 40 
+  },
+  { 
+    id: 2, 
+    name: 'Deposit', 
+    color: '#CF3D58', 
+    normalWait: 3.0, 
+    peakWait: 8.0, 
+    normalProcess: 3.0, 
+    peakProcess: 4.5,
+    percentage: 30 
+  },
+  { 
+    id: 3, 
+    name: 'Encashment', 
+    color: '#C95A94', 
+    normalWait: 4.0, 
+    peakWait: 10.0, 
+    normalProcess: 4.0, 
+    peakProcess: 6.0,
+    percentage: 10 
+  },
+  { 
+    id: 4, 
+    name: 'Transfer', 
+    color: '#3B82F6', 
+    normalWait: 2.5, 
+    peakWait: 6.0, 
+    normalProcess: 2.5, 
+    peakProcess: 3.5,
+    percentage: 5 
+  },
+  { 
+    id: 5, 
+    name: 'Customer service', 
+    color: '#10B981', 
+    normalWait: 5.0, 
+    peakWait: 12.0, 
+    normalProcess: 7.0, 
+    peakProcess: 12.0,
+    percentage: 5 
+  },
+  { 
+    id: 6, 
+    name: 'Account service', 
+    color: '#06B6D4', 
+    normalWait: 5.0, 
+    peakWait: 12.0, 
+    normalProcess: 7.0, 
+    peakProcess: 12.0,
+    percentage: 10 
+  },
+  { 
+    id: 7, 
+    name: 'Loan', 
+    color: '#BC7EFF', 
+    normalWait: 5.0, 
+    peakWait: 12.0, 
+    normalProcess: 7.0, 
+    peakProcess: 12.0,
+    percentage: 10 
+  }
 ];
+
+// Helper function to get timing based on peak/normal conditions
+export const getTransactionTiming = (transactionType, isPeakTime = false) => {
+  const transaction = transactionTypes.find(t => t.name.toLowerCase() === transactionType.toLowerCase());
+  if (!transaction) return { waitTime: 3, processTime: 3 };
+  
+  return {
+    waitTime: isPeakTime ? transaction.peakWait : transaction.normalWait,
+    processTime: isPeakTime ? transaction.peakProcess : transaction.normalProcess
+  };
+};
 
 // Staff skill levels
 export const staffSkillLevels = [
@@ -150,7 +226,6 @@ export const defaultSimulationParams = {
   randomEvents: false,
   
   // Display options
-  showHeatmap: true,
   showPaths: true,
   show3D: false
 };
@@ -239,130 +314,187 @@ export const customerColors = [
   '#68d391', // Light Green
 ];
 
-// Customer paths for visualization based on new layout
-export const generateCustomerPaths = (count) => {
-  // Entry point (door)
-  const entryPoint = { x: 450, y: 590 };
-  
-  // Queue positions for different service types
-  const queuePositions = {
-    teller: { x: 450, y: 120 },
-    customerService: { x: 120, y: 120 },
-    manager: { x: 120, y: 90 },
-    beaKiosk: { x: 720, y: 120 },
-    atm: { x: 720, y: 450 }
-  };
-  
-  // Service points based on new layout
-  const servicePoints = [
-    // Teller positions (top row)
-    { x: 185, y: 70, type: 'teller' },
-    { x: 265, y: 70, type: 'teller' },
-    { x: 345, y: 70, type: 'teller' },
-    { x: 425, y: 70, type: 'teller' },
-    { x: 505, y: 70, type: 'teller' },
-    { x: 585, y: 70, type: 'teller' },
-    { x: 665, y: 70, type: 'teller' },
-    
-    // Customer Service positions (left side)
-    { x: 80, y: 180, type: 'customerService' },
-    { x: 80, y: 260, type: 'customerService' },
-    { x: 80, y: 340, type: 'customerService' },
-    { x: 80, y: 420, type: 'customerService' },
-    
-    // Branch Manager position
-    { x: 90, y: 90, type: 'manager' },
-    
-    // BEA Kiosk positions (right side)
-    { x: 720, y: 175, type: 'beaKiosk' },
-    { x: 720, y: 245, type: 'beaKiosk' },
-    { x: 720, y: 315, type: 'beaKiosk' },
-    
-    // ATM positions (bottom-right)
-    { x: 710, y: 510, type: 'atm' },
-    { x: 780, y: 510, type: 'atm' },
-  ];
-  
+// Updated customer path structure with proper state tracking
+export const generateCustomerPaths = (count, isPeakTime = false) => {
   const paths = [];
   
+  // Define key locations (use spread to avoid reference issues)
+  const locations = {
+    entrance: { x: 450, y: 590 },
+    teller1: { x: 185, y: 70},
+    teller2: { x: 265, y: 70},
+    teller3: { x: 345, y: 70},
+    teller4: { x: 425, y: 70},
+    customerService1: { x: 80, y: 180 },
+    customerService2: { x: 80, y: 260 },
+    customerService3: { x: 80, y: 340 },
+    customerService4: { x: 80, y: 420 },
+    bea1: { x: 720, y: 175 },
+    bea2: { x: 720, y: 245 },
+    bea3: { x: 720, y: 315 },
+    waitingArea1: { x: 210, y: 180 },
+    waitingArea2: { x: 350, y: 180 },
+    waitingArea3: { x: 210, y: 260 },
+    waitingArea4: { x: 350, y: 260 },
+    exit: { x: 450, y: 590 }
+  };
+  
   for (let i = 0; i < count; i++) {
-    const startTime = i * 2; // Stagger start times
-    const duration = 5 + Math.random() * 10; // 5-15 seconds service time
-    const servicePoint = servicePoints[Math.floor(Math.random() * servicePoints.length)];
-    const queuePosition = queuePositions[servicePoint.type];
+    // Select transaction and get timing
+    const randomValue = Math.random() * 100;
+    let cumulativePercentage = 0;
+    let selectedTransaction = transactionTypes[0];
     
-    const path = [
-      entryPoint,
-      queuePosition,
-      servicePoint
-    ];
+    for (const transaction of transactionTypes) {
+      cumulativePercentage += transaction.percentage;
+      if (randomValue <= cumulativePercentage) {
+        selectedTransaction = transaction;
+        break;
+      }
+    }
+    
+    const timing = getTransactionTiming(selectedTransaction.name, isPeakTime);
+    let path = [];
+    let waitingAreaIndex = -1;
+    let serviceAreaIndex = -1;
+    
+    // Build path based on transaction type
+    switch (selectedTransaction.name.toLowerCase()) {
+      case 'deposit':
+      case 'encashment':
+      case 'withdrawal':
+      case 'transfer':
+        const beaOptions = ['bea1', 'bea2', 'bea3'];
+        const selectedBEA = beaOptions[Math.floor(Math.random() * beaOptions.length)];
+        const waitingOptions = ['waitingArea1', 'waitingArea2', 'waitingArea3', 'waitingArea4'];
+        const selectedWaiting = waitingOptions[Math.floor(Math.random() * waitingOptions.length)];
+        const tellerOptions = ['teller1', 'teller2', 'teller3', 'teller4'];
+        const selectedTeller = tellerOptions[Math.floor(Math.random() * tellerOptions.length)];
+        
+        path = [
+          { ...locations.entrance },
+          { ...locations[selectedBEA] },
+          { ...locations[selectedWaiting] },
+          { ...locations[selectedTeller] },
+          { ...locations.exit }
+        ];
+        waitingAreaIndex = 2; // waiting area is 3rd step (index 2)
+        serviceAreaIndex = 3; // service area is 4th step (index 3)
+        break;
+        
+      case 'customer service':
+      case 'account service':
+      case 'loan':
+        const csOptions = ['customerService1', 'customerService2', 'customerService3', 'customerService4'];
+        const selectedCS = csOptions[Math.floor(Math.random() * csOptions.length)];
+        
+        path = [
+          { ...locations.entrance },
+          { ...locations[selectedCS] },
+          { ...locations.exit }
+        ];
+        serviceAreaIndex = 1; // service area is 2nd step (index 1)
+        break;
+    }
     
     paths.push({
       id: i,
       path,
-      startTime,
-      duration,
-      transaction: transactionTypes[Math.floor(Math.random() * transactionTypes.length)],
-      color: customerColors[i % customerColors.length] // Assign customer color
+      startTime: i * (2 + Math.random() * 3),
+      transaction: selectedTransaction,
+      color: customerColors[i % customerColors.length],
+      
+      // Movement tracking
+      currentStep: 0,
+      currentPosition: { ...path[0] },
+      targetPosition: { ...path[1] },
+      
+      // State tracking
+      state: 'moving', // 'moving', 'waiting', 'being_served', 'completed'
+      waitingAreaIndex,
+      serviceAreaIndex,
+      
+      // Timing
+      waitingTime: timing.waitTime * 60 * 1000, // Convert to milliseconds
+      serviceTime: timing.processTime * 60 * 1000, // Convert to milliseconds
+      stateStartTime: 0,
+      
+      isComplete: false
     });
   }
   
   return paths;
 };
 
-// Heat map data generation
-export const generateHeatmapData = () => {
-  const heatmapData = [];
-  const width = 800;
-  const height = 600;
-  const cellSize = 20;
+// Customer update function for animation loop
+export const updateCustomerPosition = (customer, currentTime, deltaTime) => {
+  if (customer.isComplete) return customer;
   
-  // Generate a grid of heat points
-  for (let x = 0; x < width; x += cellSize) {
-    for (let y = 0; y < height; y += cellSize) {
-      // Skip cells that are in walls
-      if (isPointInWall(x, y)) continue;
+  const speed = 50;
+  
+  switch (customer.state) {
+    case 'moving':
+      const dx = customer.targetPosition.x - customer.currentPosition.x;
+      const dy = customer.targetPosition.y - customer.currentPosition.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
       
-      // Calculate intensity based on proximity to service points and waiting area
-      let intensity = 0;
-      
-      // Higher intensity near service points
-      servicePoints.forEach(point => {
-        const distance = Math.sqrt(Math.pow(x - point.x, 2) + Math.pow(y - point.y, 2));
-        if (distance < 100 && point.isActive) {
-          intensity += (100 - distance) / 100;
+      if (distance < 5) {
+        // Reached target
+        customer.currentPosition = { ...customer.targetPosition };
+        
+        // Check what area we just reached
+        if (customer.currentStep === customer.waitingAreaIndex) {
+          customer.state = 'waiting';
+          customer.stateStartTime = currentTime;
         }
-      });
-      
-      // Higher intensity in waiting area
-      if (x > 600 && x < 750 && y > 100 && y < 400) {
-        intensity += 0.5;
+        else if (customer.currentStep === customer.serviceAreaIndex) {
+          customer.state = 'being_served';
+          customer.stateStartTime = currentTime;
+        }
+        else {
+          // Normal movement - go to next step
+          customer.currentStep++;
+          if (customer.currentStep >= customer.path.length) {
+            customer.state = 'completed';
+            customer.isComplete = true;
+          } else {
+            customer.targetPosition = { ...customer.path[customer.currentStep] };
+          }
+        }
+      } else {
+        // Continue moving
+        const moveDistance = speed * (deltaTime / 1000);
+        const ratio = Math.min(moveDistance / distance, 1);
+        customer.currentPosition.x += dx * ratio;
+        customer.currentPosition.y += dy * ratio;
       }
+      break;
       
-      // Higher intensity near entrance
-      const distanceToEntrance = Math.sqrt(Math.pow(x - 650, 2) + Math.pow(y - 590, 2));
-      if (distanceToEntrance < 80) {
-        intensity += (80 - distanceToEntrance) / 160;
+    case 'waiting':
+      if (currentTime - customer.stateStartTime >= customer.waitingTime) {
+        customer.state = 'moving';
+        customer.currentStep++; // Move to next step
+        customer.targetPosition = { ...customer.path[customer.currentStep] };
       }
+      break;
       
-      // Add some randomness
-      intensity += Math.random() * 0.2;
-      
-      // Cap intensity
-      intensity = Math.min(1, Math.max(0, intensity));
-      
-      if (intensity > 0.1) { // Only add points with meaningful intensity
-        heatmapData.push({
-          x, 
-          y, 
-          value: intensity
-        });
+    case 'being_served':
+      if (currentTime - customer.stateStartTime >= customer.serviceTime) {
+        customer.state = 'moving';
+        customer.currentStep++; // Move to next step
+        if (customer.currentStep >= customer.path.length) {
+          customer.state = 'completed';
+          customer.isComplete = true;
+        } else {
+          customer.targetPosition = { ...customer.path[customer.currentStep] };
+        }
       }
-    }
+      break;
   }
   
-  return heatmapData;
+  return customer;
 };
+
 
 // Helper function to check if a point is inside a wall
 function isPointInWall(x, y) {

@@ -366,7 +366,10 @@ const SimulationControls = ({
               <div className="distribution-note">
                 <AlertTriangle size={14} />
                 <p>Total must equal 100%. Adjusting one type will automatically rebalance others.</p>
+                <AlertTriangle size={14} />
+                <p>Avg. Time: Avg. Waiting Time + Avg. Processing Time</p>
               </div>
+              
             </div>
           </div>
         )}
@@ -420,19 +423,7 @@ const SimulationControls = ({
               </div>
             </div>
             
-            <div className="control-group">
-              <div className="checkbox-container">
-                <label>
-                  <input 
-                    type="checkbox"
-                    checked={params.showHeatmap}
-                    onChange={(e) => onUpdateParams({ showHeatmap: e.target.checked })}
-                    disabled={disabled}
-                  />
-                  <span>Show customer heatmap</span>
-                </label>
-              </div>
-            </div>
+
             
             <div className="control-group">
               <div className="checkbox-container">
