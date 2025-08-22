@@ -40,7 +40,7 @@ class BPITransactionGenerator:
             'withdrawal': {
                 'weight': 30,
                 'waiting_time': {
-                    'normal': {'good': (1, 3), 'bad': (4, 8), 'base': (2, 5)},
+                    'normal': {'good': (1, 3), 'bad': (4, 8), 'base': (2, 5)}, #
                     'peak': {'good': (5, 10), 'bad': (12, 20), 'base': (8, 15)}
                 },
                 'processing_time': {
@@ -814,7 +814,7 @@ def main():
     # Initialize the generator with data quality parameters
     generator = BPITransactionGenerator(
         SHEET_ID, 
-        credentials_path="trashscan-450913-8d2548518ddc.json",
+        credentials_path="trashscan-450913-eb9189146693.json",
         data_dispersion=config['dispersion'],
         good_data_percentage=config['good_percentage']
     )

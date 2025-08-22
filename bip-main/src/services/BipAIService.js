@@ -703,9 +703,8 @@ export const getDataDrivenQueries = async () => {
       "Show me branch performance rankings",
       "Analyze wait times across branches",
       "What are the current transaction trends?",
-      "Which branches need staffing optimization?",
+      "Top 3 branches by transaction count?",
       "Is there a correlation between wait times and BHS?",
-      "Identify branches with the best customer satisfaction",
       "Where are our top performing branches located?",
       "Which transaction types are most common?"
     ];
@@ -745,7 +744,7 @@ export const getDataDrivenQueries = async () => {
       "Show me branch performance rankings",
       "Analyze wait times across branches",
       "What are the current transaction trends?",
-      "Which branches need staffing optimization?"
+      "Top 5 branches by transaction count?"
     ];
   }
 };

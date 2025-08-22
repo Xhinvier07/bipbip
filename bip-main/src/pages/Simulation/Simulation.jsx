@@ -203,7 +203,6 @@ const Simulation = () => {
                 </option>
               ))}
             </select>
-            <ChevronDown size={16} />
           </div>
         </div>
         

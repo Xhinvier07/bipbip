@@ -62,7 +62,7 @@ const ChatMessage = ({ message, isLast, timestamp }) => {
         
         <div className="message-content">
           {message.content.split('\n').map((line, index) => (
-            <p key={index}>{line}</p>
+            <p key={index} dangerouslySetInnerHTML={{ __html: line }} />
           ))}
           
           {message.alert && (

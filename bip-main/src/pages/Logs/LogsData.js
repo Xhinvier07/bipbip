@@ -353,7 +353,7 @@ const generateMetadata = (category) => {
       return {
         threatLevel: ['Low', 'Medium', 'High', 'Critical'][Math.floor(Math.random() * 4)],
         sourceIp: `${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`,
-        location: ['Philippines', 'United States', 'China', 'Russia', 'India'][Math.floor(Math.random() * 5)],
+        location: ['Manila', 'Makati', 'Pasig', 'Caloocan', 'Quezon City'][Math.floor(Math.random() * 5)],
         actionTaken: ['Blocked', 'Monitored', 'Alerted', 'Quarantined'][Math.floor(Math.random() * 4)]
       };
     case 'api':
