@@ -309,16 +309,19 @@ frequency = 30               # Update frequency (seconds)
 ## 📊 **Performance Metrics**
 
 ### **Service Standards**
-| Transaction Type | Normal Wait | Peak Wait | Normal Process | Peak Process |
-|------------------|-------------|-----------|----------------|--------------|
-| Withdrawal       | 2.5 min     | 6.0 min   | 2.5 min        | 3.5 min      |
-| Deposit          | 3.0 min     | 8.0 min   | 3.0 min        | 4.5 min      |
-| Encashment       | 4.0 min     | 10.0 min  | 4.0 min        | 6.0 min      |
-| Customer Service | 5.0 min     | 12.0 min  | 7.0 min        | 12.0 min     |
+| Transaction Type                                    | Waiting Time (Normal) | Waiting Time (Peak) | Processing Time (Normal) | Processing Time (Peak) |
+|-----------------------------------------------------|-----------------------|---------------------|--------------------------|------------------------|
+| Withdrawal                                          | 2--5 min              | 8--15 min           | 2--4 min                 | 3--6 min               |
+| Deposit                                             | 3--7 min              | 10--20 min          | 3--6 min                 | 5--8 min               |
+| Encashment                                         | 4--8 min              | 12--25 min          | 4--7 min                 | 6--10 min              |
+| Loan                                                | 10--20 min            | 20--40 min          | 15--30 min               | 20--45 min             |
+| Transfer                                            | 3--6 min              | 8--15 min           | 3--5 min                 | 4--7 min               |
+| Account Service (open/close/update info)           | 8--15 min             | 15--30 min          | 10--20 min               | 15--25 min             |
+| Customer Service (general inquiries, disputes, etc.)| 5--12 min             | 15--25 min          | 7--15 min                | 10--20 min             |
 
 ### **Capacity Standards**
-- **Normal Day**: 150 customers per branch
-- **Peak Day**: 270 customers per branch
+- **Normal Day**: 170 customers per branch
+- **Peak Day**: 310 customers per branch
 - **BEA Count**: 3-4 per branch
 
 ---
