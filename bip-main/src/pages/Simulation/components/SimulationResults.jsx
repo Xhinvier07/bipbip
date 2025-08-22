@@ -258,13 +258,13 @@ const SimulationResults = ({ results }) => {
                   <div className="transaction-details">
                     <div className="transaction-name">{transaction.name}</div>
                     <div className="transaction-metrics">
-                      <span className="transaction-count">{transaction.count} transactions</span>
+                      <span className="transaction-count">{transaction.count} TXN</span>
                       <span className="transaction-time">
                         <Clock size={12} />
-                        {transaction.avgTime.toFixed(1)} min avg
+                        {transaction.avgTime.toFixed(1)} AVG
                       </span>
                       <span className="transaction-satisfaction">
-                        {transaction.satisfaction}% satisfaction
+                        {transaction.satisfaction}% CSAT
                       </span>
                     </div>
                   </div>
