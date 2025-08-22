@@ -221,7 +221,7 @@ Visit `http://localhost:5173` to access the dashboard!
 - ⏱️ **50% reduction** in customer wait times
 - 👥 **30% improvement** in staff efficiency
 - 💰 **148% reduction** in labor costs per transaction
-- 📊 **Real-time visibility** into 1,250+ branches
+- 📊 **Real-time visibility** into 250+ branches (Metro Manila)
 
 ### **Customer Experience**
 - 🎯 **35% increase** in staff warmth scores
@@ -382,7 +382,6 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 ### **Getting Help**
 - 📖 **Documentation**: Check the [DOCUMENTATION.md](DOCUMENTATION.md)
 - 🐛 **Issues**: Report bugs via GitHub Issues
-- 💬 **Discussions**: Join our community discussions
 - 📧 **Contact**: Reach out to the development team
 
 ### **Troubleshooting**
