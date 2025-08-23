@@ -2,7 +2,8 @@
 
 import { useState, useEffect, forwardRef, useRef } from 'react';
 import { motion } from 'framer-motion';
-
+import { updateCustomerPosition } from '../SimulationData';
+// ... existing imports ...
 const BranchFloorPlan = forwardRef(({ 
   floorPlan, 
   servicePoints,
@@ -15,95 +16,99 @@ const BranchFloorPlan = forwardRef(({
   const animationFrameRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
   
+  const customerStateRef = useRef(new Map());
 
-  
-  // Handle customer path animations
+// Handle customer path animations
   useEffect(() => {
     if (customerPaths.length === 0) {
       setActivePaths([]);
       return;
     }
-    
-    // Start time
+
     const startTime = Date.now();
+    let lastTime = startTime;
     
-    // Animation frame function
     const animate = () => {
-      const elapsedTime = (Date.now() - startTime) / 1000 * simulationSpeed; // Convert to seconds with speed multiplier
+      const now = Date.now();
+      const realDeltaTime = now - lastTime;
+      const acceleratedDeltaTime = realDeltaTime * simulationSpeed;
+      const simulatedTime = startTime + (now - startTime) * simulationSpeed;
+      lastTime = now;
       
-      // Update positions for each customer
+      // Update each customer using the state machine from SimulationData.js
       const updatedPaths = customerPaths.map(customer => {
-        // Check if customer has started their journey yet
-        if (elapsedTime < customer.startTime) {
-          return { ...customer, position: null, isActive: false };
-        }
+        // Create a copy to avoid mutations
+        let customerCopy;
+          if (!customerStateRef.current.has(customer.id)) {
+            // First time seeing this customer - initialize
+            customerCopy = {
+              ...customer,
+              currentPosition: { ...customer.path[0] },
+              targetPosition: customer.path.length > 1 ? { ...customer.path[1] } : { ...customer.path[0] },
+              currentStep: 0,
+              state: 'moving',
+              stateStartTime: simulatedTime,
+              isComplete: false
+            };
+            customerStateRef.current.set(customer.id, customerCopy);
+          } else {
+            // Get existing state
+            customerCopy = customerStateRef.current.get(customer.id);
+          }
         
-        // Calculate time in the customer's journey
-        const customerTime = elapsedTime - customer.startTime;
-        
-        // Check if customer's journey is complete
-        if (customerTime > customer.duration + customer.path.length * 2) { // 2 seconds per path segment
-          return { ...customer, position: null, isActive: false, isComplete: true };
-        }
-        
-        // Calculate which path segment the customer is on
-        const pathDuration = customer.path.length * 2; // 2 seconds per path segment
-        
-        if (customerTime < pathDuration) {
-          // Customer is still moving along the path
-          const segmentDuration = 2; // seconds per segment
-          const segmentIndex = Math.min(
-            Math.floor(customerTime / segmentDuration),
-            customer.path.length - 2
-          );
-          const segmentProgress = (customerTime % segmentDuration) / segmentDuration;
-          
-          // Interpolate between current segment points
-          const start = customer.path[segmentIndex];
-          const end = customer.path[segmentIndex + 1];
-          
-          const position = {
-            x: start.x + (end.x - start.x) * segmentProgress,
-            y: start.y + (end.y - start.y) * segmentProgress
-          };
-          
-          return { ...customer, position, isActive: true, isWaiting: false };
-        } else {
-          // Customer is at service point being served
-          const servicePosition = customer.path[customer.path.length - 2];
-          
-          // Calculate how far through service they are
-          const serviceProgress = (customerTime - pathDuration) / customer.duration;
-          
+        // Check if customer has started their journey yet (using simulated time)
+        const customerStartTime = startTime + (customer.startTime * 1000);
+        if (simulatedTime < customerStartTime) {
           return { 
-            ...customer, 
-            position: servicePosition,
-            isActive: true,
-            isWaiting: false,
-            isBeingServed: true,
-            serviceProgress: Math.min(1, serviceProgress)
+            ...customerCopy, 
+            position: null, 
+            isActive: false,
+            isComplete: false 
           };
         }
+        
+ 
+        // Use the state machine update function with simulated time
+        const updatedCustomer = updateCustomerPosition(customerCopy, simulatedTime, acceleratedDeltaTime);
+        customerStateRef.current.set(customer.id, updatedCustomer);
+        
+        // Convert the state machine output to the format expected by your UI
+        return {
+          ...updatedCustomer,
+          position: updatedCustomer.isComplete ? null : {
+            x: updatedCustomer.currentPosition.x,
+            y: updatedCustomer.currentPosition.y
+          },
+          isActive: !updatedCustomer.isComplete,
+          isWaiting: updatedCustomer.state === 'waiting',
+          isBeingServed: updatedCustomer.state === 'being_served',
+          serviceProgress: updatedCustomer.state === 'being_served' 
+            ? Math.min(1, (simulatedTime - updatedCustomer.stateStartTime) / updatedCustomer.serviceTime)
+            : 0
+        };
       });
       
       setActivePaths(updatedPaths);
       
-      // Continue animation if any paths are still active
-      if (updatedPaths.some(p => p.isActive)) {
+      // Continue animation if any customers are still active
+      if (updatedPaths.some(p => !p.isComplete)) {
         animationFrameRef.current = requestAnimationFrame(animate);
       }
     };
     
-    // Start animation
     animationFrameRef.current = requestAnimationFrame(animate);
     
-    // Cleanup function
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
   }, [customerPaths, simulationSpeed]);
+
+  useEffect(() => {
+    // Clear old customer state when paths change
+    customerStateRef.current.clear();
+  }, [customerPaths]);
   
   // Draw branch floor plan
   const renderFloorPlan = () => {
