@@ -236,11 +236,7 @@ const Simulation = () => {
               <RotateCcw size={16} />
               Reset
             </button>
-            
-            <button className="simulation-btn save">
-              <Save size={16} />
-              Save Scenario
-            </button>
+          
           </div>
         </div>
       </div>

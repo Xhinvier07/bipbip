@@ -215,13 +215,6 @@ const BranchFloorPlan = forwardRef(({
   const render3DView = () => {
     return (
       <div className="floor-plan-3d">
-        <div className="floor-plan-3d-overlay">
-          <div className="floor-plan-3d-message">
-            <h3>3D View</h3>
-            <p>Visualization being rendered...</p>
-            <p className="note">Note: In a production environment, this would use Three.js to render a 3D view of the branch</p>
-          </div>
-        </div>
         {renderFloorPlan()}
       </div>
     );
