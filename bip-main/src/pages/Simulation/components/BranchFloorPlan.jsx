@@ -114,19 +114,7 @@ const BranchFloorPlan = forwardRef(({
   const renderFloorPlan = () => {
     return (
       <div className={`floor-plan ${view === '3D' ? 'view-3d' : ''}`}>
-                 {/* Draw walls */}
-         {floorPlan.walls && floorPlan.walls.map((wall, index) => (
-           <div 
-             key={`wall-${index}`}
-             className="wall"
-             style={{
-               left: Math.min(wall.x1, wall.x2),
-               top: Math.min(wall.y1, wall.y2),
-               width: Math.abs(wall.x2 - wall.x1) || 4,
-               height: Math.abs(wall.y2 - wall.y1) || 4
-             }}
-           ></div>
-         ))}
+    
         
         {/* Draw furniture */}
         {floorPlan.furniture.map((item, index) => (
@@ -145,8 +133,8 @@ const BranchFloorPlan = forwardRef(({
           >
             {item.type === 'entrance' && <div className="entrance-label">Entrance</div>}
             {item.type === 'waitingArea' && <div className="waiting-label">Waiting</div>}
-            {item.type === 'manager' && <div className="manager-label">Manager</div>}
-            {item.type === 'teller' && <div className="teller-label">Teller</div>}
+            {item.type === 'manager'}
+            {item.type === 'teller'}
             {item.type === 'customerService' && <div className="cs-label">CS</div>}
             {item.type === 'beaKiosk' && <div className="bea-label">BEA</div>}
             {item.type === 'atm' && <div className="atm-label">ATM</div>}
@@ -157,12 +145,12 @@ const BranchFloorPlan = forwardRef(({
         {servicePoints.map((point) => {
           const getServicePointColor = (type) => {
             switch (type) {
-              case 'teller': return '#FEA000';
-              case 'customerService': return '#CF3D58';
-              case 'manager': return '#9b59b6';
-              case 'beaKiosk': return '#FEA000';
-              case 'atm': return '#8B4513';
-              default: return '#666';
+              case 'teller':
+              case 'customerService':
+              case 'manager':
+              case 'beaKiosk':
+              case 'atm':
+              default:
             }
           };
           
@@ -173,11 +161,9 @@ const BranchFloorPlan = forwardRef(({
               style={{
                 left: point.x - 15,
                 top: point.y - 15,
-                backgroundColor: getServicePointColor(point.type),
-                border: '2px solid #333'
               }}
             >
-              <div className="service-point-label">{point.name}</div>
+              <div className={`service-point-label ${point.type}`}>{point.name}</div>
             </div>
           );
         })}

@@ -353,14 +353,13 @@
 }
 
 .branch-legend {
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
+  position: fixed;
+  bottom: 20px;
+  right: 360px;
   background-color: white;
   border-radius: 8px;
   padding: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
   flex-wrap: wrap;
   gap: 12px;
   max-width: 400px;
@@ -408,6 +407,35 @@
 .legend-color.entrance {
   background-color: #333;
 }
+
+.legend-color.withdrawal {
+  background-color: #FEA000;
+}
+
+.legend-color.deposit {
+  background-color: #CF3D58;
+}
+
+.legend-color.encashment {
+  background-color: #C95A94;
+}
+
+.legend-color.loan {
+  background-color: #BC7EFF;
+}
+
+.legend-color.transfer {
+  background-color: #3B82F6;
+}
+
+.legend-color.accountservice {
+  background-color: #06B6D4;
+}
+
+.legend-color.customerservice {
+  background-color: #10B981;
+}
+
 
 .simulation-status {
   position: absolute;
@@ -555,8 +583,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 12px;
-  color: #666;
+  color: #ffffff;
 }
+
 
 .service-point {
   position: absolute;
@@ -595,12 +624,28 @@
 
 .service-point-label {
   position: absolute;
-  bottom: -20px;
+  bottom: -38px;  /* Default fallback */
   left: 50%;
   transform: translateX(-50%);
   font-size: 10px;
   color: #666;
   white-space: nowrap;
+}
+
+.service-point-label.teller {
+  bottom: -20px;  /* Different bottom distance for tellers */
+}
+
+.service-point-label.customerService {
+  bottom: -32px;  /* Different bottom distance for CS reps */
+}
+
+.service-point-label.manager {
+  bottom: -40px;  /* Different bottom distance for manager */
+}
+
+.service-point-label.beaKiosk {
+  bottom: -30px;  /* Different bottom distance for manager */
 }
 
 .customer {

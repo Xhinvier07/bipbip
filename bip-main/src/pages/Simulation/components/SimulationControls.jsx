@@ -366,8 +366,6 @@ const SimulationControls = ({
               <div className="distribution-note">
                 <AlertTriangle size={14} />
                 <p>Total must equal 100%. Adjusting one type will automatically rebalance others.</p>
-                <AlertTriangle size={14} />
-                <p>Avg. Time: Avg. Waiting Time + Avg. Processing Time</p>
               </div>
               
             </div>

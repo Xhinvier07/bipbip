@@ -330,29 +330,38 @@ const Simulation = () => {
           
           <div className="branch-legend">
             <div className="legend-item">
-              <div className="legend-color manager"></div>
-              <span>Branch Manager</span>
+              <p><b>Customer Types Legend</b></p>
             </div>
             <div className="legend-item">
-              <div className="legend-color teller"></div>
-              <span>Tellers</span>
+              <div className="legend-color withdrawal"></div>
+              <span>Withdrawal</span>
             </div>
             <div className="legend-item">
-              <div className="legend-color customer-service"></div>
+              <div className="legend-color deposit"></div>
+              <span>Deposit</span>
+            </div>
+            <div className="legend-item">
+              <div className="legend-color encashment"></div>
+              <span>Encashment</span>
+            </div>
+            <div className="legend-item">
+              <div className="legend-color loan"></div>
+              <span>Loan</span>
+            </div>
+            <div className="legend-item">
+              <div className="legend-color transfer"></div>
+              <span>Transfer</span>
+            </div>
+            <div className="legend-item">
+              <div className="legend-color accountservice"></div>
+              <span>Account Service</span>
+            </div>
+
+            <div className="legend-item">
+              <div className="legend-color customerservice"></div>
               <span>Customer Service</span>
             </div>
-            <div className="legend-item">
-              <div className="legend-color waiting-area"></div>
-              <span>Waiting Area</span>
-            </div>
-            <div className="legend-item">
-              <div className="legend-color bea-kiosk"></div>
-              <span>BEA Kiosks</span>
-            </div>
-            <div className="legend-item">
-              <div className="legend-color atm"></div>
-              <span>ATMs</span>
-            </div>
+
           </div>
         </div>
         

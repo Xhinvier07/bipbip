@@ -19,9 +19,6 @@ export const branchFloorPlan = {
     { type: 'teller', x: 230, y: 50, width: 70, height: 40, color: '#FEA000' },
     { type: 'teller', x: 310, y: 50, width: 70, height: 40, color: '#FEA000' },
     { type: 'teller', x: 390, y: 50, width: 70, height: 40, color: '#FEA000' },
-    { type: 'teller', x: 470, y: 50, width: 70, height: 40, color: '#FEA000' },
-    { type: 'teller', x: 550, y: 50, width: 70, height: 40, color: '#FEA000' },
-    { type: 'teller', x: 630, y: 50, width: 70, height: 40, color: '#FEA000' },
     
     // Red - Customer Service (left side, 4 squares)
     { type: 'customerService', x: 50, y: 150, width: 60, height: 60, color: '#CF3D58' },
@@ -35,22 +32,18 @@ export const branchFloorPlan = {
     { type: 'waitingArea', x: 150, y: 230, width: 120, height: 60, color: '#00BFA6' },
     { type: 'waitingArea', x: 290, y: 230, width: 120, height: 60, color: '#00BFA6' },
     
-    { type: 'waitingArea', x: 150, y: 350, width: 120, height: 60, color: '#00BFA6' },
-    { type: 'waitingArea', x: 290, y: 350, width: 120, height: 60, color: '#00BFA6' },
-    { type: 'waitingArea', x: 150, y: 430, width: 120, height: 60, color: '#00BFA6' },
-    { type: 'waitingArea', x: 290, y: 430, width: 120, height: 60, color: '#00BFA6' },
     
     // Yellow - BEA Kiosks (right side, 3 rectangles)
-    { type: 'beaKiosk', x: 680, y: 150, width: 80, height: 50, color: '#FEA000' },
-    { type: 'beaKiosk', x: 680, y: 220, width: 80, height: 50, color: '#FEA000' },
-    { type: 'beaKiosk', x: 680, y: 290, width: 80, height: 50, color: '#FEA000' },
+    { type: 'beaKiosk', x: 480, y: 150, width: 80, height: 50, color: '#FEA000' },
+    { type: 'beaKiosk', x: 480, y: 220, width: 80, height: 50, color: '#FEA000' },
+    { type: 'beaKiosk', x: 480, y: 290, width: 80, height: 50, color: '#FEA000' },
     
     // Brown - ATMs (bottom-right, 2 squares)
-    { type: 'atm', x: 680, y: 480, width: 60, height: 60, color: '#8B4513' },
-    { type: 'atm', x: 750, y: 480, width: 60, height: 60, color: '#8B4513' },
+    { type: 'atm', x: 480, y: 480, width: 60, height: 60, color: '#8B4513' },
+    { type: 'atm', x: 560, y: 480, width: 60, height: 60, color: '#8B4513' },
     
     // Entrance
-    { type: 'entrance', x: 400, y: 580, width: 100, height: 20, color: '#333' },
+    { type: 'entrance', x: 220, y: 580, width: 100, height: 20, color: '#333' },
   ]
 };
 
@@ -61,9 +54,6 @@ export const servicePoints = [
   { id: 2, name: 'Teller 2', x: 265, y: 70, type: 'teller', isActive: true },
   { id: 3, name: 'Teller 3', x: 345, y: 70, type: 'teller', isActive: true },
   { id: 4, name: 'Teller 4', x: 425, y: 70, type: 'teller', isActive: true },
-  { id: 5, name: 'Teller 5', x: 505, y: 70, type: 'teller', isActive: true },
-  { id: 6, name: 'Teller 6', x: 585, y: 70, type: 'teller', isActive: true },
-  { id: 7, name: 'Teller 7', x: 665, y: 70, type: 'teller', isActive: true },
   
   // Red - Customer Service positions (left side)
   { id: 8, name: 'CS Rep 1', x: 80, y: 180, type: 'customerService', isActive: true },
@@ -75,13 +65,13 @@ export const servicePoints = [
   { id: 12, name: 'Branch Manager', x: 90, y: 90, type: 'manager', isActive: true },
   
   // Yellow - BEA Kiosk positions (right side)
-  { id: 13, name: 'BEA Kiosk 1', x: 720, y: 175, type: 'beaKiosk', isActive: true },
-  { id: 14, name: 'BEA Kiosk 2', x: 720, y: 245, type: 'beaKiosk', isActive: true },
-  { id: 15, name: 'BEA Kiosk 3', x: 720, y: 315, type: 'beaKiosk', isActive: true },
+  { id: 13, name: 'BEA Kiosk 1', x: 520, y: 175, type: 'beaKiosk', isActive: true },
+  { id: 14, name: 'BEA Kiosk 2', x: 520, y: 245, type: 'beaKiosk', isActive: true },
+  { id: 15, name: 'BEA Kiosk 3', x: 520, y: 315, type: 'beaKiosk', isActive: true },
   
   // Brown - ATM positions (bottom-right)
-  { id: 16, name: 'ATM 1', x: 710, y: 510, type: 'atm', isActive: true },
-  { id: 17, name: 'ATM 2', x: 780, y: 510, type: 'atm', isActive: true },
+  { id: 16, name: 'ATM 1', x: 510, y: 510, type: 'atm', isActive: true },
+  { id: 17, name: 'ATM 2', x: 590, y: 510, type: 'atm', isActive: true },
 ];
 
 
@@ -320,23 +310,23 @@ export const generateCustomerPaths = (count, isPeakTime = false) => {
   
   // Define key locations (use spread to avoid reference issues)
   const locations = {
-    entrance: { x: 450, y: 590 },
-    teller1: { x: 185, y: 70},
-    teller2: { x: 265, y: 70},
-    teller3: { x: 345, y: 70},
-    teller4: { x: 425, y: 70},
-    customerService1: { x: 80, y: 180 },
-    customerService2: { x: 80, y: 260 },
-    customerService3: { x: 80, y: 340 },
-    customerService4: { x: 80, y: 420 },
-    bea1: { x: 720, y: 175 },
-    bea2: { x: 720, y: 245 },
-    bea3: { x: 720, y: 315 },
-    waitingArea1: { x: 210, y: 180 },
-    waitingArea2: { x: 350, y: 180 },
-    waitingArea3: { x: 210, y: 260 },
-    waitingArea4: { x: 350, y: 260 },
-    exit: { x: 450, y: 590 }
+    entrance: { x: 260, y: 590, maxCapacity: 100 },
+    teller1: { x: 185, y: 70, maxCapacity: 1 },
+    teller2: { x: 265, y: 70, maxCapacity: 1 },
+    teller3: { x: 345, y: 70, maxCapacity: 1 },
+    teller4: { x: 425, y: 70, maxCapacity: 1 },
+    customerService1: { x: 80, y: 180, maxCapacity: 1 },
+    customerService2: { x: 80, y: 260, maxCapacity: 1 },
+    customerService3: { x: 80, y: 340, maxCapacity: 1 },
+    customerService4: { x: 80, y: 420, maxCapacity: 1 },
+    bea1: { x: 520, y: 175, maxCapacity: 1 },
+    bea2: { x: 520, y: 245, maxCapacity: 1 },
+    bea3: { x: 520, y: 315, maxCapacity: 1 },
+    waitingArea1: { x: 210, y: 180, maxCapacity: 4  },
+    waitingArea2: { x: 350, y: 180, maxCapacity: 4  },
+    waitingArea3: { x: 210, y: 260, maxCapacity: 4  },
+    waitingArea4: { x: 350, y: 260, maxCapacity: 4  },
+    exit: { x: 450, y: 590,  maxCapacity: 100  }
   };
   
   for (let i = 0; i < count; i++) {
