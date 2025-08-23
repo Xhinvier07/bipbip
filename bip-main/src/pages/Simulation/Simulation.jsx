@@ -43,7 +43,7 @@ import SimulationControls from './components/SimulationControls';
 import SimulationResults from './components/SimulationResults';
 
 const Simulation = () => {
-  const [selectedBranch, setSelectedBranch] = useState('C3 A Mabini');
+  const [selectedBranch, setSelectedBranch] = useState('Morayta Feu');
   const [branchNames, setBranchNames] = useState([]);
   const [simulationParams, setSimulationParams] = useState(defaultSimulationParams);
   const [isSimulating, setIsSimulating] = useState(false);

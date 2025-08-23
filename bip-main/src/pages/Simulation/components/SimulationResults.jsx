@@ -74,6 +74,7 @@ const SimulationResults = ({ results }) => {
           <div className="results-summary">
             <div className="summary-header">
               <div className="bhs-score">
+                
                 <div className="bhs-score-title">
                   <Sparkles size={16} />
                   Est. BHS
@@ -102,6 +103,56 @@ const SimulationResults = ({ results }) => {
               </div>
             </div>
             
+            
+            <div className="simulation-insights">
+              <h3>
+                <Sparkles size={16} />
+                AI Insights
+              </h3>
+              
+              <div className="insight-list">
+                {results.staffUtilization > 90 && (
+                  <div className="insight-item warning">
+                    <AlertCircle size={16} />
+                    <div className="insight-content">
+                      <strong>High staff utilization detected ({results.staffUtilization}%)</strong>
+                      <p>Consider adding more tellers during peak hours to reduce wait times and improve customer satisfaction.</p>
+                    </div>
+                  </div>
+                )}
+                
+                {results.abandonedTransactions > 0 && (
+                  <div className="insight-item warning">
+                    <AlertCircle size={16} />
+                    <div className="insight-content">
+                      <strong>{results.abandonedTransactions} abandoned transactions</strong>
+                      <p>Customer loss detected due to long wait times. Recommend increasing service capacity.</p>
+                    </div>
+                  </div>
+                )}
+                
+                {results.projectedBHS >= 85 && (
+                  <div className="insight-item positive">
+                    <CheckCircle size={16} />
+                    <div className="insight-content">
+                      <strong>Strong Branch Health Score</strong>
+                      <p>Current staffing and service levels are maintaining good customer satisfaction.</p>
+                    </div>
+                  </div>
+                )}
+                
+                {results.staffUtilization < 70 && (
+                  <div className="insight-item info">
+                    <AlertCircle size={16} />
+                    <div className="insight-content">
+                      <strong>Low staff utilization ({results.staffUtilization}%)</strong>
+                      <p>Consider reducing staff during this time period or redistributing to busier branches.</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
             <div className="metrics-grid">
               <div className="metric-card">
                 <div className="metric-header">
@@ -180,66 +231,9 @@ const SimulationResults = ({ results }) => {
                 </div>
               </div>
             </div>
+
             
-            <div className="simulation-insights">
-              <h3>
-                <Sparkles size={16} />
-                AI Insights
-              </h3>
-              
-              <div className="insight-list">
-                {results.staffUtilization > 90 && (
-                  <div className="insight-item warning">
-                    <AlertCircle size={16} />
-                    <div className="insight-content">
-                      <strong>High staff utilization detected ({results.staffUtilization}%)</strong>
-                      <p>Consider adding more tellers during peak hours to reduce wait times and improve customer satisfaction.</p>
-                    </div>
-                  </div>
-                )}
-                
-                {results.abandonedTransactions > 0 && (
-                  <div className="insight-item warning">
-                    <AlertCircle size={16} />
-                    <div className="insight-content">
-                      <strong>{results.abandonedTransactions} abandoned transactions</strong>
-                      <p>Customer loss detected due to long wait times. Recommend increasing service capacity.</p>
-                    </div>
-                  </div>
-                )}
-                
-                {results.projectedBHS >= 85 && (
-                  <div className="insight-item positive">
-                    <CheckCircle size={16} />
-                    <div className="insight-content">
-                      <strong>Strong Branch Health Score</strong>
-                      <p>Current staffing and service levels are maintaining good customer satisfaction.</p>
-                    </div>
-                  </div>
-                )}
-                
-                {results.staffUtilization < 70 && (
-                  <div className="insight-item info">
-                    <AlertCircle size={16} />
-                    <div className="insight-content">
-                      <strong>Low staff utilization ({results.staffUtilization}%)</strong>
-                      <p>Consider reducing staff during this time period or redistributing to busier branches.</p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-            
-            <div className="results-actions">
-              <button className="action-btn">
-                <Download size={14} />
-                Export Results
-              </button>
-              <button className="action-btn">
-                <Share2 size={14} />
-                Share Insights
-              </button>
-            </div>
+      
           </div>
         )}
         

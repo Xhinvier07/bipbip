@@ -969,10 +969,13 @@
 
 /* Simulation Results */
 .simulation-results {
+  max-height: 600px;
   display: flex;
   flex-direction: column;
   flex: 1;
   overflow: hidden;
+  /* Remove any max-width constraints if they exist */
+  width: 100%;
 }
 
 .results-tabs {
@@ -981,7 +984,7 @@
   border-bottom: 1px solid #e9ecef;
   border-radius: 12px 12px 0 0;
   overflow: hidden;
-  margin: 0 16px;
+  margin: 0 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
@@ -1041,7 +1044,7 @@
 .results-content {
   flex: 1;
   overflow-y: auto;
-  padding: 16px;
+  padding: 20px;
   background-color: white;
   border-radius: 0 0 12px 12px;
   margin: 0 16px 16px 16px;
@@ -1103,7 +1106,6 @@
 }
 
 .key-metrics {
-  display: flex;
   gap: 24px;
 }
 
