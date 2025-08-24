@@ -30,8 +30,8 @@ env
 
 idea_dumps/
 
-/docker/
+/docker
 
-/railway_bea_generator/
+railway_bea_generator/
 
-/railway_overall_data/
+railway_overall_data/
