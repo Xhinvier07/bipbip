@@ -26,5 +26,12 @@ dist-ssr
 .env
 env
 /.env
+/bip_paper
 
+idea_dumps/
 
+docker/
+
+railway_bea_generator/
+
+railway_overall_data/
