@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { fetchMainSheetData } from '../Dashboard/GoogleSheetsService';
@@ -25,7 +26,9 @@ import {
 
 import {
   branchFloorPlan,
+  branchFloorPlans,
   servicePoints,
+  branchServicePoints,
   transactionTypes,
   staffSkillLevels,
   dayTypes,
@@ -33,8 +36,7 @@ import {
   defaultSimulationParams,
   sampleSimulationResults,
   calculateStaffingEffect,
-  generateCustomerPaths,
-  generateHeatmapData
+  generateCustomerPaths
 } from './SimulationData';
 
 import './Simulation.css';
@@ -43,7 +45,7 @@ import SimulationControls from './components/SimulationControls';
 import SimulationResults from './components/SimulationResults';
 
 const Simulation = () => {
-  const [selectedBranch, setSelectedBranch] = useState('C3 A Mabini');
+  const [selectedBranch, setSelectedBranch] = useState('Morayta Feu');
   const [branchNames, setBranchNames] = useState([]);
   const [simulationParams, setSimulationParams] = useState(defaultSimulationParams);
   const [isSimulating, setIsSimulating] = useState(false);
@@ -51,8 +53,14 @@ const Simulation = () => {
   const [isControlPanelOpen, setIsControlPanelOpen] = useState(true);
   const [isResultsPanelOpen, setIsResultsPanelOpen] = useState(true);
   const [view, setView] = useState('2D'); // '2D' or '3D'
-  const [showHeatmap, setShowHeatmap] = useState(false);
   const [customerPaths, setCustomerPaths] = useState([]);
+  const [transactionDistribution, setTransactionDistribution] = useState(
+    transactionTypes.map(type => ({ id: type.id, name: type.name, percentage: type.percentage }))
+  );
+  
+  // State for current branch floor plan and service points
+  const [currentFloorPlan, setCurrentFloorPlan] = useState(branchFloorPlans["Morayta Feu"] || branchFloorPlan);
+  const [currentServicePoints, setCurrentServicePoints] = useState(branchServicePoints["Morayta Feu"] || servicePoints);
   
   // Refs for canvas/simulation
   const simulationRef = useRef(null);
@@ -93,7 +101,7 @@ const Simulation = () => {
         timeOfDayData.find(t => t.id === simulationParams.timeOfDay).peakMultiplier
       );
       
-      const generatedPaths = generateCustomerPaths(customerCount);
+      const generatedPaths = generateCustomerPaths(customerCount, false, selectedBranch);
       setCustomerPaths(generatedPaths);
       
       // After a delay, show simulation results with randomized data based on selected branch
@@ -152,11 +160,36 @@ const Simulation = () => {
   const handleBranchChange = (branchName) => {
     setSelectedBranch(branchName);
     setSimulationParams(prev => ({ ...prev, branchName }));
+    
+    // Update floor plan and service points based on selected branch
+    if (branchFloorPlans[branchName]) {
+      setCurrentFloorPlan(branchFloorPlans[branchName]);
+    } else {
+      // Default to Morayta if the branch doesn't have a specific floor plan
+      setCurrentFloorPlan(branchFloorPlans["Morayta Feu"] || branchFloorPlan);
+    }
+    
+    // Update service points
+    if (branchServicePoints[branchName]) {
+      setCurrentServicePoints(branchServicePoints[branchName]);
+    } else {
+      // Default to Morayta if the branch doesn't have specific service points
+      setCurrentServicePoints(branchServicePoints["Morayta Feu"] || servicePoints);
+    }
   };
   
   // Update simulation parameters
   const updateSimulationParams = (newParams) => {
     setSimulationParams(prevParams => ({ ...prevParams, ...newParams }));
+  };
+  
+  // Update transaction distribution
+  const updateTransactionDistribution = (transactionId, newPercentage) => {
+    setTransactionDistribution(prev => 
+      prev.map(item => item.id === transactionId ? 
+        { ...item, percentage: newPercentage } : item
+      )
+    );
   };
   
   // Toggle control panel visibility
@@ -174,10 +207,7 @@ const Simulation = () => {
     setView(prev => (prev === '2D' ? '3D' : '2D'));
   };
   
-  // Toggle heatmap visualization
-  const toggleHeatmap = () => {
-    setShowHeatmap(!showHeatmap);
-  };
+
   
   // Calculate realtime metrics based on current parameters
   const calculateRealtimeMetrics = () => {
@@ -239,11 +269,7 @@ const Simulation = () => {
               <RotateCcw size={16} />
               Reset
             </button>
-            
-            <button className="simulation-btn save">
-              <Save size={16} />
-              Save Scenario
-            </button>
+          
           </div>
         </div>
       </div>
@@ -269,6 +295,8 @@ const Simulation = () => {
               timeOfDay={timeOfDayData}
               staffSkillLevels={staffSkillLevels}
               transactionTypes={transactionTypes}
+              transactionDistribution={transactionDistribution}
+              onUpdateTransactionDistribution={updateTransactionDistribution}
               disabled={isSimulating}
             />
           )}
@@ -295,24 +323,28 @@ const Simulation = () => {
               </div>
             </div>
             
-            <div className="visualization-controls">
-              <button className="viz-control-btn" onClick={toggleHeatmap}>
-                {showHeatmap ? <EyeOff size={14} /> : <Eye size={14} />}
-                {showHeatmap ? 'Hide' : 'Show'} Heatmap
-              </button>
-            </div>
+
           </div>
           
           <div className="visualization-area">
-            <BranchFloorPlan
-              floorPlan={branchFloorPlan}
-              servicePoints={servicePoints}
-              customerPaths={isSimulating ? customerPaths : []}
-              showHeatmap={showHeatmap}
-              view={view}
-              simulationSpeed={simulationParams.simulationSpeed}
-              ref={simulationRef}
-            />
+            {branchFloorPlans[selectedBranch] ? (
+              <BranchFloorPlan
+                floorPlan={currentFloorPlan}
+                servicePoints={currentServicePoints}
+                customerPaths={isSimulating ? customerPaths : []}
+                view={view}
+                simulationSpeed={simulationParams.simulationSpeed}
+                ref={simulationRef}
+              />
+            ) : (
+              <div className="no-map-available">
+                <div className="no-map-message">
+                  <h3>No Branch Map Available</h3>
+                  <p>Floor plan for this branch is not available in the simulation.</p>
+                  <p>Please select either Morayta FEU or Corinthian Plaza branch.</p>
+                </div>
+              </div>
+            )}
             
             {isSimulating && (
               <div className="simulation-status">
@@ -343,29 +375,38 @@ const Simulation = () => {
           
           <div className="branch-legend">
             <div className="legend-item">
-              <div className="legend-color manager"></div>
-              <span>Branch Manager</span>
+              <p><b>Customer Types Legend</b></p>
             </div>
             <div className="legend-item">
-              <div className="legend-color teller"></div>
-              <span>Tellers</span>
+              <div className="legend-color withdrawal"></div>
+              <span>Withdrawal</span>
             </div>
             <div className="legend-item">
-              <div className="legend-color customer-service"></div>
+              <div className="legend-color deposit"></div>
+              <span>Deposit</span>
+            </div>
+            <div className="legend-item">
+              <div className="legend-color encashment"></div>
+              <span>Encashment</span>
+            </div>
+            <div className="legend-item">
+              <div className="legend-color loan"></div>
+              <span>Loan</span>
+            </div>
+            <div className="legend-item">
+              <div className="legend-color transfer"></div>
+              <span>Transfer</span>
+            </div>
+            <div className="legend-item">
+              <div className="legend-color accountservice"></div>
+              <span>Account Service</span>
+            </div>
+
+            <div className="legend-item">
+              <div className="legend-color customerservice"></div>
               <span>Customer Service</span>
             </div>
-            <div className="legend-item">
-              <div className="legend-color waiting-area"></div>
-              <span>Waiting Area</span>
-            </div>
-            <div className="legend-item">
-              <div className="legend-color bea-kiosk"></div>
-              <span>BEA Kiosks</span>
-            </div>
-            <div className="legend-item">
-              <div className="legend-color atm"></div>
-              <span>ATMs</span>
-            </div>
+
           </div>
         </div>
         
@@ -383,7 +424,10 @@ const Simulation = () => {
           
           {isResultsPanelOpen && (
             simulationResults ? (
-              <SimulationResults results={simulationResults} />
+              <SimulationResults 
+                results={simulationResults} 
+                transactionDistribution={transactionDistribution} 
+              />
             ) : (
               <div className="no-results">
                 <p>No simulation results yet</p>

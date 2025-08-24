@@ -354,16 +354,18 @@
 
 .branch-legend {
   position: absolute;
-  bottom: 16px;
-  left: 16px;
+  display: flex;
+  flex-direction: column;
+  bottom: 20px;
+  right: 20px;
   background-color: white;
   border-radius: 8px;
   padding: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
   flex-wrap: wrap;
   gap: 12px;
   max-width: 400px;
+  z-index: 10;
 }
 
 .legend-item {
@@ -408,6 +410,35 @@
   background-color: #333;
 }
 
+.legend-color.withdrawal {
+  background-color: #FEA000;
+}
+
+.legend-color.deposit {
+  background-color: #CF3D58;
+}
+
+.legend-color.encashment {
+  background-color: #C95A94;
+}
+
+.legend-color.loan {
+  background-color: #BC7EFF;
+}
+
+.legend-color.transfer {
+  background-color: #3B82F6;
+}
+
+.legend-color.accountservice {
+  background-color: #06B6D4;
+}
+
+.legend-color.customerservice {
+  background-color: #10B981;
+}
+
+
 .simulation-status {
   position: absolute;
   top: 16px;
@@ -420,6 +451,7 @@
   flex-direction: column;
   gap: 8px;
   font-size: 13px;
+  z-index: 10;
 }
 
 .simulation-speed {
@@ -488,6 +520,51 @@
   overflow: hidden;
 }
 
+.branch-name-overlay {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 8px 16px;
+  border-radius: 6px;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.branch-name-overlay h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.no-map-available {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+}
+
+.no-map-message {
+  text-align: center;
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+}
+
+.no-map-message h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.no-map-message p {
+  color: #666;
+  margin: 10px 0;
+}
+
 .floor-plan {
   position: relative;
   width: 100%;
@@ -553,8 +630,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 12px;
-  color: #666;
+  color: #ffffff;
 }
+
 
 .service-point {
   position: absolute;
@@ -593,12 +671,28 @@
 
 .service-point-label {
   position: absolute;
-  bottom: -20px;
+  bottom: -38px;  /* Default fallback */
   left: 50%;
   transform: translateX(-50%);
   font-size: 10px;
   color: #666;
   white-space: nowrap;
+}
+
+.service-point-label.teller {
+  bottom: -20px;  /* Different bottom distance for tellers */
+}
+
+.service-point-label.customerService {
+  bottom: -32px;  /* Different bottom distance for CS reps */
+}
+
+.service-point-label.manager {
+  bottom: -40px;  /* Different bottom distance for manager */
+}
+
+.service-point-label.beaKiosk {
+  bottom: -30px;  /* Different bottom distance for manager */
 }
 
 .customer {
@@ -885,10 +979,48 @@
   color: #333;
 }
 
+
+
+.transaction-percentages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
 .transaction-percentage {
-  font-weight: 600;
+  font-size: 0.85em;
+  color: #777;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+}
+
+.transaction-percentage.actual {
+  background-color: #f0f0f0;
   color: #333;
-  font-size: 14px;
+}
+
+.transaction-percentage.expected {
+  background-color: #e9e9e9;
+  color: #666;
+}
+
+.transaction-difference {
+  font-size: 0.85em;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.transaction-difference.positive {
+  background-color: rgba(0, 191, 166, 0.1);
+  color: #00BFA6;
+}
+
+.transaction-difference.negative {
+  background-color: rgba(207, 61, 88, 0.1);
+  color: #CF3D58;
 }
 
 .transaction-info {
@@ -922,10 +1054,13 @@
 
 /* Simulation Results */
 .simulation-results {
+  max-height: 600px;
   display: flex;
   flex-direction: column;
   flex: 1;
   overflow: hidden;
+  /* Remove any max-width constraints if they exist */
+  width: 100%;
 }
 
 .results-tabs {
@@ -934,7 +1069,7 @@
   border-bottom: 1px solid #e9ecef;
   border-radius: 12px 12px 0 0;
   overflow: hidden;
-  margin: 0 16px;
+  margin: 0 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
@@ -994,7 +1129,7 @@
 .results-content {
   flex: 1;
   overflow-y: auto;
-  padding: 16px;
+  padding: 20px;
   background-color: white;
   border-radius: 0 0 12px 12px;
   margin: 0 16px 16px 16px;
@@ -1056,7 +1191,6 @@
 }
 
 .key-metrics {
-  display: flex;
   gap: 24px;
 }
 
@@ -1271,17 +1405,80 @@
   gap: 4px;
 }
 
-.transaction-chart-placeholder, .hourly-chart-placeholder {
+.transaction-chart, .hourly-chart-placeholder {
   background-color: #f8f9fa;
   border-radius: 8px;
   padding: 20px;
   text-align: center;
 }
 
-.transaction-chart-placeholder h4, .hourly-chart-placeholder h4 {
+.transaction-chart h4, .hourly-chart-placeholder h4 {
   margin: 0 0 16px;
   font-size: 14px;
   color: #333;
+}
+
+.chart-container {
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-bars {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+.chart-bar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30px;
+}
+
+.chart-bar-label {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #666;
+}
+
+.chart-bars-container {
+  display: flex;
+  gap: 6px;
+  height: 100%;
+  align-items: flex-end;
+}
+
+.chart-bar {
+  width: 20px;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.3s ease;
+}
+
+.chart-bar.expected {
+  opacity: 0.6;
+}
+
+.chart-legend {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.chart-legend .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chart-legend .legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
 }
 
 .chart-placeholder {

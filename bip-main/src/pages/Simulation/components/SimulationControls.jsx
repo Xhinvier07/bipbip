@@ -21,6 +21,8 @@ const SimulationControls = ({
   timeOfDay,
   staffSkillLevels,
   transactionTypes,
+  transactionDistribution,
+  onUpdateTransactionDistribution,
   disabled = false
 }) => {
   const [activeTab, setActiveTab] = useState('timing');
@@ -37,67 +39,8 @@ const SimulationControls = ({
   
   // Handler for transaction distribution changes
   const handleTransactionDistributionChange = (id, percentage) => {
-    // Get current distribution
-    const currentDistribution = [...params.transactionDistribution];
-    
-    // Find the item to update
-    const index = currentDistribution.findIndex(item => item.id === id);
-    
-    // Calculate the change in percentage
-    const oldPercentage = currentDistribution[index].percentage;
-    const change = percentage - oldPercentage;
-    
-    // Only proceed if there's a change
-    if (change === 0) return;
-    
-    // Create updated distribution
-    const updatedDistribution = [...currentDistribution];
-    updatedDistribution[index] = { ...updatedDistribution[index], percentage };
-    
-    // Adjust other percentages to maintain 100% total
-    // Distribute the change proportionally among other transaction types
-    const otherIndices = currentDistribution.map((_, i) => i).filter(i => i !== index);
-    
-    if (otherIndices.length > 0) {
-      const totalOtherPercentage = otherIndices.reduce((sum, i) => sum + currentDistribution[i].percentage, 0);
-      
-      if (totalOtherPercentage > 0) {
-        otherIndices.forEach(i => {
-          const proportion = currentDistribution[i].percentage / totalOtherPercentage;
-          updatedDistribution[i] = {
-            ...updatedDistribution[i],
-            percentage: Math.max(0, currentDistribution[i].percentage - change * proportion)
-          };
-        });
-      }
-    }
-    
-    // Round percentages and ensure they sum to 100
-    let sum = 0;
-    updatedDistribution.forEach((item, i) => {
-      updatedDistribution[i] = { ...item, percentage: Math.round(item.percentage) };
-      sum += updatedDistribution[i].percentage;
-    });
-    
-    // Adjust for rounding errors
-    const diff = 100 - sum;
-    if (diff !== 0) {
-      // Add/subtract from largest percentage
-      const largestIndex = updatedDistribution
-        .map((item, i) => ({ percentage: item.percentage, index: i }))
-        .filter(item => item.index !== index) // Don't adjust the one we just changed
-        .sort((a, b) => b.percentage - a.percentage)[0]?.index;
-      
-      if (largestIndex !== undefined) {
-        updatedDistribution[largestIndex] = {
-          ...updatedDistribution[largestIndex],
-          percentage: updatedDistribution[largestIndex].percentage + diff
-        };
-      }
-    }
-    
-    // Update params
-    onUpdateParams({ transactionDistribution: updatedDistribution });
+    // Call the parent handler directly
+    onUpdateTransactionDistribution(id, percentage);
   };
   
   // Get the day type and time of day objects
@@ -328,7 +271,7 @@ const SimulationControls = ({
             
             <div className="transaction-distribution">
               {transactionTypes.map(transaction => {
-                const currentPercentage = params.transactionDistribution.find(t => t.id === transaction.id)?.percentage || 0;
+                const currentPercentage = transactionDistribution.find(t => t.id === transaction.id)?.percentage || 0;
                 
                 return (
                   <div key={transaction.id} className="transaction-type">
@@ -356,7 +299,7 @@ const SimulationControls = ({
                     <div className="transaction-info">
                       <div className="transaction-time">
                         <Clock size={12} />
-                        <span>Avg. Time: {transaction.avgTime} min</span>
+                        <span>Avg. Time: {(transaction.normalProcess + transaction.normalWait).toFixed(1)} min</span>
                       </div>
                     </div>
                   </div>
@@ -367,6 +310,7 @@ const SimulationControls = ({
                 <AlertTriangle size={14} />
                 <p>Total must equal 100%. Adjusting one type will automatically rebalance others.</p>
               </div>
+              
             </div>
           </div>
         )}
@@ -420,19 +364,7 @@ const SimulationControls = ({
               </div>
             </div>
             
-            <div className="control-group">
-              <div className="checkbox-container">
-                <label>
-                  <input 
-                    type="checkbox"
-                    checked={params.showHeatmap}
-                    onChange={(e) => onUpdateParams({ showHeatmap: e.target.checked })}
-                    disabled={disabled}
-                  />
-                  <span>Show customer heatmap</span>
-                </label>
-              </div>
-            </div>
+
             
             <div className="control-group">
               <div className="checkbox-container">
