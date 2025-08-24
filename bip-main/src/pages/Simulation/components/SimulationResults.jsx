@@ -274,20 +274,20 @@ const SimulationResults = ({ results, transactionDistribution }) => {
                         </div>
                       </div>
                       <div className="transaction-metrics">
-                        <span className="transaction-count">{transaction.count} transactions</span>
+                        <span className="transaction-count">{transaction.count} TXN</span>
                         <span className="transaction-time">
                           <Clock size={12} />
                           {(() => {
                             const originalType = transactionTypes.find(t => t.id === transaction.id);
                             const defaultTime = originalType ? (originalType.normalProcess + originalType.normalWait) : 5;
                             return ((transaction.avgTime || defaultTime)).toFixed(1);
-                          })() + ' min avg'}
+                          })() + ' AVG'}
                         </span>
                         <span className="transaction-satisfaction">
                         {(() => {
                             const defaultSatisfaction = 70 + Math.round(Math.random() * 20);
                             return (transaction.satisfaction || defaultSatisfaction);
-                          })() + '% satisfaction'}
+                          })() + '% CSAT'}
                         </span>
                       </div>
                     </div>
@@ -341,11 +341,11 @@ const SimulationResults = ({ results, transactionDistribution }) => {
             <table className="hourly-table">
               <thead>
                 <tr>
-                  <th>Hour</th>
-                  <th>Customers</th>
-                  <th>Completed</th>
-                  <th>Abandoned</th>
-                  <th>Avg Wait</th>
+                  <th title="Hour"><Clock size={16} /></th>
+                  <th title="Customers"><Users size={16} /></th>
+                  <th title="Completed"><CheckCircle size={16} /></th>
+                  <th title="Abandoned"><AlertCircle size={16} /></th>
+                  <th title="Average Wait Time"><Clock size={16} /></th>
                 </tr>
               </thead>
               <tbody>

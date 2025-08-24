@@ -367,7 +367,7 @@ const Simulation = () => {
                 </div>
                 <div className="simulation-timer">
                   <Clock size={14} />
-                  <span>Elapsed: 00:03:42</span>
+                  <span>Loading...</span>
                 </div>
               </div>
             )}
@@ -375,7 +375,7 @@ const Simulation = () => {
           
           <div className="branch-legend">
             <div className="legend-item">
-              <p><b>Customer Types Legend</b></p>
+              <p><b>Legend</b></p>
             </div>
             <div className="legend-item">
               <div className="legend-color withdrawal"></div>

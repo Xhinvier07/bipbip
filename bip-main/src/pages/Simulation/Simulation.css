@@ -989,7 +989,7 @@
 }
 
 .transaction-percentage {
-  font-size: 0.85em;
+  font-size: 0.70em;
   color: #777;
   padding: 2px 6px;
   border-radius: 4px;
@@ -998,8 +998,7 @@
 
 .transaction-percentage.actual {
   background-color: #f0f0f0;
-  color: #333;
-}
+  color: #333;}
 
 .transaction-percentage.expected {
   background-color: #e9e9e9;
@@ -1497,7 +1496,7 @@
 }
 
 .hourly-table {
-  width: 500px;
+  width: 250px;
   border-collapse: collapse;
   margin-top: 16px;
 }
@@ -1505,15 +1504,15 @@
 .hourly-table th {
   text-align: left;
   padding: 12px;
-  font-size: 13px;
+  font-size: 12px;
   color: #666;
   border-bottom: 1px solid #f0f0f0;
   font-weight: 500;
 }
 
 .hourly-table td {
-  padding: 12px;
-  font-size: 14px;
+  padding: 10px;
+  font-size: 12px;
   color: #333;
   border-bottom: 1px solid #f0f0f0;
 }
