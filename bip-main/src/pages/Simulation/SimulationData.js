@@ -1,6 +1,109 @@
 // Simulation page data and helper functions
 
-// Branch floor plan coordinates for 2D visualization based on the provided image
+// Branch floor plans for different branches
+export const branchFloorPlans = {
+  // Morayta FEU Branch floor plan
+  "Morayta Feu": {
+    name: "Morayta FEU Branch",
+    // Branch boundaries and walls
+    boundaries: [
+      { x1: 0, y1: 0, x2: 800, y2: 0 },
+      { x1: 800, y1: 0, x2: 800, y2: 600 },
+      { x1: 800, y1: 600, x2: 0, y2: 600 },
+      { x1: 0, y1: 600, x2: 0, y2: 0 },
+    ],
+    // Furniture matches the current layout
+    furniture: [
+      // Purple - Branch Manager (top-left corner)
+      { type: 'manager', x: 50, y: 50, width: 80, height: 80, color: '#9b59b6' },
+      
+      // Orange - Teller counters (top row)
+      { type: 'teller', x: 150, y: 50, width: 70, height: 40, color: '#FEA000' },
+      { type: 'teller', x: 230, y: 50, width: 70, height: 40, color: '#FEA000' },
+      { type: 'teller', x: 310, y: 50, width: 70, height: 40, color: '#FEA000' },
+      { type: 'teller', x: 390, y: 50, width: 70, height: 40, color: '#FEA000' },
+      
+      // Red - Customer Service (left side, 4 squares)
+      { type: 'customerService', x: 50, y: 150, width: 60, height: 60, color: '#CF3D58' },
+      { type: 'customerService', x: 50, y: 230, width: 60, height: 60, color: '#CF3D58' },
+      { type: 'customerService', x: 50, y: 310, width: 60, height: 60, color: '#CF3D58' },
+      { type: 'customerService', x: 50, y: 390, width: 60, height: 60, color: '#CF3D58' },
+      
+      // Green - Waiting Area (center, 2 rows of 2 pairs)
+      { type: 'waitingArea', x: 150, y: 150, width: 120, height: 60, color: '#00BFA6' },
+      { type: 'waitingArea', x: 290, y: 150, width: 120, height: 60, color: '#00BFA6' },
+      { type: 'waitingArea', x: 150, y: 230, width: 120, height: 60, color: '#00BFA6' },
+      { type: 'waitingArea', x: 290, y: 230, width: 120, height: 60, color: '#00BFA6' },
+      
+      // Yellow - BEA Kiosks (right side, 3 rectangles)
+      { type: 'beaKiosk', x: 480, y: 150, width: 80, height: 50, color: '#FEA000' },
+      { type: 'beaKiosk', x: 480, y: 220, width: 80, height: 50, color: '#FEA000' },
+      { type: 'beaKiosk', x: 480, y: 290, width: 80, height: 50, color: '#FEA000' },
+      
+      // Brown - ATMs (bottom-right, 2 squares)
+      { type: 'atm', x: 480, y: 480, width: 60, height: 60, color: '#8B4513' },
+      { type: 'atm', x: 560, y: 480, width: 60, height: 60, color: '#8B4513' },
+      
+      // Entrance
+      { type: 'entrance', x: 220, y: 580, width: 100, height: 20, color: '#333' },
+    ]
+  },
+  
+  // Corinthian Plaza Branch floor plan - different layout
+
+  "Corinthian Plaza": {
+    name: "Corinthian Plaza Branch",
+    // Branch boundaries and walls
+    boundaries: [
+      { x1: 0, y1: 0, x2: 800, y2: 0 },
+      { x1: 800, y1: 0, x2: 800, y2: 600 },
+      { x1: 800, y1: 600, x2: 0, y2: 600 },
+      { x1: 0, y1: 600, x2: 0, y2: 0 },
+    ],
+    // Updated furniture layout based on diagram
+    furniture: [
+      // Orange - Teller counters (top row) - 3 Regular + 1 Bulk
+      { type: 'teller', x: 170, y: 100, width: 60, height: 60, color: '#FEA000', label: 'Regular' },
+      { type: 'teller', x: 250, y: 100, width: 60, height: 60, color: '#FEA000', label: 'Regular' },
+      { type: 'teller', x: 330, y: 100, width: 60, height: 60, color: '#FEA000', label: 'Regular' },
+      { type: 'teller', x: 410, y: 100, width: 60, height: 60, color: '#FEA000', label: 'Bulk' },
+      { type: 'teller', x: 590, y: 100, width: 60, height: 60, color: '#FEA000', label: 'Regular' },
+      
+      // Purple - Branch Manager and Secretary (left side)
+      { type: 'manager', x: 10, y: 200, width: 80, height: 60, color: '#9b59b6', label: 'Branch Manager' },
+      { type: 'secretary', x: 10, y: 280, width: 80, height: 50, color: '#9b59b6', label: 'Secretary' },
+      
+      // Yellow - BEA Kiosks (positioned as in diagram)
+      { type: 'beaKiosk', x: 190, y: 280, width: 80, height: 50, color: '#FEA000', label: 'BEA' },
+      { type: 'beaKiosk', x: 580, y: 280, width: 60, height: 50, color: '#FEA000', label: 'BEA' },
+      { type: 'beaKiosk', x: 30, y: 440, width: 80, height: 50, color: '#FEA000', label: 'BEA' },
+      
+      // Bottom row (3 chairs)
+      { type: 'waitingArea', x: 300, y: 350, width: 40, height: 40, color: '#00BFA6' },
+      { type: 'waitingArea', x: 350, y: 350, width: 40, height: 40, color: '#00BFA6' },
+      { type: 'waitingArea', x: 400, y: 350, width: 40, height: 40, color: '#00BFA6' },
+
+      // Middle row (2 chairs)
+      { type: 'waitingArea', x: 350, y: 300, width: 40, height: 40, color: '#00BFA6' },
+      { type: 'waitingArea', x: 400, y: 300, width: 40, height: 40, color: '#00BFA6' },
+
+      // Top row (1 chair)
+      { type: 'waitingArea', x: 400, y: 250, width: 40, height: 40, color: '#00BFA6' },
+    
+      // Red - Customer Service (bottom row)
+      { type: 'customerService', x: 170, y: 520, width: 60, height: 60, color: '#dc143c' },
+      { type: 'customerService', x: 250, y: 520, width: 60, height: 60, color: '#dc143c' },
+      { type: 'customerService', x: 330, y: 520, width: 60, height: 60, color: '#dc143c' },
+      { type: 'customerService', x: 410, y: 520, width: 60, height: 60, color: '#dc143c' },
+      { type: 'customerService', x: 490, y: 520, width: 60, height: 60, color: '#dc143c' },
+      
+      // Entrance (bottom left)
+      { type: 'entrance', x: 30, y: 540, width: 100, height: 20, color: '#333' },
+    ],
+  }
+};
+
+// Default branch floor plan (using Morayta as default)
 export const branchFloorPlan = {
   // Branch boundaries and walls
   boundaries: [
@@ -47,8 +150,10 @@ export const branchFloorPlan = {
   ]
 };
 
-// Service points based on the new layout
-export const servicePoints = [
+// Service points for each branch
+export const branchServicePoints = {
+  // Morayta FEU Branch service points
+  "Morayta Feu": [
   // Orange - Teller positions (top row)
   { id: 1, name: 'Teller 1', x: 185, y: 70, type: 'teller', isActive: true },
   { id: 2, name: 'Teller 2', x: 265, y: 70, type: 'teller', isActive: true },
@@ -72,7 +177,39 @@ export const servicePoints = [
   // Brown - ATM positions (bottom-right)
   { id: 16, name: 'ATM 1', x: 510, y: 510, type: 'atm', isActive: true },
   { id: 17, name: 'ATM 2', x: 590, y: 510, type: 'atm', isActive: true },
-];
+  ],
+  
+  // Corinthian Plaza Branch service points
+"Corinthian Plaza": [
+  // Orange - Teller positions (top row) - Updated to match furniture layout
+  { id: 1, name: 'Teller 1', x: 200, y: 140, type: 'teller', isActive: true, serviceType: 'regular' },
+  { id: 2, name: 'Teller 2', x: 280, y: 140, type: 'teller', isActive: true, serviceType: 'regular' },
+  { id: 3, name: 'Teller 3', x: 360, y: 140, type: 'teller', isActive: true, serviceType: 'regular' },
+  { id: 4, name: 'Bulk Teller', x: 440, y: 140, type: 'teller', isActive: true, serviceType: 'bulk' },
+  { id: 5, name: 'Teller 5', x: 620, y: 140, type: 'teller', isActive: true, serviceType: 'regular' },
+  
+  // Red - Customer Service positions (bottom row) - Updated to match furniture
+  { id: 8, name: 'CS Rep 1', x: 200, y: 550, type: 'customerService', isActive: true },
+  { id: 9, name: 'CS Rep 2', x: 280, y: 550, type: 'customerService', isActive: true },
+  { id: 10, name: 'CS Rep 3', x: 360, y: 550, type: 'customerService', isActive: true },
+  { id: 11, name: 'CS Rep 4', x: 440, y: 550, type: 'customerService', isActive: true },
+  { id: 19, name: 'CS Rep 5', x: 520, y: 550, type: 'customerService', isActive: true },
+  
+  // Purple - Branch Manager position (left side) - Updated to match furniture
+  { id: 12, name: 'Branch Manager', x: 50, y: 220, type: 'manager', isActive: true },
+  
+  // Purple - Secretary position (left side) - Updated to match furniture
+  { id: 20, name: 'Secretary', x: 50, y: 305, type: 'secretary', isActive: true },
+  
+  // Yellow - BEA Kiosk positions - Updated to match furniture layout
+  { id: 13, name: 'BEA Kiosk 1', x: 230, y: 305, type: 'beaKiosk', isActive: true },
+  { id: 14, name: 'BEA Kiosk 2', x: 610, y: 305, type: 'beaKiosk', isActive: true },
+  { id: 15, name: 'BEA Kiosk 3', x: 70, y: 465, type: 'beaKiosk', isActive: true },
+]
+};
+
+// Default service points (using Morayta as default)
+export const servicePoints = branchServicePoints["Morayta Feu"];
 
 
 // Different types of transactions - updated to reflect DashboardData.js, avgTimes matched with database
@@ -189,7 +326,7 @@ export const timeOfDay = [
 // Default simulation parameters
 export const defaultSimulationParams = {
   // Branch setup
-  branchName: 'C3 A Mabini',
+  branchName: 'Morayta Feu',
   numberOfTellers: 4,
   numberOfCustomerServiceReps: 4, // Default 4, max 6
   
@@ -304,12 +441,9 @@ export const customerColors = [
   '#68d391', // Light Green
 ];
 
-// Updated customer path structure with proper state tracking
-export const generateCustomerPaths = (count, isPeakTime = false) => {
-  const paths = [];
-  
-  // Define key locations (use spread to avoid reference issues)
-  const locations = {
+// Branch-specific locations for customer paths
+const branchLocations = {
+  "Morayta Feu": {
     entrance: { x: 260, y: 590, maxCapacity: 100 },
     teller1: { x: 185, y: 70, maxCapacity: 1 },
     teller2: { x: 265, y: 70, maxCapacity: 1 },
@@ -322,12 +456,57 @@ export const generateCustomerPaths = (count, isPeakTime = false) => {
     bea1: { x: 520, y: 175, maxCapacity: 1 },
     bea2: { x: 520, y: 245, maxCapacity: 1 },
     bea3: { x: 520, y: 315, maxCapacity: 1 },
-    waitingArea1: { x: 210, y: 180, maxCapacity: 4  },
-    waitingArea2: { x: 350, y: 180, maxCapacity: 4  },
-    waitingArea3: { x: 210, y: 260, maxCapacity: 4  },
-    waitingArea4: { x: 350, y: 260, maxCapacity: 4  },
-    exit: { x: 450, y: 590,  maxCapacity: 100  }
-  };
+    waitingArea1: { x: 210, y: 180, maxCapacity: 4 },
+    waitingArea2: { x: 350, y: 180, maxCapacity: 4 },
+    waitingArea3: { x: 210, y: 260, maxCapacity: 4 },
+    waitingArea4: { x: 350, y: 260, maxCapacity: 4 },
+    exit: { x: 450, y: 590, maxCapacity: 100 }
+  },
+"Corinthian Plaza": {
+  // Updated customer path coordinates to match furniture positions
+  entrance: { x: 80, y: 550, maxCapacity: 100 }, // Inside entrance furniture
+  
+  // Teller positions - centered within teller furniture
+  teller1: { x: 200, y: 130, maxCapacity: 1 }, // Inside teller furniture (170+30, 100+30)
+  teller2: { x: 280, y: 130, maxCapacity: 1 }, // Inside teller furniture (250+30, 100+30)
+  teller3: { x: 360, y: 130, maxCapacity: 1 }, // Inside teller furniture (330+30, 100+30)
+  teller4: { x: 440, y: 130, maxCapacity: 1 }, // Inside bulk teller furniture (410+30, 100+30)
+  teller5: { x: 620, y: 130, maxCapacity: 1 }, // Inside teller furniture (590+30, 100+30)
+  
+  // Customer Service positions - centered within customer service furniture
+  customerService1: { x: 200, y: 550, maxCapacity: 1 }, // Inside CS furniture (170+30, 520+30)
+  customerService2: { x: 280, y: 550, maxCapacity: 1 }, // Inside CS furniture (250+30, 520+30)
+  customerService3: { x: 360, y: 550, maxCapacity: 1 }, // Inside CS furniture (330+30, 520+30)
+  customerService4: { x: 440, y: 550, maxCapacity: 1 }, // Inside CS furniture (410+30, 520+30)
+  customerService5: { x: 520, y: 550, maxCapacity: 1 }, // Inside CS furniture (490+30, 520+30)
+  
+  // BEA Kiosks - centered within BEA furniture
+  bea1: { x: 230, y: 305, maxCapacity: 1 }, // Inside BEA furniture (190+40, 280+25)
+  bea2: { x: 610, y: 305, maxCapacity: 1 }, // Inside BEA furniture (580+30, 280+25)
+  bea3: { x: 70, y: 465, maxCapacity: 1 }, // Inside BEA furniture (30+40, 440+25)
+  
+  // Waiting Area positions - centered within waiting chair furniture
+  waitingArea1: { x: 320, y: 370, maxCapacity: 1 }, // Bottom left chair (300+20, 350+20)
+  waitingArea2: { x: 370, y: 370, maxCapacity: 1 }, // Bottom middle chair (350+20, 350+20)
+  waitingArea3: { x: 420, y: 370, maxCapacity: 1 }, // Bottom right chair (400+20, 350+20)
+  waitingArea4: { x: 370, y: 320, maxCapacity: 1 }, // Middle left chair (350+20, 300+20)
+  waitingArea5: { x: 420, y: 320, maxCapacity: 1 }, // Middle right chair (400+20, 300+20)
+  waitingArea6: { x: 420, y: 270, maxCapacity: 1 }, // Top chair (400+20, 250+20)
+  
+  // Additional waiting areas for queue management
+  generalWaitingArea: { x: 370, y: 330, maxCapacity: 10 }, // Central waiting area
+  
+  // Exit same as entrance
+  exit: { x: 80, y: 550, maxCapacity: 100 }
+}
+};
+
+// Updated customer path structure with proper state tracking
+export const generateCustomerPaths = (count, isPeakTime = false, branchName = "Morayta Feu") => {
+  const paths = [];
+  
+  // Define key locations (use spread to avoid reference issues)
+  const locations = branchLocations[branchName] || branchLocations["Morayta Feu"];
   
   for (let i = 0; i < count; i++) {
     // Select transaction and get timing
@@ -348,43 +527,91 @@ export const generateCustomerPaths = (count, isPeakTime = false) => {
     let waitingAreaIndex = -1;
     let serviceAreaIndex = -1;
     
-    // Build path based on transaction type
-    switch (selectedTransaction.name.toLowerCase()) {
-      case 'deposit':
-      case 'encashment':
-      case 'withdrawal':
-      case 'transfer':
-        const beaOptions = ['bea1', 'bea2', 'bea3'];
-        const selectedBEA = beaOptions[Math.floor(Math.random() * beaOptions.length)];
-        const waitingOptions = ['waitingArea1', 'waitingArea2', 'waitingArea3', 'waitingArea4'];
-        const selectedWaiting = waitingOptions[Math.floor(Math.random() * waitingOptions.length)];
-        const tellerOptions = ['teller1', 'teller2', 'teller3', 'teller4'];
-        const selectedTeller = tellerOptions[Math.floor(Math.random() * tellerOptions.length)];
-        
-        path = [
-          { ...locations.entrance },
-          { ...locations[selectedBEA] },
-          { ...locations[selectedWaiting] },
-          { ...locations[selectedTeller] },
-          { ...locations.exit }
-        ];
-        waitingAreaIndex = 2; // waiting area is 3rd step (index 2)
-        serviceAreaIndex = 3; // service area is 4th step (index 3)
-        break;
-        
-      case 'customer service':
-      case 'account service':
-      case 'loan':
-        const csOptions = ['customerService1', 'customerService2', 'customerService3', 'customerService4'];
-        const selectedCS = csOptions[Math.floor(Math.random() * csOptions.length)];
-        
-        path = [
-          { ...locations.entrance },
-          { ...locations[selectedCS] },
-          { ...locations.exit }
-        ];
-        serviceAreaIndex = 1; // service area is 2nd step (index 1)
-        break;
+    // Build path based on transaction type and branch
+    if (branchName === "Corinthian Plaza") {
+      // Corinthian Plaza specific paths
+      switch (selectedTransaction.name.toLowerCase()) {
+        case 'deposit':
+        case 'encashment':
+        case 'withdrawal':
+        case 'transfer':
+          // Use only available BEA kiosks for Corinthian
+          const beaOptions = Object.keys(locations).filter(key => key.startsWith('bea'));
+          const selectedBEA = beaOptions[Math.floor(Math.random() * beaOptions.length)];
+          
+          // Use available waiting areas
+          const waitingOptions = Object.keys(locations).filter(key => key.startsWith('waitingArea'));
+          const selectedWaiting = waitingOptions[Math.floor(Math.random() * waitingOptions.length)];
+          
+          // Use available tellers
+          const tellerOptions = Object.keys(locations).filter(key => key.startsWith('teller'));
+          const selectedTeller = tellerOptions[Math.floor(Math.random() * tellerOptions.length)];
+          
+          path = [
+            { ...locations.entrance },
+            { ...locations[selectedBEA] },
+            { ...locations[selectedWaiting] },
+            { ...locations[selectedTeller] },
+            { ...locations.exit }
+          ];
+          waitingAreaIndex = 2; // waiting area is 3rd step (index 2)
+          serviceAreaIndex = 3; // service area is 4th step (index 3)
+          break;
+          
+        case 'customer service':
+        case 'account service':
+        case 'loan':
+          // Use available customer service reps
+          const csOptions = Object.keys(locations).filter(key => key.startsWith('customerService'));
+          const selectedCS = csOptions[Math.floor(Math.random() * csOptions.length)];
+          
+          path = [
+            { ...locations.entrance },
+            { ...locations[selectedCS] },
+            { ...locations.exit }
+          ];
+          serviceAreaIndex = 1; // service area is 2nd step (index 1)
+          break;
+      }
+    } else {
+      // Default Morayta FEU paths
+      switch (selectedTransaction.name.toLowerCase()) {
+        case 'deposit':
+        case 'encashment':
+        case 'withdrawal':
+        case 'transfer':
+          const beaOptions = ['bea1', 'bea2', 'bea3'];
+          const selectedBEA = beaOptions[Math.floor(Math.random() * beaOptions.length)];
+          const waitingOptions = ['waitingArea1', 'waitingArea2', 'waitingArea3', 'waitingArea4'];
+          const selectedWaiting = waitingOptions[Math.floor(Math.random() * waitingOptions.length)];
+          const tellerOptions = ['teller1', 'teller2', 'teller3', 'teller4'];
+          const selectedTeller = tellerOptions[Math.floor(Math.random() * tellerOptions.length)];
+          
+          path = [
+            { ...locations.entrance },
+            { ...locations[selectedBEA] },
+            { ...locations[selectedWaiting] },
+            { ...locations[selectedTeller] },
+            { ...locations.exit }
+          ];
+          waitingAreaIndex = 2; // waiting area is 3rd step (index 2)
+          serviceAreaIndex = 3; // service area is 4th step (index 3)
+          break;
+          
+        case 'customer service':
+        case 'account service':
+        case 'loan':
+          const csOptions = ['customerService1', 'customerService2', 'customerService3', 'customerService4'];
+          const selectedCS = csOptions[Math.floor(Math.random() * csOptions.length)];
+          
+          path = [
+            { ...locations.entrance },
+            { ...locations[selectedCS] },
+            { ...locations.exit }
+          ];
+          serviceAreaIndex = 1; // service area is 2nd step (index 1)
+          break;
+      }
     }
     
     paths.push({

@@ -26,7 +26,9 @@ import {
 
 import {
   branchFloorPlan,
+  branchFloorPlans,
   servicePoints,
+  branchServicePoints,
   transactionTypes,
   staffSkillLevels,
   dayTypes,
@@ -55,6 +57,10 @@ const Simulation = () => {
   const [transactionDistribution, setTransactionDistribution] = useState(
     transactionTypes.map(type => ({ id: type.id, name: type.name, percentage: type.percentage }))
   );
+  
+  // State for current branch floor plan and service points
+  const [currentFloorPlan, setCurrentFloorPlan] = useState(branchFloorPlans["Morayta Feu"] || branchFloorPlan);
+  const [currentServicePoints, setCurrentServicePoints] = useState(branchServicePoints["Morayta Feu"] || servicePoints);
   
   // Refs for canvas/simulation
   const simulationRef = useRef(null);
@@ -95,7 +101,7 @@ const Simulation = () => {
         timeOfDayData.find(t => t.id === simulationParams.timeOfDay).peakMultiplier
       );
       
-      const generatedPaths = generateCustomerPaths(customerCount);
+      const generatedPaths = generateCustomerPaths(customerCount, false, selectedBranch);
       setCustomerPaths(generatedPaths);
       
       // After a delay, show simulation results with randomized data based on selected branch
@@ -154,6 +160,22 @@ const Simulation = () => {
   const handleBranchChange = (branchName) => {
     setSelectedBranch(branchName);
     setSimulationParams(prev => ({ ...prev, branchName }));
+    
+    // Update floor plan and service points based on selected branch
+    if (branchFloorPlans[branchName]) {
+      setCurrentFloorPlan(branchFloorPlans[branchName]);
+    } else {
+      // Default to Morayta if the branch doesn't have a specific floor plan
+      setCurrentFloorPlan(branchFloorPlans["Morayta Feu"] || branchFloorPlan);
+    }
+    
+    // Update service points
+    if (branchServicePoints[branchName]) {
+      setCurrentServicePoints(branchServicePoints[branchName]);
+    } else {
+      // Default to Morayta if the branch doesn't have specific service points
+      setCurrentServicePoints(branchServicePoints["Morayta Feu"] || servicePoints);
+    }
   };
   
   // Update simulation parameters
@@ -306,14 +328,24 @@ const Simulation = () => {
           </div>
           
           <div className="visualization-area">
-            <BranchFloorPlan
-              floorPlan={branchFloorPlan}
-              servicePoints={servicePoints}
-              customerPaths={isSimulating ? customerPaths : []}
-              view={view}
-              simulationSpeed={simulationParams.simulationSpeed}
-              ref={simulationRef}
-            />
+            {branchFloorPlans[selectedBranch] ? (
+              <BranchFloorPlan
+                floorPlan={currentFloorPlan}
+                servicePoints={currentServicePoints}
+                customerPaths={isSimulating ? customerPaths : []}
+                view={view}
+                simulationSpeed={simulationParams.simulationSpeed}
+                ref={simulationRef}
+              />
+            ) : (
+              <div className="no-map-available">
+                <div className="no-map-message">
+                  <h3>No Branch Map Available</h3>
+                  <p>Floor plan for this branch is not available in the simulation.</p>
+                  <p>Please select either Morayta FEU or Corinthian Plaza branch.</p>
+                </div>
+              </div>
+            )}
             
             {isSimulating && (
               <div className="simulation-status">

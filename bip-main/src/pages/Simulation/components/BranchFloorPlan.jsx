@@ -208,6 +208,11 @@ const BranchFloorPlan = forwardRef(({
   
   return (
     <div className="branch-floor-plan" ref={ref}>
+      {floorPlan.name && (
+        <div className="branch-name-overlay">
+          <h3>{floorPlan.name}</h3>
+        </div>
+      )}
       {view === '3D' ? render3DView() : renderFloorPlan()}
     </div>
   );
