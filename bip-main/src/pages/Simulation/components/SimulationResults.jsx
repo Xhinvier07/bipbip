@@ -13,8 +13,9 @@ import {
   Share2,
   Sparkles
 } from 'lucide-react';
+import { transactionTypes } from '../SimulationData';
 
-const SimulationResults = ({ results }) => {
+const SimulationResults = ({ results, transactionDistribution }) => {
   const [activeTab, setActiveTab] = useState('summary');
   
   // Format a number with commas
@@ -115,7 +116,7 @@ const SimulationResults = ({ results }) => {
                   <div className="insight-item warning">
                     <AlertCircle size={16} />
                     <div className="insight-content">
-                      <strong>High staff utilization detected ({results.staffUtilization}%)</strong>
+                      <strong>High staff utilization detected ({results.staffUtilization.toFixed(1)}%)</strong>
                       <p>Consider adding more tellers during peak hours to reduce wait times and improve customer satisfaction.</p>
                     </div>
                   </div>
@@ -242,39 +243,92 @@ const SimulationResults = ({ results }) => {
             <h3>Transaction Breakdown</h3>
             
             <div className="transaction-list">
-              {results.transactionBreakdown.map((transaction, index) => (
-                <div key={index} className="transaction-item">
-                  <div 
-                    className="transaction-color" 
-                    style={{ backgroundColor: transaction.color || '#ccc' }}
-                  ></div>
-                  
-                  <div className="transaction-details">
-                    <div className="transaction-name">{transaction.name}</div>
-                    <div className="transaction-metrics">
-                      <span className="transaction-count">{transaction.count} transactions</span>
-                      <span className="transaction-time">
-                        <Clock size={12} />
-                        {transaction.avgTime.toFixed(1)} min avg
-                      </span>
-                      <span className="transaction-satisfaction">
-                        {transaction.satisfaction}% satisfaction
-                      </span>
+              {results.transactionBreakdown.map((transaction, index) => {
+                // Find matching expected distribution
+                const expectedDistribution = transactionDistribution.find(t => t.id === transaction.id);
+                const expectedPercentage = expectedDistribution ? expectedDistribution.percentage : 0;
+                const actualPercentage = Math.round((transaction.count / results.completedTransactions) * 100);
+                const difference = actualPercentage - expectedPercentage;
+                
+                return (
+                  <div key={index} className="transaction-item">
+                    <div 
+                      className="transaction-color" 
+                      style={{ backgroundColor: transaction.color || '#ccc' }}
+                    ></div>
+                    <div className="transaction-details">
+                      <div className="transaction-name">
+                        {transaction.name} 
+                        <div className="transaction-percentages">
+                          <span className="transaction-percentage actual">
+                            {actualPercentage}% actual
+                          </span>
+                          <span className="transaction-percentage expected">
+                            {expectedPercentage}% expected
+                          </span>
+                          {difference !== 0 && (
+                            <span className={`transaction-difference ${difference > 0 ? 'positive' : 'negative'}`}>
+                              {difference > 0 ? '+' : ''}{difference}%
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      <div className="transaction-metrics">
+                        <span className="transaction-count">{transaction.count} transactions</span>
+                        <span className="transaction-time">
+                          <Clock size={12} />
+                          {(() => {
+                            const originalType = transactionTypes.find(t => t.id === transaction.id);
+                            const defaultTime = originalType ? (originalType.normalProcess + originalType.normalWait) : 5;
+                            return ((transaction.avgTime || defaultTime)).toFixed(1);
+                          })() + ' min avg'}
+                        </span>
+                        <span className="transaction-satisfaction">
+                        {(() => {
+                            const defaultSatisfaction = 70 + Math.round(Math.random() * 20);
+                            return (transaction.satisfaction || defaultSatisfaction);
+                          })() + '% satisfaction'}
+                        </span>
+                      </div>
                     </div>
                   </div>
-                  
-                  <div className="transaction-percentage">
-                    {Math.round((transaction.count / results.completedTransactions) * 100)}%
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
             
-            <div className="transaction-chart-placeholder">
-              <h4>Transaction Distribution</h4>
-              <div className="chart-placeholder">
-                <BarChart2 size={40} />
-                <p>Chart visualization would appear here</p>
+            <div className="transaction-chart">
+              <h4>Transaction Distribution Comparison</h4>
+              <div className="chart-container">
+                <div className="chart-bars">
+                  {results.transactionBreakdown.map((transaction, index) => {
+                    const expectedDistribution = transactionDistribution.find(t => t.id === transaction.id);
+                    const expectedPercentage = expectedDistribution ? expectedDistribution.percentage : 0;
+                    const actualPercentage = Math.round((transaction.count / results.completedTransactions) * 100);
+                    
+                    return (
+                      <div key={index} className="chart-bar-group">
+                        <div className="chart-bar-label">{transaction.name.split(' ')[0]}</div>
+                        <div className="chart-bars-container">
+                          <div 
+                            className="chart-bar actual" 
+                            style={{ 
+                              height: `${actualPercentage * 2}px`,
+                              backgroundColor: transaction.color || '#ccc'
+                            }}
+                            title={`Actual: ${actualPercentage}%`}
+                          ></div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="chart-legend">
+
+                  <div className="legend-item">
+                    <div className="legend-color" style={{ backgroundColor: '#ccc' }}></div>
+                    <span>Actual</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

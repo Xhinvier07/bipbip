@@ -353,9 +353,11 @@
 }
 
 .branch-legend {
-  position: fixed;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
   bottom: 20px;
-  right: 360px;
+  right: 20px;
   background-color: white;
   border-radius: 8px;
   padding: 12px;
@@ -932,10 +934,48 @@
   color: #333;
 }
 
+
+
+.transaction-percentages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
 .transaction-percentage {
-  font-weight: 600;
+  font-size: 0.85em;
+  color: #777;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+}
+
+.transaction-percentage.actual {
+  background-color: #f0f0f0;
   color: #333;
-  font-size: 14px;
+}
+
+.transaction-percentage.expected {
+  background-color: #e9e9e9;
+  color: #666;
+}
+
+.transaction-difference {
+  font-size: 0.85em;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.transaction-difference.positive {
+  background-color: rgba(0, 191, 166, 0.1);
+  color: #00BFA6;
+}
+
+.transaction-difference.negative {
+  background-color: rgba(207, 61, 88, 0.1);
+  color: #CF3D58;
 }
 
 .transaction-info {
@@ -1319,17 +1359,80 @@
   gap: 4px;
 }
 
-.transaction-chart-placeholder, .hourly-chart-placeholder {
+.transaction-chart, .hourly-chart-placeholder {
   background-color: #f8f9fa;
   border-radius: 8px;
   padding: 20px;
   text-align: center;
 }
 
-.transaction-chart-placeholder h4, .hourly-chart-placeholder h4 {
+.transaction-chart h4, .hourly-chart-placeholder h4 {
   margin: 0 0 16px;
   font-size: 14px;
   color: #333;
+}
+
+.chart-container {
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-bars {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+.chart-bar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30px;
+}
+
+.chart-bar-label {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #666;
+}
+
+.chart-bars-container {
+  display: flex;
+  gap: 6px;
+  height: 100%;
+  align-items: flex-end;
+}
+
+.chart-bar {
+  width: 20px;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.3s ease;
+}
+
+.chart-bar.expected {
+  opacity: 0.6;
+}
+
+.chart-legend {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.chart-legend .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chart-legend .legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
 }
 
 .chart-placeholder {

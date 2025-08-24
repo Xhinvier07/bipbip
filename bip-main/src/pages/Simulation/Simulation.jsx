@@ -52,6 +52,9 @@ const Simulation = () => {
   const [isResultsPanelOpen, setIsResultsPanelOpen] = useState(true);
   const [view, setView] = useState('2D'); // '2D' or '3D'
   const [customerPaths, setCustomerPaths] = useState([]);
+  const [transactionDistribution, setTransactionDistribution] = useState(
+    transactionTypes.map(type => ({ id: type.id, name: type.name, percentage: type.percentage }))
+  );
   
   // Refs for canvas/simulation
   const simulationRef = useRef(null);
@@ -158,6 +161,15 @@ const Simulation = () => {
     setSimulationParams(prevParams => ({ ...prevParams, ...newParams }));
   };
   
+  // Update transaction distribution
+  const updateTransactionDistribution = (transactionId, newPercentage) => {
+    setTransactionDistribution(prev => 
+      prev.map(item => item.id === transactionId ? 
+        { ...item, percentage: newPercentage } : item
+      )
+    );
+  };
+  
   // Toggle control panel visibility
   const toggleControlPanel = () => {
     setIsControlPanelOpen(!isControlPanelOpen);
@@ -262,6 +274,8 @@ const Simulation = () => {
               timeOfDay={timeOfDayData}
               staffSkillLevels={staffSkillLevels}
               transactionTypes={transactionTypes}
+              transactionDistribution={transactionDistribution}
+              onUpdateTransactionDistribution={updateTransactionDistribution}
               disabled={isSimulating}
             />
           )}
@@ -379,7 +393,10 @@ const Simulation = () => {
           
           {isResultsPanelOpen && (
             simulationResults ? (
-              <SimulationResults results={simulationResults} />
+              <SimulationResults 
+                results={simulationResults} 
+                transactionDistribution={transactionDistribution} 
+              />
             ) : (
               <div className="no-results">
                 <p>No simulation results yet</p>
