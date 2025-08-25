@@ -24,7 +24,7 @@
 **BIPBIP** (Branch Intelligence Platform) is a comprehensive AI-powered analytics platform designed to transform BPI's 1,250+ branch operations through real-time data integration and predictive insights. The platform creates a digital twin of the branch network, combining historical operational data with real-time feeds to optimize customer flow, staff productivity, and service delivery.
 
 ### **Research Context & Problem Statement**
-Based on comprehensive stakeholder interviews with 3 Area Branch Directors, 2 Branch Managers, and 10 customers from branches including BPI Morayta and BPI Corinthian Plaza, BPI faces critical operational challenges:
+Based on comprehensive stakeholder interviews with 3 Area Business Directors, 2 Branch Managers, and 10 customers from branches including BPI Morayta and BPI Corinthian Plaza, BPI faces critical operational challenges:
 
 - **Customer Wait Times**: Increased 14% over 2 years (4.46 to 5.08 minutes average)
 - **Staff Productivity**: Teller productivity declined 19% (~18.4 to ~14.9 transactions/hour)

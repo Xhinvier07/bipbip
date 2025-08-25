@@ -28,7 +28,7 @@
 Branch Intelligence Platform (BIPBIP) is a comprehensive system for analyzing bank branch performance, customer sentiment, and operational metrics. The platform consists of multiple components working together to provide real-time insights into branch health and customer satisfaction.
 
 ### **Research Context & Problem Statement**
-Based on comprehensive stakeholder interviews with 3 Area Branch Directors, 2 Branch Managers, and 10 customers from branches including BPI Morayta and BPI Corinthian Plaza, BPI faces critical operational challenges:
+Based on comprehensive stakeholder interviews with 4 Area Business Directors, 2 Branch Managers, and 10 customers from branches including BPI Morayta and BPI Corinthian Plaza, BPI faces critical operational challenges:
 
 - **Customer Wait Times**: Increased 14% over 2 years (4.46 to 5.08 minutes average)
 - **Staff Productivity**: Teller productivity declined 19% (~18.4 to ~14.9 transactions/hour)

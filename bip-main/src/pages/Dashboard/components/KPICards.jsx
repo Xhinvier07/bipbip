@@ -127,8 +127,8 @@ const KPICards = () => {
         <div className="tooltip-container">
           <HelpCircle size={16} className="tooltip-icon" />
           <div className="tooltip-content">
-            <strong>Today's Transactions</strong>
-            <p>Sum of transaction counts from all branches in Main sheet</p>
+            <strong>Total Transactions</strong>
+            <p>Sum of transaction counts from all branches via BEA</p>
           </div>
         </div>
       </motion.div>
