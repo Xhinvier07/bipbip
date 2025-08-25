@@ -369,9 +369,9 @@ const languages = ['en', 'tl'];
 ## 📞 **Contact & Support**
 
 ### **Maintainers**
-- **Lead Developer**: [Your Name]
-- **Email**: [Your Email]
-- **LinkedIn**: [Your LinkedIn]
+- **Lead Developer**: Xhinvier07
+- **Email**: jansenmoral@gmail.com
+- **LinkedIn**: https://www.linkedin.com/in/xhinvier/
 
 ### **Getting Help**
 - **Issues**: Create GitHub issues for bugs/features
