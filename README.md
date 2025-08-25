@@ -15,7 +15,7 @@
 
 ## 🔗 **Quick Links**
 
-> **🚀 [Live Dashboard](https://bipbip-dashboard.vercel.app)** • **📊 [Real-time Database](https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing)** • **📚 [Academic Paper](https://github.com/yourusername/bipbip/blob/main/bip_paper/FINAL_PAPER.md)**
+> **🚀 [Live Dashboard](https://bipbip-dashboard.vercel.app)** • **📊 [Real-time Database](https://docs.google.com/spreadsheets/d/1rHjXMxilei_FCJN49NDKmdFz8kSiX4ryCnaHPNcqeDc/edit?gid=1187109420#gid=1187109420)** • **📚 [Academic Paper](https://docs.google.com/document/d/1PTG36IkL4lDoW0mtAe602ehgcgZTZrHEgGvYmlWejVk/edit?usp=sharing)**
 
 ---
 
@@ -65,6 +65,7 @@ Convert operational blind spots into actionable intelligence, reducing wait time
                        │ • BERT          │
                        │ • XGBoost       │
                        │ • Time Series   │
+                       | • Gemini AI     │
                        └─────────────────┘
 ```
 
@@ -143,7 +144,7 @@ npm run dev
 
 Visit `http://localhost:5173` to access the dashboard!
 
-> 💡 **Prefer to see the live system?** Check out our [hosted dashboard](https://bipbip-dashboard.vercel.app) and [real-time database](https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing)!
+> 💡 **Prefer to see the live system?** Check out our [hosted dashboard](https://bipbip-dashboard.vercel.app) and [real-time database](https://docs.google.com/spreadsheets/d/1rHjXMxilei_FCJN49NDKmdFz8kSiX4ryCnaHPNcqeDc/edit?gid=1187109420#gid=1187109420)!
 
 ---
 
