@@ -13,6 +13,12 @@
 
 ---
 
+## 🔗 **Quick Links**
+
+> **🚀 [Live Dashboard](https://bipbip-dashboard.vercel.app)** • **📊 [Real-time Database](https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing)** • **📚 [Academic Paper](https://github.com/yourusername/bipbip/blob/main/bip_paper/FINAL_PAPER.md)**
+
+---
+
 ## 🎯 **Project Overview**
 
 **BIPBIP** (Branch Intelligence Platform) is a comprehensive AI-powered analytics platform designed to transform BPI's 1,250+ branch operations through real-time data integration and predictive insights. The platform creates a digital twin of the branch network, combining historical operational data with real-time feeds to optimize customer flow, staff productivity, and service delivery.
@@ -129,6 +135,8 @@ npm run dev
 
 Visit `http://localhost:5173` to access the dashboard!
 
+> 💡 **Prefer to see the live system?** Check out our [hosted dashboard](https://bipbip-dashboard.vercel.app) and [real-time database](https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing)!
+
 ---
 
 ## 🎨 **Design System**
@@ -190,6 +198,15 @@ Visit `http://localhost:5173` to access the dashboard!
 - **Automated Summaries**: Generates comprehensive reports and executive summaries
 - **Continuous Learning**: Improves responses based on user interactions and new data
 - **Multi-Modal Analysis**: Processes text, numerical data, and visual information
+
+---
+
+## 🔗 **Quick Access**
+
+### **Live System & Resources**
+- 📊 **[Live Dashboard](https://bipbip-dashboard.vercel.app)** - Access the hosted BIPBIP platform
+- 📋 **[Real-time Database](https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing)** - Google Sheets live data feed
+- 📚 **[Academic Paper (IMRADC)](https://github.com/yourusername/bipbip/blob/main/bip_paper/FINAL_PAPER.md)** - Complete research paper
 
 ---
 

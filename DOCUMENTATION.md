@@ -3,18 +3,19 @@
 ## 📋 Table of Contents
 
 1. [Project Overview](#project-overview)
-2. [System Architecture](#system-architecture)
-3. [Directory Structure](#directory-structure)
-4. [Data Pipeline](#data-pipeline)
-5. [Sentiment Analysis](#sentiment-analysis)
-6. [Branch Health Scoring](#branch-health-scoring)
-7. [Web Application](#web-application)
-8. [Installation & Setup](#installation--setup)
-9. [Usage Guide](#usage-guide)
-10. [API Documentation](#api-documentation)
-11. [Troubleshooting](#troubleshooting)
-12. [Performance Optimization](#performance-optimization)
-13. [Contributing](#contributing)
+2. [Quick Access](#quick-access)
+3. [System Architecture](#system-architecture)
+4. [Directory Structure](#directory-structure)
+5. [Data Pipeline](#data-pipeline)
+6. [Sentiment Analysis](#sentiment-analysis)
+7. [Branch Health Scoring](#branch-health-scoring)
+8. [Web Application](#web-application)
+9. [Installation & Setup](#installation--setup)
+10. [Usage Guide](#usage-guide)
+11. [API Documentation](#api-documentation)
+12. [Troubleshooting](#troubleshooting)
+13. [Performance Optimization](#performance-optimization)
+14. [Contributing](#contributing)
 
 ---
 
