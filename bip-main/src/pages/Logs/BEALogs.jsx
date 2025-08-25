@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Building2, BarChart2, Clock, Users, RefreshCw, Search, ArrowDownToLine, Filter, ChevronDown, ChevronUp, Database, AlertCircle } from 'lucide-react';
+import { Building2, BarChart2, Clock, Users, RefreshCw, Search, ArrowDownToLine, Filter, ChevronDown, ChevronUp, Database, AlertCircle, ExternalLink } from 'lucide-react';
 import { fetchMainSheetData } from '../Dashboard/GoogleSheetsService';
 
 const BEALogs = () => {
@@ -177,6 +177,16 @@ const BEALogs = () => {
               <ArrowDownToLine size={16} />
               <span>Export</span>
             </button>
+            
+            <a 
+              href="https://docs.google.com/spreadsheets/d/1rHjXMxilei_FCJN49NDKmdFz8kSiX4ryCnaHPNcqeDc/edit?gid=1187109420#gid=1187109420"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="action-button google-sheet"
+            >
+              <ExternalLink size={16} />
+              <span>Google Sheet</span>
+            </a>
           </div>
         </div>
         

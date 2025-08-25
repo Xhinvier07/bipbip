@@ -158,6 +158,23 @@
   background-color: #e59200;
 }
 
+.action-button.google-sheet {
+  background-color: #0f9d58;
+  color: white;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.action-button.google-sheet:hover {
+  background-color: #0b8043;
+}
+
 .action-button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
