@@ -10,11 +10,11 @@ from typing import Dict, List, Tuple, Optional
 
 
 class BPITransactionGenerator:
-    def __init__(self, sheet_id: str, credentials_path: str = None, 
+    def __init__(self, sheet_id: str, credentials_path: str = None,
                  data_dispersion: float = 1.0, good_data_percentage: float = 70.0):
         """
         Initialize the BPI Transaction Generator with improved data control
-        
+
         Args:
             sheet_id: Google Sheets ID
             credentials_path: Path to Google credentials file
@@ -24,12 +24,12 @@ class BPITransactionGenerator:
         self.sheet_id = sheet_id
         self.branches = []  # Will be loaded from CSV
         self.review_samples = {}  # Will be loaded from review CSV
-        
+
         # Data quality control parameters
         self.data_dispersion = max(0.1, min(5.0, data_dispersion))  # Clamp between 0.1 and 5.0
         self.good_data_percentage = max(10.0, min(95.0, good_data_percentage))  # Clamp between 10% and 95%
         self.bad_data_percentage = 100.0 - self.good_data_percentage
-        
+
         print(f"📊 Data Configuration:")
         print(f"   Dispersion Factor: {self.data_dispersion} (0.5=tight, 2.0=spread)")
         print(f"   Good Data: {self.good_data_percentage}%")
@@ -40,7 +40,7 @@ class BPITransactionGenerator:
             'withdrawal': {
                 'weight': 30,
                 'waiting_time': {
-                    'normal': {'good': (1, 3), 'bad': (4, 8), 'base': (2, 5)}, #
+                    'normal': {'good': (1, 3), 'bad': (4, 8), 'base': (2, 5)},  #
                     'peak': {'good': (5, 10), 'bad': (12, 20), 'base': (8, 15)}
                 },
                 'processing_time': {
@@ -203,10 +203,10 @@ class BPITransactionGenerator:
 
         # Branch-specific performance factors (some branches are busier than others)
         branch_performance_factor = (hash(branch_name) % 100) / 100.0  # 0.0 to 1.0
-        
+
         base_volume = 190  # Standard volume
         peak_volume = 310  # Peak volume
-        
+
         # Apply branch-specific variation (±20%)
         branch_variation = 0.8 + (branch_performance_factor * 0.4)  # 0.8 to 1.2
 
@@ -227,13 +227,13 @@ class BPITransactionGenerator:
         # Create consistent but varied performance factors for each branch
         branch_hash = hash(branch_name) % 1000
         np.random.seed(branch_hash)
-        
+
         # Generate performance factor: 0.7 to 1.3 (some branches are faster/slower)
         performance_factor = 0.7 + (np.random.random() * 0.6)
-        
+
         # Reset seed
         np.random.seed(None)
-        
+
         return performance_factor
 
     def generate_transaction_id(self, customer_num: int, is_bulk: bool, date: datetime.date, branch_name: str) -> str:
@@ -250,7 +250,8 @@ class BPITransactionGenerator:
         weights = [self.transaction_config[t]['weight'] for t in types]
         return random.choices(types, weights=weights)[0]
 
-    def get_waiting_processing_time(self, transaction_type: str, is_peak: bool, branch_name: str = None) -> Tuple[int, int]:
+    def get_waiting_processing_time(self, transaction_type: str, is_peak: bool, branch_name: str = None) -> Tuple[
+        int, int]:
         """Get waiting and processing time for a transaction with quality control and branch variation"""
         config = self.transaction_config[transaction_type]
         period = 'peak' if is_peak else 'normal'
@@ -270,17 +271,17 @@ class BPITransactionGenerator:
         # Apply dispersion factor to spread the data
         waiting_range = waiting_max - waiting_min
         processing_range = processing_max - processing_min
-        
+
         # Use normal distribution for more realistic spread
         waiting_time = int(waiting_min + (random.gauss(0.5, 0.2) * waiting_range * self.data_dispersion))
         processing_time = int(processing_min + (random.gauss(0.5, 0.2) * processing_range * self.data_dispersion))
-        
+
         # Apply branch-specific performance factor if branch name provided
         if branch_name:
             performance_factor = self.get_branch_performance_factor(branch_name)
             waiting_time = int(waiting_time * performance_factor)
             processing_time = int(processing_time * performance_factor)
-        
+
         # Ensure minimum values
         waiting_time = max(1, waiting_time)
         processing_time = max(1, processing_time)
@@ -293,7 +294,7 @@ class BPITransactionGenerator:
         if is_good_transaction is None:
             # Determine if this should be a good transaction based on percentage
             is_good_transaction = random.random() < self.good_data_percentage / 100.0
-        
+
         if is_good_transaction:
             # Good transaction: higher sentiment scores
             if total_time <= 8:
@@ -367,7 +368,7 @@ class BPITransactionGenerator:
 
             # Determine if this is a good transaction for consistency
             is_good_transaction = random.random() < self.good_data_percentage / 100.0
-            
+
             # Generate sentiment and review with consistent quality
             sentiment, sentiment_score, review_text = self.generate_sentiment(transaction_time, is_good_transaction)
 
@@ -440,11 +441,11 @@ class BPITransactionGenerator:
     def generate_daily_transactions_all_branches(self, date: datetime.date) -> List[Dict]:
         """Generate all transactions for all branches on a specific date"""
         all_transactions = []
-        
+
         for branch in self.branches:
             branch_transactions = self.generate_daily_transactions_for_branch(date, branch)
             all_transactions.extend(branch_transactions)
-            
+
         return all_transactions
 
     def generate_date_range_data(self, start_date: datetime.date, end_date: datetime.date) -> pd.DataFrame:
@@ -468,9 +469,44 @@ class BPITransactionGenerator:
         print(f"Total transactions generated: {len(all_transactions)}")
         return pd.DataFrame(all_transactions)
 
+    def check_existing_data_dates(self, worksheet_name: str = "Sheet1") -> set:
+        """Check what dates already exist in the Google Sheet"""
+        if not self.gc:
+            return set()
+
+        try:
+            sheet = self.gc.open_by_key(self.sheet_id)
+            worksheet = sheet.worksheet(worksheet_name)
+
+            # Get all data
+            all_data = worksheet.get_all_values()
+            if len(all_data) <= 1:  # Only headers or empty
+                return set()
+
+            # Find the date column index (assuming it's named 'date')
+            headers = all_data[0]
+            if 'date' not in headers:
+                print("Warning: 'date' column not found in existing data")
+                return set()
+
+            date_col_index = headers.index('date')
+            existing_dates = set()
+
+            # Extract dates from all rows (skip header)
+            for row in all_data[1:]:
+                if len(row) > date_col_index and row[date_col_index]:
+                    existing_dates.add(row[date_col_index])
+
+            print(f"Found existing data for {len(existing_dates)} dates in Google Sheets")
+            return existing_dates
+
+        except Exception as e:
+            print(f"Error checking existing dates: {e}")
+            return set()
+
     def generate_with_realtime_streaming(self, start_date: datetime.date, days: int,
                                          frequency_seconds: int = 1, records_per_interval: int = 5) -> pd.DataFrame:
-        """Generate and stream data in real-time batches to Google Sheets"""
+        """Generate and stream data in real-time batches to Google Sheets (APPEND MODE ONLY)"""
         print(f"Starting real-time streaming generation:")
         print(f"  Date range: {start_date} to {start_date + datetime.timedelta(days=days - 1)}")
         print(f"  Frequency: Every {frequency_seconds} seconds")
@@ -479,9 +515,37 @@ class BPITransactionGenerator:
         print(f"  Branches: {len(self.branches)}")
         print("-" * 50)
 
+        # Check for existing data in Google Sheets to avoid duplicates
+        existing_dates = self.check_existing_data_dates() if self.gc else set()
+
+        # Filter out dates that already exist
+        dates_to_generate = []
+        for day_num in range(days):
+            current_date = start_date + datetime.timedelta(days=day_num)
+            date_str = current_date.strftime('%Y-%m-%d')
+            if date_str not in existing_dates:
+                dates_to_generate.append(current_date)
+            else:
+                print(f"⏭️  Skipping {date_str} - already exists in Google Sheets")
+
+        if not dates_to_generate:
+            print("🔄 All requested dates already exist in Google Sheets. No new data to generate.")
+            # Still return existing data for display purposes
+            return pd.DataFrame()
+
+        print(f"📅 Will generate data for {len(dates_to_generate)} new dates")
+
         # Generate ALL transactions first (mixed order, not sequential by branch)
-        all_transactions = self.generate_all_transactions_mixed(start_date, days)
+        all_transactions = []
+        for date in dates_to_generate:
+            print(f"Generating for {date}:")
+            daily_transactions = self.generate_all_transactions_mixed(date, 1)
+            all_transactions.extend(daily_transactions)
+
         total_transactions = len(all_transactions)
+        if total_transactions == 0:
+            print("No transactions to stream")
+            return pd.DataFrame()
 
         # Calculate batch configuration
         batch_size = records_per_interval
@@ -520,14 +584,15 @@ class BPITransactionGenerator:
                     print(
                         f"          {batch[-1]['branch_name']} - {batch[-1]['transaction_type']} - {batch[-1]['customer_id']}")
 
-            # Upload current state to Google Sheets if available
+            # Upload current batch to Google Sheets if available (APPEND MODE ONLY)
             if self.gc:
                 try:
-                    current_df = pd.DataFrame(streamed_transactions)
-                    self.upload_batch_to_sheets(current_df, append_mode=False)
-                    print(f"      ✅ Uploaded to Google Sheets (Total: {len(streamed_transactions):,} records)")
+                    # Convert only the new batch to DataFrame
+                    batch_df = pd.DataFrame(batch)
+                    self.upload_batch_to_sheets(batch_df, append_mode=True)  # ALWAYS APPEND
+                    print(f"      ✅ Appended {len(batch)} records to Google Sheets")
                 except Exception as e:
-                    print(f"      ❌ Failed to upload to Google Sheets: {e}")
+                    print(f"      ❌ Failed to append to Google Sheets: {e}")
 
             # Save progress periodically
             if (batch_num + 1) % 20 == 0 or batch_num == total_batches - 1:
@@ -549,7 +614,7 @@ class BPITransactionGenerator:
 
     def upload_batch_to_sheets(self, df: pd.DataFrame, worksheet_name: str = "Sheet1",
                                append_mode: bool = True) -> bool:
-        """Upload dataframe batch to Google Sheets"""
+        """Upload dataframe batch to Google Sheets with improved append logic"""
         if not self.gc:
             return False
 
@@ -558,44 +623,41 @@ class BPITransactionGenerator:
 
             try:
                 worksheet = sheet.worksheet(worksheet_name)
-                if not append_mode:
-                    worksheet.clear()
             except gspread.WorksheetNotFound:
-                worksheet = sheet.add_worksheet(title=worksheet_name, rows=50000,
-                                                cols=15)  # Increased columns for more data
+                worksheet = sheet.add_worksheet(title=worksheet_name, rows=50000, cols=15)
+
+            # Check if worksheet is empty or needs headers
+            existing_data = worksheet.get_all_values()
+            is_empty = len(existing_data) == 0
 
             # Convert DataFrame to list of lists for upload
-            if not append_mode or worksheet.row_count <= 1:
-                # Include headers if starting fresh
-                data = [df.columns.tolist()] + df.values.tolist()
+            data_to_upload = df.values.tolist()
+
+            if is_empty:
+                # First time upload - include headers
+                headers = [df.columns.tolist()]
+                all_data = headers + data_to_upload
                 start_row = 1
             else:
-                # Append without headers
-                data = df.values.tolist()
-                start_row = worksheet.row_count + 1
+                # Append mode - just add data without headers
+                all_data = data_to_upload
+                start_row = len(existing_data) + 1
 
             # Calculate the correct column range dynamically
             num_columns = len(df.columns)
             end_column = chr(ord('A') + num_columns - 1)  # Convert to letter (A, B, C... L)
-            end_row = start_row + len(data) - 1
+            end_row = start_row + len(all_data) - 1
             range_name = f'A{start_row}:{end_column}{end_row}'
 
-            # Use the new API format: values first, then range_name
-            if not append_mode:
-                # Replace all data
-                worksheet.update(values=data, range_name=range_name)
-            else:
-                # Append data
-                new_data = df.values.tolist()
-                worksheet.update(values=new_data, range_name=range_name)
-
+            # Upload the data
+            worksheet.update(values=all_data, range_name=range_name)
             return True
 
         except Exception as e:
             raise Exception(f"Error uploading batch to Google Sheets: {e}")
 
-    def upload_to_sheets(self, df: pd.DataFrame, worksheet_name: str = "Sheet1") -> bool:
-        """Upload dataframe to Google Sheets"""
+    def upload_to_sheets(self, df: pd.DataFrame, worksheet_name: str = "Sheet1", append_mode: bool = False) -> bool:
+        """Upload dataframe to Google Sheets with option to append or replace"""
         if not self.gc:
             print("No Google Sheets connection available")
             return False
@@ -607,25 +669,39 @@ class BPITransactionGenerator:
             try:
                 # Try to open existing worksheet
                 worksheet = sheet.worksheet(worksheet_name)
-                # Clear existing data
-                worksheet.clear()
+                if not append_mode:
+                    # Clear existing data only if explicitly not appending
+                    worksheet.clear()
             except gspread.WorksheetNotFound:
                 # Create new worksheet if it doesn't exist
-                worksheet = sheet.add_worksheet(title=worksheet_name, rows=10000, cols=10)
+                worksheet = sheet.add_worksheet(title=worksheet_name, rows=10000, cols=15)
 
-            # Convert DataFrame to list of lists for upload
-            data = [df.columns.tolist()] + df.values.tolist()
+            if append_mode:
+                # Check existing data to determine where to start appending
+                existing_data = worksheet.get_all_values()
+                start_row = len(existing_data) + 1 if existing_data else 1
+
+                # Only add headers if worksheet is empty
+                if len(existing_data) == 0:
+                    data = [df.columns.tolist()] + df.values.tolist()
+                    start_row = 1
+                else:
+                    data = df.values.tolist()
+            else:
+                # Replace mode - include headers
+                data = [df.columns.tolist()] + df.values.tolist()
+                start_row = 1
 
             # Update the worksheet in batches for large datasets
             batch_size = 1000
             for i in range(0, len(data), batch_size):
                 batch = data[i:i + batch_size]
-                start_row = i + 1
-                end_row = start_row + len(batch) - 1
+                current_start_row = start_row + i
+                end_row = current_start_row + len(batch) - 1
 
-                # Calculate the correct column range based on actual data columns (12 columns: A to L)
+                # Calculate the correct column range based on actual data columns
                 end_column = chr(ord('A') + len(df.columns) - 1)  # Dynamic column calculation
-                range_name = f'A{start_row}:{end_column}{end_row}'
+                range_name = f'A{current_start_row}:{end_column}{end_row}'
 
                 # Use the new API format: values first, then range_name
                 worksheet.update(values=batch, range_name=range_name)
@@ -633,7 +709,8 @@ class BPITransactionGenerator:
                 if len(data) > batch_size:
                     print(f"Uploaded batch {i // batch_size + 1}/{(len(data) - 1) // batch_size + 1}")
 
-            print(f"Successfully uploaded {len(df)} transactions to Google Sheets!")
+            action = "appended to" if append_mode else "uploaded to"
+            print(f"Successfully {action} Google Sheets: {len(df)} transactions!")
             return True
 
         except Exception as e:
@@ -658,14 +735,14 @@ class BPITransactionGenerator:
         print(f"   Total transactions: {len(df):,}")
         print(f"   Date range: {df['date'].min()} to {df['date'].max()}")
         print(f"   Branches: {df['branch_name'].nunique()}")
-        
+
         print(f"\n⏱️  Time Statistics:")
         print(f"   Average waiting time: {df['waiting_time'].mean():.2f} minutes")
         print(f"   Average processing time: {df['processing_time'].mean():.2f} minutes")
         print(f"   Average total time: {df['transaction_time'].mean():.2f} minutes")
         print(f"   Waiting time std dev: {df['waiting_time'].std():.2f}")
         print(f"   Processing time std dev: {df['processing_time'].std():.2f}")
-        
+
         print(f"\n😊 Sentiment Statistics:")
         print(f"   Average sentiment score: {df['sentiment_score'].mean():.2f}")
         print(f"   Sentiment distribution:")
@@ -673,13 +750,13 @@ class BPITransactionGenerator:
         for sentiment, count in sentiment_counts.items():
             percentage = (count / len(df)) * 100
             print(f"     {sentiment}: {count:,} ({percentage:.1f}%)")
-        
+
         print(f"\n🏦 Transaction Types:")
         type_counts = df['transaction_type'].value_counts()
         for ttype, count in type_counts.items():
             percentage = (count / len(df)) * 100
             print(f"     {ttype}: {count:,} ({percentage:.1f}%)")
-        
+
         print(f"\n📈 Branch Performance (Top 5 by avg transaction time):")
         branch_stats = df.groupby('branch_name').agg({
             'transaction_time': ['mean', 'count'],
@@ -687,16 +764,17 @@ class BPITransactionGenerator:
         }).round(2)
         branch_stats.columns = ['avg_time', 'transactions', 'avg_sentiment']
         branch_stats = branch_stats.sort_values('avg_time')
-        
+
         for i, (branch, stats) in enumerate(branch_stats.head().iterrows()):
-            print(f"     {i+1}. {branch}: {stats['avg_time']}min, {stats['transactions']} txns, {stats['avg_sentiment']} sentiment")
-        
+            print(
+                f"     {i + 1}. {branch}: {stats['avg_time']}min, {stats['transactions']} txns, {stats['avg_sentiment']} sentiment")
+
         print(f"\n🎯 Data Quality Achieved:")
         good_transactions = len(df[df['sentiment_score'] >= 3.5])
         bad_transactions = len(df[df['sentiment_score'] < 3.0])
         actual_good_percentage = (good_transactions / len(df)) * 100
         actual_bad_percentage = (bad_transactions / len(df)) * 100
-        
+
         print(f"   Target good data: {self.good_data_percentage:.1f}%")
         print(f"   Actual good data: {actual_good_percentage:.1f}%")
         print(f"   Actual bad data: {actual_bad_percentage:.1f}%")
@@ -718,7 +796,7 @@ def get_user_input():
     print("  - 0.5: Tight data (similar values)")
     print("  - 1.0: Normal spread (default)")
     print("  - 2.0: Very spread out data")
-    
+
     dispersion = input("Enter dispersion factor (0.5-2.0, default: 1.0): ").strip()
     try:
         dispersion = float(dispersion) if dispersion else 1.0
@@ -731,7 +809,7 @@ def get_user_input():
     print("  - 50%: Equal good/bad data")
     print("  - 70%: Mostly good data (default)")
     print("  - 90%: Almost all good data")
-    
+
     good_percentage = input("Enter good data percentage (50-90, default: 70): ").strip()
     try:
         good_percentage = float(good_percentage) if good_percentage else 70.0
@@ -813,7 +891,7 @@ def main():
 
     # Initialize the generator with data quality parameters
     generator = BPITransactionGenerator(
-        SHEET_ID, 
+        SHEET_ID,
         credentials_path="trashscan-450913-eb9189146693.json",
         data_dispersion=config['dispersion'],
         good_data_percentage=config['good_percentage']
@@ -833,7 +911,7 @@ def main():
             return
 
     # Generate data based on mode
-    elif config['mode'] == 'today':
+    if config['mode'] == 'today':
         print(f"\nGenerating data for today ({config['start_date']})...")
         today_transactions = generator.generate_all_transactions_mixed(config['start_date'], 1)
         df = pd.DataFrame(today_transactions)
@@ -865,11 +943,14 @@ def main():
     # Print detailed summary
     generator.print_data_summary(df)
 
-    # Upload to Google Sheets if available
-    if generator.gc:
-        upload = input("\nUpload to Google Sheets? (y/n): ").strip().lower()
-        if upload == 'y':
-            generator.upload_to_sheets(df)
+    # Upload to Google Sheets if available and not in realtime mode (realtime already uploads)
+    if generator.gc and config['mode'] != 'realtime':
+        upload_choice = input("\nUpload to Google Sheets? (y/n/a - where 'a' means append): ").strip().lower()
+        if upload_choice in ['y', 'a']:
+            append_mode = upload_choice == 'a'
+            action = "append to" if append_mode else "replace data in"
+            print(f"Will {action} Google Sheets...")
+            generator.upload_to_sheets(df, append_mode=append_mode)
 
     print(f"\n✅ Generation complete!")
     print(f"   Total records: {len(df):,}")
