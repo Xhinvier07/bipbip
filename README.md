@@ -15,7 +15,7 @@
 
 ## 🔗 **Quick Links**
 
-> **🚀 [Live Dashboard](https://bipbip-bpi.vercel.app)** • **📊 [Real-time Database](https://docs.google.com/spreadsheets/d/1rHjXMxilei_FCJN49NDKmdFz8kSiX4ryCnaHPNcqeDc/edit?gid=1187109420#gid=1187109420)** • **📚 [Academic Paper](https://docs.google.com/document/d/1IJx9GnSEEiVfybt4t-D5ubDAsy6gm8Cn4KNslTThbyA/)**
+> **🚀 [BIPBIP Website](https://bipbip-bpi.vercel.app)** • **📊 [Real-time Database](https://docs.google.com/spreadsheets/d/1rHjXMxilei_FCJN49NDKmdFz8kSiX4ryCnaHPNcqeDc/edit?gid=1187109420#gid=1187109420)** • **📚 [Academic Paper](https://docs.google.com/document/d/1IJx9GnSEEiVfybt4t-D5ubDAsy6gm8Cn4KNslTThbyA/)**
 
 ---
 
@@ -141,11 +141,6 @@ python generate.py
 cd ../bip-main
 npm run dev
 ```
-
-Visit `http://localhost:5173` to access the dashboard!
-
-> 💡 **Prefer to see the live system?** Check out our [hosted dashboard](https://bipbip-dashboard.vercel.app) and [real-time database](https://docs.google.com/spreadsheets/d/1rHjXMxilei_FCJN49NDKmdFz8kSiX4ryCnaHPNcqeDc/edit?gid=1187109420#gid=1187109420)!
-
 ---
 
 ## 🎨 **Design System**
@@ -207,16 +202,6 @@ Visit `http://localhost:5173` to access the dashboard!
 - **Automated Summaries**: Generates comprehensive reports and executive summaries
 - **Continuous Learning**: Improves responses based on user interactions and new data
 - **Multi-Modal Analysis**: Processes text, numerical data, and visual information
-
----
-
-## 🔗 **Quick Access**
-
-### **Live System & Resources**
-- 📊 **[Live Dashboard](https://bipbip-dashboard.vercel.app)** - Access the hosted BIPBIP platform
-- 📋 **[Real-time Database](https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing)** - Google Sheets live data feed
-- 📚 **[Academic Paper (IMRADC)](https://github.com/yourusername/bipbip/blob/main/bip_paper/FINAL_PAPER.md)** - Complete research paper
-
 ---
 
 ## 🤖 **AI/ML Models**
