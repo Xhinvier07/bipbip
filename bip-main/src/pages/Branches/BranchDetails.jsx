@@ -323,7 +323,7 @@ const BranchDetails = ({ branch }) => {
             <Activity size={18} />
           </div>
           <div className="metric-content">
-            <h4>Health Status</h4>
+            <h4>Health Score</h4>
             <div className="metric-value">
               {activeView === 'actual'
                 ? `${Math.round(branchHealthScore)}%`

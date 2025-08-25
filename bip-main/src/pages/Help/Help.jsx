@@ -22,7 +22,8 @@ import {
   Activity,
   Users,
   ThumbsUp,
-  ThumbsDown
+  ThumbsDown,
+  Github
 } from 'lucide-react';
 
 import './Help.css';
@@ -928,16 +929,16 @@ const Help = () => {
               <h3>Additional Resources</h3>
               <ul>
                 <li>
-                  <a href="#" className="resource-link">
+                  <a href="https://docs.google.com/document/d/1IJx9GnSEEiVfybt4t-D5ubDAsy6gm8Cn4KNslTThbyA/edit?usp=sharing" target="_blank" rel="noopener noreferrer" className="resource-link">
                     <FileText size={16} />
-                    <span>User Manual</span>
+                    <span>Academic Paper</span>
                     <ExternalLink size={14} />
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="resource-link">
-                    <LineChart size={16} />
-                    <span>Analytics Guide</span>
+                  <a href="https://github.com/Xhinvier07/bipbip" target="_blank" rel="noopener noreferrer" className="resource-link">
+                    <Github size={16} />
+                    <span>GitHub Repository</span>
                     <ExternalLink size={14} />
                   </a>
                 </li>
@@ -980,10 +981,13 @@ const Help = () => {
         <div className="help-contact-desktop">
           <h3>Need more help?</h3>
           <p>Contact our support team for assistance</p>
-          <button className="contact-btn">
+          <button
+            className="contact-btn"
+            onClick={() => window.open("https://www.linkedin.com/in/xhinvier/", "_blank")}
+          >
             <MessageSquare size={16} />
             Contact Support
-          </button>
+        </button>
         </div>
       </div>
     </div>
