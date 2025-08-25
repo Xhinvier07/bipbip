@@ -141,11 +141,6 @@ python generate.py
 cd ../bip-main
 npm run dev
 ```
-
-Visit `http://localhost:5173` to access the dashboard!
-
-> 💡 **Prefer to see the live system?** Check out our [hosted dashboard](https://bipbip-dashboard.vercel.app) and [real-time database](https://docs.google.com/spreadsheets/d/1rHjXMxilei_FCJN49NDKmdFz8kSiX4ryCnaHPNcqeDc/edit?gid=1187109420#gid=1187109420)!
-
 ---
 
 ## 🎨 **Design System**
