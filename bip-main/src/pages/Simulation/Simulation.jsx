@@ -54,6 +54,7 @@ const Simulation = () => {
   const [isResultsPanelOpen, setIsResultsPanelOpen] = useState(true);
   const [view, setView] = useState('2D'); // '2D' or '3D'
   const [customerPaths, setCustomerPaths] = useState([]);
+  const [show3DOverlay, setShow3DOverlay] = useState(false); // Add 3D overlay state
   const [transactionDistribution, setTransactionDistribution] = useState(
     transactionTypes.map(type => ({ id: type.id, name: type.name, percentage: type.percentage }))
   );
@@ -204,7 +205,15 @@ const Simulation = () => {
   
   // Toggle view mode (2D/3D)
   const toggleView = () => {
-    setView(prev => (prev === '2D' ? '3D' : '2D'));
+    const newView = view === '2D' ? '3D' : '2D';
+    setView(newView);
+    
+    // Show 3D overlay when switching to 3D view
+    if (newView === '3D') {
+      setShow3DOverlay(true);
+    } else {
+      setShow3DOverlay(false);
+    }
   };
   
 
@@ -240,13 +249,19 @@ const Simulation = () => {
           <div className="view-toggle-buttons">
             <button
               className={`view-toggle-btn ${view === '2D' ? 'active' : ''}`}
-              onClick={() => setView('2D')}
+              onClick={() => {
+                setView('2D');
+                setShow3DOverlay(false);
+              }}
             >
               2D View
             </button>
             <button
               className={`view-toggle-btn ${view === '3D' ? 'active' : ''}`}
-              onClick={() => setView('3D')}
+              onClick={() => {
+                setView('3D');
+                setShow3DOverlay(true);
+              }}
             >
               3D View
             </button>
@@ -328,14 +343,38 @@ const Simulation = () => {
           
           <div className="visualization-area">
             {branchFloorPlans[selectedBranch] ? (
-              <BranchFloorPlan
-                floorPlan={currentFloorPlan}
-                servicePoints={currentServicePoints}
-                customerPaths={isSimulating ? customerPaths : []}
-                view={view}
-                simulationSpeed={simulationParams.simulationSpeed}
-                ref={simulationRef}
-              />
+              <div className="floor-plan-container">
+                <BranchFloorPlan
+                  floorPlan={currentFloorPlan}
+                  servicePoints={currentServicePoints}
+                  customerPaths={isSimulating ? customerPaths : []}
+                  view={view}
+                  simulationSpeed={simulationParams.simulationSpeed}
+                  ref={simulationRef}
+                />
+                
+                {/* 3D Overlay */}
+                {show3DOverlay && (
+                  <div className="three-d-overlay">
+                    <div className="overlay-content">
+                      <h3>
+                        🚧 3D View
+                      </h3>
+                      <p>Currently in development...</p>
+                      <p className="overlay-subtitle">3D Map Visualization, Soon!</p>
+                      <button 
+                        className="overlay-close-btn"
+                        onClick={() => {
+                          setView('2D');
+                          setShow3DOverlay(false);
+                        }}
+                      >
+                        Switch to 2D View
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
             ) : (
               <div className="no-map-available">
                 <div className="no-map-message">
