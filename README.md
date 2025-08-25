@@ -202,16 +202,6 @@ npm run dev
 - **Automated Summaries**: Generates comprehensive reports and executive summaries
 - **Continuous Learning**: Improves responses based on user interactions and new data
 - **Multi-Modal Analysis**: Processes text, numerical data, and visual information
-
----
-
-## 🔗 **Quick Access**
-
-### **Live System & Resources**
-- 📊 **[Live Dashboard](https://bipbip-dashboard.vercel.app)** - Access the hosted BIPBIP platform
-- 📋 **[Real-time Database](https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit?usp=sharing)** - Google Sheets live data feed
-- 📚 **[Academic Paper (IMRADC)](https://github.com/yourusername/bipbip/blob/main/bip_paper/FINAL_PAPER.md)** - Complete research paper
-
 ---
 
 ## 🤖 **AI/ML Models**
