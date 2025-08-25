@@ -13,6 +13,7 @@
     "@googlemaps/react-wrapper": "^1.2.0",
     "@supabase/supabase-js": "^2.55.0",
     "@types/three": "^0.179.0",
+    "@vercel/analytics": "^1.5.0",
     "framer-motion": "^12.23.12",
     "gsap": "^3.13.0",
     "lucide-react": "^0.539.0",
