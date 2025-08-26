@@ -179,7 +179,7 @@ const BEALogs = () => {
             </button>
             
             <a 
-              href="https://docs.google.com/spreadsheets/d/1rHjXMxilei_FCJN49NDKmdFz8kSiX4ryCnaHPNcqeDc/edit?gid=1187109420#gid=1187109420"
+              href="https://docs.google.com/spreadsheets/d/1rHjXMxilei_FCJN49NDKmdFz8kSiX4ryCnaHPNcqeDc/edit?gid=240801451#gid=240801451"
               target="_blank"
               rel="noopener noreferrer"
               className="action-button google-sheet"
