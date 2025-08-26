@@ -892,7 +892,7 @@ def main():
     # Initialize the generator with data quality parameters
     generator = BPITransactionGenerator(
         SHEET_ID,
-        credentials_path="trashscan-450913-eb9189146693.json",
+        credentials_path="trashscan-450913-39acb2996c94.json",
         data_dispersion=config['dispersion'],
         good_data_percentage=config['good_percentage']
     )

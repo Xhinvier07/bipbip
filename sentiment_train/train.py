@@ -128,25 +128,68 @@ class BPISentimentAnalyzer:
         text = re.sub(r'[^\w\s.,!?]', '', text)
         return text
 
-    def predict_sentiment(self, text):
-        """Predict sentiment for a single text"""
+    def predict_sentiment_with_validation(self, text):
+        """Predict sentiment with enhanced validation against obvious patterns"""
         # Handle empty or placeholder text
         if not text or len(text.strip()) == 0 or text == 'No review text provided':
-            return 'Neutral'  # Default to neutral for empty reviews
+            return 'Neutral'
 
         try:
+            # Check for obvious negative patterns first
+            negative_patterns = [
+                'worst', 'terrible', 'awful', 'horrible', 'disgusting', 'hate',
+                'rude', 'unprofessional', 'slow', 'long wait', 'bad service',
+                'poor', 'disappointing', 'frustrated', 'angry', 'annoyed',
+                'useless', 'pathetic', 'nightmare', 'disaster'
+            ]
+
+            # Check for obvious positive patterns
+            positive_patterns = [
+                'excellent', 'great', 'amazing', 'fantastic', 'wonderful',
+                'good', 'fast', 'quick', 'helpful', 'friendly', 'professional',
+                'clean', 'efficient', 'satisfied', 'happy', 'recommend',
+                'love', 'best', 'perfect'
+            ]
+
+            text_lower = text.lower()
+
+            # Count negative and positive keywords
+            negative_count = sum(1 for pattern in negative_patterns if pattern in text_lower)
+            positive_count = sum(1 for pattern in positive_patterns if pattern in text_lower)
+
+            # If there's a clear keyword dominance, use that
+            if negative_count > positive_count and negative_count >= 2:
+                return 'Negative'
+            elif positive_count > negative_count and positive_count >= 2:
+                return 'Positive'
+
+            # Otherwise, use BERT but validate the result
             result = self.sentiment_pipeline(text[:512])
             score = result[0]['score']
             label = result[0]['label']
 
-            # Map to our format (Positive/Neutral/Negative)
-            if label in ['POSITIVE', '5 stars', '4 stars'] or score > 0.6:
-                return 'Positive'
-            elif label in ['NEGATIVE', '1 star', '2 stars'] or score < 0.4:
-                return 'Negative'
+            # Map to our format with validation
+            if label in ['POSITIVE', '5 stars', '4 stars']:
+                bert_sentiment = 'Positive'
+            elif label in ['NEGATIVE', '1 star', '2 stars']:
+                bert_sentiment = 'Negative'
             else:
-                return 'Neutral'
-        except:
+                bert_sentiment = 'Neutral'
+
+            # Cross-validate BERT result with keyword analysis
+            if negative_count > 0 and bert_sentiment == 'Positive':
+                # BERT says positive but we found negative keywords
+                if negative_count >= positive_count:
+                    return 'Negative'  # Override BERT
+            elif positive_count > 0 and bert_sentiment == 'Negative':
+                # BERT says negative but we found positive keywords
+                if positive_count >= negative_count:
+                    return 'Positive'  # Override BERT
+
+            return bert_sentiment
+
+        except Exception as e:
+            print(f"Error in sentiment prediction: {e}")
             return 'Neutral'
 
     def rating_to_sentiment(self, rating):
@@ -157,8 +200,42 @@ class BPISentimentAnalyzer:
             return 'Positive'
         elif rating == 3:
             return 'Neutral'
-        else:
+        else:  # rating <= 2
             return 'Negative'
+
+    def determine_final_sentiment(self, text_sentiment, rating_sentiment, star_rating):
+        """
+        Determine final sentiment using a priority system:
+        1. Star rating is the primary indicator (most reliable)
+        2. Text sentiment is secondary (but important for validation)
+        3. Resolve conflicts intelligently
+        """
+        # If no star rating, use text sentiment
+        if pd.isna(star_rating):
+            return text_sentiment
+
+        # If both agree, use that sentiment
+        if text_sentiment == rating_sentiment:
+            return text_sentiment
+
+        # Handle conflicts with star rating priority
+        if star_rating <= 2:  # 1-2 stars
+            # For very low ratings, always negative regardless of text
+            return 'Negative'
+        elif star_rating >= 4:  # 4-5 stars
+            # For high ratings, lean positive but consider strong negative text
+            if text_sentiment == 'Negative':
+                return 'Neutral'  # Compromise between conflicting signals
+            else:
+                return 'Positive'
+        else:  # 3 stars
+            # For middle rating, text sentiment can influence more
+            if text_sentiment == 'Negative':
+                return 'Negative'
+            elif text_sentiment == 'Positive':
+                return 'Positive'
+            else:
+                return 'Neutral'
 
     def sentiment_to_score_range(self, sentiment):
         """Convert sentiment to randomized score within range"""
@@ -181,8 +258,8 @@ class BPISentimentAnalyzer:
                 self.branch_sentiments[branch] = 'Neutral'
                 continue
 
-            # Count sentiments
-            sentiment_counts = branch_data['bert_sentiment'].value_counts()
+            # Count final sentiments
+            sentiment_counts = branch_data['final_sentiment'].value_counts()
             pos_count = sentiment_counts.get('Positive', 0)
             neu_count = sentiment_counts.get('Neutral', 0)
             neg_count = sentiment_counts.get('Negative', 0)
@@ -201,7 +278,7 @@ class BPISentimentAnalyzer:
 
     def calculate_overall_sentiment(self):
         """Calculate overall sentiment based on weighted average"""
-        sentiment_counts = self.df['bert_sentiment'].value_counts()
+        sentiment_counts = self.df['final_sentiment'].value_counts()
         pos_count = sentiment_counts.get('Positive', 0)
         neu_count = sentiment_counts.get('Neutral', 0)
         neg_count = sentiment_counts.get('Negative', 0)
@@ -223,44 +300,59 @@ class BPISentimentAnalyzer:
             self.overall_sentiment = 'Negative'
 
     def analyze_sentiments(self):
-        """Perform comprehensive sentiment analysis"""
+        """Perform comprehensive sentiment analysis with improved logic"""
         print("Performing sentiment analysis...")
 
         # Preprocess texts
         self.df['cleaned_text'] = self.df['review_text'].apply(self.preprocess_text)
 
-        # For reviews without text, use star rating for sentiment
-        print("Analyzing sentiments using BERT and star ratings...")
-        sentiments = []
+        print("Analyzing sentiments using enhanced BERT + keyword validation...")
+        text_sentiments = []
+        rating_sentiments = []
+        final_sentiments = []
 
         for idx, row in self.df.iterrows():
+            # Get text-based sentiment (with validation)
             if row['review_text'] == 'No review text provided':
-                # Use star rating for sentiment when no review text
-                sentiment = self.rating_to_sentiment(row['star_rating'])
+                text_sentiment = 'Neutral'  # Default for no text
             else:
-                # Use BERT for sentiment analysis when review text exists
-                sentiment = self.predict_sentiment(row['cleaned_text'])
+                text_sentiment = self.predict_sentiment_with_validation(row['cleaned_text'])
 
-            sentiments.append(sentiment)
+            # Get rating-based sentiment
+            rating_sentiment = self.rating_to_sentiment(row['star_rating'])
 
-        self.df['bert_sentiment'] = sentiments
+            # Determine final sentiment using priority logic
+            final_sentiment = self.determine_final_sentiment(
+                text_sentiment, rating_sentiment, row['star_rating']
+            )
 
-        # Also create rating-based sentiment for comparison
-        self.df['rating_based_sentiment'] = self.df['star_rating'].apply(self.rating_to_sentiment)
+            text_sentiments.append(text_sentiment)
+            rating_sentiments.append(rating_sentiment)
+            final_sentiments.append(final_sentiment)
 
-        # Calculate overall and branch sentiments using weighted averages
+            # Debug problematic cases
+            if idx < 10 or (text_sentiment == 'Positive' and rating_sentiment == 'Negative'):
+                print(
+                    f"Row {idx}: Rating={row['star_rating']}, Text='{text_sentiment}', Rating='{rating_sentiment}', Final='{final_sentiment}'")
+
+        self.df['text_based_sentiment'] = text_sentiments
+        self.df['rating_based_sentiment'] = rating_sentiments
+        self.df['final_sentiment'] = final_sentiments
+
+        # Calculate overall and branch sentiments using final sentiment
         self.calculate_overall_sentiment()
         self.calculate_branch_sentiments()
 
         print(f"Overall Sentiment: {self.overall_sentiment}")
         print(f"Branch Sentiments calculated for {len(self.branch_sentiments)} branches")
 
-        # Show breakdown of how sentiments were determined
-        text_based = len(self.df[self.df['review_text'] != 'No review text provided'])
-        rating_based = len(self.df[self.df['review_text'] == 'No review text provided'])
-        print(f"Sentiment analysis breakdown:")
-        print(f"  - Text-based analysis: {text_based} reviews")
-        print(f"  - Rating-based analysis: {rating_based} reviews")
+        # Show breakdown
+        final_sentiment_counts = self.df['final_sentiment'].value_counts()
+        print(f"Final sentiment distribution:")
+        for sentiment in ['Positive', 'Neutral', 'Negative']:
+            count = final_sentiment_counts.get(sentiment, 0)
+            percentage = (count / len(self.df) * 100) if len(self.df) > 0 else 0
+            print(f"  - {sentiment}: {count} ({percentage:.1f}%)")
 
     def extract_city_from_branch(self, branch_name):
         """Extract city from branch name using the predefined cities list"""
@@ -282,8 +374,8 @@ class BPISentimentAnalyzer:
         # Get unique branch names
         branch_names = sorted(self.df['branch_name'].unique())
 
-        # Calculate CSAT scores with proper weighted averages
-        sentiment_counts = self.df['bert_sentiment'].value_counts()
+        # Calculate CSAT scores with proper weighted averages using FINAL sentiment
+        sentiment_counts = self.df['final_sentiment'].value_counts()
         total_reviews = int(len(self.df))
 
         # Calculate overall weighted score
@@ -293,12 +385,12 @@ class BPISentimentAnalyzer:
                                     sentiment_counts.get('Negative', 0) * 45
                             ) // total_reviews if total_reviews > 0 else 65)
 
-        # Calculate branch scores with weighted averages
+        # Calculate branch scores with weighted averages using final sentiment
         branch_scores = {}
         for branch in branch_names:
             branch_data = self.df[self.df['branch_name'] == branch]
             if len(branch_data) > 0:
-                branch_sentiment_counts = branch_data['bert_sentiment'].value_counts()
+                branch_sentiment_counts = branch_data['final_sentiment'].value_counts()
                 branch_score = int((
                                            branch_sentiment_counts.get('Positive', 0) * 85 +
                                            branch_sentiment_counts.get('Neutral', 0) * 65 +
@@ -315,21 +407,21 @@ class BPISentimentAnalyzer:
         neutral_tags = [tag for tag, count in self.extract_common_tags(self.df, 'Neutral')]
         negative_tags = [tag for tag, count in self.extract_common_tags(self.df, 'Negative')]
 
-        # Create customer reviews data with randomized scores within ranges
+        # Create customer reviews data with CORRECTED scores based on final sentiment
         customer_reviews = []
         for idx, row in self.df.iterrows():
-            # Get randomized score within sentiment range
-            score = self.sentiment_to_score_range(row['bert_sentiment'])
+            # Get score based on FINAL sentiment (this fixes the bug)
+            score = self.sentiment_to_score_range(row['final_sentiment'])
 
             # Extract city using improved method
             city = self.extract_city_from_branch(row['branch_name'])
 
-            # Extract tags based on sentiment and keywords
+            # Extract tags based on final sentiment
             tags = []
-            if row['bert_sentiment'] == 'Positive':
+            if row['final_sentiment'] == 'Positive':
                 tags = ['Fast Service', 'Professional Staff'] if 'fast' in row['cleaned_text'] or 'professional' in row[
                     'cleaned_text'] else ['Good Experience']
-            elif row['bert_sentiment'] == 'Negative':
+            elif row['final_sentiment'] == 'Negative':
                 tags = ['Long Wait Time', 'Poor Service'] if 'long' in row['cleaned_text'] or 'poor' in row[
                     'cleaned_text'] else ['Issues']
             else:
@@ -347,7 +439,7 @@ class BPISentimentAnalyzer:
                 "tags": tags
             })
 
-        # CSAT Summary
+        # CSAT Summary using final sentiment
         csat_summary = {
             "overallScore": int(overall_score),
             "totalReviews": int(total_reviews),
@@ -406,10 +498,9 @@ class BPISentimentAnalyzer:
         }
 
     def extract_common_tags(self, reviews, sentiment_type):
-        """Extract common tags/themes from reviews based on sentiment"""
-        sentiment_reviews = reviews[reviews['bert_sentiment'] == sentiment_type]['cleaned_text']
+        """Extract common tags/themes from reviews based on final sentiment"""
+        sentiment_reviews = reviews[reviews['final_sentiment'] == sentiment_type]['cleaned_text']
 
-        # Define keyword categories
         # Define keyword categories for bank reviews
         positive_keywords = {
             'Fast Service': ['fast', 'quick', 'speedy', 'efficient', 'rapid', 'swift', 'prompt', 'immediate', 'instant',
@@ -538,7 +629,7 @@ class BPISentimentAnalyzer:
         return sorted(tag_counts.items(), key=lambda x: x[1], reverse=True)[:4]
 
     def generate_visualizations(self):
-        """Generate comprehensive visualizations"""
+        """Generate comprehensive visualizations using final sentiment"""
         print("Generating visualizations...")
 
         # Set up the plotting style
@@ -546,8 +637,8 @@ class BPISentimentAnalyzer:
         fig, axes = plt.subplots(2, 3, figsize=(18, 12))
         fig.suptitle('BPI Bank Sentiment Analysis Dashboard', fontsize=16, fontweight='bold')
 
-        # 1. Overall sentiment distribution
-        sentiment_counts = self.df['bert_sentiment'].value_counts()
+        # 1. Final sentiment distribution
+        sentiment_counts = self.df['final_sentiment'].value_counts()
         colors = ['#00BFA6', '#FEA000', '#CF3D58']  # Green, Orange, Red
         sentiment_colors = []
         for sentiment in sentiment_counts.index:
@@ -560,7 +651,7 @@ class BPISentimentAnalyzer:
 
         axes[0, 0].pie(sentiment_counts.values, labels=sentiment_counts.index,
                        autopct='%1.1f%%', startangle=90, colors=sentiment_colors)
-        axes[0, 0].set_title('Overall Sentiment Distribution')
+        axes[0, 0].set_title('Final Sentiment Distribution')
 
         # 2. Rating distribution
         if 'star_rating' in self.df.columns:
@@ -582,35 +673,41 @@ class BPISentimentAnalyzer:
         axes[0, 2].set_title('Top 10 Branches by Review Count')
         axes[0, 2].set_xlabel('Number of Reviews')
 
-        # 4. Sentiment by rating heatmap
-        if 'star_rating' in self.df.columns:
-            crosstab = pd.crosstab(self.df['star_rating'], self.df['bert_sentiment'])
-            im = axes[1, 0].imshow(crosstab.values, cmap='RdYlGn', aspect='auto')
-            axes[1, 0].set_xticks(range(len(crosstab.columns)))
-            axes[1, 0].set_xticklabels(crosstab.columns)
-            axes[1, 0].set_yticks(range(len(crosstab.index)))
-            axes[1, 0].set_yticklabels(crosstab.index)
-            axes[1, 0].set_title('Sentiment vs Rating Heatmap')
+        # 4. Sentiment comparison: Text vs Rating vs Final
+        comparison_data = {
+            'Text-based': self.df['text_based_sentiment'].value_counts(),
+            'Rating-based': self.df['rating_based_sentiment'].value_counts(),
+            'Final': self.df['final_sentiment'].value_counts()
+        }
 
-            # Add text annotations
-            for i in range(len(crosstab.index)):
-                for j in range(len(crosstab.columns)):
-                    axes[1, 0].text(j, i, crosstab.iloc[i, j],
-                                    ha="center", va="center", color="black", fontweight='bold')
+        sentiments = ['Positive', 'Neutral', 'Negative']
+        x = np.arange(len(sentiments))
+        width = 0.25
 
-        # 5. Branch sentiment comparison (top 10 branches)
+        for i, (method, counts) in enumerate(comparison_data.items()):
+            values = [counts.get(s, 0) for s in sentiments]
+            color = ['#4CAF50', '#FF9800', '#F44336'][i]
+            axes[1, 0].bar(x + i * width, values, width, label=method, color=color, alpha=0.8)
+
+        axes[1, 0].set_title('Sentiment Analysis Method Comparison')
+        axes[1, 0].set_xlabel('Sentiment')
+        axes[1, 0].set_ylabel('Count')
+        axes[1, 0].set_xticks(x + width)
+        axes[1, 0].set_xticklabels(sentiments)
+        axes[1, 0].legend()
+
+        # 5. Branch sentiment comparison (top 10 branches) using final sentiment
         top_10_branches = self.df['branch_name'].value_counts().head(10).index
         branch_sentiment_data = []
 
         for branch in top_10_branches:
             branch_data = self.df[self.df['branch_name'] == branch]
-            pos_count = (branch_data['bert_sentiment'] == 'Positive').sum()
-            neu_count = (branch_data['bert_sentiment'] == 'Neutral').sum()
-            neg_count = (branch_data['bert_sentiment'] == 'Negative').sum()
+            pos_count = (branch_data['final_sentiment'] == 'Positive').sum()
+            neu_count = (branch_data['final_sentiment'] == 'Neutral').sum()
+            neg_count = (branch_data['final_sentiment'] == 'Negative').sum()
             branch_sentiment_data.append([pos_count, neu_count, neg_count])
 
         branch_sentiment_array = np.array(branch_sentiment_data)
-        bottom = np.zeros(len(top_10_branches))
 
         # Create stacked bars
         p1 = axes[1, 1].bar(range(len(top_10_branches)), branch_sentiment_array[:, 0],
@@ -621,7 +718,7 @@ class BPISentimentAnalyzer:
                             bottom=branch_sentiment_array[:, 0] + branch_sentiment_array[:, 1],
                             color='#CF3D58', label='Negative')
 
-        axes[1, 1].set_title('Sentiment Distribution by Top 10 Branches')
+        axes[1, 1].set_title('Final Sentiment by Top 10 Branches')
         axes[1, 1].set_xlabel('Branch')
         axes[1, 1].set_ylabel('Count')
         axes[1, 1].set_xticks(range(len(top_10_branches)))
@@ -629,12 +726,12 @@ class BPISentimentAnalyzer:
                                     for branch in top_10_branches], rotation=45, ha='right')
         axes[1, 1].legend()
 
-        # 6. Aspect-based sentiment (if aspects are found)
+        # 6. Aspect-based sentiment using final sentiment
         aspect_sentiments = self.aspect_based_sentiment_analysis()
         aspects_with_mentions = {k: v for k, v in aspect_sentiments.items() if v['total_mentions'] > 0}
 
         if aspects_with_mentions:
-            aspect_names = list(aspects_with_mentions.keys())[:8]  # Limit to 8 aspects
+            aspect_names = list(aspects_with_mentions.keys())[:8]
             positive_counts = [aspects_with_mentions[asp]['sentiment_distribution'].get('Positive', 0)
                                for asp in aspect_names]
             negative_counts = [aspects_with_mentions[asp]['sentiment_distribution'].get('Negative', 0)
@@ -647,14 +744,14 @@ class BPISentimentAnalyzer:
                            color='#00BFA6', alpha=0.8)
             axes[1, 2].bar(x + width / 2, negative_counts, width, label='Negative',
                            color='#CF3D58', alpha=0.8)
-            axes[1, 2].set_title('Aspect-based Sentiment Analysis')
+            axes[1, 2].set_title('Aspect-based Sentiment')
             axes[1, 2].set_xlabel('Aspects')
             axes[1, 2].set_ylabel('Count')
             axes[1, 2].set_xticks(x)
             axes[1, 2].set_xticklabels(aspect_names, rotation=45, ha='right')
             axes[1, 2].legend()
         else:
-            # If no aspects found, show text analysis vs rating analysis breakdown
+            # Show analysis method breakdown
             text_based = len(self.df[self.df['review_text'] != 'No review text provided'])
             rating_based = len(self.df[self.df['review_text'] == 'No review text provided'])
 
@@ -671,7 +768,7 @@ class BPISentimentAnalyzer:
         print("Dashboard visualization saved as: bpi_sentiment_analysis_dashboard.png")
 
     def aspect_based_sentiment_analysis(self):
-        """Perform aspect-based sentiment analysis"""
+        """Perform aspect-based sentiment analysis using FINAL sentiment"""
         print("Performing aspect-based sentiment analysis...")
 
         aspect_sentiments = {}
@@ -683,15 +780,16 @@ class BPISentimentAnalyzer:
             aspect_reviews = text_reviews[aspect_mask]
 
             if len(aspect_reviews) > 0:
+                # Use FINAL sentiment instead of BERT sentiment
                 aspect_sentiments[aspect] = {
                     'total_mentions': int(len(aspect_reviews)),
-                    'sentiment_distribution': aspect_reviews['bert_sentiment'].value_counts().to_dict(),
+                    'sentiment_distribution': aspect_reviews['final_sentiment'].value_counts().to_dict(),
                     'sentiment_percentages': (
-                            aspect_reviews['bert_sentiment'].value_counts(normalize=True) * 100).round(2).to_dict(),
+                            aspect_reviews['final_sentiment'].value_counts(normalize=True) * 100).round(2).to_dict(),
                     'average_rating': float(
                         aspect_reviews['star_rating'].mean()) if 'star_rating' in aspect_reviews.columns else 0,
                     'dominant_sentiment': str(
-                        aspect_reviews['bert_sentiment'].mode().iloc[0] if len(aspect_reviews) > 0 else 'Neutral')
+                        aspect_reviews['final_sentiment'].mode().iloc[0] if len(aspect_reviews) > 0 else 'Neutral')
                 }
                 # Convert all values to JSON serializable types
                 for key, value in aspect_sentiments[aspect]['sentiment_distribution'].items():
@@ -707,7 +805,7 @@ class BPISentimentAnalyzer:
 
         return aspect_sentiments
 
-    def save_results_as_js(self, data, filename='ReportsData_Generated.js'):
+    def save_results_as_js(self, data, filename='ReportsData_Generated_.js'):
         """Save results as JavaScript file compatible with your existing structure"""
         js_content = f"""// Generated BPI Sentiment Analysis Data - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
@@ -734,16 +832,16 @@ export const getSentimentCategory = (score) => {{
   return "Negative";
 }};
 
-// OVERALL SENTIMENT ANALYSIS RESULTS
+// OVERALL SENTIMENT ANALYSIS RESULTS 
 export const overallSentiment = "{data['overallSentiment']}";
 
-// BRANCH SENTIMENT ANALYSIS RESULTS
+// BRANCH SENTIMENT ANALYSIS RESULTS 
 export const branchSentiments = {json.dumps(data['branchSentiments'], indent=2)};
 
-// Customer reviews data with sentiment analysis
+// Customer reviews data with CORRECTED sentiment analysis
 export const customerReviews = {json.dumps(data['customerReviews'], indent=2)};
 
-// CSAT summary data
+// CSAT summary data 
 export const csatSummary = {json.dumps(data['csatSummary'], indent=2)};
 
 // Monthly trend data
@@ -761,10 +859,8 @@ export const cityPerformance = {json.dumps(data['cityPerformance'], indent=2)};
     def save_csv_results(self, data, filename='bpi_sentiment_dashboard_data.csv'):
         """Save detailed CSV results for dashboard visualization"""
 
-        # Create a comprehensive CSV with all necessary data
+        # Create customer reviews CSV with CORRECTED data
         csv_data = []
-
-        # Add individual review data
         for review in data['customerReviews']:
             csv_data.append({
                 'record_type': 'review',
@@ -773,7 +869,7 @@ export const cityPerformance = {json.dumps(data['cityPerformance'], indent=2)};
                 'city': review['city'],
                 'customer_id': review['customerId'],
                 'date': review['date'],
-                'rating': review['rating'],
+                'rating': review['rating'],  # This is now correctly based on final sentiment
                 'comment': review['comment'],
                 'tags': ', '.join(review['tags']),
                 'sentiment': 'Positive' if review['rating'] >= 70 else 'Neutral' if review[
@@ -782,7 +878,7 @@ export const cityPerformance = {json.dumps(data['cityPerformance'], indent=2)};
                 'branch_sentiment': data['branchSentiments'].get(review['branchName'], 'Neutral')
             })
 
-        # Add overall summary data
+        # Add summary data
         csv_data.append({
             'record_type': 'overall_summary',
             'overall_score': data['csatSummary']['overallScore'],
@@ -797,103 +893,92 @@ export const cityPerformance = {json.dumps(data['cityPerformance'], indent=2)};
             'needs_improvement_score': data['csatSummary']['needsImprovement']['score']
         })
 
-        # Add branch performance data
-        for branch, sentiment in data['branchSentiments'].items():
-            csv_data.append({
-                'record_type': 'branch_performance',
-                'branch_name': branch,
-                'branch_sentiment': sentiment,
-                'overall_sentiment': data['overallSentiment']
-            })
-
-        # Add city performance data
-        for city_data in data['cityPerformance']:
-            csv_data.append({
-                'record_type': 'city_performance',
-                'city': city_data['city'],
-                'city_score': city_data['score'],
-                'overall_sentiment': data['overallSentiment']
-            })
-
-        # Add monthly trends data
-        for trend in data['monthlyTrends']:
-            csv_data.append({
-                'record_type': 'monthly_trend',
-                'month': trend['month'],
-                'monthly_score': trend['score'],
-                'overall_sentiment': data['overallSentiment']
-            })
-
-        # Convert to DataFrame and save
+        # Save dashboard CSV
         csv_df = pd.DataFrame(csv_data)
         csv_df.to_csv(filename, index=False)
         print(f"CSV dashboard data saved as: {filename}")
 
-        # Save the cleaned original analysis results (FIXED VERSION)
+        # Save the original analysis results
         analysis_df = self.df[
-            ['branch_name', 'review_text', 'star_rating', 'bert_sentiment', 'rating_based_sentiment']].copy()
+            ['branch_name', 'review_text', 'star_rating', 'text_based_sentiment', 'rating_based_sentiment',
+             'final_sentiment']].copy()
 
         # Add computed fields
         analysis_df['branch_sentiment'] = analysis_df['branch_name'].map(data['branchSentiments'])
         analysis_df['overall_sentiment'] = data['overallSentiment']
         analysis_df['city'] = analysis_df['branch_name'].apply(self.extract_city_from_branch)
 
-        # Add sentiment scores with ranges
-        analysis_df['sentiment_score'] = analysis_df['bert_sentiment'].apply(self.sentiment_to_score_range)
-
-        # Rename columns for clarity
-        analysis_df = analysis_df.rename(columns={
-            'bert_sentiment': 'text_based_sentiment',
-            'rating_based_sentiment': 'rating_based_sentiment'
-        })
+        # Add CORRECTED sentiment scores based on FINAL sentiment
+        analysis_df['sentiment_score'] = analysis_df['final_sentiment'].apply(self.sentiment_to_score_range)
 
         original_filename = 'bpi_original_analysis_results.csv'
         analysis_df.to_csv(original_filename, index=False)
         print(f"Original analysis results saved as: {original_filename}")
 
-        print(f"\nCleaned CSV columns: {list(analysis_df.columns)}")
-        print(f"Sample data preview:")
-        print(analysis_df.head())
-
         return csv_df
 
     def print_summary(self):
-        """Print analysis summary"""
+        """Printanalysis summary"""
         print("\n" + "=" * 60)
         print("BPI BANK SENTIMENT ANALYSIS SUMMARY")
         print("=" * 60)
 
-        print(f"\n🏢 OVERALL SENTIMENT (Weighted Average): {self.overall_sentiment}")
+        print(f"\nOVERALL SENTIMENT (Weighted Average): {self.overall_sentiment}")
 
-        print(f"\n🏪 BRANCH SENTIMENTS (Weighted Average):")
+        print(f"\nBRANCH SENTIMENTS (Weighted Average):")
         for branch, sentiment in self.branch_sentiments.items():
             print(f"   {branch}: {sentiment}")
 
-        sentiment_counts = self.df['bert_sentiment'].value_counts()
+        # Show all three sentiment analysis methods
+        print(f"\nSENTIMENT ANALYSIS COMPARISON:")
+
+        text_counts = self.df['text_based_sentiment'].value_counts()
+        rating_counts = self.df['rating_based_sentiment'].value_counts()
+        final_counts = self.df['final_sentiment'].value_counts()
         total = len(self.df)
-        print(f"\n📊 SENTIMENT DISTRIBUTION:")
+
+        print(f"Text-based Analysis:")
         for sentiment in ['Positive', 'Neutral', 'Negative']:
-            count = sentiment_counts.get(sentiment, 0)
+            count = text_counts.get(sentiment, 0)
             percentage = (count / total * 100) if total > 0 else 0
             print(f"   {sentiment}: {count} reviews ({percentage:.1f}%)")
 
-        print(f"\n📈 TOTAL REVIEWS ANALYZED: {total}")
-        print(f"📍 UNIQUE BRANCHES: {len(self.branch_sentiments)}")
+        print(f"\nRating-based Analysis:")
+        for sentiment in ['Positive', 'Neutral', 'Negative']:
+            count = rating_counts.get(sentiment, 0)
+            percentage = (count / total * 100) if total > 0 else 0
+            print(f"   {sentiment}: {count} reviews ({percentage:.1f}%)")
+
+        print(f"\nFINAL Analysis ( - Used for scoring):")
+        for sentiment in ['Positive', 'Neutral', 'Negative']:
+            count = final_counts.get(sentiment, 0)
+            percentage = (count / total * 100) if total > 0 else 0
+            print(f"   {sentiment}: {count} reviews ({percentage:.1f}%)")
+
+        print(f"\nTOTAL REVIEWS ANALYZED: {total}")
+        print(f"UNIQUE BRANCHES: {len(self.branch_sentiments)}")
 
         # Show scoring ranges
-        print(f"\n📊 SCORING RANGES:")
+        print(f"\nSCORING RANGES (Based on FINAL sentiment):")
         print(f"   Positive: 70-95")
         print(f"   Neutral: 45-69")
         print(f"   Negative: 20-44")
 
+        # Show conflict resolution stats
+        text_vs_rating_conflicts = len(self.df[
+                                           (self.df['text_based_sentiment'] != self.df['rating_based_sentiment']) &
+                                           (self.df['review_text'] != 'No review text provided')
+                                           ])
+        print(f"\nCONFLICT RESOLUTION:")
+        print(f"   Text vs Rating conflicts resolved: {text_vs_rating_conflicts}")
+        print(f"   Priority: Star rating > Text sentiment (with intelligent compromise)")
+
 
 def main():
-    """Main execution function"""
-    print("BPI Bank Sentiment Analysis with BERT - FIXED VERSION")
-    print("=" * 50)
+    """Main execution function with logic"""
 
     # Get CSV file path
-    csv_file = input("Enter the path to your CSV file (or press Enter for 'bpi_reviews.csv'): ").strip()
+    csv_file = input("\nEnter the path to your CSV file (or press Enter for 'bpi_reviews.csv'): ").strip()
     if not csv_file:
         csv_file = 'bpi_reviews.csv'
 
@@ -923,41 +1008,20 @@ def main():
         # Print summary
         analyzer.print_summary()
 
-        print("\n✅ Analysis Complete!")
-        print("📁 Files Generated:")
-        print("   - bpi_sentiment_analysis_dashboard.png (Visualization Dashboard)")
-        print("   - ReportsData_Generated.js (JavaScript data file)")
-        print("   - bpi_sentiment_dashboard_data.csv (Dashboard CSV data)")
-        print("   - bpi_original_analysis_results.csv (Clean original analysis results)")
-        print("\n🔧 FIXES APPLIED:")
-        print("   ✓ Fixed cities list to match your requirements")
-        print("   ✓ Removed redundant sentiment columns")
-        print("   ✓ Fixed branch sentiment calculation using weighted averages")
-        print("   ✓ Fixed overall sentiment calculation using weighted averages")
-        print("   ✓ Added randomized sentiment scores within proper ranges:")
-        print("     - Positive: 70-95")
-        print("     - Neutral: 45-69")
-        print("     - Negative: 20-44")
-        print("   ✓ Improved city extraction from branch names")
-        print("   ✓ Cleaned up CSV output structure")
-
-        print("\n💡 You can now use these files in your React application!")
-        print("📊 Original Analysis CSV Structure:")
-        print("   - branch_name: Branch name")
-        print("   - review_text: Original review text")
-        print("   - star_rating: Star rating (if available)")
-        print("   - text_based_sentiment: BERT-based sentiment analysis")
-        print("   - rating_based_sentiment: Rating-based sentiment analysis")
-        print("   - branch_sentiment: Branch-level sentiment (weighted)")
-        print("   - overall_sentiment: Dataset-level sentiment (weighted)")
-        print("   - city: Extracted city name")
-        print("   - sentiment_score: Randomized score within sentiment range")
+        print("\n" + "=" * 60)
+        print("ANALYSIS COMPLETE!")
+        print("=" * 60)
+        print("FILES GENERATED:")
+        print("   - bpi_sentiment_analysis_dashboard.png")
+        print("   - ReportsData_Generated.js")
+        print("   - bpi_sentiment_dashboard_data.csv")
+        print("   - bpi_original_analysis_results.csv")
 
     except FileNotFoundError:
-        print(f"❌ Error: Could not find the file '{csv_file}'")
+        print(f"Error: Could not find the file '{csv_file}'")
         print("Please ensure the file exists and has columns: branch_name, review_text, star_rating")
     except Exception as e:
-        print(f"❌ An error occurred: {str(e)}")
+        print(f"An error occurred: {str(e)}")
         import traceback
         traceback.print_exc()
 

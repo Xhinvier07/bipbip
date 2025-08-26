@@ -796,7 +796,7 @@ class BPIBranchHealthCalculator:
 def main():
     # Configuration
     SHEET_ID = "1rHjXMxilei_FCJN49NDKmdFz8kSiX4ryCnaHPNcqeDc"
-    CREDENTIALS_PATH = "trashscan-450913-eb9189146693.json"
+    CREDENTIALS_PATH = "trashscan-450913-39acb2996c94.json"
 
     print("=== BPI Branch Health Score Calculator ===\n")
 
