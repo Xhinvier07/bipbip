@@ -15,7 +15,7 @@
 
 ## 🔗 **Quick Links**
 
-> **🚀 [BIPBIP Website](https://bipbip-bpi.vercel.app)** • **📊 [Real-time Database (Don't edit anything!)](https://docs.google.com/spreadsheets/d/1rHjXMxilei_FCJN49NDKmdFz8kSiX4ryCnaHPNcqeDc/edit?gid=1187109420#gid=1187109420)** • **📚 [Academic Paper](https://docs.google.com/document/d/1IJx9GnSEEiVfybt4t-D5ubDAsy6gm8Cn4KNslTThbyA/)**
+> **🚀 [BIPBIP Website](https://bipbip-bpi.vercel.app)** • **📊 [Real-time Database (Don't edit anything!)](https://docs.google.com/spreadsheets/d/1rHjXMxilei_FCJN49NDKmdFz8kSiX4ryCnaHPNcqeDc/edit?gid=310013873#gid=310013873)** • **📚 [Academic Paper](https://docs.google.com/document/d/1IJx9GnSEEiVfybt4t-D5ubDAsy6gm8Cn4KNslTThbyA/)**
 
 ---
 
