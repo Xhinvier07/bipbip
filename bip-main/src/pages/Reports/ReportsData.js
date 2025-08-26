@@ -650,7 +650,7 @@ export const customerReviews = [
     "city": "BPI",
     "customerId": "#N005",
     "date": "2025-08-17",
-    "rating": 86,
+    "rating": 46,
     "comment": "WORST Customer Service Eveerrrrrrrrrrrrrrrrrrrrrrr!!!",
     "tags": [
       "Good Experience"
@@ -675,7 +675,7 @@ export const customerReviews = [
     "city": "BPI",
     "customerId": "#N007",
     "date": "2025-07-25",
-    "rating": 87,
+    "rating": 37,
     "comment": "Their service is so slow. It will take you a few minutes, worst, time just to ask a question that they don't answer in a few minutes. They are so slow. There are so many delays. Their service is so ba...",
     "tags": [
       "Good Experience"
@@ -771,7 +771,7 @@ export const customerReviews = [
     "city": "BPI",
     "customerId": "#N015",
     "date": "2025-08-03",
-    "rating": 91,
+    "rating": 51,
     "comment": "All mobile numbers are not inservice.\nLandlines are not attended. Keeps on ringing.",
     "tags": [
       "Good Experience"
@@ -795,7 +795,7 @@ export const customerReviews = [
     "city": "BPI",
     "customerId": "#N017",
     "date": "2025-07-22",
-    "rating": 71,
+    "rating": 32,
     "comment": "All phone numbers cannot be reached.\nRecent mobile numbers cannot be reached.\nWhat is happening?",
     "tags": [
       "Good Experience"
@@ -927,7 +927,7 @@ export const customerReviews = [
     "city": "BPI",
     "customerId": "#N028",
     "date": "2025-08-12",
-    "rating": 91,
+    "rating": 62,
     "comment": "If I can give zero, I would have done it. Very bad experience with these branch. I opened a secured CC. After 2 months, no updates from them. They hold out my money with no interest.",
     "tags": [
       "Good Experience"
@@ -965,7 +965,7 @@ export const customerReviews = [
     "city": "BPI",
     "customerId": "#N031",
     "date": "2025-07-26",
-    "rating": 78,
+    "rating": 58,
     "comment": "SLOW QUEUEING, WASTED A LOT OF TIME. WORST",
     "tags": [
       "Good Experience"
@@ -1001,7 +1001,7 @@ export const customerReviews = [
     "city": "BPI",
     "customerId": "#N034",
     "date": "2025-07-29",
-    "rating": 70,
+    "rating": 30,
     "comment": "Poor customer service, they are still out so they didn't process the report\n\nWe arrived around 3 pm to report my girlfriend's BPI to Gcash issue because BPI \u2026",
     "tags": [
       "Good Experience"
@@ -1013,7 +1013,7 @@ export const customerReviews = [
     "city": "BPI",
     "customerId": "#N035",
     "date": "2025-07-25",
-    "rating": 78,
+    "rating": 48,
     "comment": "You guys are so unprofessional at BPI Maypajo. You close at 5pm, my sister is here at 4:30 to reopen her account but you won't let her in! You're lazy!!! I'm calling you, just hang up on me!!! I'll be...",
     "tags": [
       "Fast Service",
@@ -1038,7 +1038,7 @@ export const customerReviews = [
     "city": "BPI",
     "customerId": "#N037",
     "date": "2025-07-22",
-    "rating": 94,
+    "rating": 64,
     "comment": "The customer service is unprofessional, I just inquired to settle my credit card account, without my consent they deducted my minimum due on the card, without even a notice or letter. \u2026",
     "tags": [
       "Fast Service",
@@ -1051,7 +1051,7 @@ export const customerReviews = [
     "city": "BPI",
     "customerId": "#N038",
     "date": "2025-08-15",
-    "rating": 80,
+    "rating": 50,
     "comment": "Worst experience at the bank. Refused twice. Even the guard doesn't want to assist you.",
     "tags": [
       "Good Experience"
@@ -1075,7 +1075,7 @@ export const customerReviews = [
     "city": "BPI",
     "customerId": "#N040",
     "date": "2025-07-22",
-    "rating": 90,
+    "rating": 52,
     "comment": "Move slowly, you bastards.",
     "tags": [
       "Good Experience"
