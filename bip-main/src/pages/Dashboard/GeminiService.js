@@ -1,6 +1,7 @@
 // Gemini API Service for BipChat
-const API_KEY = 'AIzaSyD3feBzHd1DK5Rm3QZLnGK7ipRc-5Avchk';
-const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent';
+const API_KEY = "AIzaSyAmAz6MssqvmScYjh5fR-TsYtUH5_Onaxs";
+const API_URL =
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent";
 
 /**
  * System prompt that explains what BIP is and what data is available
@@ -36,23 +37,23 @@ Format your responses in a clear, structured way with bullet points for key insi
 export const generateGeminiResponse = async (userInput, history = []) => {
   try {
     // Format conversation history for Gemini API
-    const formattedHistory = history.map(msg => ({
-      role: msg.type === 'user' ? 'user' : 'model',
-      parts: [{ text: msg.text }]
+    const formattedHistory = history.map((msg) => ({
+      role: msg.type === "user" ? "user" : "model",
+      parts: [{ text: msg.text }],
     }));
-    
+
     // Add system prompt at the beginning
     const conversation = [
-      { role: 'model', parts: [{ text: SYSTEM_PROMPT }] },
+      { role: "model", parts: [{ text: SYSTEM_PROMPT }] },
       ...formattedHistory,
-      { role: 'user', parts: [{ text: userInput }] }
+      { role: "user", parts: [{ text: userInput }] },
     ];
-    
+
     // Make API request
     const response = await fetch(`${API_URL}?key=${API_KEY}`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         contents: conversation,
@@ -60,22 +61,25 @@ export const generateGeminiResponse = async (userInput, history = []) => {
           temperature: 0.7,
           topK: 40,
           topP: 0.95,
-          maxOutputTokens: 1024
-        }
-      })
+          maxOutputTokens: 1024,
+        },
+      }),
     });
-    
+
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(`Gemini API error: ${errorData.error?.message || response.statusText}`);
+      throw new Error(
+        `Gemini API error: ${errorData.error?.message || response.statusText}`
+      );
     }
-    
+
     const data = await response.json();
-    
+
     // Extract the response text
-    const responseText = data.candidates[0]?.content?.parts?.[0]?.text || 
+    const responseText =
+      data.candidates[0]?.content?.parts?.[0]?.text ||
       "I'm sorry, I couldn't generate a response. Please try again.";
-    
+
     // Try to extract structured data if present
     let structuredData = null;
     try {
@@ -85,18 +89,18 @@ export const generateGeminiResponse = async (userInput, history = []) => {
         structuredData = JSON.parse(jsonMatch[1]);
       }
     } catch (error) {
-      console.warn('Failed to parse structured data from response', error);
+      console.warn("Failed to parse structured data from response", error);
     }
-    
+
     return {
-      text: responseText.replace(/```json\n[\s\S]*?\n```/g, '').trim(), // Remove JSON blocks
-      data: structuredData
+      text: responseText.replace(/```json\n[\s\S]*?\n```/g, "").trim(), // Remove JSON blocks
+      data: structuredData,
     };
   } catch (error) {
-    console.error('Error calling Gemini API:', error);
+    console.error("Error calling Gemini API:", error);
     return {
       text: "I'm sorry, I encountered an error while processing your request. Please try again later.",
-      data: null
+      data: null,
     };
   }
 };
@@ -115,9 +119,9 @@ export const getSuggestedQueries = () => {
     "Show me customer satisfaction metrics",
     "Where are our branches located?",
     "What factors affect Branch Health Score?",
-    "Forecast transaction volume next quarter"
+    "Forecast transaction volume next quarter",
   ];
-  
+
   // Return a randomized subset of queries
   return queries.sort(() => 0.5 - Math.random()).slice(0, 3);
 };
