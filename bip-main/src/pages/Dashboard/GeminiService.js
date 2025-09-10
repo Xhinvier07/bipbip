@@ -1,5 +1,5 @@
 // Gemini API Service for BipChat
-const API_KEY = "AIzaSyAmAz6MssqvmScYjh5fR-TsYtUH5_Onaxs";
+const API_KEY = "AIzaSyANfRAMvG9qQZusuQZLMWPuAMp6iOBvhdE";
 const API_URL =
   "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent";
 
